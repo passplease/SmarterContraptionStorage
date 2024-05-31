@@ -1,0 +1,5 @@
+
+["Config for More legal Storage on Contraption !"]
+	#Weather default uses all storage blocks:
+	defaultOpen = true
+

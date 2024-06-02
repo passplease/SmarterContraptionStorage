@@ -1,0 +1,1 @@
+public com.simibubi.create.content.contraptions.Contraption addBlock(Lnet/minecraft/core/BlockPos;Lorg/apache/commons/lang3/tuple/Pair;) V

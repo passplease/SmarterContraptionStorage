@@ -6,8 +6,10 @@
   "refmap": "MoreStorageForCreate.refmap.json",
   "mixins": [
     "ContraptionControlMixin",
+    "ContraptionMixin",
     "FilterBehaviourMixin",
-    "MountedStorageMixin"
+    "MountedStorageMixin",
+    "StoneCutterMixin"
   ],
   "client": [
   ],

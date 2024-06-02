@@ -15,16 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MountedStorageManager.class)
 public abstract class MountedStorageMixin{
-//    @Inject(method = "addBlock",at = @At("HEAD"),remap = false,cancellable = true)
-//    private void addBlock(BlockPos localPos, BlockEntity be, CallbackInfo ci){
-//        if (be.getBlockState().hasProperty(ChestBlock.TYPE)) {
-//            for (BlockEntity block : getAroundBlock(Status.contraption,localPos)) {
-//                if (block instanceof ContraptionControlsBlockEntity &&
-//                ((ContraptionControlsBlockEntity) block).disabled)
-//                    ci.cancel();
-//            }
-//        }
-//    }
     private static BlockPos dealBlockPos(BlockPos pos,double deltaX,double deltaY,double deltaZ){
         return new BlockPos(pos.getX() + deltaX,pos.getY() + deltaY,pos.getZ() + deltaZ);
     }

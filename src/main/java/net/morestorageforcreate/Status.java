@@ -11,13 +11,11 @@ import java.util.HashMap;
 public class Status {
     public static HashMap<Integer, Pair<StructureTemplate.StructureBlockInfo, BlockEntity>> pair = new HashMap<>();
     public static HashMap<Integer, BlockPos> pos = new HashMap<>();
-    public static Contraption contraption;
     public static <T> void put(HashMap<Integer,T> map,T t){
         map.put(map.size(), t);
     }
     public static void resetAllStatus(){
         pair.clear();
         pos.clear();
-        contraption = null;
     }
 }

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BlockCuttingCategory.CondensedBlockCuttingRecipe.class)
 public abstract class StoneCutterMixin extends StonecutterRecipe {
-    @Shadow public abstract void addOutput(ItemStack stack);
+    @Shadow(remap = false) public abstract void addOutput(ItemStack stack);
 
     public StoneCutterMixin(ResourceLocation pId, String pGroup, Ingredient pIngredient, ItemStack pResult) {
         super(pId, pGroup, pIngredient, pResult);

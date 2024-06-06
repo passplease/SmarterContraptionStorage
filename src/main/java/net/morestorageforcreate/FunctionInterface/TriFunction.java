@@ -1,0 +1,5 @@
+package net.morestorageforcreate.FunctionInterface;
+@FunctionalInterface
+public interface TriFunction<T,R,U,W> {
+    W function(T t,R r,U u);
+}

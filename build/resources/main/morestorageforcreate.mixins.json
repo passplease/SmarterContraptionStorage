@@ -5,9 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "MoreStorageForCreate.refmap.json",
   "mixins": [
-    "ContraptionControlMixin",
     "FilterBehaviourMixin",
-    "MountedStorageMixin"
+    "StoneCutterMixin",
+    "Contraption.ContraptionControlBlockMixin",
+    "Contraption.ContraptionMixin",
+    "Contraption.MountedStorageManagerMixin"
   ],
   "client": [
   ],

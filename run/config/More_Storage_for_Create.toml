@@ -1,5 +1,14 @@
 
 ["Config for More legal Storage on Contraption !"]
-	#Weather default uses all storage blocks:
-	defaultOpen = true
+	#Weather default uses all storage blocks
+	#Instructions:
+	#If you set it true,the mod will open all of you contraption's storage by default,also,as the result you can't open it if it still is a entity
+	#If you set it false, your block will close by default
+	#And in any circumstances you can use Contraption Control Block to change the action it performed
+	#
+	DefaultOpen = true
+	#Check neighboring storage block automatically (such as Vault):
+	CheckAdjacentBlock = true
+	#Search range for neighboring block (best bigger than 9, because Vault maxsize is 9)
+	SearchRange = 10
 

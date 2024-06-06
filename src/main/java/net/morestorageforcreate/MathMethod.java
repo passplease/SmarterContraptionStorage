@@ -1,5 +1,7 @@
 package net.morestorageforcreate;
 
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.content.logistics.vault.ItemVaultItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -10,6 +12,7 @@ import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.morestorageforcreate.FunctionInterface.FiveFunction;
 import net.morestorageforcreate.FunctionInterface.FourFunction;
 import net.morestorageforcreate.FunctionInterface.TriFunction;
 import org.apache.commons.lang3.tuple.Pair;
@@ -32,6 +35,7 @@ public class MathMethod {
     static {
         addData(canControlStorage,Items.CHEST);
         addData(canControlStorage,Items.BARREL);
+        addData(canControlStorage,Items.TRAPPED_CHEST);
     }
     public static void resetStatus(){
         pair.clear();
@@ -58,18 +62,14 @@ public class MathMethod {
             if(comparedItem == canControlStorage.get(i))
                 return true;
         }
-        return false;
-    }
-    public static boolean moreStorageForCreate$isControlledBlock(BlockState blockState){
-        Block block = blockState.getBlock();
-        return blockState.hasProperty(ChestBlock.TYPE) || block instanceof BarrelBlock;
+        return comparedItem instanceof ItemVaultItem;
     }
     /**<pre>
      * <code>search_or_stop</code> is used to check whether we should stop search Block or we should hang on searching other Block
      * <code>setReturnValue</code> is used to set what we should return the last time
      * <code>finallyDo</code> is used to do anything you want to do before</pre>
      * */
-    public static <T> T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FourFunction<Level,BlockPos,BlockPos,T,T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,T,T> finallyDo){
+    public static <T> T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,T,T,T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,T,T> finallyDo){
         Set<BlockPos> checkedPos = new HashSet<>();
         T returnValue = null;
         returnValue = searchBlockPos(checkedPos,returnValue,level,initialBlock,initialBlock,search_or_stop,setReturnValue);
@@ -80,13 +80,13 @@ public class MathMethod {
             }
         return returnValue;
     }
-    private static <T> T searchBlockPos(@NotNull Set<BlockPos> checkedPos,@Nullable T t, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FourFunction<Level,BlockPos,BlockPos,T,T> setReturnValue){
+    private static <T> T searchBlockPos(@NotNull Set<BlockPos> checkedPos,@Nullable T t, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,T,T,T> setReturnValue){
         if(checkedPos.contains(pos) || calcDistance(pos,initialBlock) >= MoreContraptionStorageConfig.SearchRange.get())
             return null;
         checkedPos.add(pos);
         if(search_or_stop.function(level,pos,initialBlock)){
             for (BlockPos Pos : getAroundedBlockPos(pos))
-                t = setReturnValue.function(level,pos,initialBlock, searchBlockPos(checkedPos,t,level,Pos,initialBlock,search_or_stop,setReturnValue));
+                t = setReturnValue.function(level,pos,initialBlock,t,searchBlockPos(checkedPos,t,level,Pos,initialBlock,search_or_stop,setReturnValue));
         }
         t = setReturnValue.function(level,pos,initialBlock,t);
         return t;

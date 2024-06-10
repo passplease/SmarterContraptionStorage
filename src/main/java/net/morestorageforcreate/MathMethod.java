@@ -3,6 +3,7 @@ package net.morestorageforcreate;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -57,7 +58,9 @@ public class MathMethod {
     public static BlockPos getAdjacentBlockPos(BlockPos pos, int deltaX, int deltaY, int deltaZ){
         return new BlockPos(pos.getX() + deltaX,pos.getY() + deltaY,pos.getZ() + deltaZ);
     }
-    public static boolean canBeControlledBlock(Item comparedItem){
+    public static boolean canBeControlledBlock(@NotNull Item comparedItem){
+        if(!(comparedItem instanceof BlockItem))
+            return false;
         for (int i = 0; i < canControlStorage.size(); i++) {
             if(comparedItem == canControlStorage.get(i))
                 return true;

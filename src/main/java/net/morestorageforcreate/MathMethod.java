@@ -1,5 +1,6 @@
 package net.morestorageforcreate;
 
+import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
 import net.minecraft.core.BlockPos;
@@ -31,18 +32,20 @@ public class MathMethod {
     // A stupid variant to avoid adding disabled storage blocks to our contraptions
     // The reason I use this way: after @Unique comments it can not be called outside the Mixin class
     // Wish some guys teach me how to deal with problem, thanks ahead!
-    public static final HashMap<Integer, Item> canControlStorage = new HashMap<>();
-    static {
-        addData(canControlStorage,Items.CHEST);
-        addData(canControlStorage,Items.BARREL);
-        addData(canControlStorage,Items.TRAPPED_CHEST);
-    }
     public static void resetStatus(){
         pair.clear();
         pos.clear();
+        moreStorageForCreate$skipAdd = false;
     }
     public static <T> void addData(HashMap<Integer,T> map, T t){
         map.put(map.size(), t);
+    }
+    public static boolean canBeControlledBlock(Item comparedItem){
+        return comparedItem instanceof ItemVaultItem ||
+                comparedItem == Items.CHEST ||
+                comparedItem == Items.TRAPPED_CHEST ||
+                comparedItem == Items.BARREL ||
+                comparedItem instanceof ItemDrawers;
     }
     public static BlockPos[] getAroundedBlockPos(BlockPos pos){
         BlockPos[] block = new BlockPos[6];
@@ -56,13 +59,6 @@ public class MathMethod {
     }
     public static BlockPos getAdjacentBlockPos(BlockPos pos, int deltaX, int deltaY, int deltaZ){
         return new BlockPos(pos.getX() + deltaX,pos.getY() + deltaY,pos.getZ() + deltaZ);
-    }
-    public static boolean canBeControlledBlock(Item comparedItem){
-        for (int i = 0; i < canControlStorage.size(); i++) {
-            if(comparedItem == canControlStorage.get(i))
-                return true;
-        }
-        return comparedItem instanceof ItemVaultItem;
     }
     /**<pre>
      * <code>search_or_stop</code> is used to check whether we should stop search Block or we should hang on searching other Block
@@ -82,7 +78,7 @@ public class MathMethod {
     }
     private static <T> T searchBlockPos(@NotNull Set<BlockPos> checkedPos,@Nullable T t, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,T,T,T> setReturnValue){
         if(checkedPos.contains(pos) || calcDistance(pos,initialBlock) >= MoreContraptionStorageConfig.SearchRange.get())
-            return null;
+            return setReturnValue.function(level,pos,initialBlock,t,null);
         checkedPos.add(pos);
         if(search_or_stop.function(level,pos,initialBlock)){
             for (BlockPos Pos : getAroundedBlockPos(pos))

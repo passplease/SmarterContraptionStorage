@@ -1,0 +1,161 @@
+---- Minecraft Crash Report ----
+// Uh... Did I do that?
+
+Time: 2024-06-13 21:28:56
+Description: Ticking block entity
+
+java.lang.RuntimeException: Slot 1 not in valid range - [0,1)
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:206) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23187%23194!/:?] {re:classloading,re:mixin}
+	at net.minecraftforge.items.ItemStackHandler.setStackInSlot(ItemStackHandler.java:43) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23187%23194!/:?] {re:classloading,re:mixin}
+	at com.simibubi.create.content.contraptions.MountedStorage.handler$zzb000$removeStorageFromWorld(MountedStorage.java:544) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:AddDrawers.MountedStorageMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.MountedStorage.removeStorageFromWorld(MountedStorage.java) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:AddDrawers.MountedStorageMixin,pl:mixin:A}
+	at java.util.HashMap$Values.forEach(HashMap.java:1065) ~[?:?] {}
+	at com.simibubi.create.content.contraptions.MountedStorageManager.removeStorageFromWorld(MountedStorageManager.java:166) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.MountedStorageManagerMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.Contraption.removeBlocksFromWorld(Contraption.java:927) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.TranslatingContraption.removeBlocksFromWorld(TranslatingContraption.java:46) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity.assemble(PulleyBlockEntity.java:146) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.content.contraptions.piston.LinearActuatorBlockEntity.tick(LinearActuatorBlockEntity.java:105) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity.tick(PulleyBlockEntity.java:71) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.foundation.blockEntity.SmartBlockEntityTicker.tick(SmartBlockEntityTicker.java:15) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at net.minecraft.world.level.chunk.LevelChunk$BoundTickingBlockEntity.tick(LevelChunk.java:687) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.LevelChunk$RebindableTickingBlockEntityWrapper.tick(LevelChunk.java:780) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading}
+	at net.minecraft.world.level.Level.tickBlockEntities(Level.java:446) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.level.ServerLevel.tick(ServerLevel.java:331) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:create.mixins.json:accessor.ServerLevelAccessor,pl:mixin:A}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:866) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:806) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:84) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:654) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:244) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:842) [?:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraftforge.items.ItemStackHandler.validateSlotIndex(ItemStackHandler.java:206) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23187%23194!/:?] {re:classloading,re:mixin}
+	at net.minecraftforge.items.ItemStackHandler.setStackInSlot(ItemStackHandler.java:43) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23187%23194!/:?] {re:classloading,re:mixin}
+	at com.simibubi.create.content.contraptions.MountedStorage.handler$zzb000$removeStorageFromWorld(MountedStorage.java:544) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:AddDrawers.MountedStorageMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.MountedStorage.removeStorageFromWorld(MountedStorage.java) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:AddDrawers.MountedStorageMixin,pl:mixin:A}
+	at java.util.HashMap$Values.forEach(HashMap.java:1065) ~[?:?] {}
+	at com.simibubi.create.content.contraptions.MountedStorageManager.removeStorageFromWorld(MountedStorageManager.java:166) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.MountedStorageManagerMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.Contraption.removeBlocksFromWorld(Contraption.java:927) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.TranslatingContraption.removeBlocksFromWorld(TranslatingContraption.java:46) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity.assemble(PulleyBlockEntity.java:146) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.content.contraptions.piston.LinearActuatorBlockEntity.tick(LinearActuatorBlockEntity.java:105) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity.tick(PulleyBlockEntity.java:71) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at com.simibubi.create.foundation.blockEntity.SmartBlockEntityTicker.tick(SmartBlockEntityTicker.java:15) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:classloading}
+	at net.minecraft.world.level.chunk.LevelChunk$BoundTickingBlockEntity.tick(LevelChunk.java:687) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.LevelChunk$RebindableTickingBlockEntityWrapper.tick(LevelChunk.java:780) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading}
+	at net.minecraft.world.level.Level.tickBlockEntities(Level.java:446) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.level.ServerLevel.tick(ServerLevel.java:331) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:create.mixins.json:accessor.ServerLevelAccessor,pl:mixin:A}
+-- Block entity being ticked --
+Details:
+	Name: create:rope_pulley // com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity
+	Block: Block{create:rope_pulley}[axis=x]
+	Block location: World: (44,84,57), Section: (at 12,4,9 in 2,5,3; chunk contains blocks 32,-64,48 to 47,319,63), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	Block: Block{create:rope_pulley}[axis=x]
+	Block location: World: (44,84,57), Section: (at 12,4,9 in 2,5,3; chunk contains blocks 32,-64,48 to 47,319,63), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+Stacktrace:
+	at net.minecraft.world.level.chunk.LevelChunk$BoundTickingBlockEntity.tick(LevelChunk.java:687) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.LevelChunk$RebindableTickingBlockEntityWrapper.tick(LevelChunk.java:780) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading}
+	at net.minecraft.world.level.Level.tickBlockEntities(Level.java:446) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.level.ServerLevel.tick(ServerLevel.java:331) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:create.mixins.json:accessor.ServerLevelAccessor,pl:mixin:A}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:866) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:806) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:84) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:654) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:244) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:842) [?:?] {}
+
+
+-- Affected level --
+Details:
+	All players: 1 total; [ServerPlayer['Dev'/194, l='ServerLevel[新的世界]', x=46.26, y=79.00, z=57.59]]
+	Chunk stats: 2809
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (48,89,32), Section: (at 0,9,0 in 3,5,2; chunk contains blocks 48,-64,32 to 63,319,47), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	Level time: 110645 game time, 6000 day time
+	Level name: 新的世界
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+	Level weather: Rain time: 68315 (now: false), thunder time: 45627 (now: false)
+	Known server brands: forge
+	Level was modded: true
+	Level storage version: 0x04ABD - Anvil
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:866) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:806) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:84) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:654) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:244) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23188!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:842) [?:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.19.2
+	Minecraft Version ID: 1.19.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 17.0.9, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 478140928 bytes (455 MiB) / 2000683008 bytes (1908 MiB) up to 4246732800 bytes (4050 MiB)
+	CPUs: 12
+	Processor Vendor: GenuineIntel
+	Processor Name: 12th Gen Intel(R) Core(TM) i5-12400F
+	Identifier: Intel64 Family 6 Model 151 Stepping 5
+	Microarchitecture: unknown
+	Frequency (GHz): 2.50
+	Number of physical packages: 1
+	Number of physical CPUs: 6
+	Number of logical CPUs: 12
+	Graphics card #0 name: NVIDIA GeForce GT 710
+	Graphics card #0 vendor: NVIDIA (0x10de)
+	Graphics card #0 VRAM (MB): 1024.00
+	Graphics card #0 deviceId: 0x128b
+	Graphics card #0 versionInfo: DriverVersion=30.0.14.7464
+	Memory slot #0 capacity (MB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 2.67
+	Memory slot #0 type: DDR4
+	Virtual memory max (MB): 24898.03
+	Virtual memory used (MB): 18359.08
+	Swap memory total (MB): 8704.00
+	Swap memory used (MB): 540.14
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	Server Running: true
+	Player Count: 1 / 8; [ServerPlayer['Dev'/194, l='ServerLevel[新的世界]', x=46.26, y=79.00, z=57.59]]
+	Data Packs: vanilla, mod:forge, mod:morestorageforcreate, mod:flywheel (incompatible), mod:create, mod:storagedrawers (incompatible)
+	World Generation: Stable
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'; Server brand changed to 'forge'
+	Launched Version: MOD_DEV
+	ModLauncher: 10.0.9+10.0.9+main.dcd20f30
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		mixin-0.8.5.jar mixin PLUGINSERVICE 
+		eventbus-6.0.3.jar eventbus PLUGINSERVICE 
+		fmlloader-1.19.2-43.3.0.jar slf4jfixer PLUGINSERVICE 
+		fmlloader-1.19.2-43.3.0.jar object_holder_definalize PLUGINSERVICE 
+		fmlloader-1.19.2-43.3.0.jar runtime_enum_extender PLUGINSERVICE 
+		fmlloader-1.19.2-43.3.0.jar capability_token_subclass PLUGINSERVICE 
+		accesstransformers-8.0.4.jar accesstransformer PLUGINSERVICE 
+		fmlloader-1.19.2-43.3.0.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-10.0.9.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-10.0.9.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		minecraft@1.0
+		lowcodefml@null
+		javafml@null
+	Mod List: 
+		forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.|Minecraft                     |minecraft                     |1.19.2              |DONE      |Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		                                                  |Forge                         |forge                         |43.3.0              |DONE      |Manifest: NOSIGNATURE
+		main                                              |MoreStorageForCreate          |morestorageforcreate          |1.0.0               |DONE      |Manifest: NOSIGNATURE
+		flywheel-forge-1.19.2-0.6.9-18.jar                |Flywheel                      |flywheel                      |0.6.9-18            |DONE      |Manifest: NOSIGNATURE
+		create-328085-4625534_mapped_parchment_2022.08.14-|Create                        |create                        |0.5.1.c             |DONE      |Manifest: NOSIGNATURE
+		storage-drawers-223852-3884263_mapped_parchment_20|Storage Drawers               |storagedrawers                |11.1.2              |DONE      |Manifest: NOSIGNATURE
+	Flywheel Backend: GL33 Instanced Arrays
+	Crash Report UUID: deca03df-74d1-4898-8c00-3c86cc93f403
+	FML: 43.3
+	Forge: net.minecraftforge:43.3.0

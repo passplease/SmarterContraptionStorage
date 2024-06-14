@@ -13,8 +13,8 @@ public class MoreContraptionStorageConfig {
         DefaultOpen = Builder.comment("""
                 Weather default uses all storage blocks
                 Instructions:
-                If you set it true,the mod will open all of you contraption's storage by default,also,as the result you can't open it if it still is a entity
-                If you set it false, your block will close by default
+                If you set it true,the mod will open all of you contraption's storage by default
+                If you set it false, your block will close by default,also,as the result you can't open it until they become block.
                 And in any circumstances you can use Contraption Control Block to change the action it performed
                 """).define("DefaultOpen",true);
         CheckAdjacentBlock = Builder.comment("Check neighboring storage block automatically (such as Vault):").define("CheckAdjacentBlock",true);

@@ -6,7 +6,7 @@
   "refmap": "MoreStorageForCreate.refmap.json",
   "mixins": [
     "FilterBehaviourMixin",
-    "StoneCutterMixin",
+    "AddDrawers.MountedStorageMixin",
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin"

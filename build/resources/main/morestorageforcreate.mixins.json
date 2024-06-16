@@ -10,7 +10,6 @@
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",
-    "Ponder.MovementActorScenesMixin",
     "Ponder.PonderIndexMixin"
   ],
   "client": [

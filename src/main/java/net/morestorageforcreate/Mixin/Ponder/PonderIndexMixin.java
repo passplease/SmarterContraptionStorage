@@ -1,7 +1,9 @@
 package net.morestorageforcreate.Mixin.Ponder;
 
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.ponder.PonderRegistrationHelper;
 import com.simibubi.create.infrastructure.ponder.PonderIndex;
+import net.morestorageforcreate.AddPonder.MovementActorScenesMixin;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,6 +17,6 @@ public abstract class PonderIndexMixin {
 
     @Inject(method = "register",at = @At("RETURN"),remap = false)
     private static void register(CallbackInfo ci){
-        //HELPER.forComponents().addStoryBoard("contraption_controls", MovementActorScenesMixin::controlStorageBlock);
+        HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS).addStoryBoard("contraption_controls", MovementActorScenesMixin::controlStorageBlock);
     }
 }

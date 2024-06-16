@@ -6,7 +6,7 @@
 	#If you set it false, your block will close by default,also,as the result you can't open it until they become block.
 	#And in any circumstances you can use Contraption Control Block to change the action it performed
 	#
-	DefaultOpen = false
+	DefaultOpen = true
 	#Check neighboring storage block automatically (such as Vault):
 	CheckAdjacentBlock = true
 	#Search range for neighboring block (best bigger than 9, because Vault maxsize is 9)

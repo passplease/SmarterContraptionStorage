@@ -136,6 +136,10 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven { // Registrate
+        url "https://maven.tterrag.com/"
+    }
+    mavenLocal()
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
@@ -153,9 +157,10 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    jarJar("com.tterrag.registrate:Registrate:MC1.19-1.1.5")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.19-1.1.5")
     implementation fg.deobf("curse.maven:create-328085:4625534")
     implementation fg.deobf("curse.maven:storage-drawers-223852:3884263")
-
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

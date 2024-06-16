@@ -5,12 +5,6 @@
     },
     "done": true
   },
-  "sophisticatedstorage:recipes/sophisticatedstorage/packing_tape": {
-    "criteria": {
-      "has_slime": "2024-06-07 13:43:11 +0800"
-    },
-    "done": true
-  },
   "storagedrawers:recipes/storagedrawers/birch_trim": {
     "criteria": {
       "has_planks": "2024-06-06 21:31:26 +0800"
@@ -27,30 +21,6 @@
   "minecraft:recipes/redstone/repeater": {
     "criteria": {
       "has_redstone_torch": "2024-06-14 18:52:18 +0800"
-    },
-    "done": true
-  },
-  "sophisticatedstorage:recipes/sophisticatedstorage/limited_netherite_barrel_1": {
-    "criteria": {
-      "has_limited_diamond_barrel_1": "2024-06-07 15:39:32 +0800"
-    },
-    "done": true
-  },
-  "sophisticatedstorage:recipes/sophisticatedstorage/copper_barrel": {
-    "criteria": {
-      "has_barrel": "2024-06-07 13:43:24 +0800"
-    },
-    "done": true
-  },
-  "sophisticatedstorage:recipes/sophisticatedstorage/iron_barrel": {
-    "criteria": {
-      "has_barrel": "2024-06-07 13:43:24 +0800"
-    },
-    "done": true
-  },
-  "sophisticatedstorage:recipes/sophisticatedstorage/controller": {
-    "criteria": {
-      "has_base_tier_wooden_storage": "2024-06-07 13:43:24 +0800"
     },
     "done": true
   },
@@ -256,12 +226,6 @@
   "storagedrawers:recipes/storagedrawers/max_redstone_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "sophisticatedstorage:recipes/sophisticatedstorage/oak_chest_from_vanilla_chest": {
-    "criteria": {
-      "has_vanilla_chest": "2024-06-07 13:43:11 +0800"
     },
     "done": true
   },

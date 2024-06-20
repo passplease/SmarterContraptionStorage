@@ -4,7 +4,7 @@
 Time: 2024-06-02 21:50:09
 Description: Ticking block entity
 
-org.spongepowered.asm.mixin.transformer.throwables.IllegalClassLoadError: net.morestorageforcreate.MathMethod is in a defined mixin package net.morestorageforcreate.Mixin.* owned by morestorageforcreate.mixins.json and cannot be referenced directly
+org.spongepowered.asm.mixin.transformer.throwables.IllegalClassLoadError: net.SmarterContraptionStorage.MathMethod is in Excludes.BuildNBTFile defined mixin package net.SmarterContraptionStorage.Mixin.* owned by morestorageforcreate.mixins.json and cannot be referenced directly
 	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:334) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
 	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:250) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
 	at org.spongepowered.asm.service.modlauncher.MixinTransformationHandler.processClass(MixinTransformationHandler.java:131) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}

@@ -1,5 +1,5 @@
 ---- Minecraft Crash Report ----
-// Don't be sad, have a hug! <3
+// Don't be sad, have Excludes.BuildNBTFile hug! <3
 
 Time: 2024-06-03 13:20:03
 Description: Ticking block entity

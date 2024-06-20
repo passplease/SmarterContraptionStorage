@@ -42,10 +42,10 @@ Stacktrace:
 Details:
 	Mod File: /C:/Users/Administrator/.gradle/caches/forge_gradle/deobf_dependencies/curse/maven/create-328085/4625534_mapped_parchment_2022.08.14-1.19.2/create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar
 	Failure message: Create (create) encountered an error during the sided_setup event phase
-		java.lang.NoClassDefFoundError: net.morestorageforcreate.Mixin.Ponder.PonderIndexMixin$MovementActorScenesMixin is invalid
+		java.lang.NoClassDefFoundError: net.SmarterContraptionStorage.Mixin.Ponder.PonderIndexMixin$MovementActorScenesMixin is invalid
 	Mod Version: 0.5.1.c
 	Mod Issue URL: https://github.com/Creators-of-Create/Create/issues
-	Exception message: java.lang.NoClassDefFoundError: net.morestorageforcreate.Mixin.Ponder.PonderIndexMixin$MovementActorScenesMixin is invalid
+	Exception message: java.lang.NoClassDefFoundError: net.SmarterContraptionStorage.Mixin.Ponder.PonderIndexMixin$MovementActorScenesMixin is invalid
 Stacktrace:
 	at org.spongepowered.asm.service.modlauncher.ModLauncherClassTracker.handlesClass(ModLauncherClassTracker.java:91) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
 	at org.spongepowered.asm.launch.MixinLaunchPluginLegacy.handlesClass(MixinLaunchPluginLegacy.java:109) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}

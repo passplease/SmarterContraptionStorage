@@ -6,8 +6,8 @@ Description: Ticking block entity
 
 java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()" because "t" is null
 	at com.simibubi.create.content.contraptions.Contraption.mdf4715f$lambda$moreStorageForCreate$checkAddToStorage$1$1(Contraption.java:1566) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
-	at net.morestorageforcreate.MathMethod.searchBlockPos(MathMethod.java:87) ~[%23193!/:?] {re:mixin,re:classloading}
-	at net.morestorageforcreate.MathMethod.searchBlockPos(MathMethod.java:75) ~[%23193!/:?] {re:mixin,re:classloading}
+	at net.SmarterContraptionStorage.MathMethod.searchBlockPos(MathMethod.java:87) ~[%23193!/:?] {re:mixin,re:classloading}
+	at net.SmarterContraptionStorage.MathMethod.searchBlockPos(MathMethod.java:75) ~[%23193!/:?] {re:mixin,re:classloading}
 	at com.simibubi.create.content.contraptions.Contraption.moreStorageForCreate$checkAddToStorage(Contraption.java:1561) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
 	at com.simibubi.create.content.contraptions.Contraption.handler$zzd000$addBlock(Contraption.java:1540) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
 	at com.simibubi.create.content.contraptions.Contraption.searchMovedStructure(Contraption.java:238) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
@@ -35,8 +35,8 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Thread: Server thread
 Stacktrace:
 	at com.simibubi.create.content.contraptions.Contraption.mdf4715f$lambda$moreStorageForCreate$checkAddToStorage$1$1(Contraption.java:1566) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
-	at net.morestorageforcreate.MathMethod.searchBlockPos(MathMethod.java:87) ~[%23193!/:?] {re:mixin,re:classloading}
-	at net.morestorageforcreate.MathMethod.searchBlockPos(MathMethod.java:75) ~[%23193!/:?] {re:mixin,re:classloading}
+	at net.SmarterContraptionStorage.MathMethod.searchBlockPos(MathMethod.java:87) ~[%23193!/:?] {re:mixin,re:classloading}
+	at net.SmarterContraptionStorage.MathMethod.searchBlockPos(MathMethod.java:75) ~[%23193!/:?] {re:mixin,re:classloading}
 	at com.simibubi.create.content.contraptions.Contraption.moreStorageForCreate$checkAddToStorage(Contraption.java:1561) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
 	at com.simibubi.create.content.contraptions.Contraption.handler$zzd000$addBlock(Contraption.java:1540) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}
 	at com.simibubi.create.content.contraptions.Contraption.searchMovedStructure(Contraption.java:238) ~[create-328085-4625534_mapped_parchment_2022.08.14-1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:Contraption.ContraptionMixin,pl:mixin:A}

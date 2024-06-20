@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/JAVA自学程序.MoreStorageForCreate.test.iml" filepath="$PROJECT_DIR$/.idea/modules/JAVA自学程序.MoreStorageForCreate.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoreStorageForCreate.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MoreStorageForCreate.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MoreStorageForCreate.test.iml" filepath="$PROJECT_DIR$/.idea/modules/MoreStorageForCreate.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/net.MoreStorageForCreate.test.iml" filepath="$PROJECT_DIR$/.idea/modules/net.MoreStorageForCreate.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/net.smartercontraptionstorage.test.iml" filepath="$PROJECT_DIR$/.idea/modules/net.smartercontraptionstorage.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/smartercontraptionstorage.main.iml" filepath="$PROJECT_DIR$/.idea/modules/smartercontraptionstorage.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/smartercontraptionstorage.test.iml" filepath="$PROJECT_DIR$/.idea/modules/smartercontraptionstorage.test.iml" />
     </modules>
   </component>
 </project>

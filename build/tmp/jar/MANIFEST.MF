@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Specification-Title: morestorageforcreate
+Specification-Title: smartercontraptionstorage
 Specification-Vendor: No Name
 Specification-Version: 1
-Implementation-Title: MoreStorageForCreate
+Implementation-Title: smartercontraptionstorage
 Implementation-Version: 1.19.2-1.0
 Implementation-Vendor: No Name
-Implementation-Timestamp: 2024-06-14T21:14:54+0800
-MixinConfigs: morestorageforcreate.mixins.json
+Implementation-Timestamp: 2024-06-18T19:26:03+0800
+MixinConfigs: smartercontraptionstorage.mixins.json
 

@@ -1,12 +1,12 @@
 ---- Minecraft Crash Report ----
-// Shall we play a game?
+// Shall we play Excludes.BuildNBTFile game?
 
 Time: 2024-06-05 18:59:36
 Description: Rendering overlay
 
 java.lang.IllegalStateException: Cannot get config value before config is loaded.
 This error is currently only thrown in the development environment, to avoid breaking published mods.
-In a future version, this will also throw in the production environment.
+In Excludes.BuildNBTFile future version, this will also throw in the production environment.
 
 	at com.google.common.base.Preconditions.checkState(Preconditions.java:502) ~[guava-31.0.1-jre.jar%23104!/:?] {}
 	at net.minecraftforge.common.ForgeConfigSpec$ConfigValue.get(ForgeConfigSpec.java:844) ~[forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar%23187%23194!/:?] {re:classloading,re:mixin}

@@ -6,7 +6,7 @@ Description: Unexpected error
 
 java.lang.NullPointerException: Unexpected error
 	at java.util.Objects.requireNonNull(Objects.java:208) ~[?:?] {re:mixin}
-	at com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity.handler$zza000$a(ContraptionControlsBlockEntity.java:522) ~[create-328085-4625534_mapped_official_1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:ContraptionControlMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity.handler$zza000$Excludes.BuildNBTFile(ContraptionControlsBlockEntity.java:522) ~[create-328085-4625534_mapped_official_1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:ContraptionControlMixin,pl:mixin:A}
 	at com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity.<init>(ContraptionControlsBlockEntity.java:48) ~[create-328085-4625534_mapped_official_1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:ContraptionControlMixin,pl:mixin:A}
 	at com.tterrag.registrate.builders.BlockEntityBuilder.lambda$createEntry$2(BlockEntityBuilder.java:139) ~[Registrate-MC1.19-1.1.5.jar%23200!/:?] {re:classloading}
 	at net.minecraft.world.level.block.entity.BlockEntityType.create(BlockEntityType.java:86) ~[forge-1.19.2-43.3.0_mapped_official_1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:flywheel.mixins.json:BlockEntityTypeMixin,pl:mixin:A}
@@ -54,7 +54,7 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Thread: Render thread
 Stacktrace:
 	at java.util.Objects.requireNonNull(Objects.java:208) ~[?:?] {re:mixin}
-	at com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity.handler$zza000$a(ContraptionControlsBlockEntity.java:522) ~[create-328085-4625534_mapped_official_1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:ContraptionControlMixin,pl:mixin:A}
+	at com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity.handler$zza000$Excludes.BuildNBTFile(ContraptionControlsBlockEntity.java:522) ~[create-328085-4625534_mapped_official_1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:ContraptionControlMixin,pl:mixin:A}
 	at com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity.<init>(ContraptionControlsBlockEntity.java:48) ~[create-328085-4625534_mapped_official_1.19.2.jar%23195!/:0.5.1.c] {re:mixin,re:classloading,pl:mixin:APP:morestorageforcreate.mixins.json:ContraptionControlMixin,pl:mixin:A}
 	at com.tterrag.registrate.builders.BlockEntityBuilder.lambda$createEntry$2(BlockEntityBuilder.java:139) ~[Registrate-MC1.19-1.1.5.jar%23200!/:?] {re:classloading}
 	at net.minecraft.world.level.block.entity.BlockEntityType.create(BlockEntityType.java:86) ~[forge-1.19.2-43.3.0_mapped_official_1.19.2.jar%23188!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:flywheel.mixins.json:BlockEntityTypeMixin,pl:mixin:A}

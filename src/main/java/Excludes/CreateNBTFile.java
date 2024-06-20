@@ -22,19 +22,19 @@ abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,
     }
     public abstract int setValue();// return DataVersion
 
-    static final ListTag s = new ListTag();
+    private static final ListTag s = new ListTag();
     public static void addSize(int value){
         s.add(IntTag.valueOf(value));
     }
-    static final ListTag e = new ListTag();
+    private static final ListTag e = new ListTag();
     @Deprecated
     // Don't know how to write this function yet.
     public static void addEntity(){}
-    static final ListTag b = new ListTag();
+    private static final ListTag b = new ListTag();
     public static void addBlock(int x,int y,int z,String blockId){
         addBlock(x,y,z,blockId,null);
     }
-    public static void addBlock(int x,int y,int z,String blockId,@Nullable CompoundTag properties){
+    public static int addBlock(int x,int y,int z,String blockId,@Nullable CompoundTag properties){
         CompoundTag tag = new CompoundTag();
         ListTag pos = new ListTag();
         pos.add(IntTag.valueOf(x));
@@ -43,8 +43,8 @@ abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,
         tag.put("pos",pos);
         int id = -1;
         if(properties != null)
-            addPalette(blockId,properties);
-        for (int i = 0; i < p.size(); i++) {
+            id = addPalette(blockId,properties);
+        else for (int i = 0; i < p.size(); i++){
             if(p.get(i) instanceof CompoundTag){
                 if(((CompoundTag) p.get(i)).getString("Name").endsWith(blockId)) {
                     id = i;
@@ -54,20 +54,47 @@ abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,
         }
         if(id == -1){
             addPalette(blockId,properties);
-            id = p.size();
+            id = p.size() - 1;
         }
         tag.put("state",IntTag.valueOf(id));
         b.add(tag);
+        return id;
     }
-    static final ListTag p = new ListTag();
-    public static void addPalette(String blockId){
-        addPalette(blockId,null);
+    public static void addBlock(int x,int y,int z,int id){
+        CompoundTag tag = new CompoundTag();
+        ListTag pos = new ListTag();
+        pos.add(IntTag.valueOf(x));
+        pos.add(IntTag.valueOf(y));
+        pos.add(IntTag.valueOf(z));
+        tag.put("pos",pos);
+        tag.put("state",IntTag.valueOf(id));
     }
-    public static void addPalette(String blockId,@Nullable CompoundTag properties){
+    private static final ListTag p = new ListTag();
+    public static int addPalette(String blockId){
+        return addPalette(blockId,null);
+    }
+    public static int addPalette(String blockId,@Nullable CompoundTag properties){
         CompoundTag tag = new CompoundTag();
         if(properties != null)
             tag.put("Properties",properties);
         tag.put("Name",StringTag.valueOf(blockId));
         p.add(tag);
+        return p.size() - 1;
+    }
+    public static void setBasePlate(int x,int z){
+        setBasePlate(new String[]{"minecraft:white_concrete","minecraft:snow_block"},x,z);
+    }
+    public static void setBasePlate(String[] blockId,int x,int z){
+        setBasePlate(blockId,0,0,x,z);
+    }
+    public static void setBasePlate(String[] blockId,int x,int z,int X,int Z){
+        int size = blockId.length;
+        int i = 0;
+        for(int a = x;a <= X;a++,i = (a - x) % size)
+            for (int c = z; c <= Z; c++) {
+                addBlock(a,0,c,blockId[i]);
+                i++;
+                i = i >= size ? i - size : i;
+            }
     }
 }

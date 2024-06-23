@@ -1,0 +1,15 @@
+Java Launcher: C:\Program Files\Java\jdk-17\bin\java.exe
+Arguments: '--task, SRG_TO_MCP, --input, C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.jozufozu.flywheel\flywheel-forge-1.19.2\0.6.8.a-14\5481813bf28db1beb17c5a65aa6e8e8d01829be8\flywheel-forge-1.19.2-0.6.8.a-14.jar, --output, C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\com\jozufozu\flywheel\flywheel-forge-1.19.2\0.6.8.a-14_mapped_parchment_2022.08.14-1.19.2\flywheel-forge-1.19.2-0.6.8.a-14_mapped_parchment_2022.08.14-1.19.2.jar, --mcp, C:\Users\Administrator\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.19.2\2022.08.14\parchment-1.19.2-2022.08.14.zip, --strip-signatures'
+Classpath:
+ - C:\Users\Administrator\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\installertools\1.3.2\installertools-1.3.2-fatjar.jar
+Working directory: C:\Users\Administrator\Desktop\JAVA自学程序\MoreStorageForCreate\build\_RenameSrg2Mcp_-1714813981
+Main class: net.minecraftforge.installertools.ConsoleTool
+====================================
+Task: SRG_TO_MCP
+Input:  C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.jozufozu.flywheel\flywheel-forge-1.19.2\0.6.8.a-14\5481813bf28db1beb17c5a65aa6e8e8d01829be8\flywheel-forge-1.19.2-0.6.8.a-14.jar
+Output: C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\com\jozufozu\flywheel\flywheel-forge-1.19.2\0.6.8.a-14_mapped_parchment_2022.08.14-1.19.2\flywheel-forge-1.19.2-0.6.8.a-14_mapped_parchment_2022.08.14-1.19.2.jar
+MCP:    C:\Users\Administrator\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.19.2\2022.08.14\parchment-1.19.2-2022.08.14.zip
+Loading MCP Data
+Processing ZIP file
+Stripped Manifest of sha digests
+Process complete

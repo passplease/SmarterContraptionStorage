@@ -2,12 +2,7 @@ package net.SmarterContraptionStorage;
 
 import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtIo;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -20,10 +15,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.*;
 
 public class MathMethod {
@@ -50,23 +41,20 @@ public class MathMethod {
     }
     public static BlockPos[] getAroundedBlockPos(BlockPos pos){
         BlockPos[] block = new BlockPos[6];
-        block[0] = getAdjacentBlockPos(pos,1,0,0);
-        block[1] = getAdjacentBlockPos(pos,-1,0,0);
-        block[2] = getAdjacentBlockPos(pos,0,1,0);
-        block[3] = getAdjacentBlockPos(pos,0,-1,0);
-        block[4] = getAdjacentBlockPos(pos,0,0,1);
-        block[5] = getAdjacentBlockPos(pos,0,0,-1);
+        block[0] = pos.north();
+        block[1] = pos.south();
+        block[2] = pos.west();
+        block[3] = pos.east();
+        block[4] = pos.above();
+        block[5] = pos.below();
         return block;
-    }
-    public static BlockPos getAdjacentBlockPos(BlockPos pos, int deltaX, int deltaY, int deltaZ){
-        return new BlockPos(pos.getX() + deltaX,pos.getY() + deltaY,pos.getZ() + deltaZ);
     }
     /**<pre>
      * <code>search_or_stop</code> is used to check whether we should stop search Block or we should hang on searching other Block
      * <code>setReturnValue</code> is used to set what we should return the last time
      * <code>finallyDo</code> is used to do anything you want to do before</pre>
      * */
-    public static <T> T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,T,T,T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,T,T> finallyDo){
+    public static <T> @NotNull T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T> finallyDo){
         Set<BlockPos> checkedPos = new HashSet<>();
         T returnValue = null;
         returnValue = searchBlockPos(checkedPos,returnValue,level,initialBlock,initialBlock,search_or_stop,setReturnValue);
@@ -75,9 +63,11 @@ public class MathMethod {
             while (CheckedPos.hasNext()){
                 finallyDo.function(level,CheckedPos.next(),initialBlock,returnValue);
             }
+        if(returnValue == null)
+            throw new RuntimeException("The return value is null!");
         return returnValue;
     }
-    private static <T> T searchBlockPos(@NotNull Set<BlockPos> checkedPos,@Nullable T t, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,T,T,T> setReturnValue){
+    private static <T> T searchBlockPos(@NotNull Set<BlockPos> checkedPos,@Nullable T t, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue){
         if(checkedPos.contains(pos) || calcDistance(pos,initialBlock) >= SmarterContraptionStorageConfig.SearchRange.get())
             return setReturnValue.function(level,pos,initialBlock,t,null);
         checkedPos.add(pos);

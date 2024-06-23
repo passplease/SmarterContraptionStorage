@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,7 +37,23 @@ public abstract class MountedStorageMixin {
     @Inject(method = "removeStorageFromWorld",at = @At("HEAD"),cancellable = true,remap = false)
     public void removeStorageFromWorld(CallbackInfo ci){
         if(blockEntity instanceof BlockEntityDrawers){
-            handler = new ItemStackHandler();
+            handler = new ItemStackHandler(){
+                int[] limits;
+                @Override
+                public void setSize(int size) {
+                    super.setSize(size);
+                    limits = new int[size];
+                }
+                @Override
+                public int getSlotLimit(int slot) {
+                    return limits[slot];
+                }
+                @Override
+                public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+                    super.setStackInSlot(slot, stack);
+                    limits[slot] = stack.getMaxStackSize();
+                }
+            };
             IDrawerGroup group = ((BlockEntityDrawers) blockEntity).getGroup();
             handler.setSize(group.getDrawerCount());
             for(int i = handler.getSlots() - 1; i >= 0;i--){

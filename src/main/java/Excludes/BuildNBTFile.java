@@ -1,8 +1,6 @@
 package Excludes;
 
-import net.SmarterContraptionStorage.FunctionInterface.TriFunction;
 import net.SmarterContraptionStorage.SmarterContraptionStorage;
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 

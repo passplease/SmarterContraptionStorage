@@ -1,0 +1,10 @@
+{
+  "create.ponder.storage_control.header": "控制动态结构上的存储。",
+  "create.ponder.storage_control.text_1": "掉落物一般会被自动地存储在动态结构上的容器中。",
+  "create.ponder.storage_control.text_2": "通过这个模组，你可以控制动态结构上的每一个容器的行为。现在让我们拿着箱子右键设置控制器。",
+  "create.ponder.storage_control.text_3": "现在，这个控制器将会控制我们的箱子。如果你有巨量的相邻容器需要控制，你也可以用一个控制器来控制他们全部",
+  "create.ponder.storage_control.text_4": "如果我们现在释放活塞，箱子将不会被动态结构识别为容器。可以预见，这些深色橡木将会掉在地上。",
+  "create.ponder.storage_control.text_5": "如我们所料……",
+  "create.ponder.storage_control.text_6": "值得注意的是，如果我们关闭了某一个容器，只要它还在动态结构上，我们都没有办法打开它。",
+  "create.ponder.storage_control.text_7": "另外，任何动态结构上的工作方块也可以使用容器。并且你也可以使用配置文件来使得他们仅在控制器开启时工作，而在控制器关闭或无控制器时关闭"
+}

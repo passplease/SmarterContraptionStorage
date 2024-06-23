@@ -145,6 +145,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/dark_oak_wood": {
+    "criteria": {
+      "has_log": "2024-06-23 07:14:43 +0800"
+    },
+    "done": true
+  },
   "create:recipes/transportation/crafting/kinetics/furnace_minecart_from_contraption_cart": {
     "criteria": {
       "has_item": "2024-06-06 20:17:46 +0800"
@@ -232,6 +238,12 @@
   "minecraft:recipes/food/cake": {
     "criteria": {
       "has_egg": "2024-06-20 21:12:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/dark_oak_planks": {
+    "criteria": {
+      "has_log": "2024-06-23 07:14:43 +0800"
     },
     "done": true
   },

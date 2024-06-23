@@ -1,7 +1,7 @@
 package Excludes;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.StringTag;
+import net.minecraft.nbt.*;
+import net.minecraft.world.level.block.state.properties.PistonType;
 
 class storage_control extends CreateNBTFile{
     public storage_control(String name) {
@@ -10,25 +10,55 @@ class storage_control extends CreateNBTFile{
 
     @Override
     public int setValue() {
-        addSize(7);
-        addSize(3);
-        addSize(6);
-        setBasePlate(7,7);
+        setBasePlate(4,4);
         CompoundTag properties = new CompoundTag();
-        properties.put("facing", StringTag.valueOf("south"));
-        addBlock(7,-1,7,"create:creative_motor",properties);
-        addBlock(7,0,8,"create:large_cogwheel",properties);
-        addBlock(7,-1,8,"create:cogwheel",properties);
-        addBlock(7,1,8,"create:cogwheel",properties);
-        addBlock(7,1,7,"create:clutch",properties);
-        addBlock(7,2,7,"minecraft:lever");
-        properties.put("facing", StringTag.valueOf("west"));
-        addBlock(5,1,2,"create:mechanical_saw",properties);
-        addBlock(5,1,3,"create:mechanical_saw");
-        addBlock(6,1,5,"create:sticky_mechanical_piston",properties);
+        properties.put("waterlogged",StringTag.valueOf("false"));
+        properties.put("axis",StringTag.valueOf("z"));
+        addStressBlock(3,1,5,"create:cogwheel",properties,32,0);
+        addStressBlock(4,0,5,"create:large_cogwheel",properties,-16,0);
+        addStressBlock(3,1,3,"create:shaft",properties,-32,0);
+        properties.put("powered",StringTag.valueOf("true"));
+        addStressBlock(3,1,4,"create:gearshift",properties,-32,0);
+        properties.put("face",StringTag.valueOf("floor"));
+        properties.put("facing",StringTag.valueOf("east"));
+        addBlock(3,2,4,"minecraft:lever",properties);
+
         properties = new CompoundTag();
+        properties.put("facing",StringTag.valueOf("west"));
+        properties.put("axis_along_first",StringTag.valueOf("false"));
+        properties.put("state",StringTag.valueOf("moving"));
+        addStressBlock(3,1,2,"create:sticky_mechanical_piston",properties,-32,4);
+
+        properties = new CompoundTag();
+        properties.put("facing",StringTag.valueOf("up"));
+        int id = addBlock(1,1,2,"minecraft:dark_oak_log",properties);
+        addBlock(1,1,3,id);
+        addBlock(0,1,2,id);
+        addBlock(0,1,3,id);
         properties.put("facing",StringTag.valueOf("north"));
-        addBlock(5,1,1,"storagedrawers:oak_full_drawers_4",properties);
+        addBlock(2,1,0,"minecraft:chest",properties);
+        CompoundTag nbt = new CompoundTag();
+        nbt.put("NextTick",IntTag.valueOf(1));
+        nbt.put("Speed",FloatTag.valueOf(0));
+        nbt.put("Progress",IntTag.valueOf(0));
+        nbt.put("NeedSpeedUpdate", ByteTag.valueOf((byte) 1));
+        nbt.put("id",StringTag.valueOf("create:mechanical_saw"));
+        properties.put("facing",StringTag.valueOf("west"));
+        id = addBlock(2,1,1,"create:mechanical_saw",properties,nbt);
+        addBlock(2,1,2,id,nbt);
+        properties.put("waterlogged",StringTag.valueOf("false"));
+        id = addBlock(4,1,1,"create:piston_extension_pole",properties);
+        addBlock(5,1,1,id);
+        properties.put("facing",StringTag.valueOf("north"));
+        properties.put("virtual",StringTag.valueOf("false"));
+        properties.put("open",StringTag.valueOf("false"));
+        addBlock(3,1,0,"create:contraption_controls",properties);
+
+        properties = new CompoundTag();
+        properties.put("facing",StringTag.valueOf("west"));
+        properties.put("waterlogged",StringTag.valueOf("false"));
+        properties.put("type",StringTag.valueOf(PistonType.STICKY.name()));
+        addBlock(3,1,1,"create:mechanical_piston_head",properties);
         return 1;
     }
 }

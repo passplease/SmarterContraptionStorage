@@ -80,7 +80,7 @@ public abstract class MountedStorageMixin {
         MathMethod.smarterContraptionStorage$canStoreItem = true;
     }
     /**
-     * @author NoName
+     * @author PassPlease
      * @reason
      * To make sure we can open closed containers
      */

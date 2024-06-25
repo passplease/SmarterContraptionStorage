@@ -2,7 +2,6 @@ package net.SmarterContraptionStorage.Mixin.Contraption;
 
 import com.simibubi.create.content.contraptions.AssemblyException;
 import com.simibubi.create.content.contraptions.Contraption;
-import com.simibubi.create.content.contraptions.MountedStorageManager;
 import com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.SmarterContraptionStorage.MathMethod;
 import net.SmarterContraptionStorage.SmarterContraptionStorageConfig;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -59,8 +57,8 @@ public abstract class ContraptionMixin {
             thisBlock = pair.get(i).getRight().getBlockState().getBlock();
             pos = MathMethod.pos.get(i);
             if (canBeControlledBlock(thisBlock.asItem()))
-                smarterContraptionStorage$skipAdd = SmarterContraptionStorage$checkAddToStorage(world,pos,thisBlock, SmarterContraptionStorageConfig.CheckAdjacentBlock.get());
-            smarterContraptionStorage$checkedBlockPos.put(pos, smarterContraptionStorage$skipAdd);
+                smarterContraptionStorage$canStoreItem = !SmarterContraptionStorage$checkAddToStorage(world,pos,thisBlock, SmarterContraptionStorageConfig.CheckAdjacentBlock.get());
+            smarterContraptionStorage$checkedBlockPos.put(pos, smarterContraptionStorage$canStoreItem);
             this.addBlock(pos,pair.get(i));
         }
         smarterContraptionStorage$waitAddBlock = true;

@@ -1,7 +1,7 @@
 package net.SmarterContraptionStorage;
 
-import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
+import net.SmarterContraptionStorage.AddStorage.StorageHandlerHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -20,14 +20,15 @@ import java.util.*;
 public class MathMethod {
     public static final HashMap<Integer, Pair<StructureTemplate.StructureBlockInfo, BlockEntity>> pair = new HashMap<>();
     public static final HashMap<Integer, BlockPos> pos = new HashMap<>();
-    public static boolean smarterContraptionStorage$skipAdd = false;
+    public static boolean playerInteracting = false;
+    public static boolean smarterContraptionStorage$canStoreItem = false;
     // A stupid variant to avoid adding disabled storage blocks to our contraptions
     // The reason I use this way: after @Unique comments it can not be called outside the Mixin class
     // Wish some guys teach me how to deal with problem, thanks ahead!
     public static void resetStatus(){
         pair.clear();
         pos.clear();
-        smarterContraptionStorage$skipAdd = false;
+        smarterContraptionStorage$canStoreItem = false;
     }
     public static <T> void addData(HashMap<Integer,T> map, T t){
         map.put(map.size(), t);
@@ -37,7 +38,7 @@ public class MathMethod {
                 comparedItem == Items.CHEST ||
                 comparedItem == Items.TRAPPED_CHEST ||
                 comparedItem == Items.BARREL ||
-                comparedItem instanceof ItemDrawers;
+                StorageHandlerHelper.canControl(comparedItem);
     }
     public static BlockPos[] getAroundedBlockPos(BlockPos pos){
         BlockPos[] block = new BlockPos[6];

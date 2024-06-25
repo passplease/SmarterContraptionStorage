@@ -5,7 +5,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.ponder.PonderRegistrationHelper;
 import com.simibubi.create.infrastructure.ponder.PonderIndex;
 import net.minecraft.resources.ResourceLocation;
-import net.SmarterContraptionStorage.AddPonder.MovementActorScenesMixin;
+import net.SmarterContraptionStorage.AddPonder.MovementActorScenes;
 import net.SmarterContraptionStorage.SmarterContraptionStorage;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public abstract class PonderIndexMixin {
 
     @Inject(method = "register",at = @At("RETURN"),remap = false)
     private static void register(CallbackInfo ci){
-        HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS).addStoryBoard(new ResourceLocation(SmarterContraptionStorage.MODID,"storage_control"), MovementActorScenesMixin::controlStorageBlock);
+        HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS).addStoryBoard(new ResourceLocation(SmarterContraptionStorage.MODID,"storage_control"), MovementActorScenes::controlStorageBlock);
         BuildNBTFile.createNBTFile();
     }
 }

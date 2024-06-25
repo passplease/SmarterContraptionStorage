@@ -4,7 +4,6 @@
   "create.ponder.storage_control.text_2": "Using this mod, you could control every container behaviour on contraption. Here let's use chest right click controls block to set its value.",
   "create.ponder.storage_control.text_3": "And now, this block will control our chest.If you have huge amount neighboring containers, you can use one controls block to control them all",
   "create.ponder.storage_control.text_4": "If we release piston now,the chest won't be added to contraption. So these logs will drop on the ground.",
-  "create.ponder.storage_control.text_5": "It works as we predicate...",
-  "create.ponder.storage_control.text_6": "Needed to point out if we close some containers we can't open it as long as it is still on contraption.",
-  "create.ponder.storage_control.text_7": "Some other things, any actors on contraption can use these containers. You can change weather close them until controls block opened by using config file"
+  "create.ponder.storage_control.text_5": "It works as we predicated...",
+  "create.ponder.storage_control.text_6": "Some other things, any actors on contraption can use these containers. You can change weather close them until controls block opened by using config file"
 }

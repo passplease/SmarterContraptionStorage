@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "FilterBehaviourMixin",
-    "AddDrawers.MountedStorageMixin",
+    "MountedStorageMixin",
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",

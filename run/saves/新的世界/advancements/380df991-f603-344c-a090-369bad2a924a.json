@@ -217,6 +217,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/misc/iron_ingot_from_iron_block": {
+    "criteria": {
+      "has_iron_block": "2024-06-26 09:46:22 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/warped_drawers": {
     "criteria": {
       "has_chest": "2024-06-06 21:31:26 +0800"
@@ -376,6 +382,12 @@
   "storagedrawers:recipes/storagedrawers/jungle_trim": {
     "criteria": {
       "has_planks": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/anvil": {
+    "criteria": {
+      "has_iron_block": "2024-06-26 09:46:22 +0800"
     },
     "done": true
   },

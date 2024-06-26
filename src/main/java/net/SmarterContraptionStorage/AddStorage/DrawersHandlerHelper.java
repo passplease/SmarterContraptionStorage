@@ -1,106 +1,116 @@
 package net.SmarterContraptionStorage.AddStorage;
 
-import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawer;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
+import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
+import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawers;
-import com.jaquadro.minecraft.storagedrawers.capabilities.DrawerItemHandler;
+import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersComp;
 import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
-import com.simibubi.create.content.contraptions.MountedStorage;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
-    protected boolean canCreateHandler(BlockEntity Entity) {
-        return Entity instanceof BlockEntityDrawers;
+    protected boolean canCreateHandler(BlockEntity entity) {
+        return entity instanceof BlockEntityDrawers && !(entity instanceof BlockEntityDrawersComp);
     }
     @Override
     public void addStorageToWorld(BlockEntity entity,ItemStackHandler handler) {
         IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
         for(int i = handler.getSlots() - 1;i >= 0;i--){
-            group.getDrawer(i).setStoredItem(handler.getStackInSlot(i),handler.getStackInSlot(i).getCount());
+            group.getDrawer(i).setStoredItemCount(handler.getStackInSlot(i).getCount());
         }
     }
     @Override
     public ItemStackHandler createHandler(BlockEntity entity) {
         IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
-        return new DrawerHandler(group);
+        return new NormalDrawerHandler(group);
     }
     @Override
     public boolean allowControl(Item comparedItem) {
-        return comparedItem instanceof ItemDrawers;
+        Block block = Block.byItem(comparedItem);
+        return allowControl(block);
     }
-    private static class DrawerHandler extends ItemStackHandler{
-        private final DrawerItemHandler drawer;
-        public DrawerHandler(IDrawerGroup group) {
+    public boolean allowControl(Block block){
+        return block instanceof BlockDrawers && !(block instanceof BlockCompDrawers);
+    }
+    protected static class NormalDrawerHandler extends HandlerHelper{
+        public NormalDrawerHandler(@NotNull IDrawerGroup group) {
             super(group.getDrawerCount());
-            drawer = new DrawerItemHandler(group);
+            for(int i = slotLimits.length - 1;i >= 0;i--){
+                if(group.getDrawer(i).getAcceptingRemainingCapacity() == Integer.MAX_VALUE)
+                    slotLimits[i] = Integer.MAX_VALUE;
+                else slotLimits[i] = group.getDrawer(i).getMaxCapacity();
+                items[i] = group.getDrawer(i).getStoredItemPrototype();
+                items[i].setCount(group.getDrawer(i).getStoredItemCount());
+            }
+        }
+        protected boolean canInsert(int slot,ItemStack stack){
+            if(items[slot] == ItemStack.EMPTY)
+                return true;
+            return items[slot].sameItem(stack);
         }
         @Override
-        public int getSlotLimit(int slot) {
-            return getDrawer().getSlotLimit(slot);
-        }
-        @Override
-        protected int getStackLimit(int slot, @NotNull ItemStack stack) {
-            return getDrawer().getSlotLimit(slot);
+        public int getStackLimit(int slot, @NotNull ItemStack stack) {
+            if(canInsert(slot,stack))
+                return slotLimits[slot];
+            else return 0;
         }
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return getDrawer().insertItem(slot,stack,simulate);
+            if(canInsert(slot,stack)){
+                if(items[slot].isEmpty()) {
+                    items[slot] = stack;
+                    return ItemStack.EMPTY;
+                }
+                if(simulate){
+                    if(stack.getCount() <= slotLimits[slot]) {
+                        items[slot].setCount(stack.getCount());
+                        return ItemStack.EMPTY;
+                    }
+                    else {
+                        items[slot].setCount(slotLimits[slot]);
+                        stack.setCount(stack.getCount() - slotLimits[slot]);
+                        return stack;
+                    }
+                }
+                if(items[slot].getCount() + stack.getCount() > slotLimits[slot]) {
+                    stack.grow(slotLimits[slot] - items[slot].getCount());
+                    items[slot].setCount(slotLimits[slot]);
+                    return stack;
+                }else {
+                    items[slot].grow(stack.getCount());
+                    return ItemStack.EMPTY;
+                }
+            }else return stack;
         }
         @Override
         public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return getDrawer().extractItem(slot,amount,simulate);
-        }
-        @Override
-        public int getSlots() {
-            return getDrawer().getSlots();
-        }
-
-        @Override
-        public @NotNull ItemStack getStackInSlot(int slot) {
-            return getDrawer().getStackInSlot(slot);
-        }
-        @Override
-        public CompoundTag serializeNBT() {
-            ListTag nbtTagList = new ListTag();
-
-            for(int i = 0; i < this.stacks.size(); ++i) {
-                if (!getDrawer().getStackInSlot(i).isEmpty()) {
-                    CompoundTag itemTag = new CompoundTag();
-                    itemTag.putInt("Slot", i);
-                    getDrawer().getStackInSlot(i).save(itemTag);
-                    nbtTagList.add(itemTag);
+            if(amount == 0)
+                return ItemStack.EMPTY;
+            validateSlotIndex(slot);
+            ItemStack existing = getStackInSlot(slot);
+            if(existing.isEmpty())
+                return ItemStack.EMPTY;
+            final int toExtract = Math.min(existing.getCount(),amount);
+            if(existing.getCount() <= toExtract)
+                if(!simulate){
+                    items[slot] = ItemStack.EMPTY;
+                    onContentsChanged(slot);
+                    return existing;
+                }else return existing.copy();
+            else {
+                if(!simulate) {
+                    existing.grow(-toExtract);
+                    onContentsChanged(slot);
                 }
+                return ItemHandlerHelper.copyStackWithSize(existing,amount);
             }
-
-            CompoundTag nbt = new CompoundTag();
-            nbt.put("Items", nbtTagList);
-            nbt.putInt("Size", this.stacks.size());
-            return nbt;
-        }
-        @Override
-        public void deserializeNBT(CompoundTag nbt) {
-            this.setSize(nbt.contains("Size", 3) ? nbt.getInt("Size") : drawer.getSlots());
-            ListTag tagList = nbt.getList("Items", 10);
-
-            for(int i = 0; i < tagList.size(); ++i) {
-                CompoundTag itemTags = tagList.getCompound(i);
-                int slot = itemTags.getInt("Slot");
-                if (slot >= 0 && slot < drawer.getSlots()) {
-                    drawer.insertItem(slot, ItemStack.of(itemTags),false);
-                }
-            }
-
-            this.onLoad();
-        }
-        public DrawerItemHandler getDrawer() {
-            return drawer;
         }
     }
 }

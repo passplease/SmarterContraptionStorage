@@ -33,10 +33,15 @@ public abstract class ContraptionMixin {
     @Unique private final HashMap<BlockPos,Boolean> smarterContraptionStorage$checkedBlockPos = new HashMap<>();
     @Redirect(method = "moveBlock",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/Contraption;addBlock(Lnet/minecraft/core/BlockPos;Lorg/apache/commons/lang3/tuple/Pair;)V"),remap = false)
     public void storeBlock(Contraption instance, BlockPos pos, Pair<StructureTemplate.StructureBlockInfo, BlockEntity> pair){
-        if(canBeControlledBlock(pair.getRight().getBlockState().getBlock().asItem())){
-            addData(MathMethod.pos,pos);
-            addData(MathMethod.pair,pair);
-        }else this.addBlock(pos,pair);
+        BlockEntity entity = pair.getRight();
+        if(entity != null) {
+            if (canBeControlledBlock(entity.getBlockState().getBlock().asItem())) {
+                addData(MathMethod.pos, pos);
+                addData(MathMethod.pair, pair);
+                return;
+            }
+        }
+        addBlock(pos,pair);
     }
     @Inject(method = "moveBlock",at = @At("HEAD"),remap = false)
     public void setNeedAddBlock(Level world, Direction forcedDirection, Queue<BlockPos> frontier, Set<BlockPos> visited, CallbackInfoReturnable<Boolean> cir){

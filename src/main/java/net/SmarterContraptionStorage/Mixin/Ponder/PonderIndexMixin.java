@@ -1,6 +1,6 @@
 package net.SmarterContraptionStorage.Mixin.Ponder;
 
-import Excludes.BuildNBTFile;
+//import Excludes.BuildNBTFile;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.ponder.PonderRegistrationHelper;
 import com.simibubi.create.infrastructure.ponder.PonderIndex;
@@ -21,6 +21,6 @@ public abstract class PonderIndexMixin {
     @Inject(method = "register",at = @At("RETURN"),remap = false)
     private static void register(CallbackInfo ci){
         HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS).addStoryBoard(new ResourceLocation(SmarterContraptionStorage.MODID,"storage_control"), MovementActorScenes::controlStorageBlock);
-        BuildNBTFile.createNBTFile();
+        //BuildNBTFile.createNBTFile();
     }
 }

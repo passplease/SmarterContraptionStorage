@@ -8,22 +8,27 @@ import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersComp;
 import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
-    protected boolean canCreateHandler(BlockEntity entity) {
+    public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof BlockEntityDrawers && !(entity instanceof BlockEntityDrawersComp);
     }
     @Override
     public void addStorageToWorld(BlockEntity entity,ItemStackHandler handler) {
-        IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
-        for(int i = handler.getSlots() - 1;i >= 0;i--){
-            group.getDrawer(i).setStoredItemCount(handler.getStackInSlot(i).getCount());
+        if(handler instanceof NormalDrawerHandler Handler) {
+            IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
+            for (int i = handler.getSlots() - 1; i >= 0; i--) {
+                group.getDrawer(i).setStoredItem(Handler.items[i]);
+                group.getDrawer(i).setStoredItemCount(Handler.count[i]);
+            }
         }
     }
     @Override
@@ -40,20 +45,21 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         return block instanceof BlockDrawers && !(block instanceof BlockCompDrawers);
     }
     protected static class NormalDrawerHandler extends HandlerHelper{
+        public final int[] count;
         public NormalDrawerHandler(@NotNull IDrawerGroup group) {
             super(group.getDrawerCount());
+            count = new int[group.getDrawerCount()];
             for(int i = slotLimits.length - 1;i >= 0;i--){
                 if(group.getDrawer(i).getAcceptingRemainingCapacity() == Integer.MAX_VALUE)
                     slotLimits[i] = Integer.MAX_VALUE;
                 else slotLimits[i] = group.getDrawer(i).getMaxCapacity();
                 items[i] = group.getDrawer(i).getStoredItemPrototype();
-                items[i].setCount(group.getDrawer(i).getStoredItemCount());
+                count[i] = group.getDrawer(i).getStoredItemCount();
+                // Empty and locked drawers are not supported (they will be filled with item)
             }
         }
         protected boolean canInsert(int slot,ItemStack stack){
-            if(items[slot] == ItemStack.EMPTY)
-                return true;
-            return items[slot].sameItem(stack);
+            return !stack.isEmpty() && (items[slot].sameItem(stack) || items[slot].is(Items.AIR));
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack) {
@@ -62,29 +68,45 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             else return 0;
         }
         @Override
+        public @NotNull ItemStack getStackInSlot(int slot) {
+            ItemStack back = items[slot].copy();
+            back.setCount(count[slot]);
+            return back;
+        }
+        @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             if(canInsert(slot,stack)){
-                if(items[slot].isEmpty()) {
-                    items[slot] = stack;
-                    return ItemStack.EMPTY;
-                }
-                if(simulate){
+                // below should change markedItem in time, but I don't know how to do this right now.
+                if(items[slot].is(Items.AIR)){
                     if(stack.getCount() <= slotLimits[slot]) {
-                        items[slot].setCount(stack.getCount());
+                        count[slot] = stack.getCount();
+                        items[slot] = stack;
                         return ItemStack.EMPTY;
                     }
                     else {
-                        items[slot].setCount(slotLimits[slot]);
+                        count[slot] = slotLimits[slot];
+                        items[slot] = stack.copy();
+                        stack.setCount(stack.getCount() - count[slot]);
+                        return stack;
+                    }
+                }
+                if(simulate){
+                    if(stack.getCount() <= slotLimits[slot]) {
+                        count[slot] = stack.getCount();
+                        return ItemStack.EMPTY;
+                    }
+                    else {
+                        count[slot] = slotLimits[slot];
                         stack.setCount(stack.getCount() - slotLimits[slot]);
                         return stack;
                     }
                 }
-                if(items[slot].getCount() + stack.getCount() > slotLimits[slot]) {
-                    stack.grow(slotLimits[slot] - items[slot].getCount());
-                    items[slot].setCount(slotLimits[slot]);
+                if(count[slot] + stack.getCount() > slotLimits[slot]) {
+                    stack.grow(slotLimits[slot] - count[slot]);
+                    count[slot] += slotLimits[slot];
                     return stack;
                 }else {
-                    items[slot].grow(stack.getCount());
+                    count[slot] += stack.getCount();
                     return ItemStack.EMPTY;
                 }
             }else return stack;
@@ -94,23 +116,19 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             if(amount == 0)
                 return ItemStack.EMPTY;
             validateSlotIndex(slot);
-            ItemStack existing = getStackInSlot(slot);
-            if(existing.isEmpty())
-                return ItemStack.EMPTY;
-            final int toExtract = Math.min(existing.getCount(),amount);
-            if(existing.getCount() <= toExtract)
-                if(!simulate){
-                    items[slot] = ItemStack.EMPTY;
-                    onContentsChanged(slot);
-                    return existing;
-                }else return existing.copy();
-            else {
-                if(!simulate) {
-                    existing.grow(-toExtract);
-                    onContentsChanged(slot);
+            ItemStack toExtract = items[slot].copy();;
+            if(simulate){
+                toExtract.setCount(Math.min(amount, count[slot]));
+            }else {
+                if(amount > count[slot]){
+                    toExtract.setCount(count[slot]);
+                    count[slot] = 0;
+                }else {
+                    toExtract.setCount(amount);
+                    count[slot] -= amount;
                 }
-                return ItemHandlerHelper.copyStackWithSize(existing,amount);
             }
+            return toExtract;
         }
     }
 }

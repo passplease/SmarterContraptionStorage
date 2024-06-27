@@ -24,6 +24,18 @@
     },
     "done": true
   },
+  "minecraft:recipes/decorations/iron_bars": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/iron_sword": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/sticky_piston": {
     "criteria": {
       "has_slime_ball": "2024-05-30 21:12:29 +0800"
@@ -36,9 +48,21 @@
     },
     "done": true
   },
+  "minecraft:recipes/tools/iron_pickaxe": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/oak_drawers": {
     "criteria": {
       "has_chest": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/minecart": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -67,6 +91,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/redstone/iron_door": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/misc/charcoal": {
     "criteria": {
       "has_log": "2024-06-13 17:52:27 +0800"
@@ -85,6 +115,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/tools/iron_hoe": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/one_stack_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
@@ -97,9 +133,21 @@
     },
     "done": true
   },
+  "create:extendo_grip": {
+    "criteria": {
+      "0": "2024-06-27 09:30:02 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/jungle_drawers": {
     "criteria": {
       "has_chest": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_nugget": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -121,6 +169,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/iron_block": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "create:recipes/create.base/crafting/kinetics/controller_rail": {
     "criteria": {
       "has_item": "2024-06-06 20:17:40 +0800"
@@ -139,6 +193,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/tools/iron_shovel": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/crimson_drawers": {
     "criteria": {
       "has_chest": "2024-06-06 21:31:26 +0800"
@@ -151,6 +211,24 @@
     },
     "done": true
   },
+  "create:recipes/create.palettes/industrial_iron_block_from_ingots_iron_stonecutting": {
+    "criteria": {
+      "has_ingots_iron": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/smithing_table": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/iron_trapdoor": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "create:recipes/transportation/crafting/kinetics/furnace_minecart_from_contraption_cart": {
     "criteria": {
       "has_item": "2024-06-06 20:17:46 +0800"
@@ -160,6 +238,12 @@
   "storagedrawers:recipes/storagedrawers/void_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/shears": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -211,6 +295,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/materials/andesite_alloy": {
+    "criteria": {
+      "has_item": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/fill_level_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
@@ -232,6 +322,12 @@
   "storagedrawers:recipes/storagedrawers/quantify_key": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/heavy_weighted_pressure_plate": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -259,6 +355,18 @@
     },
     "done": true
   },
+  "minecraft:recipes/combat/iron_leggings": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/iron_axe": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "create:recipes/create.base/crafting/kinetics/secondary_linear_chassisfrom_conversion": {
     "criteria": {
       "has_item": "2024-05-30 21:12:37 +0800"
@@ -268,6 +376,12 @@
   "minecraft:recipes/transportation/tnt_minecart": {
     "criteria": {
       "has_minecart": "2024-06-06 20:18:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/shield": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -283,9 +397,21 @@
     },
     "done": true
   },
+  "minecraft:recipes/decorations/lantern": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/tools/lead": {
     "criteria": {
       "has_slime_ball": "2024-05-30 21:12:29 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/bucket": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -301,9 +427,21 @@
     },
     "done": true
   },
+  "minecraft:recipes/combat/iron_boots": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/redstone_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/hopper": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -334,6 +472,12 @@
   "storagedrawers:recipes/storagedrawers/obsidian_storage_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chain": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
@@ -385,6 +529,24 @@
     },
     "done": true
   },
+  "minecraft:recipes/combat/iron_chestplate": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/crossbow": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:story/smelt_iron": {
+    "criteria": {
+      "iron": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/anvil": {
     "criteria": {
       "has_iron_block": "2024-06-26 09:46:22 +0800"
@@ -400,6 +562,18 @@
   "storagedrawers:recipes/storagedrawers/controller": {
     "criteria": {
       "has_chest": "2024-06-06 21:31:39 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/empty_blaze_burner": {
+    "criteria": {
+      "has_item": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/iron_helmet": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },

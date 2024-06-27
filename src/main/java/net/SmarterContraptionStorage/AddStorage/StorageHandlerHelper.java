@@ -1,5 +1,7 @@
 package net.SmarterContraptionStorage.AddStorage;
 
+import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -40,14 +42,14 @@ public abstract class StorageHandlerHelper {
                 return handlerHelper;
         return null;
     }
-    protected abstract boolean canCreateHandler(BlockEntity entity);
+    public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);
     public abstract ItemStackHandler createHandler(BlockEntity entity);
     public CompoundTag serialize(CompoundTag tag){return tag;}
     protected abstract boolean allowControl(Item comparedItem);
     public abstract static class HandlerHelper extends ItemStackHandler{
         public final int[] slotLimits;
-        public final ItemStack[] items;
+        protected final ItemStack[] items;
         public HandlerHelper(int size) {
             super(size);
             slotLimits = new int[size];

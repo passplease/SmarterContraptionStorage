@@ -58,7 +58,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             }
         }
         protected boolean canInsert(int slot,ItemStack stack){
-            return !stack.isEmpty() && (items[slot].sameItem(stack) || items[slot].is(Items.AIR));
+            return !stack.isEmpty() && (ItemStack.isSameItem(stack,items[slot]) || items[slot].is(Items.AIR));
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack) {

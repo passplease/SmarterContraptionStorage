@@ -7,15 +7,17 @@ buildscript {
     dependencies {
         classpath "org.spongepowered:mixingradle:${mixin_gradle}"
         classpath "net.minecraftforge.gradle:ForgeGradle:${forge_gradle}"
+        classpath "org.parchmentmc:librarian:${librarian_version}"
     }
 }
 
 plugins {
     id 'eclipse'
     id 'idea'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = mod_group_id
@@ -164,11 +166,11 @@ dependencies {
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-    implementation fg.deobf("curse.maven:create-328085:4625534")
+    implementation fg.deobf("curse.maven:create-328085:4835191")
     implementation fg.deobf("curse.maven:storage-drawers-223852:5152196")
-    implementation fg.deobf("curse.maven:trash-cans-394535:4606893")
-    implementation fg.deobf("curse.maven:supermartijn642s-config-lib-438332:4715406")
-    implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:4660114")
+    implementation fg.deobf("curse.maven:trash-cans-394535:4712179")
+    implementation fg.deobf("curse.maven:supermartijn642s-config-lib-438332:4715408")
+    implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:5102258")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

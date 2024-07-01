@@ -64,11 +64,11 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         }
         protected boolean canDelete(ItemStack stack){
             for (ItemStack itemStack : toolboxItem) {
-                if(itemStack.sameItem(stack))
+                if(ItemStack.isSameItem(itemStack,stack))
                     return false;
             }
             for (ItemStack item : items){
-                if(item.sameItem(stack))
+                if(ItemStack.isSameItem(item,stack))
                     return whiteOrBlack;
             }
             return !whiteOrBlack;

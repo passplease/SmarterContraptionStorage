@@ -82,7 +82,7 @@ public abstract class StorageHandlerHelper {
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack){
-            if(items[slot].sameItem(stack))
+            if(ItemStack.isSameItem(stack,items[slot]))
                 return slotLimits[slot];
             else return 0;
         }

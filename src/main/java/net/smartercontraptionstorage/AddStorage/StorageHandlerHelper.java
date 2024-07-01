@@ -18,12 +18,6 @@ public abstract class StorageHandlerHelper {
     public static void register(@NotNull StorageHandlerHelper helper){
         HandlerHelpers.add(helper);
     }
-    public static void register(){
-        register(new DrawersHandlerHelper());
-        register(new CompactingHandlerHelper());
-        register(new TrashHandlerHelper());
-        register(new ToolboxHandlerHelper());
-    }
     public static boolean canControl(Item comparedItem){
         return canControl(comparedItem,Block.byItem(comparedItem));
     }

@@ -1,738 +1,121 @@
-[01Jul2024 21:39:11.094] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.1.43, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, smartercontraptionstorage.mixins.json]
-[01Jul2024 21:39:11.097] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0
-[01Jul2024 21:39:11.178] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
-[01Jul2024 21:39:11.235] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
-[01Jul2024 21:39:11.365] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
-[01Jul2024 21:39:11.450] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[01Jul2024 21:39:11.482] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce GT 710/PCIe/SSE2 GL version 4.6.0 NVIDIA 474.64, NVIDIA Corporation
-[01Jul2024 21:39:11.711] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.1.43\12e5cc2b50158bec903b4d511dfa0a0feb3209ab\javafmllanguage-1.20.1-47.1.43.jar is missing mods.toml file
-[01Jul2024 21:39:11.715] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.1.43\e25689773289037192545f72e23dff4d5023fe62\lowcodelanguage-1.20.1-47.1.43.jar is missing mods.toml file
-[01Jul2024 21:39:11.718] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.1.43\e6f54a896fcb804058c3c1713db61c205cb4b002\mclanguage-1.20.1-47.1.43.jar is missing mods.toml file
-[01Jul2024 21:39:11.721] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.1.43\f3f16308ded6e5e44588520dcdb767607f4ccafa\fmlcore-1.20.1-47.1.43.jar is missing mods.toml file
-[01Jul2024 21:39:11.963] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
-[01Jul2024 21:39:13.420] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[01Jul2024 21:39:13.437] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --assetIndex, 5]
-[01Jul2024 21:39:13.828] [main/INFO] [mixin/]: Remapping refMap supermartijn642corelib.mixins.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[01Jul2024 21:39:13.831] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[01Jul2024 21:39:13.842] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[01Jul2024 21:39:13.845] [main/INFO] [mixin/]: Remapping refMap create.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[01Jul2024 21:39:17.425] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 113 milliseconds
-[01Jul2024 21:39:18.671] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[01Jul2024 21:39:18.672] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[01Jul2024 21:39:18.685] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[01Jul2024 21:39:18.688] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[01Jul2024 21:39:18.779] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
-[01Jul2024 21:39:19.015] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.1.43, for MC 1.20.1 with MCP 20230612.114412
-[01Jul2024 21:39:19.016] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.1.43 Initialized
-[01Jul2024 21:39:19.035] [modloading-worker-0/INFO] [com.jozufozu.flywheel.backend.Backend/]: No shaders mod detected.
-[01Jul2024 21:39:21.821] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [smartercontraptionstorage]
-[01Jul2024 21:39:22.158] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
-[01Jul2024 21:39:22.180] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\run\config\storagedrawers-client.toml is not correct. Correcting
-[01Jul2024 21:39:22.181] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key General.invertClick was corrected from null to its default, false. 
-[01Jul2024 21:39:22.187] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\run\config\forge-client.toml is not correct. Correcting
-[01Jul2024 21:39:22.187] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.calculateAllNormals was corrected from null to its default, false. 
-[01Jul2024 21:39:22.187] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.stabilizeDirectionGetNearest was corrected from null to its default, true. 
-[01Jul2024 21:39:22.212] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\run\config\create-common.toml is not correct. Correcting
-[01Jul2024 21:39:22.212] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key worldgen.disableWorldGen was corrected from null to its default, false. 
-[01Jul2024 21:39:22.213] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key worldgen.v2 was corrected from SimpleCommentedConfig:{disableWorldGen=false, striated_ores_nether=SimpleCommentedConfig:{clusterSize=32, frequency=0.0555555559694767, minHeight=40, maxHeight=90}, striated_ores_overworld=SimpleCommentedConfig:{clusterSize=32, frequency=0.0555555559694767, minHeight=-30, maxHeight=70}, zinc_ore=SimpleCommentedConfig:{clusterSize=12, frequency=8.0, minHeight=-63, maxHeight=70}} to its default, null. 
-[01Jul2024 21:39:22.241] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 snowball = 1 snow_block
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 glowstone_dust = 1 glowstone
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 brick = 1 bricks
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 nether_brick = 1 nether_bricks
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 nether_wart = 1 nether_wart_block
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 quartz = 1 quartz_block
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 melon_slice = 1 melon
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 sand = 1 sandstone
-[01Jul2024 21:39:22.242] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 red_sand = 1 red_sandstone
-[01Jul2024 21:39:22.247] [Worker-Main-11/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
-[01Jul2024 21:39:22.280] [Worker-Main-8/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
-[01Jul2024 21:39:22.287] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[01Jul2024 21:39:23.288] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=true,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=true,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=false,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=false,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=true,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=false,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=true,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=false,slots=3'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=north,half=true'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=south,half=true'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=west,half=true'
-[01Jul2024 21:39:23.289] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=east,half=true'
-[01Jul2024 21:39:24.057] [Render thread/INFO] [com.jozufozu.flywheel.backend.Backend/]: Loaded all shader sources.
-[01Jul2024 21:39:24.642] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.1.43 Target: 47.3.0
-[01Jul2024 21:39:24.642] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [flywheel] Starting version check at https://api.modrinth.com/updates/flywheel/forge_updates.json
-[01Jul2024 21:39:25.275] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
-[01Jul2024 21:39:25.275] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
-[01Jul2024 21:39:25.325] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 扬声器 (Realtek High Definition Audio)
-[01Jul2024 21:39:25.326] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[01Jul2024 21:39:25.400] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 2048x1024x4 minecraft:textures/atlas/blocks.png-atlas
-[01Jul2024 21:39:25.416] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[01Jul2024 21:39:25.416] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[01Jul2024 21:39:25.417] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[01Jul2024 21:39:25.417] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[01Jul2024 21:39:25.420] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[01Jul2024 21:39:25.422] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[01Jul2024 21:39:25.423] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[01Jul2024 21:39:25.423] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[01Jul2024 21:39:25.498] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
-[01Jul2024 21:39:25.536] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[01Jul2024 21:39:25.537] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
-[01Jul2024 21:39:25.538] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-[01Jul2024 21:39:26.241] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
-[01Jul2024 21:39:31.375] [Render thread/WARN] [net.minecraftforge.common.ForgeHooks/WP]: The following mods have version differences that were not resolved:
-create (version 0.5.1.c -> 0.5.1.f)
-flywheel (version 0.6.9-18 -> 0.6.10-7)
-forge (version 43.3.0 -> 47.1.43)
-smartercontraptionstorage (version 1.19.2-beta 0.2 -> 1.20.1-beta 0.2)
-storagedrawers (version 11.1.2 -> 12.0.3)
-supermartijn642corelib (version 1.1.12 -> 1.1.17)
-trashcans (version 1.0.18 -> 1.0.18b)
-Things may not work well.
-[01Jul2024 21:39:31.388] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
-[01Jul2024 21:39:31.436] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Found a missing id from the world morestorageforcreate:example_block
-[01Jul2024 21:39:31.436] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Found a missing id from the world smartercontraptionstorage:example_block
-[01Jul2024 21:39:31.484] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Found a missing id from the world storagedrawers:conversion_upgrade
-[01Jul2024 21:39:31.510] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Found a missing id from the world minecraft:music.overworld.jungle_and_forest
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:badlands
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:bamboo_jungle
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:basalt_deltas
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:beach
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:birch_forest
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:cold_ocean
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:crimson_forest
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:dark_forest
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:deep_cold_ocean
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:deep_dark
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:deep_frozen_ocean
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:deep_lukewarm_ocean
-[01Jul2024 21:39:31.511] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:deep_ocean
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:desert
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:dripstone_caves
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:end_barrens
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:end_highlands
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:end_midlands
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:eroded_badlands
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:flower_forest
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:forest
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:frozen_ocean
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:frozen_peaks
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:frozen_river
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:grove
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:ice_spikes
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:jagged_peaks
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:jungle
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:lukewarm_ocean
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:lush_caves
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:mangrove_swamp
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:meadow
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:mushroom_fields
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:nether_wastes
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:ocean
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:old_growth_birch_forest
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:old_growth_pine_taiga
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:old_growth_spruce_taiga
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:plains
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:river
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:savanna
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:savanna_plateau
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:small_end_islands
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:snowy_beach
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:snowy_plains
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:snowy_slopes
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:snowy_taiga
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:soul_sand_valley
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:sparse_jungle
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:stony_peaks
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:stony_shore
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:sunflower_plains
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:swamp
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:taiga
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:the_end
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:the_void
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:warm_ocean
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:warped_forest
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:windswept_forest
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:windswept_gravelly_hills
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:windswept_hills
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:windswept_savanna
-[01Jul2024 21:39:31.512] [Render thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:worldgen/biome: Found a missing id from the world minecraft:wooded_badlands
-[01Jul2024 21:39:31.522] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: Unidentified mapping from registry minecraft:block
-	morestorageforcreate:example_block: 933
-	smartercontraptionstorage:example_block: 1579
-
-[01Jul2024 21:39:31.525] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: Unidentified mapping from registry minecraft:item
-	storagedrawers:conversion_upgrade: 1780
-
-[01Jul2024 21:39:31.526] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: Unidentified mapping from registry minecraft:sound_event
-	minecraft:music.overworld.jungle_and_forest: 706
-
-[01Jul2024 21:39:31.527] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: Unidentified mapping from registry minecraft:worldgen/biome
-	minecraft:badlands: 26
-	minecraft:bamboo_jungle: 25
-	minecraft:basalt_deltas: 57
-	minecraft:beach: 37
-	minecraft:birch_forest: 10
-	minecraft:cold_ocean: 45
-	minecraft:crimson_forest: 55
-	minecraft:dark_forest: 11
-	minecraft:deep_cold_ocean: 46
-	minecraft:deep_dark: 52
-	minecraft:deep_frozen_ocean: 48
-	minecraft:deep_lukewarm_ocean: 42
-	minecraft:deep_ocean: 44
-	minecraft:desert: 5
-	minecraft:dripstone_caves: 50
-	minecraft:end_barrens: 62
-	minecraft:end_highlands: 59
-	minecraft:end_midlands: 60
-	minecraft:eroded_badlands: 27
-	minecraft:flower_forest: 9
-	minecraft:forest: 8
-	minecraft:frozen_ocean: 47
-	minecraft:frozen_peaks: 32
-	minecraft:frozen_river: 36
-	minecraft:grove: 30
-	minecraft:ice_spikes: 4
-	minecraft:jagged_peaks: 33
-	minecraft:jungle: 23
-	minecraft:lukewarm_ocean: 41
-	minecraft:lush_caves: 51
-	minecraft:mangrove_swamp: 7
-	minecraft:meadow: 29
-	minecraft:mushroom_fields: 49
-	minecraft:nether_wastes: 53
-	minecraft:ocean: 43
-	minecraft:old_growth_birch_forest: 12
-	minecraft:old_growth_pine_taiga: 13
-	minecraft:old_growth_spruce_taiga: 14
-	minecraft:plains: 1
-	minecraft:river: 35
-	minecraft:savanna: 17
-	minecraft:savanna_plateau: 18
-	minecraft:small_end_islands: 61
-	minecraft:snowy_beach: 38
-	minecraft:snowy_plains: 3
-	minecraft:snowy_slopes: 31
-	minecraft:snowy_taiga: 16
-	minecraft:soul_sand_valley: 56
-	minecraft:sparse_jungle: 24
-	minecraft:stony_peaks: 34
-	minecraft:stony_shore: 39
-	minecraft:sunflower_plains: 2
-	minecraft:swamp: 6
-	minecraft:taiga: 15
-	minecraft:the_end: 58
-	minecraft:the_void: 0
-	minecraft:warm_ocean: 40
-	minecraft:warped_forest: 54
-	minecraft:windswept_forest: 21
-	minecraft:windswept_gravelly_hills: 20
-	minecraft:windswept_hills: 19
-	minecraft:windswept_savanna: 22
-	minecraft:wooded_badlands: 28
-
-[01Jul2024 21:39:31.530] [Render thread/WARN] [net.minecraftforge.registries.GameData/REGISTRIES]: Forge Mod Loader detected missing registry entries.
-
-There are 67 missing entries in this save.
-If you continue the missing entries will get removed.
-A world backup will be automatically created in your saves directory.
-
-
-[01Jul2024 21:39:31.530] [Render thread/WARN] [net.minecraftforge.registries.GameData/REGISTRIES]: Missing minecraft:sound_event:
-    minecraft:music.overworld.jungle_and_forest
-
-Missing minecraft:item:
-    storagedrawers:conversion_upgrade
-
-Missing minecraft:block:
-    morestorageforcreate:example_block
-    smartercontraptionstorage:example_block
-
-Missing minecraft:worldgen/biome:
-    minecraft:badlands
-    minecraft:bamboo_jungle
-    minecraft:basalt_deltas
-    minecraft:beach
-    minecraft:birch_forest
-    minecraft:cold_ocean
-    minecraft:crimson_forest
-    minecraft:dark_forest
-    minecraft:deep_cold_ocean
-    minecraft:deep_dark
-    minecraft:deep_frozen_ocean
-    minecraft:deep_lukewarm_ocean
-    minecraft:deep_ocean
-    minecraft:desert
-    minecraft:dripstone_caves
-    minecraft:end_barrens
-    minecraft:end_highlands
-    minecraft:end_midlands
-    minecraft:eroded_badlands
-    minecraft:flower_forest
-    minecraft:forest
-    minecraft:frozen_ocean
-    minecraft:frozen_peaks
-    minecraft:frozen_river
-    minecraft:grove
-    minecraft:ice_spikes
-    minecraft:jagged_peaks
-    minecraft:jungle
-    minecraft:lukewarm_ocean
-    minecraft:lush_caves
-    minecraft:mangrove_swamp
-    minecraft:meadow
-    minecraft:mushroom_fields
-    minecraft:nether_wastes
-    minecraft:ocean
-    minecraft:old_growth_birch_forest
-    minecraft:old_growth_pine_taiga
-    minecraft:old_growth_spruce_taiga
-    minecraft:plains
-    minecraft:river
-    minecraft:savanna
-    minecraft:savanna_plateau
-    minecraft:small_end_islands
-    minecraft:snowy_beach
-    minecraft:snowy_plains
-    minecraft:snowy_slopes
-    minecraft:snowy_taiga
-    minecraft:soul_sand_valley
-    minecraft:sparse_jungle
-    minecraft:stony_peaks
-    minecraft:stony_shore
-    minecraft:sunflower_plains
-    minecraft:swamp
-    minecraft:taiga
-    minecraft:the_end
-    minecraft:the_void
-    minecraft:warm_ocean
-    minecraft:warped_forest
-    minecraft:windswept_forest
-    minecraft:windswept_gravelly_hills
-    minecraft:windswept_hills
-    minecraft:windswept_savanna
-    minecraft:wooded_badlands
-
-
-[01Jul2024 21:39:31.530] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: There are unidentified mappings in this world - we are going to attempt to process anyway
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_planks Expected: 18 Got: 1584
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_planks Expected: 21 Got: 1585
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_mosaic Expected: 22 Got: 1586
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_sapling Expected: 28 Got: 1587
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:suspicious_sand Expected: 35 Got: 1588
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:suspicious_gravel Expected: 38 Got: 1589
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_log Expected: 51 Got: 1590
-[01Jul2024 21:39:31.533] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_block Expected: 56 Got: 1591
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:stripped_cherry_log Expected: 61 Got: 1592
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:stripped_bamboo_block Expected: 65 Got: 1593
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_wood Expected: 71 Got: 1594
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:stripped_cherry_wood Expected: 79 Got: 1595
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_leaves Expected: 87 Got: 1596
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:torchflower Expected: 148 Got: 1597
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:chiseled_bookshelf Expected: 168 Got: 1598
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_sign Expected: 190 Got: 1599
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_sign Expected: 194 Got: 1600
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_wall_sign Expected: 203 Got: 1601
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_wall_sign Expected: 207 Got: 1602
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:oak_hanging_sign Expected: 208 Got: 1603
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:spruce_hanging_sign Expected: 209 Got: 1604
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:birch_hanging_sign Expected: 210 Got: 1605
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:acacia_hanging_sign Expected: 211 Got: 1606
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_hanging_sign Expected: 212 Got: 1607
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:jungle_hanging_sign Expected: 213 Got: 1608
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:dark_oak_hanging_sign Expected: 214 Got: 1609
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:crimson_hanging_sign Expected: 215 Got: 1610
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:warped_hanging_sign Expected: 216 Got: 1611
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:mangrove_hanging_sign Expected: 217 Got: 1612
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_hanging_sign Expected: 218 Got: 1613
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:oak_wall_hanging_sign Expected: 219 Got: 1614
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:spruce_wall_hanging_sign Expected: 220 Got: 1615
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:birch_wall_hanging_sign Expected: 221 Got: 1616
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:acacia_wall_hanging_sign Expected: 222 Got: 1617
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_wall_hanging_sign Expected: 223 Got: 1618
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:jungle_wall_hanging_sign Expected: 224 Got: 1619
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:dark_oak_wall_hanging_sign Expected: 225 Got: 1620
-[01Jul2024 21:39:31.534] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:mangrove_wall_hanging_sign Expected: 226 Got: 1621
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:crimson_wall_hanging_sign Expected: 227 Got: 1622
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:warped_wall_hanging_sign Expected: 228 Got: 1623
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_wall_hanging_sign Expected: 229 Got: 1624
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_pressure_plate Expected: 238 Got: 1625
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_pressure_plate Expected: 241 Got: 1626
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_trapdoor Expected: 290 Got: 1627
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_trapdoor Expected: 293 Got: 1628
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:potted_torchflower Expected: 356 Got: 1629
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:potted_cherry_sapling Expected: 362 Got: 1630
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_button Expected: 390 Got: 1631
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_button Expected: 393 Got: 1632
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:piglin_head Expected: 406 Got: 1633
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:piglin_wall_head Expected: 407 Got: 1634
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_stairs Expected: 458 Got: 1635
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_stairs Expected: 461 Got: 1636
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_mosaic_stairs Expected: 462 Got: 1637
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_slab Expected: 544 Got: 1638
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_slab Expected: 547 Got: 1639
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_mosaic_slab Expected: 548 Got: 1640
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_fence_gate Expected: 571 Got: 1641
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_fence_gate Expected: 574 Got: 1642
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_fence Expected: 579 Got: 1643
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_fence Expected: 582 Got: 1644
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:cherry_door Expected: 587 Got: 1645
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:bamboo_door Expected: 590 Got: 1646
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:torchflower_crop Expected: 598 Got: 1647
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:pitcher_crop Expected: 599 Got: 1648
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:pitcher_plant Expected: 600 Got: 1649
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:sniffer_egg Expected: 682 Got: 1650
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:calibrated_sculk_sensor Expected: 914 Got: 1651
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:pink_petals Expected: 962 Got: 1652
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: minecraft:decorated_pot Expected: 1002 Got: 1653
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: storagedrawers:meta_locked Expected: 1652 Got: 1654
-[01Jul2024 21:39:31.535] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: storagedrawers:meta_void Expected: 1653 Got: 1655
-[01Jul2024 21:39:31.536] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: storagedrawers:meta_shroud Expected: 1654 Got: 1656
-[01Jul2024 21:39:31.536] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: storagedrawers:meta_indicator Expected: 1655 Got: 1657
-[01Jul2024 21:39:31.536] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:block: Object did not get ID it asked for. Name: storagedrawers:meta_comp_indicator Expected: 1656 Got: 1658
-[01Jul2024 21:39:31.537] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_planks Expected: 28 Got: 1852
-[01Jul2024 21:39:31.537] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_planks Expected: 31 Got: 1853
-[01Jul2024 21:39:31.537] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_mosaic Expected: 34 Got: 1854
-[01Jul2024 21:39:31.537] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_sapling Expected: 40 Got: 1855
-[01Jul2024 21:39:31.537] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:suspicious_sand Expected: 45 Got: 1856
-[01Jul2024 21:39:31.537] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:suspicious_gravel Expected: 46 Got: 1857
-[01Jul2024 21:39:31.537] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_log Expected: 115 Got: 1858
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_block Expected: 122 Got: 1859
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:stripped_cherry_log Expected: 128 Got: 1860
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:stripped_cherry_wood Expected: 138 Got: 1861
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:stripped_bamboo_block Expected: 143 Got: 1862
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_wood Expected: 149 Got: 1863
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_leaves Expected: 159 Got: 1864
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:torchflower Expected: 209 Got: 1865
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:pitcher_plant Expected: 210 Got: 1866
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:pink_petals Expected: 224 Got: 1867
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_slab Expected: 235 Got: 1868
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_slab Expected: 238 Got: 1869
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_mosaic_slab Expected: 239 Got: 1870
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:chiseled_bookshelf Expected: 265 Got: 1871
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:decorated_pot Expected: 266 Got: 1872
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_fence Expected: 294 Got: 1873
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_fence Expected: 297 Got: 1874
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_stairs Expected: 366 Got: 1875
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_stairs Expected: 369 Got: 1876
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_mosaic_stairs Expected: 370 Got: 1877
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:sniffer_egg Expected: 566 Got: 1878
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:calibrated_sculk_sensor Expected: 654 Got: 1879
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_button Expected: 667 Got: 1880
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_button Expected: 670 Got: 1881
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_pressure_plate Expected: 682 Got: 1882
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_pressure_plate Expected: 685 Got: 1883
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_door Expected: 694 Got: 1884
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_door Expected: 697 Got: 1885
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_trapdoor Expected: 706 Got: 1886
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_trapdoor Expected: 709 Got: 1887
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_fence_gate Expected: 717 Got: 1888
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_fence_gate Expected: 720 Got: 1889
-[01Jul2024 21:39:31.538] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_boat Expected: 746 Got: 1890
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_chest_boat Expected: 747 Got: 1891
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_raft Expected: 752 Got: 1892
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_chest_raft Expected: 753 Got: 1893
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_sign Expected: 851 Got: 1894
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_sign Expected: 854 Got: 1895
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:oak_hanging_sign Expected: 857 Got: 1896
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:spruce_hanging_sign Expected: 858 Got: 1897
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:birch_hanging_sign Expected: 859 Got: 1898
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:jungle_hanging_sign Expected: 860 Got: 1899
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:acacia_hanging_sign Expected: 861 Got: 1900
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:cherry_hanging_sign Expected: 862 Got: 1901
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:dark_oak_hanging_sign Expected: 863 Got: 1902
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:mangrove_hanging_sign Expected: 864 Got: 1903
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:bamboo_hanging_sign Expected: 865 Got: 1904
-[01Jul2024 21:39:31.539] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:crimson_hanging_sign Expected: 866 Got: 1905
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:warped_hanging_sign Expected: 867 Got: 1906
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:camel_spawn_egg Expected: 973 Got: 1907
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:ender_dragon_spawn_egg Expected: 983 Got: 1908
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:iron_golem_spawn_egg Expected: 996 Got: 1909
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:sniffer_spawn_egg Expected: 1020 Got: 1910
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:snow_golem_spawn_egg Expected: 1021 Got: 1911
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:wither_spawn_egg Expected: 1036 Got: 1912
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:piglin_head Expected: 1063 Got: 1913
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:torchflower_seeds Expected: 1106 Got: 1914
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:pitcher_pod Expected: 1107 Got: 1915
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:music_disc_relic Expected: 1135 Got: 1916
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:brush Expected: 1217 Got: 1917
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:netherite_upgrade_smithing_template Expected: 1218 Got: 1918
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:sentry_armor_trim_smithing_template Expected: 1219 Got: 1919
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:dune_armor_trim_smithing_template Expected: 1220 Got: 1920
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:coast_armor_trim_smithing_template Expected: 1221 Got: 1921
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:wild_armor_trim_smithing_template Expected: 1222 Got: 1922
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:ward_armor_trim_smithing_template Expected: 1223 Got: 1923
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:eye_armor_trim_smithing_template Expected: 1224 Got: 1924
-[01Jul2024 21:39:31.540] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:vex_armor_trim_smithing_template Expected: 1225 Got: 1925
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:tide_armor_trim_smithing_template Expected: 1226 Got: 1926
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:snout_armor_trim_smithing_template Expected: 1227 Got: 1927
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:rib_armor_trim_smithing_template Expected: 1228 Got: 1928
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:spire_armor_trim_smithing_template Expected: 1229 Got: 1929
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:wayfinder_armor_trim_smithing_template Expected: 1230 Got: 1930
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:shaper_armor_trim_smithing_template Expected: 1231 Got: 1931
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:silence_armor_trim_smithing_template Expected: 1232 Got: 1932
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:raiser_armor_trim_smithing_template Expected: 1233 Got: 1933
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:host_armor_trim_smithing_template Expected: 1234 Got: 1934
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:angler_pottery_sherd Expected: 1235 Got: 1935
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:archer_pottery_sherd Expected: 1236 Got: 1936
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:arms_up_pottery_sherd Expected: 1237 Got: 1937
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:blade_pottery_sherd Expected: 1238 Got: 1938
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:brewer_pottery_sherd Expected: 1239 Got: 1939
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:burn_pottery_sherd Expected: 1240 Got: 1940
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:danger_pottery_sherd Expected: 1241 Got: 1941
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:explorer_pottery_sherd Expected: 1242 Got: 1942
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:friend_pottery_sherd Expected: 1243 Got: 1943
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:heart_pottery_sherd Expected: 1244 Got: 1944
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:heartbreak_pottery_sherd Expected: 1245 Got: 1945
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:howl_pottery_sherd Expected: 1246 Got: 1946
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:miner_pottery_sherd Expected: 1247 Got: 1947
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:mourner_pottery_sherd Expected: 1248 Got: 1948
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:plenty_pottery_sherd Expected: 1249 Got: 1949
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:prize_pottery_sherd Expected: 1250 Got: 1950
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:sheaf_pottery_sherd Expected: 1251 Got: 1951
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:shelter_pottery_sherd Expected: 1252 Got: 1952
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:skull_pottery_sherd Expected: 1253 Got: 1953
-[01Jul2024 21:39:31.541] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:item: Object did not get ID it asked for. Name: minecraft:snort_pottery_sherd Expected: 1254 Got: 1954
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.amethyst_block.resonate Expected: 34 Got: 1382
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood.break Expected: 98 Got: 1383
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood.fall Expected: 99 Got: 1384
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood.hit Expected: 100 Got: 1385
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood.place Expected: 101 Got: 1386
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood.step Expected: 102 Got: 1387
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_door.close Expected: 103 Got: 1388
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_door.open Expected: 104 Got: 1389
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_trapdoor.close Expected: 105 Got: 1390
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_trapdoor.open Expected: 106 Got: 1391
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_button.click_off Expected: 107 Got: 1392
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_button.click_on Expected: 108 Got: 1393
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_pressure_plate.click_off Expected: 109 Got: 1394
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_pressure_plate.click_on Expected: 110 Got: 1395
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_fence_gate.close Expected: 111 Got: 1396
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_fence_gate.open Expected: 112 Got: 1397
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:item.brush.brushing.generic Expected: 167 Got: 1398
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:item.brush.brushing.sand Expected: 168 Got: 1399
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:item.brush.brushing.gravel Expected: 169 Got: 1400
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:item.brush.brushing.sand.complete Expected: 170 Got: 1401
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:item.brush.brushing.gravel.complete Expected: 171 Got: 1402
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.ambient Expected: 198 Got: 1403
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.dash Expected: 199 Got: 1404
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.dash_ready Expected: 200 Got: 1405
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.death Expected: 201 Got: 1406
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.eat Expected: 202 Got: 1407
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.hurt Expected: 203 Got: 1408
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.saddle Expected: 204 Got: 1409
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.sit Expected: 205 Got: 1410
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.stand Expected: 206 Got: 1411
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.step Expected: 207 Got: 1412
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.camel.step_sand Expected: 208 Got: 1413
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood.break Expected: 237 Got: 1414
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood.fall Expected: 238 Got: 1415
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood.hit Expected: 239 Got: 1416
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood.place Expected: 240 Got: 1417
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood.step Expected: 241 Got: 1418
-[01Jul2024 21:39:31.543] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_sapling.break Expected: 242 Got: 1419
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_sapling.fall Expected: 243 Got: 1420
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_sapling.hit Expected: 244 Got: 1421
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_sapling.place Expected: 245 Got: 1422
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_sapling.step Expected: 246 Got: 1423
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_leaves.break Expected: 247 Got: 1424
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_leaves.fall Expected: 248 Got: 1425
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_leaves.hit Expected: 249 Got: 1426
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_leaves.place Expected: 250 Got: 1427
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_leaves.step Expected: 251 Got: 1428
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_hanging_sign.step Expected: 252 Got: 1429
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_hanging_sign.break Expected: 253 Got: 1430
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_hanging_sign.fall Expected: 254 Got: 1431
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_hanging_sign.hit Expected: 255 Got: 1432
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_hanging_sign.place Expected: 256 Got: 1433
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_door.close Expected: 257 Got: 1434
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_door.open Expected: 258 Got: 1435
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_trapdoor.close Expected: 259 Got: 1436
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_trapdoor.open Expected: 260 Got: 1437
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_button.click_off Expected: 261 Got: 1438
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_button.click_on Expected: 262 Got: 1439
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_pressure_plate.click_off Expected: 263 Got: 1440
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_pressure_plate.click_on Expected: 264 Got: 1441
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_fence_gate.close Expected: 265 Got: 1442
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.cherry_wood_fence_gate.open Expected: 266 Got: 1443
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.break Expected: 275 Got: 1444
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.fall Expected: 276 Got: 1445
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.hit Expected: 277 Got: 1446
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.insert Expected: 278 Got: 1447
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.insert.enchanted Expected: 279 Got: 1448
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.step Expected: 280 Got: 1449
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.pickup Expected: 281 Got: 1450
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.pickup.enchanted Expected: 282 Got: 1451
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.chiseled_bookshelf.place Expected: 283 Got: 1452
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.decorated_pot.break Expected: 329 Got: 1453
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.decorated_pot.fall Expected: 330 Got: 1454
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.decorated_pot.hit Expected: 331 Got: 1455
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.decorated_pot.step Expected: 332 Got: 1456
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.decorated_pot.place Expected: 333 Got: 1457
-[01Jul2024 21:39:31.544] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.decorated_pot.shatter Expected: 334 Got: 1458
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_sand.break Expected: 477 Got: 1459
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_sand.step Expected: 478 Got: 1460
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_sand.place Expected: 479 Got: 1461
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_sand.hit Expected: 480 Got: 1462
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_sand.fall Expected: 481 Got: 1463
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_gravel.break Expected: 482 Got: 1464
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_gravel.step Expected: 483 Got: 1465
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_gravel.place Expected: 484 Got: 1466
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_gravel.hit Expected: 485 Got: 1467
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.suspicious_gravel.fall Expected: 486 Got: 1468
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.hanging_sign.step Expected: 594 Got: 1469
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.hanging_sign.break Expected: 595 Got: 1470
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.hanging_sign.fall Expected: 596 Got: 1471
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.hanging_sign.hit Expected: 597 Got: 1472
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.hanging_sign.place Expected: 598 Got: 1473
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_hanging_sign.step Expected: 599 Got: 1474
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_hanging_sign.break Expected: 600 Got: 1475
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_hanging_sign.fall Expected: 601 Got: 1476
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_hanging_sign.hit Expected: 602 Got: 1477
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_hanging_sign.place Expected: 603 Got: 1478
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_hanging_sign.step Expected: 604 Got: 1479
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_hanging_sign.break Expected: 605 Got: 1480
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_hanging_sign.fall Expected: 606 Got: 1481
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_hanging_sign.hit Expected: 607 Got: 1482
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.bamboo_wood_hanging_sign.place Expected: 608 Got: 1483
-[01Jul2024 21:39:31.545] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.pink_petals.break Expected: 753 Got: 1484
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.pink_petals.fall Expected: 754 Got: 1485
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.pink_petals.hit Expected: 755 Got: 1486
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.pink_petals.place Expected: 756 Got: 1487
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.pink_petals.step Expected: 757 Got: 1488
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music_disc.relic Expected: 801 Got: 1489
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.forest Expected: 814 Got: 1490
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.cherry_grove Expected: 817 Got: 1491
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.flower_forest Expected: 824 Got: 1492
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.desert Expected: 825 Got: 1493
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.badlands Expected: 826 Got: 1494
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.jungle Expected: 827 Got: 1495
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.sparse_jungle Expected: 828 Got: 1496
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:music.overworld.bamboo_jungle Expected: 829 Got: 1497
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood.break Expected: 838 Got: 1498
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood.fall Expected: 839 Got: 1499
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood.hit Expected: 840 Got: 1500
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood.place Expected: 841 Got: 1501
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood.step Expected: 842 Got: 1502
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_door.close Expected: 843 Got: 1503
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_door.open Expected: 844 Got: 1504
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_trapdoor.close Expected: 845 Got: 1505
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_trapdoor.open Expected: 846 Got: 1506
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_button.click_off Expected: 847 Got: 1507
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_button.click_on Expected: 848 Got: 1508
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_pressure_plate.click_off Expected: 849 Got: 1509
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_pressure_plate.click_on Expected: 850 Got: 1510
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_fence_gate.close Expected: 851 Got: 1511
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.nether_wood_fence_gate.open Expected: 852 Got: 1512
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:intentionally_empty Expected: 853 Got: 1513
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.note_block.imitate.zombie Expected: 915 Got: 1514
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.note_block.imitate.skeleton Expected: 916 Got: 1515
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.note_block.imitate.creeper Expected: 917 Got: 1516
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.note_block.imitate.ender_dragon Expected: 918 Got: 1517
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.note_block.imitate.wither_skeleton Expected: 919 Got: 1518
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.note_block.imitate.piglin Expected: 920 Got: 1519
-[01Jul2024 21:39:31.546] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.step Expected: 1226 Got: 1520
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.eat Expected: 1227 Got: 1521
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.idle Expected: 1228 Got: 1522
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.hurt Expected: 1229 Got: 1523
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.death Expected: 1230 Got: 1524
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.drop_seed Expected: 1231 Got: 1525
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.scenting Expected: 1232 Got: 1526
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.sniffing Expected: 1233 Got: 1527
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.searching Expected: 1234 Got: 1528
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.digging Expected: 1235 Got: 1529
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.digging_stop Expected: 1236 Got: 1530
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:entity.sniffer.happy Expected: 1237 Got: 1531
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.sniffer_egg.plop Expected: 1238 Got: 1532
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.sniffer_egg.crack Expected: 1239 Got: 1533
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.sniffer_egg.hatch Expected: 1240 Got: 1534
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:block.sign.waxed_interact_fail Expected: 1393 Got: 1535
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:item.bucket.empty_milk Expected: 1474 Got: 1536
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:sound_event: Object did not get ID it asked for. Name: minecraft:item.bucket.fill_milk Expected: 1475 Got: 1537
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:entity_type: Object did not get ID it asked for. Name: minecraft:block_display Expected: 8 Got: 126
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:entity_type: Object did not get ID it asked for. Name: minecraft:camel Expected: 10 Got: 127
-[01Jul2024 21:39:31.547] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:entity_type: Object did not get ID it asked for. Name: minecraft:interaction Expected: 52 Got: 128
-[01Jul2024 21:39:31.548] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:entity_type: Object did not get ID it asked for. Name: minecraft:item_display Expected: 55 Got: 129
-[01Jul2024 21:39:31.548] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:entity_type: Object did not get ID it asked for. Name: minecraft:sniffer Expected: 90 Got: 130
-[01Jul2024 21:39:31.548] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:entity_type: Object did not get ID it asked for. Name: minecraft:text_display Expected: 100 Got: 131
-[01Jul2024 21:39:31.550] [Render thread/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:memory_module_type: Object did not get ID it asked for. Name: minecraft:gaze_cooldown_ticks Expected: 41 Got: 92
-[01Jul2024 21:39:33.655] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 22 recipes
-[01Jul2024 21:39:33.725] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 2271 advancements
-[01Jul2024 21:39:34.676] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
-[01Jul2024 21:39:34.676] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[01Jul2024 21:39:34.716] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file .\saves\新的世界\serverconfig\forge-server.toml is not correct. Correcting
-[01Jul2024 21:39:34.716] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.advertiseDedicatedServerToLan was corrected from null to its default, true. 
-[01Jul2024 21:39:34.716] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.fixAdvancementLoading was corrected from true to its default, null. 
-[01Jul2024 21:39:35.574] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[01Jul2024 21:39:37.893] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2024 21:39:37.893] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2024 21:39:37.893] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2024 21:39:37.893] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2024 21:39:37.893] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2024 21:39:38.081] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2024 21:39:38.578] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 15%
-[01Jul2024 21:39:39.126] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 76%
-[01Jul2024 21:39:39.154] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[01Jul2024 21:39:39.162] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 3585 ms
-[01Jul2024 21:39:39.295] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
-[01Jul2024 21:39:39.296] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
-[01Jul2024 21:39:39.434] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
-[01Jul2024 21:39:39.646] [Forge Version Check/WARN] [net.minecraftforge.fml.VersionChecker/]: Failed to process update information
-java.net.http.HttpConnectTimeoutException: HTTP connect timed out
-	at jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:567) ~[java.net.http:?]
-	at jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123) ~[java.net.http:?]
-	at net.minecraftforge.fml.VersionChecker$1.openUrlString(VersionChecker.java:139) ~[fmlcore-1.20.1-47.1.43.jar%23195!/:?]
-	at net.minecraftforge.fml.VersionChecker$1.process(VersionChecker.java:177) ~[fmlcore-1.20.1-47.1.43.jar%23195!/:?]
-	at java.lang.Iterable.forEach(Iterable.java:75) ~[?:?]
-	at net.minecraftforge.fml.VersionChecker$1.run(VersionChecker.java:114) ~[fmlcore-1.20.1-47.1.43.jar%23195!/:?]
-Caused by: java.net.http.HttpConnectTimeoutException: HTTP connect timed out
-	at jdk.internal.net.http.ResponseTimerEvent.handle(ResponseTimerEvent.java:68) ~[java.net.http:?]
-	at jdk.internal.net.http.HttpClientImpl.purgeTimeoutsAndReturnNextDeadline(HttpClientImpl.java:1270) ~[java.net.http:?]
-	at jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:899) ~[java.net.http:?]
-Caused by: java.net.ConnectException: HTTP connect timed out
-	at jdk.internal.net.http.ResponseTimerEvent.handle(ResponseTimerEvent.java:69) ~[java.net.http:?]
-	at jdk.internal.net.http.HttpClientImpl.purgeTimeoutsAndReturnNextDeadline(HttpClientImpl.java:1270) ~[java.net.http:?]
-	at jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:899) ~[java.net.http:?]
-[01Jul2024 21:39:39.891] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.base/crafting/kinetics/secondary_linear_chassisfrom_conversion' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.base/crafting/kinetics/fluid_tank' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.base/crafting/kinetics/item_vault' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.base/crafting/kinetics/controller_rail' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/transportation/crafting/kinetics/furnace_minecart_from_contraption_cart' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/transportation/crafting/kinetics/minecart_from_contraption_cart' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.base/crafting/kinetics/smart_chute' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.palettes/industrial_iron_block_from_ingots_iron_stonecutting' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.base/crafting/materials/andesite_alloy' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'create:recipes/create.base/crafting/kinetics/empty_blaze_burner' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'trashcans:recipes/decorations/ultimate_trash_can' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.922] [Server thread/WARN] [net.minecraft.server.PlayerAdvancements/]: Ignored advancement 'trashcans:recipes/decorations/item_trash_can' in progress file .\saves\新的世界\advancements\380df991-f603-344c-a090-369bad2a924a.json - it doesn't exist anymore?
-[01Jul2024 21:39:39.934] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:b5dbeedf] logged in with entity id 155 at (50.30000001192093, 88.0, 57.1336904879962)
-[01Jul2024 21:39:39.972] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
-[01Jul2024 21:39:40.224] [Render thread/INFO] [BatchExecutor/]: Started 6 worker threads
-[01Jul2024 21:39:40.498] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Received passengers for unknown entity
-[01Jul2024 21:39:40.523] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Received passengers for unknown entity
-[01Jul2024 21:39:40.607] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 133 advancements
-[01Jul2024 21:39:41.882] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[01Jul2024 21:39:41.937] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[01Jul2024 21:39:42.112] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[01Jul2024 21:39:42.114] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[01Jul2024 21:40:00.910] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[01Jul2024 21:40:00.915] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[01Jul2024 21:40:00.923] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[01Jul2024 21:40:00.924] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[01Jul2024 21:40:01.473] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
-[01Jul2024 21:40:01.516] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Disconnected
-[01Jul2024 21:40:01.516] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
-[01Jul2024 21:40:01.523] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
-[01Jul2024 21:40:01.561] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[01Jul2024 21:40:01.561] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[01Jul2024 21:40:01.562] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[01Jul2024 21:40:01.899] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[01Jul2024 21:40:02.308] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[01Jul2024 21:40:02.308] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[01Jul2024 21:40:02.323] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界): All chunks are saved
-[01Jul2024 21:40:02.323] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[01Jul2024 21:40:02.323] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[01Jul2024 21:40:02.324] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[02Jul2024 07:47:45.366] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.1.43, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, smartercontraptionstorage.mixins.json]
+[02Jul2024 07:47:45.372] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0
+[02Jul2024 07:47:45.492] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[02Jul2024 07:47:45.631] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[02Jul2024 07:47:45.934] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[02Jul2024 07:47:46.053] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[02Jul2024 07:47:46.121] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce GT 710/PCIe/SSE2 GL version 4.6.0 NVIDIA 474.64, NVIDIA Corporation
+[02Jul2024 07:47:46.466] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.1.43\12e5cc2b50158bec903b4d511dfa0a0feb3209ab\javafmllanguage-1.20.1-47.1.43.jar is missing mods.toml file
+[02Jul2024 07:47:46.469] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.1.43\e25689773289037192545f72e23dff4d5023fe62\lowcodelanguage-1.20.1-47.1.43.jar is missing mods.toml file
+[02Jul2024 07:47:46.475] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.1.43\e6f54a896fcb804058c3c1713db61c205cb4b002\mclanguage-1.20.1-47.1.43.jar is missing mods.toml file
+[02Jul2024 07:47:46.483] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.1.43\f3f16308ded6e5e44588520dcdb767607f4ccafa\fmlcore-1.20.1-47.1.43.jar is missing mods.toml file
+[02Jul2024 07:47:46.781] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[02Jul2024 07:47:48.842] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[02Jul2024 07:47:48.854] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --assetIndex, 5]
+[02Jul2024 07:47:49.216] [main/INFO] [mixin/]: Remapping refMap supermartijn642corelib.mixins.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[02Jul2024 07:47:49.219] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[02Jul2024 07:47:49.234] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[02Jul2024 07:47:49.238] [main/INFO] [mixin/]: Remapping refMap create.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[02Jul2024 07:47:52.856] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 97 milliseconds
+[02Jul2024 07:47:54.375] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[02Jul2024 07:47:54.376] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[02Jul2024 07:47:54.390] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[02Jul2024 07:47:54.396] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[02Jul2024 07:47:54.509] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
+[02Jul2024 07:47:54.774] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.1.43, for MC 1.20.1 with MCP 20230612.114412
+[02Jul2024 07:47:54.774] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.1.43 Initialized
+[02Jul2024 07:47:54.788] [modloading-worker-0/INFO] [com.jozufozu.flywheel.backend.Backend/]: No shaders mod detected.
+[02Jul2024 07:47:58.576] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [smartercontraptionstorage]
+[02Jul2024 07:47:58.839] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
+[02Jul2024 07:47:58.929] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
+[02Jul2024 07:47:58.929] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 snowball = 1 snow_block
+[02Jul2024 07:47:58.929] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 glowstone_dust = 1 glowstone
+[02Jul2024 07:47:58.929] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 brick = 1 bricks
+[02Jul2024 07:47:58.929] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 nether_brick = 1 nether_bricks
+[02Jul2024 07:47:58.929] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 nether_wart = 1 nether_wart_block
+[02Jul2024 07:47:58.930] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 quartz = 1 quartz_block
+[02Jul2024 07:47:58.930] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 melon_slice = 1 melon
+[02Jul2024 07:47:58.930] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 sand = 1 sandstone
+[02Jul2024 07:47:58.930] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 red_sand = 1 red_sandstone
+[02Jul2024 07:47:58.944] [Worker-Main-10/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
+[02Jul2024 07:47:58.948] [Worker-Main-3/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
+[02Jul2024 07:47:58.968] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[02Jul2024 07:48:00.024] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.1.43 Target: 47.3.0
+[02Jul2024 07:48:00.024] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [flywheel] Starting version check at https://api.modrinth.com/updates/flywheel/forge_updates.json
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=true,slots=3'
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=true,slots=3'
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=false,slots=3'
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=false,slots=3'
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=true,slots=3'
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=false,slots=3'
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=true,slots=3'
+[02Jul2024 07:48:00.057] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=false,slots=3'
+[02Jul2024 07:48:00.058] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=north,half=true'
+[02Jul2024 07:48:00.058] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=south,half=true'
+[02Jul2024 07:48:00.058] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=west,half=true'
+[02Jul2024 07:48:00.058] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=east,half=true'
+[02Jul2024 07:48:01.014] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [flywheel] Found status: BETA Current: 0.6.10-7 Target: null
+[02Jul2024 07:48:01.200] [Render thread/INFO] [com.jozufozu.flywheel.backend.Backend/]: Loaded all shader sources.
+[02Jul2024 07:48:02.444] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[02Jul2024 07:48:02.444] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[02Jul2024 07:48:02.488] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 扬声器 (Realtek High Definition Audio)
+[02Jul2024 07:48:02.488] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[02Jul2024 07:48:02.609] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 2048x1024x4 minecraft:textures/atlas/blocks.png-atlas
+[02Jul2024 07:48:02.629] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[02Jul2024 07:48:02.630] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[02Jul2024 07:48:02.630] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[02Jul2024 07:48:02.631] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[02Jul2024 07:48:02.636] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[02Jul2024 07:48:02.638] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[02Jul2024 07:48:02.638] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[02Jul2024 07:48:02.638] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[02Jul2024 07:48:02.739] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[02Jul2024 07:48:02.780] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[02Jul2024 07:48:02.782] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[02Jul2024 07:48:02.782] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[02Jul2024 07:48:03.276] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
+[02Jul2024 07:48:06.856] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[02Jul2024 07:48:08.747] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 22 recipes
+[02Jul2024 07:48:08.801] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 2271 advancements
+[02Jul2024 07:48:09.569] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
+[02Jul2024 07:48:09.569] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[02Jul2024 07:48:10.413] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[02Jul2024 07:48:12.584] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[02Jul2024 07:48:12.584] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[02Jul2024 07:48:12.584] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[02Jul2024 07:48:12.584] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[02Jul2024 07:48:12.584] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[02Jul2024 07:48:12.928] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 29%
+[02Jul2024 07:48:13.100] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[02Jul2024 07:48:13.106] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 2681 ms
+[02Jul2024 07:48:13.233] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
+[02Jul2024 07:48:13.235] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
+[02Jul2024 07:48:13.359] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
+[02Jul2024 07:48:13.704] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
+[02Jul2024 07:48:13.763] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:ae55eb51] logged in with entity id 158 at (49.17463784201228, 79.0, 59.695366580823254)
+[02Jul2024 07:48:13.817] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
+[02Jul2024 07:48:14.064] [Render thread/INFO] [BatchExecutor/]: Started 6 worker threads
+[02Jul2024 07:48:14.400] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Received passengers for unknown entity
+[02Jul2024 07:48:14.461] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 133 advancements
+[02Jul2024 07:48:17.103] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[02Jul2024 07:48:17.115] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[02Jul2024 07:48:17.439] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[02Jul2024 07:48:17.440] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[02Jul2024 07:48:33.355] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[02Jul2024 07:48:33.361] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[02Jul2024 07:48:33.366] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[02Jul2024 07:48:33.367] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[02Jul2024 07:48:33.750] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
+[02Jul2024 07:48:33.809] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Disconnected
+[02Jul2024 07:48:33.809] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
+[02Jul2024 07:48:33.818] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
+[02Jul2024 07:48:33.863] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[02Jul2024 07:48:33.863] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[02Jul2024 07:48:33.863] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[02Jul2024 07:48:34.340] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[02Jul2024 07:48:34.619] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[02Jul2024 07:48:34.620] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[02Jul2024 07:48:34.639] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界): All chunks are saved
+[02Jul2024 07:48:34.639] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[02Jul2024 07:48:34.639] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[02Jul2024 07:48:34.639] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved

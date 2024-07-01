@@ -5,14 +5,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath "org.spongepowered:mixingradle:${mixin_gradle}"
+        classpath "net.minecraftforge.gradle:ForgeGradle:${forge_gradle}"
     }
 }
 
 plugins {
     id 'eclipse'
     id 'idea'
-    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
@@ -165,7 +165,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     implementation fg.deobf("curse.maven:create-328085:4625534")
-    implementation fg.deobf("curse.maven:storage-drawers-223852:3884263")
+    implementation fg.deobf("curse.maven:storage-drawers-223852:5152196")
     implementation fg.deobf("curse.maven:trash-cans-394535:4606893")
     implementation fg.deobf("curse.maven:supermartijn642s-config-lib-438332:4715406")
     implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:4660114")

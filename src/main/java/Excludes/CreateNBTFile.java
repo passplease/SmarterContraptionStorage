@@ -1,6 +1,7 @@
 package Excludes;
 
-import net.SmarterContraptionStorage.FunctionInterface.TriFunction;
+import net.minecraft.world.level.block.Block;
+import net.smartercontraptionstorage.FunctionInterface.TriFunction;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -9,11 +10,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,CompoundTag> {
+public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,CompoundTag> {
     @NotNull String Name;
     private static final int WRONG_BLOCK_ID = -1;
     public CreateNBTFile(@NotNull String name){
         Name = name;
+    }
+    public enum Facing{
+        north("north"),
+        south("south"),
+        west("west"),
+        east("east"),
+        up("up"),
+        down("down");
+        final StringTag value;
+        Facing(String facing){
+            this.value = StringTag.valueOf(facing);
+        }
+        public void setTag(CompoundTag tag){
+            tag.put("facing",value);
+        }
     }
 
     @Override
@@ -147,7 +163,7 @@ abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,
     }
     private final Map<StressBlock,CompoundTag> stressBlock = new HashMap<>();
     public void addStressBlock(int x, int y, int z, String blockId,@Nullable CompoundTag properties, float speed, float addedStress){
-        addStressBlock(x,y,z,blockId,properties,speed, (byte) 1,addedStress,null);
+        addStressBlock(x,y,z,blockId,properties,speed, (byte) 0,addedStress,null);
     }
     public void addStressBlock(int x, int y, int z, String blockId,@Nullable CompoundTag properties, float speed, byte update, float addedStress,@Nullable Function<CompoundTag,CompoundTag> other){
         if(properties != null)
@@ -174,6 +190,9 @@ abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,
             tag.put("Network",Network);
             addBlock(block.x,block.y,block.z,block.blockId,null,tag);
         });
+    }
+    public static String getBlockId(@NotNull Block block){
+        return block.getDescriptionId().replace("block.","").replace('.', ':');
     }
     private static class StressBlock {
         int x;

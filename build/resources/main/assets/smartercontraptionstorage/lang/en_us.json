@@ -1,9 +1,17 @@
 {
-  "create.ponder.storage_control.header": "Control storage on contraptions.",
-  "create.ponder.storage_control.text_1": "Items will be stored in contraption's container automatically.",
-  "create.ponder.storage_control.text_2": "Using this mod, you could control every container behaviour on contraption. Here let's use chest right click controls block to set its value.",
-  "create.ponder.storage_control.text_3": "And now, this block will control our chest.If you have huge amount neighboring containers, you can use one controls block to control them all",
-  "create.ponder.storage_control.text_4": "If we release piston now,the chest won't be added to contraption. So these logs will drop on the ground.",
-  "create.ponder.storage_control.text_5": "It works as we predicated...",
-  "create.ponder.storage_control.text_6": "Some other things, any actors on contraption can use these containers. You can change weather close them until controls block opened by using config file"
+  "smartercontraptionstorage.ponder.storage_control.header": "Control storage on contraptions.",
+  "smartercontraptionstorage.ponder.storage_control.text_1": "Items will be stored in contraption's container automatically.",
+  "smartercontraptionstorage.ponder.storage_control.text_2": "Using this mod, you could control every container behaviour on contraption. Here let's use chest right click controls block to set its value.",
+  "smartercontraptionstorage.ponder.storage_control.text_3": "And now, this block will control our chest.If you have huge amount neighboring containers, you can use one controls block to control them all",
+  "smartercontraptionstorage.ponder.storage_control.text_4": "If we release piston now,the chest won't be added to the contraption. So these logs will drop on the ground.",
+  "smartercontraptionstorage.ponder.storage_control.text_5": "It works as we predicated ...",
+  "smartercontraptionstorage.ponder.storage_control.text_6": "Some other things, any actors on contraption can use these containers. You can change weather close them until controls block opened by using config file",
+  "smartercontraptionstorage.ponder.tag.controllable_containers": "Controllable Containers",
+  "smartercontraptionstorage.ponder.tag.controllable_containers.description": "Containers those can be controlled on contraption",
+  "smartercontraptionstorage.ponder.trash_control.header": "Help Control TrashCans",
+  "smartercontraptionstorage.ponder.trash_control.text_1": "Normally, every item will be deleted if there is no any other containers except trashcan",
+  "smartercontraptionstorage.ponder.trash_control.text_2": "( no drops are spawned ...)",
+  "smartercontraptionstorage.ponder.trash_control.text_3": "Although we can use the filter trashcan provided to us, it may not enough to use. And also, any items matches contents in toolbox we wouldn't want them be deleted, so we can use toolbox as an extended black filter. Let's see how to use it",
+  "smartercontraptionstorage.ponder.trash_control.text_4": "If we add cobblestone to our toolbox (actually, only need to set it's filter)",
+  "smartercontraptionstorage.ponder.trash_control.text_5": "Then this cobblestone will drop on the ground rather than deleted by trashcan (toolbox can be anywhere on contraption, don't need to place near trashcan)"
 }

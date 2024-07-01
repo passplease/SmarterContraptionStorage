@@ -1,15 +1,16 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.SmarterContraptionStorage.Mixin",
+  "package": "net.smartercontraptionstorage.Mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "FilterBehaviourMixin",
-    "MountedStorageMixin",
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",
-    "Ponder.PonderIndexMixin"
+    "Storage.MountedStorageMixin",
+    "Storage.ToolboxBlockEntityMixin",
+    "Storage.ToolboxInventoryMixin"
   ],
   "client": [
   ],

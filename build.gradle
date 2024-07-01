@@ -30,6 +30,7 @@ java {
 }
 
 minecraft {
+    minecraft.accessTransformer = file(ATFile)
     // The mappings can be changed at any time and must be in the following format.
     // Channel:   Version:
     // official   MCVersion             Official field/method names from Mojang mapping files
@@ -165,6 +166,9 @@ dependencies {
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     implementation fg.deobf("curse.maven:create-328085:4625534")
     implementation fg.deobf("curse.maven:storage-drawers-223852:3884263")
+    implementation fg.deobf("curse.maven:trash-cans-394535:4606893")
+    implementation fg.deobf("curse.maven:supermartijn642s-config-lib-438332:4715406")
+    implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:4660114")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

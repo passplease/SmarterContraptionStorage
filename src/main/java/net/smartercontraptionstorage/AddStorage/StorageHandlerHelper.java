@@ -1,6 +1,5 @@
 package net.smartercontraptionstorage.AddStorage;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -17,12 +16,6 @@ public abstract class StorageHandlerHelper {
     public static final Set<StorageHandlerHelper> HandlerHelpers = new HashSet<>();
     public static void register(@NotNull StorageHandlerHelper helper){
         HandlerHelpers.add(helper);
-    }
-    public static void register(){
-        register(new DrawersHandlerHelper());
-        register(new CompactingHandlerHelper());
-        register(new TrashHandlerHelper());
-        register(new ToolboxHandlerHelper());
     }
     public static boolean canControl(Item comparedItem){
         return canControl(comparedItem,Block.byItem(comparedItem));
@@ -61,9 +54,9 @@ public abstract class StorageHandlerHelper {
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);
     public abstract ItemStackHandler createHandler(BlockEntity entity);
-    public CompoundTag serialize(CompoundTag tag){return tag;}
     public abstract boolean allowControl(Item comparedItem);
     public abstract boolean allowControl(Block block);
+    // two allowControl only need to achieve one, another can return false
     public abstract static class HandlerHelper extends ItemStackHandler{
         public final int[] slotLimits;
         protected final ItemStack[] items;

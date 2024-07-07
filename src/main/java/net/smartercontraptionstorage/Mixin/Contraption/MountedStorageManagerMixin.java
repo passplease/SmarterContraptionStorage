@@ -38,12 +38,7 @@ public abstract class MountedStorageManagerMixin {
             BlockEntity entity = FunctionChanger.findMountedEntity(mountedStorage);
             if(entity instanceof ToolboxBlockEntity){
                 MathMethod.addInventory((ToolboxBlockEntity) entity);
-//              FunctionChanger.findToolboxInventory((ToolboxBlockEntity) entity);
             }
         }
     }
-//    @Inject(method = "removeStorageFromWorld",at = @At("HEAD"),remap = false)
-//    public void clearInventory(CallbackInfo ci){
-//        FunctionChanger.clearToolbox_itemStack();
-//    }
 }

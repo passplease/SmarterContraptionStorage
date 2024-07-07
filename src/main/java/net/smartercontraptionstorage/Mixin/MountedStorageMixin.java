@@ -1,10 +1,9 @@
-package net.smartercontraptionstorage.Mixin.Storage;
+package net.smartercontraptionstorage.Mixin;
 
 import com.simibubi.create.content.contraptions.MountedStorage;
 import net.smartercontraptionstorage.AddStorage.StorageHandlerHelper;
 import net.smartercontraptionstorage.FunctionChanger;
 import net.smartercontraptionstorage.MathMethod;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
@@ -66,14 +65,6 @@ public abstract class MountedStorageMixin {
         if(smarterContraptionStorage$helper != null) {
             smarterContraptionStorage$helper.addStorageToWorld(be, handler);
             ci.cancel();
-        }
-    }
-    @Inject(method = "serialize",at = @At("RETURN"),remap = false, cancellable = true)
-    public void serialize(CallbackInfoReturnable<CompoundTag> cir){
-        if(smarterContraptionStorage$helper != null) {
-            CompoundTag tag = cir.getReturnValue();
-            if(tag != null)
-                cir.setReturnValue(smarterContraptionStorage$helper.serialize(tag));
         }
     }
     @Inject(method = "<init>",at = @At("RETURN"))

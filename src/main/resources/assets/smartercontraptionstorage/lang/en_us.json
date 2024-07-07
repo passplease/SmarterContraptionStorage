@@ -13,5 +13,13 @@
   "smartercontraptionstorage.ponder.trash_control.text_2": "( no drops are spawned ...)",
   "smartercontraptionstorage.ponder.trash_control.text_3": "Although we can use the filter trashcan provided to us, it may not enough to use. And also, any items matches contents in toolbox we wouldn't want them be deleted, so we can use toolbox as an extended black filter. Let's see how to use it",
   "smartercontraptionstorage.ponder.trash_control.text_4": "If we add cobblestone to our toolbox (actually, only need to set it's filter)",
-  "smartercontraptionstorage.ponder.trash_control.text_5": "Then this cobblestone will drop on the ground rather than deleted by trashcan (toolbox can be anywhere on contraption, don't need to place near trashcan)"
+  "smartercontraptionstorage.ponder.trash_control.text_5": "Then this cobblestone will drop on the ground rather than deleted by trashcan (toolbox can be anywhere on contraption, don't need to place near trashcan)",
+  "smartercontraptionstorage.ponder.replenish_item.header": "Use toolbox to replenish item to your hotbar",
+  "smartercontraptionstorage.ponder.replenish_item.text_1": "You may usually use minecart to help mining ores",
+  "smartercontraptionstorage.ponder.replenish_item.text_2": "But you may encounter some embarrassing scenes like this: fall into a hole and have not enough blocks to get out",
+  "smartercontraptionstorage.ponder.replenish_item.text_3": "So you can use toolbox to replenish item helping you get out of there, and it can also help you mining. It can store the cobblestones and extract items from minecart to your hotbar",
+  "smartercontraptionstorage.ponder.replenish_item.text_4": "Toolbox works like an actor, it will search all containers (including itself) to replenish items to all players nearby and store items",
+  "smartercontraptionstorage.ponder.replenish_item.text_5": "Must point out that, though you can close toolbox by controls block, the controls block will distinguish nbt labels, so you best use a new box to set the filter and make sure the color of filter and block are the same (color also matters)",
+  "smartercontraptionstorage.contraption.toolbox.behaviour.alert": "You are too far from your toolbox",
+  "smartercontraptionstorage.contraption.toolbox.behaviour.open": "Toolboxes are replenishing to your hotbar"
 }

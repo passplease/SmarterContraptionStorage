@@ -36,5 +36,4 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return block instanceof ToolboxBlock;
     }
-
 }

@@ -21,6 +21,7 @@ public class SCS_Ponder {
     public static void register(){
         registerTags();
         HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS).addStoryBoard("storage_control", MovementActorScenes::controlStorageBlock,CONTROLLABLE_CONTAINERS);
+        HELPER.forComponents(AllBlocks.TOOLBOXES).addStoryBoard("replenish_item",ToolboxScenes::replenishItem,CONTROLLABLE_CONTAINERS);
         //BuildNBTFile.createNBTFile();
     }
     public static void registerTrashCan(){

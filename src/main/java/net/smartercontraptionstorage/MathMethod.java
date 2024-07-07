@@ -97,7 +97,7 @@ public class MathMethod {
         double X = Math.abs(pos1.getX() - pos2.getX());
         double Y = Math.abs(pos1.getY() - pos2.getY());
         double Z = Math.abs(pos1.getZ() - pos2.getZ());
-        return Math.min(X,Math.min(Y,Z));
+        return Math.max(X,Math.max(Y,Z));
     }
     private static CompoundTag toolboxInventory = new CompoundTag();
     public static void addInventory(ToolboxBlockEntity entity){

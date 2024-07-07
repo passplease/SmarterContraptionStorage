@@ -1,10 +1,14 @@
 package net.smartercontraptionstorage;
 
 import com.jaquadro.minecraft.storagedrawers.core.ModBlocks;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllMovementBehaviours;
+import com.simibubi.create.content.equipment.toolbox.ToolboxBlock;
 import com.simibubi.create.foundation.ponder.PonderRegistry;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraftforge.fml.ModList;
-import net.smartercontraptionstorage.AddStorage.CompactingHandlerHelper;
-import net.smartercontraptionstorage.AddStorage.DrawersHandlerHelper;
+import net.smartercontraptionstorage.AddActor.BackpackBehaviour;
+import net.smartercontraptionstorage.AddStorage.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,9 +18,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
-import net.smartercontraptionstorage.AddStorage.ToolboxHandlerHelper;
-import net.smartercontraptionstorage.AddStorage.TrashHandlerHelper;
 import net.smartercontraptionstorage.Ponder.SCS_Ponder;
+import net.smartercontraptionstorage.AddActor.ToolboxBehaviour;
 
 import static net.smartercontraptionstorage.AddStorage.StorageHandlerHelper.register;
 import static net.smartercontraptionstorage.Ponder.SCS_Ponder.CONTROLLABLE_CONTAINERS;
@@ -43,16 +46,33 @@ public class SmarterContraptionStorage {
         // Do something when the server starts
         ModList list = ModList.get();
         if(list.isLoaded("create")){
-            SCS_Ponder.register();
             register(new ToolboxHandlerHelper());
+            SCS_Ponder.register();
+            for (BlockEntry<ToolboxBlock> toolboxBlockBlockEntry : AllBlocks.TOOLBOXES) {
+                AllMovementBehaviours.registerBehaviour(toolboxBlockBlockEntry.get(), new ToolboxBehaviour());
+            }
+            if(list.isLoaded("trashcans")) {
+                SCS_Ponder.registerTrashCan();
+                register(new TrashHandlerHelper());
+            }
             if(list.isLoaded("storagedrawers")) {
                 PonderRegistry.TAGS.forTag(CONTROLLABLE_CONTAINERS).add(ModBlocks.CONTROLLER.get());
                 register(new DrawersHandlerHelper());
                 register(new CompactingHandlerHelper());
             }
-            if(list.isLoaded("trashcans")) {
-                SCS_Ponder.registerTrashCan();
-                register(new TrashHandlerHelper());
+            if(list.isLoaded("sophisticatedbackpacks")){
+                register(new SBackPacksHandlerHelper());
+                BackpackBehaviour behaviour = new BackpackBehaviour();
+                AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.BACKPACK.get(),behaviour);
+                AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.COPPER_BACKPACK.get(),behaviour);
+                AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.IRON_BACKPACK.get(),behaviour);
+                AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.GOLD_BACKPACK.get(),behaviour);
+                AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.DIAMOND_BACKPACK.get(),behaviour);
+                AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.NETHERITE_BACKPACK.get(),behaviour);
+            }
+            if(list.isLoaded("functionalstorage")){
+                register(new FunctionalDrawersHandlerHelper());
+                register(new FunctionalCompactingHandlerHelper());
             }
         }
     }

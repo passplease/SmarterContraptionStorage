@@ -8,9 +8,7 @@
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",
-    "Storage.MountedStorageMixin",
-    "Storage.ToolboxBlockEntityMixin",
-    "Storage.ToolboxInventoryMixin"
+    "MountedStorageMixin"
   ],
   "client": [
   ],

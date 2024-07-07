@@ -13,5 +13,13 @@
   "smartercontraptionstorage.ponder.trash_control.text_2": "（ 果然，没有掉落物产生 …… ）",
   "smartercontraptionstorage.ponder.trash_control.text_3": "虽然我们可以使用垃圾桶自己提供的过滤器，但是那有可能不足以使用，而且我们也不想任何可以存储在工具箱内的物品被删除，所以我们也可以把工具箱作为额外黑名单使用。下面让我们来看看怎么使用吧",
   "smartercontraptionstorage.ponder.trash_control.text_4": "如果我们往工具箱中添加一些圆石（事实上，只需要设置其过滤槽，不一定真正要装上圆石）",
-  "smartercontraptionstorage.ponder.trash_control.text_5": "然后我们的圆石就会掉在地上，而不是被垃圾桶销毁（工具箱可以在动态结构上的任何地方，而不必和垃圾桶相邻）"
+  "smartercontraptionstorage.ponder.trash_control.text_5": "然后我们的圆石就会掉在地上，而不是被垃圾桶销毁（工具箱可以在动态结构上的任何地方，而不必和垃圾桶相邻）",
+  "smartercontraptionstorage.ponder.replenish_item.header": "使用工具箱为您的物品栏补货",
+  "smartercontraptionstorage.ponder.replenish_item.text_1": "您可能经常使用矿车帮助挖矿",
+  "smartercontraptionstorage.ponder.replenish_item.text_2": "但是您可能经常遇到如下的尴尬局面，掉进坑里还没有足够的方块脱困",
+  "smartercontraptionstorage.ponder.replenish_item.text_3": "所以你可以使用工具箱来避免这样的尴尬场景，并且工具箱还可以帮助你挖掘，它会自动地帮助您存储圆石至矿车，自动地从矿车中抽取物品到您的快捷栏",
+  "smartercontraptionstorage.ponder.replenish_item.text_4": "工具箱会像一个普通元件一样工作，从所有容器中（包括它自己）抽取物品补充附近所有玩家的物品栏，并且存储他们的物品",
+  "smartercontraptionstorage.ponder.replenish_item.text_5": "必须指出的是，尽管您可以使用控制器去控制工具箱，但是，控制器的过滤器是区分nbt标签的，所以最好使用新的工具箱去设置过滤槽，并且物品和方块的颜色一样（颜色也是严格区分的）",
+  "smartercontraptionstorage.contraption.toolbox.behaviour.alert": "您距离工具箱太远了",
+  "smartercontraptionstorage.contraption.toolbox.behaviour.open": "工具箱正在为您补充物品栏物品"
 }

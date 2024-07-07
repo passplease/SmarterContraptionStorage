@@ -57,8 +57,8 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 // Empty and locked drawers are not supported (they will be filled with item)
             }
         }
-        protected boolean canInsert(int slot,ItemStack stack){
-            return !stack.isEmpty() && (ItemStack.isSameItem(stack,items[slot]) || items[slot].is(Items.AIR));
+        public boolean canInsert(int slot,ItemStack stack){
+            return !stack.isEmpty() && (ItemStack.isSameItem(items[slot],stack) || items[slot].is(Items.AIR));
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack) {
@@ -78,24 +78,25 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 // below should change markedItem in time, but I don't know how to do this right now.
                 if(items[slot].is(Items.AIR)){
                     if(stack.getCount() <= slotLimits[slot]) {
-                        count[slot] = stack.getCount();
-                        items[slot] = stack;
+                        if(!simulate) {
+                            count[slot] = stack.getCount();
+                            items[slot] = stack.copy();
+                        }
                         return ItemStack.EMPTY;
                     }
                     else {
-                        count[slot] = slotLimits[slot];
-                        items[slot] = stack.copy();
+                        if(!simulate) {
+                            count[slot] = slotLimits[slot];
+                            items[slot] = stack.copy();
+                        }
                         stack.setCount(stack.getCount() - count[slot]);
                         return stack;
                     }
                 }
                 if(simulate){
-                    if(stack.getCount() <= slotLimits[slot]) {
-                        count[slot] = stack.getCount();
+                    if(stack.getCount() <= slotLimits[slot])
                         return ItemStack.EMPTY;
-                    }
                     else {
-                        count[slot] = slotLimits[slot];
                         stack.setCount(stack.getCount() - slotLimits[slot]);
                         return stack;
                     }

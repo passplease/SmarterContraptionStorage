@@ -1,5 +1,6 @@
 package Excludes;
 
+import Excludes.Scenes.replenish_item;
 import Excludes.Scenes.storage_control;
 import Excludes.Scenes.trash_control;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
@@ -19,12 +20,11 @@ public final class BuildNBTFile {
     private static final String Path = Paths.get("").toAbsolutePath().toString()
             .replace("run","src/main/resources/assets/" + SmarterContraptionStorage.MODID + "/ponder/")
             .replace('\\','/');
-    private static final CreateNBTFile storage_control = new storage_control("storage_control");
-    private static final CreateNBTFile trash_control = new trash_control("trash_control");
     private static final Map<Integer, CreateNBTFile> map = new HashMap<>();
     static {
-        map.put(map.size(),storage_control);
-        map.put(map.size(),trash_control);
+        map.put(map.size(),new storage_control("storage_control"));
+        map.put(map.size(),new trash_control("trash_control"));
+        map.put(map.size(),new replenish_item("replenish_item"));
     }
     public static void createNBTFile() {
         String path;

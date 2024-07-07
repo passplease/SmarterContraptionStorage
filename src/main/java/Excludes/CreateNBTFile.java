@@ -71,10 +71,22 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
         }else throw new RuntimeException("The size of ponder is wrong");
     }
     private final ListTag e = new ListTag();
-    @Deprecated
-    // Don't know how to write this function yet.
-    public static void addEntity(){}
-    private static final ListTag b = new ListTag();
+    public void addEntity(EntityHelper helper){
+        CompoundTag tag = new CompoundTag();
+        ListTag pos = new ListTag();
+        ListTag blocPos = new ListTag();
+        pos.add(DoubleTag.valueOf(helper.pos_x));
+        pos.add(DoubleTag.valueOf(helper.pos_y));
+        pos.add(DoubleTag.valueOf(helper.pos_z));
+        blocPos.add(IntTag.valueOf(helper.blocPos_x));
+        blocPos.add(IntTag.valueOf(helper.blocPos_y));
+        blocPos.add(IntTag.valueOf(helper.blocPos_z));
+        tag.put("nbt",helper.generateNBT());
+        tag.put("blockPos",blocPos);
+        tag.put("pos",pos);
+        e.add(tag);
+    }
+    private final ListTag b = new ListTag();
     public int addBlock(int x,int y,int z,@NotNull String blockId){
         return addBlock(x,y,z,blockId,null,null,null);
     }
@@ -132,6 +144,10 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
     }
     private final ListTag p = new ListTag();
     public int addPalette(String blockId,@Nullable CompoundTag properties){
+        blockId = blockId.replace("block.","").replace(".",":");
+        int i =findBlockId(blockId);
+        if(i != WRONG_BLOCK_ID)
+            return i;
         CompoundTag tag = new CompoundTag();
         if(properties != null)
             tag.put("Properties",properties.copy());
@@ -208,6 +224,42 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
             this.blockId = blockId;
             this.speed = speed;
             this.addedStress = addedStress;
+        }
+    }
+    public static class EntityHelper{
+        public String id;
+        public double pos_x;
+        public double pos_y;
+        public double pos_z;
+        public int blocPos_x;
+        public int blocPos_y;
+        public int blocPos_z;
+        public Facing facing;
+        public EntityHelper(String id,double x,double y,double z){
+            this(id,x,y,z, (int) x, (int) y, (int) z);
+        }
+        public EntityHelper(String id, double pos_x,double pos_y,double pos_z,int blocPos_x,int blocPos_y,int blocPos_z){
+            this.id = id;
+            this.pos_x = pos_x;
+            this.pos_y = pos_y;
+            this.pos_z = pos_z;
+            this.blocPos_x = blocPos_x;
+            this.blocPos_y = blocPos_y;
+            this.blocPos_z = blocPos_z;
+        }
+        public EntityHelper(EntityHelper helper){
+            id = helper.id;
+            pos_x = helper.pos_x;
+            pos_y = helper.pos_y;
+            pos_z = helper.pos_z;
+            blocPos_x = helper.blocPos_x;
+            blocPos_y = helper.blocPos_y;
+            blocPos_z = helper.blocPos_z;
+        }
+        public CompoundTag generateNBT(){
+            CompoundTag nbt = new CompoundTag();
+            nbt.putString("id",id);
+            return nbt;
         }
     }
 }

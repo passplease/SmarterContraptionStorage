@@ -16,7 +16,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Objects;
 
 import static com.buuz135.functionalstorage.inventory.CompactingInventoryHandler.*;
 

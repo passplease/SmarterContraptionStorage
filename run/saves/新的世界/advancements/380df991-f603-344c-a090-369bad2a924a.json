@@ -48,6 +48,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/logistics/powered_latch": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/transportation/furnace_minecart": {
     "criteria": {
       "has_minecart": "2024-06-06 20:18:22 +0800"
@@ -75,6 +81,12 @@
   "minecraft:recipes/decorations/crafting_table": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone": {
+    "criteria": {
+      "has_redstone_block": "2024-07-09 09:21:52 +0800"
     },
     "done": true
   },
@@ -144,9 +156,21 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/mangrove_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/spruce_button": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "create:portable_storage_interface": {
+    "criteria": {
+      "0": "2024-07-08 15:53:16 +0800"
     },
     "done": true
   },
@@ -189,6 +213,12 @@
   "sophisticatedbackpacks:recipes/sophisticatedbackpacks/advanced_magnet_upgrade_from_basic": {
     "criteria": {
       "has_magnet_upgrade": "2024-07-07 14:20:48 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
     },
     "done": true
   },
@@ -288,6 +318,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/logistics/powered_toggle_latch": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "create:recipes/transportation/crafting/kinetics/minecart_from_contraption_cart": {
     "criteria": {
       "has_item": "2024-06-06 20:17:46 +0800"
@@ -297,6 +333,12 @@
   "create:recipes/create.palettes/copper_tiles_from_ingots_copper_stonecutting": {
     "criteria": {
       "has_ingots_copper": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/note_block": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
     },
     "done": true
   },
@@ -390,6 +432,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/redstone/target": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/oak_drawers": {
     "criteria": {
       "has_chest": "2024-06-06 21:31:26 +0800"
@@ -408,9 +456,21 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/logistics/pulse_repeater": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/white_candle": {
     "criteria": {
       "has_white_dye": "2024-07-03 21:46:47 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/cauldron": {
+    "criteria": {
+      "has_water_bucket": "2024-07-08 14:11:58 +0800"
     },
     "done": true
   },
@@ -438,6 +498,12 @@
     },
     "done": true
   },
+  "minecraft:story/lava_bucket": {
+    "criteria": {
+      "lava_bucket": "2024-07-08 15:53:39 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/cobblestone_slab_from_cobblestone_stonecutting": {
     "criteria": {
       "has_cobblestone": "2024-07-06 07:33:46 +0800"
@@ -447,6 +513,18 @@
   "create:recipes/create.base/crafting/kinetics/mechanical_pump": {
     "criteria": {
       "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_torch": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
     },
     "done": true
   },
@@ -468,6 +546,12 @@
     },
     "done": true
   },
+  "trashcans:recipes/decorations/liquid_trash_can": {
+    "criteria": {
+      "recipe_condition": "2024-07-08 15:54:10 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/min_redstone_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
@@ -477,6 +561,12 @@
   "minecraft:recipes/tools/iron_shovel": {
     "criteria": {
       "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/acacia_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
     },
     "done": true
   },
@@ -516,6 +606,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/tools/clock": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/spruce_fence": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
@@ -546,6 +642,24 @@
     },
     "done": true
   },
+  "mekanism:root": {
+    "criteria": {
+      "automatic": "2024-07-08 22:10:27 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_block": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "mekanism:fluid_tank": {
+    "criteria": {
+      "basic_fluid_tank": "2024-07-08 22:10:51 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/spruce_stairs": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
@@ -558,9 +672,21 @@
     },
     "done": true
   },
+  "trashcans:ultimate_trash_can": {
+    "criteria": {
+      "has_ultimate_trash_can": "2024-07-08 14:12:53 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/redstone_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/materials/rose_quartz": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
     },
     "done": true
   },
@@ -624,6 +750,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/oak_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/anvil": {
     "criteria": {
       "has_iron_block": "2024-06-26 09:46:22 +0800"
@@ -645,6 +777,12 @@
   "minecraft:recipes/decorations/spruce_sign": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "create:deployer": {
+    "criteria": {
+      "0": "2024-07-08 21:05:37 +0800"
     },
     "done": true
   },
@@ -681,6 +819,12 @@
   "minecraft:recipes/building_blocks/waxed_copper_block_from_honeycomb": {
     "criteria": {
       "has_copper_block": "2024-07-06 13:59:12 +0800"
+    },
+    "done": true
+  },
+  "trashcans:recipes/decorations/energy_trash_can": {
+    "criteria": {
+      "recipe_condition": "2024-07-09 09:21:41 +0800"
     },
     "done": true
   },
@@ -864,6 +1008,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/redstone/dropper": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "create:recipes/create.base/crafting/kinetics/copper_valve_handle": {
     "criteria": {
       "has_item": "2024-07-06 14:00:33 +0800"
@@ -924,6 +1074,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/tools/compass": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/sticky_piston": {
     "criteria": {
       "has_slime_ball": "2024-05-30 21:12:29 +0800"
@@ -976,6 +1132,12 @@
   "create:recipes/create.palettes/copper_bars_from_ingots_copper_stonecutting": {
     "criteria": {
       "has_ingots_copper": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "mekanism:personal_storage": {
+    "criteria": {
+      "storage": "2024-07-09 21:14:27 +0800"
     },
     "done": true
   },
@@ -1069,6 +1231,18 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/linear_chassisfrom_conversion": {
+    "criteria": {
+      "has_item": "2024-07-08 22:25:58 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/drawer_key": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
@@ -1096,6 +1270,12 @@
   "minecraft:recipes/redstone/daylight_detector": {
     "criteria": {
       "has_quartz": "2024-07-07 09:19:39 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
     },
     "done": true
   },
@@ -1135,9 +1315,21 @@
     },
     "done": true
   },
+  "minecraft:recipes/redstone/piston": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/lantern": {
     "criteria": {
       "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/logistics/pulse_extender": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
     },
     "done": true
   },

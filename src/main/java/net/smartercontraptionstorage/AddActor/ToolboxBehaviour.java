@@ -15,7 +15,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.smartercontraptionstorage.MathMethod;
+import net.smartercontraptionstorage.Utils;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
         if(context.blockEntityData.get("Inventory") instanceof CompoundTag tag) {
             List<ItemStack> toolboxItems = NBTHelper.readItemList(tag.getList("Compartments", Tag.TAG_COMPOUND));
             for (Player player : context.world.players()) {
-                if (MathMethod.calcDistance(getEntityPos(context), player.getOnPos()) <= MAX_DISTANCE) {
+                if (Utils.calcDistance(getEntityPos(context), player.getOnPos()) <= MAX_DISTANCE) {
                     if(context.world.isClientSide)
                         sendMessage("contraption.toolbox.behaviour.open",player);
                     replenishPlayer(context,getPlayerItems(player),toolboxItems);
@@ -57,6 +57,8 @@ public class ToolboxBehaviour implements MovementBehaviour {
             for(ItemStack filterItem : filterItems){
                 if(filterItem.sameItem(playerItem)){
                     halfMaxSize = playerItem.getMaxStackSize() / 2;
+                    if(halfMaxSize == 0)
+                        continue;
                     count = playerItem.getCount();
                     if(count > halfMaxSize){
                         item = playerItem.copy();

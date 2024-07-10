@@ -12,7 +12,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.smartercontraptionstorage.MathMethod;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -90,7 +90,7 @@ public class replenish_item extends CreateNBTFile {
     }
     private @Nullable Ores searchOres(int x, int y, int z){
         Ores ore;
-        for(BlockPos pos : MathMethod.getAroundedBlockPos(new BlockPos(x,y,z))){
+        for(BlockPos pos : Utils.getAroundedBlockPos(new BlockPos(x,y,z))){
             ore = orePoses.getOrDefault(pos,null);
             if(ore != null)
                 return ore;

@@ -163,6 +163,7 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    runtimeOnly fg.deobf("curse.maven:mekanism-268560:4644795")// Only for me to test
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     implementation fg.deobf("curse.maven:create-328085:4625534")
     implementation fg.deobf("curse.maven:storage-drawers-223852:3884263")

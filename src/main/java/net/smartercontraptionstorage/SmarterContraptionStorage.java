@@ -6,10 +6,8 @@ import com.simibubi.create.AllMovementBehaviours;
 import com.simibubi.create.content.equipment.toolbox.ToolboxBlock;
 import com.simibubi.create.foundation.ponder.PonderRegistry;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.ModList;
 import net.smartercontraptionstorage.AddActor.BackpackBehaviour;
-import net.smartercontraptionstorage.AddStorage.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,12 +17,15 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.smartercontraptionstorage.AddStorage.FluidHander.FunctionalFluidHandlerHelper;
+import net.smartercontraptionstorage.AddStorage.FluidHander.SBackPacksFluidHandlerHelper;
+import net.smartercontraptionstorage.AddStorage.FluidHander.TrashcanFluidHelper;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
 import net.smartercontraptionstorage.Ponder.SCS_Ponder;
 import net.smartercontraptionstorage.AddActor.ToolboxBehaviour;
 
-import java.util.Iterator;
-
-import static net.smartercontraptionstorage.AddStorage.StorageHandlerHelper.register;
+import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.register;
+import static net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper.register;
 import static net.smartercontraptionstorage.Ponder.SCS_Ponder.CONTROLLABLE_CONTAINERS;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -57,6 +58,7 @@ public class SmarterContraptionStorage {
             if(list.isLoaded("trashcans")) {
                 SCS_Ponder.registerTrashCan();
                 register(new TrashHandlerHelper());
+                register(new TrashcanFluidHelper());
             }
             if(list.isLoaded("storagedrawers")) {
                 PonderRegistry.TAGS.forTag(CONTROLLABLE_CONTAINERS).add(ModBlocks.CONTROLLER.get());
@@ -65,6 +67,7 @@ public class SmarterContraptionStorage {
             }
             if(list.isLoaded("sophisticatedbackpacks")){
                 register(new SBackPacksHandlerHelper());
+                register(new SBackPacksFluidHandlerHelper());
                 BackpackBehaviour behaviour = new BackpackBehaviour();
                 AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.BACKPACK.get(),behaviour);
                 AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.COPPER_BACKPACK.get(),behaviour);
@@ -76,6 +79,7 @@ public class SmarterContraptionStorage {
             if(list.isLoaded("functionalstorage")){
                 register(new FunctionalDrawersHandlerHelper());
                 register(new FunctionalCompactingHandlerHelper());
+                register(new FunctionalFluidHandlerHelper());
             }
         }
     }

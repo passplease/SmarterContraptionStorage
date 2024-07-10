@@ -3,8 +3,8 @@ Specification-Title: smartercontraptionstorage
 Specification-Vendor: No Name
 Specification-Version: 1
 Implementation-Title: smartercontraptionstorage
-Implementation-Version: 1.19.2-beta 0.2
+Implementation-Version: 1.19.2-beta 0.4
 Implementation-Vendor: No Name
-Implementation-Timestamp: 2024-07-02T08:02:38+0800
+Implementation-Timestamp: 2024-07-10T09:35:48+0800
 MixinConfigs: smartercontraptionstorage.mixins.json
 

@@ -8,7 +8,6 @@ import com.simibubi.create.foundation.ponder.PonderRegistry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraftforge.fml.ModList;
 import net.smartercontraptionstorage.AddActor.BackpackBehaviour;
-import net.smartercontraptionstorage.AddStorage.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,10 +17,11 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
 import net.smartercontraptionstorage.Ponder.SCS_Ponder;
 import net.smartercontraptionstorage.AddActor.ToolboxBehaviour;
 
-import static net.smartercontraptionstorage.AddStorage.StorageHandlerHelper.register;
+import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.register;
 import static net.smartercontraptionstorage.Ponder.SCS_Ponder.CONTROLLABLE_CONTAINERS;
 
 // The value here should match an entry in the META-INF/mods.toml file

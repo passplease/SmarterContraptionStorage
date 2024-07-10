@@ -11,4 +11,9 @@
 	CheckAdjacentBlock = true
 	#Search range for neighboring block (best bigger than 9, because Vault maxsize is 9)
 	SearchRange = 10
+	#When contraption want to store any item which can save fluid (such as water bucket),
+	#we will automatically dump fluid into tanks and return an empty tankItem and
+	#automatically fill bucket with fluid when contraption extract it (such as extracting water bucket, and make water bucket right now)
+	#
+	AutoDumping = true
 

@@ -7,9 +7,10 @@ public class SmarterContraptionStorageConfig {
     public static final ForgeConfigSpec SPEC;
     public static final ForgeConfigSpec.BooleanValue DEFAULT_OPEN;
     public static final ForgeConfigSpec.BooleanValue CHECK_ADJACENT_BLOCK;
+    public static final ForgeConfigSpec.BooleanValue AUTO_DUMPING;
     public static final ForgeConfigSpec.ConfigValue<Integer> SEARCH_RANGE;
     static {
-        BUILDER.push("Config for More legal Storage on Contraption !");// push会创建一个缩进
+        BUILDER.push("Config for More legal Storage on Contraption !");// push will create an indent
         DEFAULT_OPEN = BUILDER.comment("""
                 Weather default uses all storage blocks
                 Instructions:
@@ -19,7 +20,12 @@ public class SmarterContraptionStorageConfig {
                 """).define("DefaultOpen",true);
         CHECK_ADJACENT_BLOCK = BUILDER.comment("Check neighboring storage block automatically (such as Vault):").define("CheckAdjacentBlock",true);
         SEARCH_RANGE = BUILDER.comment("Search range for neighboring block (best bigger than 9, because Vault maxsize is 9)").define("SearchRange",10);
-        BUILDER.pop();// pop会解除缩进
+        AUTO_DUMPING = BUILDER.comment("""
+                When contraption want to store any item which can save fluid (such as water bucket),
+                we will automatically dump fluid into tanks and return an empty tankItem and
+                automatically fill bucket with fluid when contraption extract it (such as extracting water bucket, and make water bucket right now)
+                """).define("AutoDumping",true);
+        BUILDER.pop();// pop will unindent
         SPEC = BUILDER.build();
     }
     public static boolean getDefaultOpen(boolean open){

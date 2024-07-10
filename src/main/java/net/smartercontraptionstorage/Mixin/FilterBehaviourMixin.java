@@ -5,7 +5,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour;
 import net.minecraft.world.item.ItemStack;
-import net.smartercontraptionstorage.MathMethod;
+import net.smartercontraptionstorage.Utils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,7 +24,7 @@ public abstract class FilterBehaviourMixin extends BlockEntityBehaviour implemen
     }
     @Inject(method = "setFilter(Lnet/minecraft/world/item/ItemStack;)Z",at = @At("HEAD"),remap = false)
     public void setFilterMixin(ItemStack stack, CallbackInfoReturnable<Boolean> cir){
-        if (MathMethod.canBeControlledItem(stack.getItem()))
+        if (Utils.canBeControlledItem(stack.getItem()))
             this.predicate = (itemStack)-> true;
     }
 }

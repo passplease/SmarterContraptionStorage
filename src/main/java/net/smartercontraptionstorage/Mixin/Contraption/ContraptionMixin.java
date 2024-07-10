@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import net.smartercontraptionstorage.MathMethod;
+import net.smartercontraptionstorage.Utils;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
 import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.*;
 
-import static net.smartercontraptionstorage.MathMethod.*;
+import static net.smartercontraptionstorage.Utils.*;
 @Mixin(Contraption.class)
 public abstract class ContraptionMixin {
     @Shadow(remap = false) protected abstract void addBlock(BlockPos pos, Pair<StructureTemplate.StructureBlockInfo, BlockEntity> pair);
@@ -33,8 +33,8 @@ public abstract class ContraptionMixin {
         BlockEntity entity = pair.getRight();
         if(entity != null) {
             if (canBeControlledBlock(entity.getBlockState().getBlock())) {
-                addData(MathMethod.pos, pos);
-                addData(MathMethod.pair, pair);
+                addData(Utils.pos, pos);
+                addData(Utils.pair, pair);
                 return;
             }
         }
@@ -49,22 +49,22 @@ public abstract class ContraptionMixin {
     public void addBlock(Level world, BlockPos pos, Direction forcedDirection, CallbackInfoReturnable<Boolean> cir) {
         if(smarterContraptionStorage$waitAddBlock)
             return;
-        if (MathMethod.pos.isEmpty() && pair.isEmpty())
+        if (Utils.pos.isEmpty() && pair.isEmpty())
             return;
-        else if (MathMethod.pos.size() != pair.size())
+        else if (Utils.pos.size() != pair.size())
             throw new IllegalCallerException("The block data is broken or doesn't have block status at all!", new Exception());
         Block thisBlock;
-        for (int i = 0; i < MathMethod.pos.size(); i++) {
+        for (int i = 0; i < Utils.pos.size(); i++) {
             thisBlock = pair.get(i).getRight().getBlockState().getBlock();
-            pos = MathMethod.pos.get(i);
+            pos = Utils.pos.get(i);
             if (canBeControlledBlock(thisBlock))
-                smarterContraptionStorage$canStoreItem = !SmarterContraptionStorage$checkAddToStorage(world,pos,thisBlock, SmarterContraptionStorageConfig.CHECK_ADJACENT_BLOCK.get());
-            smarterContraptionStorage$checkedBlockPos.put(pos, smarterContraptionStorage$canStoreItem);
+                smarterContraptionStorage$canUseForStorage = !SmarterContraptionStorage$checkAddToStorage(world,pos,thisBlock, SmarterContraptionStorageConfig.CHECK_ADJACENT_BLOCK.get());
+            smarterContraptionStorage$checkedBlockPos.put(pos, smarterContraptionStorage$canUseForStorage);
             this.addBlock(pos,pair.get(i));
         }
         smarterContraptionStorage$waitAddBlock = true;
         smarterContraptionStorage$checkedBlockPos.clear();
-        resetStatus();
+        resetData();
     }
     @Unique
     public boolean SmarterContraptionStorage$checkAddToStorage(Level world, BlockPos thisPos, Block thisBlock, boolean search){

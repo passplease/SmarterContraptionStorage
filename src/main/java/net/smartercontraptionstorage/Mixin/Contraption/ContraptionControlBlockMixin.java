@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.smartercontraptionstorage.MathMethod;
+import net.smartercontraptionstorage.Utils;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -38,7 +38,7 @@ public abstract class ContraptionControlBlockMixin extends ControlsBlock impleme
                 if(entity == null)
                     return InteractionResult.FAIL;
                 boolean open;
-                if(MathMethod.canBeControlledItem(entity.filtering.getFilter().getItem()))
+                if(Utils.canBeControlledItem(entity.filtering.getFilter().getItem()))
                     open = !SmarterContraptionStorageConfig.getDefaultOpen(entity.disabled);
                 else open = !entity.disabled;
                 cte.notifyUpdate();

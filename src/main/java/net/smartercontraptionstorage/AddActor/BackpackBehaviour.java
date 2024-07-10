@@ -13,7 +13,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.magnet.MagnetUpgradeItem;
-import net.smartercontraptionstorage.MathMethod;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class BackpackBehaviour extends ToolboxBehaviour{
     public void refillTick(MovementContext context,double range){
         NonNullList<ItemStack> playerItems;
         for(Player player : context.world.players()){
-            if(MathMethod.calcDistance(getEntityPos(context),player.getOnPos()) <= range){
+            if(Utils.calcDistance(getEntityPos(context),player.getOnPos()) <= range){
                 playerItems = getPlayerItems(player);
                 replenishPlayer(context,playerItems,playerItems);
             }

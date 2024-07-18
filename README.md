@@ -21,3 +21,4 @@
 ## Questions I Encounter in Coding Now
 #### Thanks For Anybody Helping Me First of All!
 1) I don't know how to use accessTransformer.cfg file in forge. I know how to write it properly, but it can't work normally. For example, in TrashHandlerHelper though I change [inventory]() to public, I can't access it finally, but I can change Minecraft's code. So I suspect AccessTransformer can't change Create's code (although I have no way to justify that) Thanks for reading here helping to solve my problem.
+2) For no reason, I can only open Minecraft's GUI in MenuProviderHandler. I cannot open mod's GUI whatever any mod it belongs to, and have no idea how to fix it.

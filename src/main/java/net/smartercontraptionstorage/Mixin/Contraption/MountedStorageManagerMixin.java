@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.smartercontraptionstorage.AddStorage.FluidHander.DumpHandler;
+import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
 import net.smartercontraptionstorage.Utils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -47,11 +48,24 @@ public abstract class MountedStorageManagerMixin {
 
     @Shadow(remap = false) protected Contraption.ContraptionInvWrapper fuelInventory;
     @Unique public DumpHandler smarterContraptionStorage$handler;
-
-    @Inject(method = "handlePlayerStorageInteraction",at = @At("HEAD"),remap = false)
-    public void handlePlayerStorageInteraction_head(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
+    @ForFunctionChanger(method = {"net.smartercontraptionstorage.Mixin.Storage.getItemHandler","openGUI"})
+    @Inject(method = "handlePlayerStorageInteraction",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/Contraption;getStorageForSpawnPacket()Lcom/simibubi/create/content/contraptions/MountedStorageManager;",by = -1),cancellable = true,remap = false)
+    public void openGUI(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
         playerInteracting = true;
+//        if(FunctionChanger.openGUI(contraption,player,localPos)){
+//            cir.setReturnValue(true);
+//            cir.cancel();
+//        }
     }
+    @Deprecated
+    @ForFunctionChanger(method = "openGUI")
+    @Inject(method = "getItems",at = @At("HEAD"),remap = false)
+    public void getMap(CallbackInfoReturnable<IItemHandlerModifiable> cir){
+        if(FunctionChanger.isOpenGUI())
+            FunctionChanger.setMap(storage);
+    }
+    @Deprecated
+    @ForFunctionChanger(method = "openGUI")
     @Inject(method = "handlePlayerStorageInteraction",at = @At("RETURN"),remap = false)
     public void handlePlayerStorageInteraction_bottom(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
         playerInteracting = false;

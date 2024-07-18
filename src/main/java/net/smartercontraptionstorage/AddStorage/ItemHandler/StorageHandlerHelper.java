@@ -6,13 +6,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class StorageHandlerHelper {
+public abstract class StorageHandlerHelper implements MenuSupportHandler {
     private static final Set<StorageHandlerHelper> HandlerHelpers = new HashSet<>();
     public static void register(@NotNull StorageHandlerHelper helper){
         HandlerHelpers.add(helper);

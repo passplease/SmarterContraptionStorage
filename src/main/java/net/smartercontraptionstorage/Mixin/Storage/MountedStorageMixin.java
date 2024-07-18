@@ -1,7 +1,9 @@
 package net.smartercontraptionstorage.Mixin.Storage;
 
 import com.simibubi.create.content.contraptions.MountedStorage;
+import net.minecraft.world.entity.player.Player;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
+import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
 import net.smartercontraptionstorage.Utils;
 import net.minecraft.world.item.ItemStack;
@@ -79,18 +81,32 @@ public abstract class MountedStorageMixin {
      */
     @Overwrite(remap = false)
     public IItemHandlerModifiable getItemHandler(){
-        if(!smarterContraptionStorage$canUseForStorage && Utils.playerInteracting){
+        if(Utils.playerInteracting && !smarterContraptionStorage$canUseForStorage) {
             MountedStorage storage = new MountedStorage(blockEntity);
             storage.removeStorageFromWorld();
             // To generate storage.handler, though, it makes much redundancy calculation
             return storage.getItemHandler();
-        }else return handler;
+        }
+        return handler;
     }
-    @Inject(method = "isValid",at = @At("HEAD"),cancellable = true,remap = false)
+    @ForFunctionChanger(method = "findMountedEntity")
+    @Inject(method = "isValid",at = @At("HEAD"),remap = false)
     public void getBlockEntity(CallbackInfoReturnable<Boolean> cir){
-        if(FunctionChanger.isMountedEntity()){
+        if(FunctionChanger.isMountedEntity())
             FunctionChanger.setMounted_entity(this.blockEntity);
-            cir.setReturnValue(false);
+    }
+    @Deprecated
+    @ForFunctionChanger(method = "openGUI")
+    @Inject(method = "canUseForFuel",at = @At("HEAD"),cancellable = true,remap = false)
+    public void openGUI(CallbackInfoReturnable<Boolean> cir){
+        if(FunctionChanger.isOpenGUI()){
+            if(smarterContraptionStorage$helper != null && smarterContraptionStorage$helper.canHandlerCreateMenu()) {
+                Player player = FunctionChanger.getPlayer();
+                player.containerMenu = player.inventoryMenu;
+                player.openMenu(smarterContraptionStorage$helper.createHandlerMenu(blockEntity,handler,player));
+                cir.setReturnValue(true);
+            }else
+                cir.setReturnValue(false);
             cir.cancel();
         }
     }

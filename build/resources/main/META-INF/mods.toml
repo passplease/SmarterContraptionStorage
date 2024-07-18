@@ -39,7 +39,7 @@ authors="No Name" #optional
 #displayTest="MATCH_VERSION" # MATCH_VERSION is the default if nothing is specified (#optional)
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''A mod to make Contraption's storage more smart'''
+description='''A mod to make Contraption's storage smarter'''
 # A dependency - use the . to indicate dependency for Excludes.BuildNBTFile specific modid. Dependencies are optional.
 [[dependencies."smartercontraptionstorage"]] #optional
    # the modid of the dependency
@@ -58,6 +58,6 @@ description='''A mod to make Contraption's storage more smart'''
    modId="create"
    mandatory=true
    # This version range declares Excludes.BuildNBTFile minimum of the current minecraft version up to but not including the next major version
-   versionRange="0.5.1c"
+   versionRange="0.5.1f"
    ordering="NONE"
    side="BOTH"

@@ -1027,6 +1027,18 @@
     },
     "done": true
   },
+  "trashcans:recipes/misc/liquid_trash_can": {
+    "criteria": {
+      "recipe_condition": "2024-07-10 14:00:31 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/cauldron": {
+    "criteria": {
+      "has_water_bucket": "2024-07-10 14:00:35 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/transportation/cherry_boat": {
     "criteria": {
       "in_water": "2024-07-10 14:00:53 +0800"
@@ -1060,18 +1072,6 @@
   "minecraft:recipes/transportation/mangrove_boat": {
     "criteria": {
       "in_water": "2024-07-10 14:00:53 +0800"
-    },
-    "done": true
-  },
-  "trashcans:recipes/misc/liquid_trash_can": {
-    "criteria": {
-      "recipe_condition": "2024-07-10 14:00:31 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/brewing/cauldron": {
-    "criteria": {
-      "has_water_bucket": "2024-07-10 14:00:35 +0800"
     },
     "done": true
   },

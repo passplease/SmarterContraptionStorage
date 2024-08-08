@@ -21,6 +21,9 @@ import net.smartercontraptionstorage.AddStorage.FluidHander.FunctionalFluidHandl
 import net.smartercontraptionstorage.AddStorage.FluidHander.SBackPacksFluidHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.FluidHander.TrashcanFluidHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEControllerBlock;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEEnergyBlock;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.MEStorageFilter;
 import net.smartercontraptionstorage.Ponder.SCS_Ponder;
 import net.smartercontraptionstorage.AddActor.ToolboxBehaviour;
 
@@ -32,9 +35,9 @@ import static net.smartercontraptionstorage.Ponder.SCS_Ponder.CONTROLLABLE_CONTA
 @Mod(SmarterContraptionStorage.MODID)
 public class SmarterContraptionStorage {
 
-    // Define mod id in Excludes.a common place for everything to reference
+    // Define mod id in Excludes.SpatialPylonBlockEntityMixin common place for everything to reference
     public static final String MODID = "smartercontraptionstorage";
-    // Directly reference Excludes.a slf4j logger
+    // Directly reference Excludes.SpatialPylonBlockEntityMixin slf4j logger
     public SmarterContraptionStorage() {
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SmarterContraptionStorageConfig.SPEC,"Smarter_Contraption_Storage.toml");
@@ -80,6 +83,14 @@ public class SmarterContraptionStorage {
                 register(new FunctionalDrawersHandlerHelper());
                 register(new FunctionalCompactingHandlerHelper());
                 register(new FunctionalFluidHandlerHelper());
+            }
+            if(SmarterContraptionStorageConfig.AE2SUPPORT.get() && list.isLoaded("ae2")){
+                register(new AE2BusBlockHelper());
+                register(new MEStorageFilter());
+                register(new AEControllerBlock());
+                register(new AEEnergyBlock());
+                register(new SpatialHandler());
+                SCS_Ponder.registerAE();
             }
         }
     }

@@ -93,7 +93,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
         }
 
         @Override
-        public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
+        public @NotNull FluidStack drain(int maxDrain, @NotNull FluidAction action) {
             return FluidStack.EMPTY;
         }
         @Override

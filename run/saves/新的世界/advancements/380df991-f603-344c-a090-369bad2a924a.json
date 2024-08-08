@@ -5,9 +5,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/quartz_pillar": {
+  "minecraft:recipes/building_blocks/black_stained_glass": {
     "criteria": {
-      "has_quartz_block": "2024-07-07 09:18:45 +0800"
+      "has_glass": "2024-07-29 07:48:49 +0800"
     },
     "done": true
   },
@@ -24,15 +24,27 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/cobblestone_stairs_from_cobblestone_stonecutting": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_purple": {
     "criteria": {
-      "has_cobblestone": "2024-07-06 07:33:46 +0800"
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "ae2:main/spatial_ioport": {
+    "criteria": {
+      "certus": "2024-07-26 09:18:22 +0800"
     },
     "done": true
   },
   "minecraft:recipes/combat/iron_sword": {
     "criteria": {
       "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_yellow": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
     },
     "done": true
   },
@@ -60,15 +72,21 @@
     },
     "done": true
   },
+  "ae2:main/compass": {
+    "criteria": {
+      "compass": "2024-07-19 13:56:12 +0800"
+    },
+    "done": true
+  },
   "create:recipes/create.base/crafting/logistics/powered_latch": {
     "criteria": {
       "has_item": "2024-07-09 09:21:41 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/transportation/furnace_minecart": {
+  "ae2:recipes/ae2.main/network/cables/smart_brown": {
     "criteria": {
-      "has_minecart": "2024-06-06 20:18:22 +0800"
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
     },
     "done": true
   },
@@ -84,9 +102,21 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/gray_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/spruce_fence_gate": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "ae2:main/glass_cable": {
+    "criteria": {
+      "certus": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
@@ -96,15 +126,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/redstone": {
+  "ae2:recipes/ae2.main/network/cables/dense_covered_red": {
     "criteria": {
-      "has_redstone_block": "2024-07-09 09:21:52 +0800"
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/compacting_drawers": {
+  "minecraft:recipes/building_blocks/purple_stained_glass": {
     "criteria": {
-      "has_chest": "2024-06-06 21:31:39 +0800"
+      "has_glass": "2024-07-29 07:48:49 +0800"
     },
     "done": true
   },
@@ -114,45 +144,27 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/smooth_stone": {
-    "criteria": {
-      "has_stone": "2024-07-16 17:43:18 +0800"
-    },
-    "done": true
-  },
-  "create:extendo_grip": {
-    "criteria": {
-      "0": "2024-06-27 09:30:02 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/jungle_drawers": {
-    "criteria": {
-      "has_chest": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/building_blocks/cut_copper_stairs_from_copper_block_stonecutting": {
     "criteria": {
       "has_copper_block": "2024-07-06 13:59:12 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/misc/iron_nugget": {
+  "ae2:recipes/ae2.main/network/blocks/spatial_io_pylon": {
     "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+      "has_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_light_blue": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
     },
     "done": true
   },
   "minecraft:recipes/decorations/chest": {
     "criteria": {
       "has_lots_of_items": "2024-06-02 22:13:53 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/hopper_minecart": {
-    "criteria": {
-      "has_minecart": "2024-06-06 20:18:22 +0800"
     },
     "done": true
   },
@@ -168,18 +180,6 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/stone_slab_from_stone_stonecutting": {
-    "criteria": {
-      "has_stone": "2024-07-16 17:43:18 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/kinetics/fluid_valve": {
-    "criteria": {
-      "has_item": "2024-07-06 14:00:33 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/building_blocks/chiseled_stone_bricks_stone_from_stonecutting": {
     "criteria": {
       "has_stone": "2024-07-16 17:43:18 +0800"
@@ -192,27 +192,33 @@
     },
     "done": true
   },
+  "ae2:recipes/ae2.main/network/parts/storage_bus": {
+    "criteria": {
+      "has_interface": "2024-07-20 08:38:42 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/spruce_button": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
     },
     "done": true
   },
-  "create:portable_storage_interface": {
-    "criteria": {
-      "0": "2024-07-08 15:53:16 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/crimson_drawers": {
-    "criteria": {
-      "has_chest": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
   "create:recipes/create.palettes/industrial_iron_block_from_ingots_iron_stonecutting": {
     "criteria": {
       "has_ingots_iron": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/black_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_light_blue": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
     },
     "done": true
   },
@@ -252,33 +258,21 @@
     },
     "done": true
   },
-  "minecraft:recipes/transportation/spruce_boat": {
+  "ae2:recipes/ae2.main/network/cables/dense_covered_yellow": {
     "criteria": {
-      "in_water": "2024-07-08 15:58:04 +0800"
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/diorite": {
+  "ae2:recipes/ae2.main/network/cables/glass_red": {
     "criteria": {
-      "has_quartz": "2024-07-07 09:19:39 +0800"
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/cut_copper_slab_from_copper_block_stonecutting": {
+  "ae2:recipes/ae2.main/network/cables/glass_yellow": {
     "criteria": {
-      "has_copper_block": "2024-07-06 13:59:12 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/warped_drawers": {
-    "criteria": {
-      "has_chest": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/quartz_stairs_from_quartz_block_stonecutting": {
-    "criteria": {
-      "has_quartz_block": "2024-07-07 09:18:45 +0800"
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
@@ -306,12 +300,6 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/iron_ingot_from_blasting_iron_ore": {
-    "criteria": {
-      "has_iron_ore": "2024-07-07 08:52:46 +0800"
-    },
-    "done": true
-  },
   "create:recipes/create.palettes/ornate_iron_window": {
     "criteria": {
       "has_ingredient": "2024-07-07 08:56:45 +0800"
@@ -330,21 +318,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/bucket": {
-    "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
-    },
-    "done": true
-  },
   "create:recipes/create.base/crafting/materials/copper_nugget": {
     "criteria": {
       "has_item": "2024-07-06 14:00:33 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/cobblestone_stairs": {
+  "ae2:recipes/ae2.main/network/cables/glass_light_gray": {
     "criteria": {
-      "has_cobblestone": "2024-07-06 07:33:46 +0800"
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
@@ -354,33 +336,15 @@
     },
     "done": true
   },
-  "create:recipes/create.base/crafting/logistics/powered_toggle_latch": {
-    "criteria": {
-      "has_item": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
   "create:recipes/transportation/crafting/kinetics/minecart_from_contraption_cart": {
     "criteria": {
       "has_item": "2024-06-06 20:17:46 +0800"
     },
     "done": true
   },
-  "create:recipes/create.palettes/copper_tiles_from_ingots_copper_stonecutting": {
+  "ae2:recipes/ae2.main/network/cables/glass_cyan": {
     "criteria": {
-      "has_ingots_copper": "2024-07-06 14:00:33 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/note_block": {
-    "criteria": {
-      "has_redstone": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.palettes/copper_scaffolding_from_ingots_copper_stonecutting": {
-    "criteria": {
-      "has_ingots_copper": "2024-07-06 14:00:33 +0800"
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
@@ -396,9 +360,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/combat/iron_helmet": {
+  "ae2:main/charger": {
     "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+      "certus": "2024-07-20 07:47:50 +0800"
     },
     "done": true
   },
@@ -408,15 +372,15 @@
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/controller_slave": {
+  "ae2:recipes/ae2.main/network/cables/dense_covered_lime": {
     "criteria": {
-      "has_chest": "2024-06-06 21:31:39 +0800"
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/misc/magenta_dye_from_blue_red_white_dye": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_white": {
     "criteria": {
-      "has_white_dye": "2024-07-03 21:46:47 +0800"
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
     },
     "done": true
   },
@@ -426,9 +390,21 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/granite": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_cyan": {
     "criteria": {
-      "has_quartz": "2024-07-07 09:19:39 +0800"
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_yellow": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/yellow_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
     },
     "done": true
   },
@@ -450,12 +426,6 @@
     },
     "done": true
   },
-  "trashcans:trash_can": {
-    "criteria": {
-      "has_item_trash_can": "2024-06-27 11:00:08 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/misc/copper_ingot": {
     "criteria": {
       "has_copper_block": "2024-07-06 13:59:12 +0800"
@@ -468,33 +438,9 @@
     },
     "done": true
   },
-  "minecraft:story/mine_stone": {
-    "criteria": {
-      "get_stone": "2024-07-06 07:33:46 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/target": {
-    "criteria": {
-      "has_redstone": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
   "storagedrawers:recipes/storagedrawers/oak_drawers": {
     "criteria": {
       "has_chest": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/minecart": {
-    "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/decorations/furnace": {
-    "criteria": {
-      "has_cobblestone": "2024-07-06 07:33:46 +0800"
     },
     "done": true
   },
@@ -522,9 +468,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/charcoal": {
+  "minecraft:recipes/building_blocks/red_stained_glass": {
     "criteria": {
-      "has_log": "2024-06-13 17:52:27 +0800"
+      "has_glass": "2024-07-29 07:48:49 +0800"
     },
     "done": true
   },
@@ -534,9 +480,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/tools/iron_hoe": {
+  "ae2:recipes/ae2.main/network/cables/covered_fluix": {
     "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+      "has_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
@@ -552,27 +498,9 @@
     },
     "done": true
   },
-  "create:recipes/create.base/crafting/kinetics/mechanical_pump": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_fluix_clean": {
     "criteria": {
-      "has_item": "2024-07-06 14:00:33 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/redstone_torch": {
-    "criteria": {
-      "has_redstone": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/birch_boat": {
-    "criteria": {
-      "in_water": "2024-07-08 15:58:04 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/cut_copper_from_copper_block_stonecutting": {
-    "criteria": {
-      "has_copper_block": "2024-07-06 13:59:12 +0800"
+      "has_smart_dense_cable": "2024-07-19 17:22:59 +0800"
     },
     "done": true
   },
@@ -588,33 +516,15 @@
     },
     "done": true
   },
-  "trashcans:recipes/decorations/liquid_trash_can": {
-    "criteria": {
-      "recipe_condition": "2024-07-08 15:54:10 +0800"
-    },
-    "done": true
-  },
   "storagedrawers:recipes/storagedrawers/min_redstone_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/tools/iron_shovel": {
-    "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/transportation/acacia_boat": {
     "criteria": {
       "in_water": "2024-07-08 15:58:04 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/dark_oak_wood": {
-    "criteria": {
-      "has_log": "2024-06-23 07:14:43 +0800"
     },
     "done": true
   },
@@ -627,6 +537,12 @@
   "storagedrawers:recipes/storagedrawers/void_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/light_blue_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
     },
     "done": true
   },
@@ -648,27 +564,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/tools/stone_hoe": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_green": {
     "criteria": {
-      "has_cobblestone": "2024-07-06 07:33:46 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/tools/clock": {
-    "criteria": {
-      "has_redstone": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/decorations/spruce_fence": {
-    "criteria": {
-      "has_planks": "2024-07-06 11:50:22 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/activator_rail": {
-    "criteria": {
-      "has_rail": "2024-07-04 08:26:52 +0800"
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
     },
     "done": true
   },
@@ -690,6 +588,12 @@
     },
     "done": true
   },
+  "ae2:recipes/ae2.main/network/parts/terminals_pattern_encoding": {
+    "criteria": {
+      "has_crafting_terminal": "2024-07-20 10:11:22 +0800"
+    },
+    "done": true
+  },
   "mekanism:root": {
     "criteria": {
       "automatic": "2024-07-08 22:10:27 +0800"
@@ -702,15 +606,33 @@
     },
     "done": true
   },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_brown": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
   "mekanism:fluid_tank": {
     "criteria": {
       "basic_fluid_tank": "2024-07-08 22:10:51 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/spruce_stairs": {
+  "minecraft:recipes/building_blocks/lime_stained_glass": {
     "criteria": {
-      "has_planks": "2024-07-06 11:50:22 +0800"
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:main/spatial_explorer": {
+    "criteria": {
+      "explorer": "2024-07-27 19:55:17 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/lime_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
     },
     "done": true
   },
@@ -732,21 +654,15 @@
     },
     "done": true
   },
-  "create:recipes/create.base/crafting/materials/rose_quartz": {
-    "criteria": {
-      "has_item": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/building_blocks/quartz_pillar_from_quartz_block_stonecutting": {
     "criteria": {
       "has_quartz_block": "2024-07-07 09:18:45 +0800"
     },
     "done": true
   },
-  "create:root": {
+  "ae2:recipes/ae2.main/network/cables/covered_pink": {
     "criteria": {
-      "0": "2024-05-27 17:09:24 +0800"
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
     },
     "done": true
   },
@@ -762,9 +678,9 @@
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/diamond_storage_upgrade": {
+  "ae2:recipes/ae2.main/network/cables/smart_gray": {
     "criteria": {
-      "has_template": "2024-06-06 21:31:26 +0800"
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
     },
     "done": true
   },
@@ -780,12 +696,6 @@
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/concealment_key": {
-    "criteria": {
-      "has_template": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
   "storagedrawers:recipes/storagedrawers/iron_storage_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
@@ -798,15 +708,21 @@
     },
     "done": true
   },
-  "minecraft:recipes/transportation/oak_boat": {
+  "ae2:recipes/ae2.main/network/cables/dense_covered_fluix_clean": {
     "criteria": {
-      "in_water": "2024-07-08 15:58:04 +0800"
+      "has_covered_dense_cable": "2024-07-19 19:42:46 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/decorations/anvil": {
+  "minecraft:recipes/building_blocks/light_blue_stained_glass": {
     "criteria": {
-      "has_iron_block": "2024-06-26 09:46:22 +0800"
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/light_gray_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
     },
     "done": true
   },
@@ -816,33 +732,21 @@
     },
     "done": true
   },
-  "create:recipes/create.base/crafting/kinetics/fluid_pipe_vertical": {
+  "ae2:recipes/ae2.main/network/cables/covered_fluix_clean": {
     "criteria": {
-      "has_item": "2024-07-06 14:00:33 +0800"
+      "has_covered_cable": "2024-07-19 17:35:15 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/decorations/spruce_sign": {
+  "ae2:recipes/ae2.main/network/blocks/storage_chest": {
     "criteria": {
-      "has_planks": "2024-07-06 11:50:22 +0800"
+      "has_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
-  "create:deployer": {
+  "ae2:recipes/ae2.main/network/cables/covered_light_blue": {
     "criteria": {
-      "0": "2024-07-08 21:05:37 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/stone_bricks_from_stone_stonecutting": {
-    "criteria": {
-      "has_stone": "2024-07-16 17:43:18 +0800"
-    },
-    "done": true
-  },
-  "create:copper": {
-    "criteria": {
-      "0": "2024-07-06 14:00:33 +0800"
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
     },
     "done": true
   },
@@ -858,27 +762,15 @@
     },
     "done": true
   },
+  "minecraft:recipes/brewing/glass_bottle": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/slime_block": {
     "criteria": {
       "has_slime_ball": "2024-05-30 21:12:29 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/upgrade_template": {
-    "criteria": {
-      "has_chest": "2024-06-06 21:31:39 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/waxed_copper_block_from_honeycomb": {
-    "criteria": {
-      "has_copper_block": "2024-07-06 13:59:12 +0800"
-    },
-    "done": true
-  },
-  "trashcans:recipes/decorations/energy_trash_can": {
-    "criteria": {
-      "recipe_condition": "2024-07-09 09:21:41 +0800"
     },
     "done": true
   },
@@ -900,9 +792,21 @@
     },
     "done": true
   },
+  "ae2:recipes/ae2.main/network/cables/smart_cyan": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
   "create:recipes/create.base/crafting/kinetics/steam_engine": {
     "criteria": {
       "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.palettes/framed_glass_from_glass_colorless_stonecutting": {
+    "criteria": {
+      "has_glass_colorless": "2024-07-29 07:48:49 +0800"
     },
     "done": true
   },
@@ -918,12 +822,6 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/stone_slab": {
-    "criteria": {
-      "has_stone": "2024-07-16 17:43:18 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/building_blocks/spruce_wood": {
     "criteria": {
       "has_log": "2024-06-13 17:52:27 +0800"
@@ -936,9 +834,21 @@
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/spruce_drawers": {
+  "minecraft:recipes/building_blocks/green_stained_glass": {
     "criteria": {
-      "has_chest": "2024-06-06 21:31:26 +0800"
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_gray": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_cyan": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
     },
     "done": true
   },
@@ -954,27 +864,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/tools/stone_shovel": {
-    "criteria": {
-      "has_cobblestone": "2024-07-06 07:33:46 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/quantify_key": {
-    "criteria": {
-      "has_template": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
   "storagedrawers:recipes/storagedrawers/max_redstone_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/spruce_slab": {
-    "criteria": {
-      "has_planks": "2024-07-06 11:50:22 +0800"
     },
     "done": true
   },
@@ -987,24 +879,6 @@
   "create:recipes/create.base/crafting/kinetics/secondary_linear_chassisfrom_conversion": {
     "criteria": {
       "has_item": "2024-05-30 21:12:37 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/acacia_trim": {
-    "criteria": {
-      "has_planks": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "create:chute": {
-    "criteria": {
-      "0": "2024-06-14 18:52:46 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/tools/lead": {
-    "criteria": {
-      "has_slime_ball": "2024-05-30 21:12:29 +0800"
     },
     "done": true
   },
@@ -1026,33 +900,21 @@
     },
     "done": true
   },
+  "ae2:recipes/ae2.main/network/cables/glass_white": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/chiseled_quartz_block": {
     "criteria": {
       "has_quartz_block": "2024-07-07 09:18:45 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/decorations/white_stained_glass_pane_from_glass_pane": {
+  "minecraft:recipes/decorations/orange_carpet_from_white_carpet": {
     "criteria": {
-      "has_white_dye": "2024-07-03 21:46:47 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/crimson_trim": {
-    "criteria": {
-      "has_planks": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/dark_oak_trim": {
-    "criteria": {
-      "has_planks": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "minecraft:story/root": {
-    "criteria": {
-      "crafting_table": "2024-07-16 17:59:40 +0800"
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
     },
     "done": true
   },
@@ -1062,15 +924,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/slime_ball": {
-    "criteria": {
-      "has_slime_block": "2024-05-30 21:11:24 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/redstone/stone_button": {
     "criteria": {
       "has_stone": "2024-07-16 17:43:18 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_magenta": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
@@ -1086,33 +948,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/dropper": {
-    "criteria": {
-      "has_redstone": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/kinetics/copper_valve_handle": {
-    "criteria": {
-      "has_item": "2024-07-06 14:00:33 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/redstone/spruce_pressure_plate": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/misc/coal": {
+  "ae2:recipes/ae2.main/network/cables/glass_brown": {
     "criteria": {
-      "has_coal_block": "2024-07-06 13:50:13 +0800"
-    },
-    "done": true
-  },
-  "trashcans:recipes/decorations/item_trash_can": {
-    "criteria": {
-      "recipe_condition": "2024-06-30 12:11:40 +0800"
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },
@@ -1128,6 +972,12 @@
     },
     "done": true
   },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_red": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
   "create:recipes/create.palettes/spruce_window": {
     "criteria": {
       "has_ingredient": "2024-07-06 11:50:22 +0800"
@@ -1140,27 +990,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/quartz_from_blasting": {
+  "ae2:recipes/ae2.main/network/wireless_crafting_terminal": {
     "criteria": {
-      "has_nether_quartz_ore": "2024-07-07 09:18:36 +0800"
+      "has_wireless_receiver": "2024-07-19 13:55:26 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/redstone/repeater": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_from_smart": {
     "criteria": {
-      "has_redstone_torch": "2024-06-14 18:52:18 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/tools/compass": {
-    "criteria": {
-      "has_redstone": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/appliances/crafting_blueprint": {
-    "criteria": {
-      "has_item": "2024-07-16 17:59:40 +0800"
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
     },
     "done": true
   },
@@ -1173,12 +1011,6 @@
   "minecraft:recipes/building_blocks/stone": {
     "criteria": {
       "has_cobblestone": "2024-07-06 07:33:46 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/quartz_block": {
-    "criteria": {
-      "has_quartz": "2024-07-07 09:19:39 +0800"
     },
     "done": true
   },
@@ -1201,33 +1033,15 @@
     },
     "done": false
   },
-  "storagedrawers:recipes/storagedrawers/acacia_drawers": {
-    "criteria": {
-      "has_chest": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/iron_door": {
-    "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
-    },
-    "done": true
-  },
   "trashcans:recipes/decorations/ultimate_trash_can": {
     "criteria": {
       "recipe_condition": "2024-06-27 11:00:08 +0800"
     },
     "done": true
   },
-  "create:recipes/create.palettes/copper_bars_from_ingots_copper_stonecutting": {
+  "ae2:recipes/ae2.main/network/cables/dense_covered_black": {
     "criteria": {
-      "has_ingots_copper": "2024-07-06 14:00:33 +0800"
-    },
-    "done": true
-  },
-  "mekanism:personal_storage": {
-    "criteria": {
-      "storage": "2024-07-09 21:14:27 +0800"
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
     },
     "done": true
   },
@@ -1237,21 +1051,9 @@
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/oak_trim": {
-    "criteria": {
-      "has_planks": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/combat/stone_sword": {
     "criteria": {
       "has_cobblestone": "2024-07-06 07:33:46 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/powered_rail": {
-    "criteria": {
-      "has_rail": "2024-07-04 08:26:52 +0800"
     },
     "done": true
   },
@@ -1264,12 +1066,6 @@
   "minecraft:recipes/decorations/barrel": {
     "criteria": {
       "has_planks": "2024-07-06 11:50:22 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/kinetics/smart_chute": {
-    "criteria": {
-      "has_item": "2024-06-14 18:51:30 +0800"
     },
     "done": true
   },
@@ -1291,12 +1087,6 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/iron_ingot_from_nuggets": {
-    "criteria": {
-      "has_iron_nugget": "2024-07-07 08:56:45 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/building_blocks/cut_copper": {
     "criteria": {
       "has_copper_block": "2024-07-06 13:59:12 +0800"
@@ -1315,33 +1105,15 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/brown_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
   "sophisticatedbackpacks:recipes/sophisticatedbackpacks/diamond_backpack": {
     "criteria": {
       "has_gold_backpack": "2024-07-07 11:22:40 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/kinetics/item_vault": {
-    "criteria": {
-      "has_item": "2024-06-03 21:59:10 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/jungle_boat": {
-    "criteria": {
-      "in_water": "2024-07-08 15:58:04 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/kinetics/linear_chassisfrom_conversion": {
-    "criteria": {
-      "has_item": "2024-07-08 22:25:58 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/drawer_key": {
-    "criteria": {
-      "has_template": "2024-06-06 21:31:26 +0800"
     },
     "done": true
   },
@@ -1351,15 +1123,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/iron_ingot_from_iron_block": {
+  "ae2:recipes/ae2.main/network/blocks/io_port": {
     "criteria": {
-      "has_iron_block": "2024-06-26 09:46:22 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/decorations/stone_brick_walls_from_stone_stonecutting": {
-    "criteria": {
-      "has_stone": "2024-07-16 17:43:18 +0800"
+      "has_drive": "2024-07-19 12:58:11 +0800"
     },
     "done": true
   },
@@ -1369,27 +1135,27 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/heavy_weighted_pressure_plate": {
+  "minecraft:recipes/building_blocks/light_gray_stained_glass": {
     "criteria": {
-      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+      "has_glass": "2024-07-29 07:48:49 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/redstone/daylight_detector": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_gray": {
     "criteria": {
-      "has_quartz": "2024-07-07 09:19:39 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/dark_oak_boat": {
-    "criteria": {
-      "in_water": "2024-07-08 15:58:04 +0800"
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
     },
     "done": true
   },
   "minecraft:recipes/misc/raw_iron": {
     "criteria": {
       "has_raw_iron_block": "2024-07-07 08:52:33 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_green": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
     },
     "done": true
   },
@@ -1423,63 +1189,27 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/piston": {
-    "criteria": {
-      "has_redstone": "2024-07-09 09:21:41 +0800"
-    },
-    "done": true
-  },
   "minecraft:recipes/decorations/lantern": {
     "criteria": {
       "has_iron_ingot": "2024-06-27 09:35:44 +0800"
     },
     "done": true
   },
-  "create:recipes/create.base/crafting/logistics/pulse_extender": {
+  "ae2:recipes/ae2.main/network/cables/smart_black": {
     "criteria": {
-      "has_item": "2024-07-09 09:21:41 +0800"
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/stone_stairs": {
+  "ae2:recipes/ae2.main/network/cables/dense_smart_fluix": {
     "criteria": {
-      "has_stone": "2024-07-16 17:43:18 +0800"
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/emerald_storage_upgrade": {
+  "ae2:recipes/ae2.main/network/cables/smart_orange": {
     "criteria": {
-      "has_template": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/spruce_trapdoor": {
-    "criteria": {
-      "has_planks": "2024-07-06 11:50:22 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/muddy_mangrove_roots": {
-    "criteria": {
-      "has_mangrove_roots": "2024-07-16 17:46:13 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/rail": {
-    "criteria": {
-      "has_minecart": "2024-06-06 20:18:22 +0800"
-    },
-    "done": true
-  },
-  "minecraft:recipes/misc/quartz": {
-    "criteria": {
-      "has_nether_quartz_ore": "2024-07-07 09:18:36 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/kinetics/steam_whistle": {
-    "criteria": {
-      "has_item": "2024-07-06 14:00:33 +0800"
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
     },
     "done": true
   },
@@ -1489,27 +1219,9 @@
     },
     "done": true
   },
-  "storagedrawers:recipes/storagedrawers/obsidian_storage_upgrade": {
+  "ae2:recipes/ae2.main/network/blocks/quantum_ring": {
     "criteria": {
-      "has_template": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "storagedrawers:recipes/storagedrawers/gold_storage_upgrade": {
-    "criteria": {
-      "has_template": "2024-06-06 21:31:26 +0800"
-    },
-    "done": true
-  },
-  "create:recipes/create.base/crafting/kinetics/fluid_pipe": {
-    "criteria": {
-      "has_item": "2024-07-06 14:00:33 +0800"
-    },
-    "done": true
-  },
-  "minecraft:story/smelt_iron": {
-    "criteria": {
-      "iron": "2024-06-27 09:35:44 +0800"
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
     },
     "done": true
   },
@@ -1537,9 +1249,1209 @@
     },
     "done": true
   },
+  "ae2:recipes/ae2.main/network/cables/smart_light_blue": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/misc/light_gray_dye_from_black_white_dye": {
     "criteria": {
       "has_white_dye": "2024-07-03 21:46:47 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_gray": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_blue": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_purple": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/quartz_pillar": {
+    "criteria": {
+      "has_quartz_block": "2024-07-07 09:18:45 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_light_gray": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/cobblestone_stairs_from_cobblestone_stonecutting": {
+    "criteria": {
+      "has_cobblestone": "2024-07-06 07:33:46 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.palettes/horizontal_framed_glass_from_glass_colorless_stonecutting": {
+    "criteria": {
+      "has_glass_colorless": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/blocks/crystal_processing_quartz_growth_accelerator": {
+    "criteria": {
+      "has_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/upgrade_wireless_crafting_terminal": {
+    "criteria": {
+      "has_terminal": "2024-07-19 13:02:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/furnace_minecart": {
+    "criteria": {
+      "has_minecart": "2024-06-06 20:18:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone": {
+    "criteria": {
+      "has_redstone_block": "2024-07-09 09:21:52 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_red": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/compacting_drawers": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:39 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_light_gray": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/smooth_stone": {
+    "criteria": {
+      "has_stone": "2024-07-16 17:43:18 +0800"
+    },
+    "done": true
+  },
+  "create:extendo_grip": {
+    "criteria": {
+      "0": "2024-06-27 09:30:02 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/jungle_drawers": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_nugget": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/hopper_minecart": {
+    "criteria": {
+      "has_minecart": "2024-06-06 20:18:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/stone_slab_from_stone_stonecutting": {
+    "criteria": {
+      "has_stone": "2024-07-16 17:43:18 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/fluid_valve": {
+    "criteria": {
+      "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_pink": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "create:portable_storage_interface": {
+    "criteria": {
+      "0": "2024-07-08 15:53:16 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/crimson_drawers": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/purple_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/blue_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/red_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_black": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/diorite": {
+    "criteria": {
+      "has_quartz": "2024-07-07 09:19:39 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/cut_copper_slab_from_copper_block_stonecutting": {
+    "criteria": {
+      "has_copper_block": "2024-07-06 13:59:12 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/warped_drawers": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/quartz_stairs_from_quartz_block_stonecutting": {
+    "criteria": {
+      "has_quartz_block": "2024-07-07 09:18:45 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_yellow": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_black": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_fluix_clean": {
+    "criteria": {
+      "has_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_light_blue": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_ingot_from_blasting_iron_ore": {
+    "criteria": {
+      "has_iron_ore": "2024-07-07 08:52:46 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/wireless_access_point": {
+    "criteria": {
+      "has_wireless_receiver": "2024-07-19 13:55:26 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.palettes/vertical_framed_glass_from_glass_colorless_stonecutting": {
+    "criteria": {
+      "has_glass_colorless": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_magenta": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/bucket": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_purple": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_red": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/cobblestone_stairs": {
+    "criteria": {
+      "has_cobblestone": "2024-07-06 07:33:46 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/logistics/powered_toggle_latch": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.palettes/copper_tiles_from_ingots_copper_stonecutting": {
+    "criteria": {
+      "has_ingots_copper": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/blocks/spatial_anchor": {
+    "criteria": {
+      "has_spatial_pylon": "2024-07-26 09:16:40 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/note_block": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.palettes/copper_scaffolding_from_ingots_copper_stonecutting": {
+    "criteria": {
+      "has_ingots_copper": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_lime": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_fluix_clean": {
+    "criteria": {
+      "has_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_magenta": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/iron_helmet": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/controller_slave": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:39 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/magenta_dye_from_blue_red_white_dye": {
+    "criteria": {
+      "has_white_dye": "2024-07-03 21:46:47 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_purple": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_lime": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/granite": {
+    "criteria": {
+      "has_quartz": "2024-07-07 09:19:39 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_green": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "trashcans:trash_can": {
+    "criteria": {
+      "has_item_trash_can": "2024-06-27 11:00:08 +0800"
+    },
+    "done": true
+  },
+  "minecraft:story/mine_stone": {
+    "criteria": {
+      "get_stone": "2024-07-06 07:33:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/cyan_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/target": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/minecart": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/furnace": {
+    "criteria": {
+      "has_cobblestone": "2024-07-06 07:33:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/charcoal": {
+    "criteria": {
+      "has_log": "2024-06-13 17:52:27 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_white": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/iron_hoe": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/mechanical_pump": {
+    "criteria": {
+      "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_torch": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_green": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/cut_copper_from_copper_block_stonecutting": {
+    "criteria": {
+      "has_copper_block": "2024-07-06 13:59:12 +0800"
+    },
+    "done": true
+  },
+  "trashcans:recipes/decorations/liquid_trash_can": {
+    "criteria": {
+      "recipe_condition": "2024-07-08 15:54:10 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/iron_shovel": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/dark_oak_wood": {
+    "criteria": {
+      "has_log": "2024-06-23 07:14:43 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/orange_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/parts/toggle_bus": {
+    "criteria": {
+      "has_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_white": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/stone_hoe": {
+    "criteria": {
+      "has_cobblestone": "2024-07-06 07:33:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/clock": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/spruce_fence": {
+    "criteria": {
+      "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/activator_rail": {
+    "criteria": {
+      "has_rail": "2024-07-04 08:26:52 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_brown": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_pink": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/spruce_stairs": {
+    "criteria": {
+      "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/wireless_terminal": {
+    "criteria": {
+      "has_wireless_receiver": "2024-07-19 13:55:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/magenta_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/materials/rose_quartz": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/glass_pane": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "create:root": {
+    "criteria": {
+      "0": "2024-05-27 17:09:24 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_orange": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/blocks/interfaces_interface_part": {
+    "criteria": {
+      "has_interface": "2024-07-20 08:38:42 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/magenta_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/diamond_storage_upgrade": {
+    "criteria": {
+      "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/green_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/concealment_key": {
+    "criteria": {
+      "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/oak_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/anvil": {
+    "criteria": {
+      "has_iron_block": "2024-06-26 09:46:22 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_blue": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "ae2:main/storage_cell": {
+    "criteria": {
+      "c256k": "2024-07-20 10:11:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_pink": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_white": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/fluid_pipe_vertical": {
+    "criteria": {
+      "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/spruce_sign": {
+    "criteria": {
+      "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "create:deployer": {
+    "criteria": {
+      "0": "2024-07-08 21:05:37 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_blue": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/stone_bricks_from_stone_stonecutting": {
+    "criteria": {
+      "has_stone": "2024-07-16 17:43:18 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_light_gray": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "create:copper": {
+    "criteria": {
+      "0": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_green": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "ae2:main/crafting_terminal": {
+    "criteria": {
+      "certus": "2024-07-20 10:11:22 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/upgrade_template": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:39 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/waxed_copper_block_from_honeycomb": {
+    "criteria": {
+      "has_copper_block": "2024-07-06 13:59:12 +0800"
+    },
+    "done": true
+  },
+  "trashcans:recipes/decorations/energy_trash_can": {
+    "criteria": {
+      "recipe_condition": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/white_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_magenta": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_cyan": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/stone_slab": {
+    "criteria": {
+      "has_stone": "2024-07-16 17:43:18 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/spruce_drawers": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/stone_shovel": {
+    "criteria": {
+      "has_cobblestone": "2024-07-06 07:33:46 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_magenta": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/quantify_key": {
+    "criteria": {
+      "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/cyan_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/spruce_slab": {
+    "criteria": {
+      "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "ae2:main/controller": {
+    "criteria": {
+      "certus": "2024-07-19 12:57:47 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/acacia_trim": {
+    "criteria": {
+      "has_planks": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "create:chute": {
+    "criteria": {
+      "0": "2024-06-14 18:52:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/lead": {
+    "criteria": {
+      "has_slime_ball": "2024-05-30 21:12:29 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_lime": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/brown_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/white_stained_glass_pane_from_glass_pane": {
+    "criteria": {
+      "has_white_dye": "2024-07-03 21:46:47 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/crimson_trim": {
+    "criteria": {
+      "has_planks": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_orange": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/dark_oak_trim": {
+    "criteria": {
+      "has_planks": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:story/root": {
+    "criteria": {
+      "crafting_table": "2024-07-16 17:59:40 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/slime_ball": {
+    "criteria": {
+      "has_slime_block": "2024-05-30 21:11:24 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/dropper": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/copper_valve_handle": {
+    "criteria": {
+      "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/coal": {
+    "criteria": {
+      "has_coal_block": "2024-07-06 13:50:13 +0800"
+    },
+    "done": true
+  },
+  "trashcans:recipes/decorations/item_trash_can": {
+    "criteria": {
+      "recipe_condition": "2024-06-30 12:11:40 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/quartz_from_blasting": {
+    "criteria": {
+      "has_nether_quartz_ore": "2024-07-07 09:18:36 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/repeater": {
+    "criteria": {
+      "has_redstone_torch": "2024-06-14 18:52:18 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/compass": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/appliances/crafting_blueprint": {
+    "criteria": {
+      "has_item": "2024-07-16 17:59:40 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_lime": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.palettes/tiled_glass_from_glass_colorless_stonecutting": {
+    "criteria": {
+      "has_glass_colorless": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_light_gray": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/blue_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/parts/monitors_storage": {
+    "criteria": {
+      "has_level_emitter": "2024-07-19 13:58:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/quartz_block": {
+    "criteria": {
+      "has_quartz": "2024-07-07 09:19:39 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_black": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/acacia_drawers": {
+    "criteria": {
+      "has_chest": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/iron_door": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.palettes/copper_bars_from_ingots_copper_stonecutting": {
+    "criteria": {
+      "has_ingots_copper": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "mekanism:personal_storage": {
+    "criteria": {
+      "storage": "2024-07-09 21:14:27 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/oak_trim": {
+    "criteria": {
+      "has_planks": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_pink": {
+    "criteria": {
+      "has_fluix_smart_cable": "2024-07-19 19:43:05 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/powered_rail": {
+    "criteria": {
+      "has_rail": "2024-07-04 08:26:52 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/smart_chute": {
+    "criteria": {
+      "has_item": "2024-06-14 18:51:30 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_ingot_from_nuggets": {
+    "criteria": {
+      "has_iron_nugget": "2024-07-07 08:56:45 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/item_vault": {
+    "criteria": {
+      "has_item": "2024-06-03 21:59:10 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/linear_chassisfrom_conversion": {
+    "criteria": {
+      "has_item": "2024-07-08 22:25:58 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/drawer_key": {
+    "criteria": {
+      "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_ingot_from_iron_block": {
+    "criteria": {
+      "has_iron_block": "2024-06-26 09:46:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/stone_brick_walls_from_stone_stonecutting": {
+    "criteria": {
+      "has_stone": "2024-07-16 17:43:18 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/heavy_weighted_pressure_plate": {
+    "criteria": {
+      "has_iron_ingot": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/daylight_detector": {
+    "criteria": {
+      "has_quartz": "2024-07-07 09:19:39 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "in_water": "2024-07-08 15:58:04 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_purple": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_gray": {
+    "criteria": {
+      "has_fluix_covered_dense_cable": "2024-07-19 19:42:46 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_covered_fluix": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/piston": {
+    "criteria": {
+      "has_redstone": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/logistics/pulse_extender": {
+    "criteria": {
+      "has_item": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/stone_stairs": {
+    "criteria": {
+      "has_stone": "2024-07-16 17:43:18 +0800"
+    },
+    "done": true
+  },
+  "ae2:main/portable_cell": {
+    "criteria": {
+      "pc_1k": "2024-07-19 13:02:44 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/emerald_storage_upgrade": {
+    "criteria": {
+      "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/spruce_trapdoor": {
+    "criteria": {
+      "has_planks": "2024-07-06 11:50:22 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_blue": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/muddy_mangrove_roots": {
+    "criteria": {
+      "has_mangrove_roots": "2024-07-16 17:46:13 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/rail": {
+    "criteria": {
+      "has_minecart": "2024-06-06 20:18:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/quartz": {
+    "criteria": {
+      "has_nether_quartz_ore": "2024-07-07 09:18:36 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/smart_fluix": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/steam_whistle": {
+    "criteria": {
+      "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/yellow_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/obsidian_storage_upgrade": {
+    "criteria": {
+      "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "storagedrawers:recipes/storagedrawers/gold_storage_upgrade": {
+    "criteria": {
+      "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/gray_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/fluid_pipe": {
+    "criteria": {
+      "has_item": "2024-07-06 14:00:33 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/dense_smart_orange": {
+    "criteria": {
+      "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "minecraft:story/smelt_iron": {
+    "criteria": {
+      "iron": "2024-06-27 09:35:44 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_blue": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/pink_carpet_from_white_carpet": {
+    "criteria": {
+      "has_white_carpet": "2024-07-29 07:45:58 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/covered_brown": {
+    "criteria": {
+      "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/tools/network_biometric_card": {
+    "criteria": {
+      "has_security_station": "2024-07-19 12:59:42 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/pink_stained_glass": {
+    "criteria": {
+      "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "ae2:recipes/ae2.main/network/cables/glass_orange": {
+    "criteria": {
+      "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
     },
     "done": true
   },

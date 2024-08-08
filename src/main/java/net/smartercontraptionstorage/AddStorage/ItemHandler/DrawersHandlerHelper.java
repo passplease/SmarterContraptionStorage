@@ -39,7 +39,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         }
     }
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
         return new NormalDrawerHandler(group);
@@ -78,7 +78,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                     case 4 -> {
                         return new ContainerDrawers4(i,inventory,drawer);
                     }
-                    default -> throw new IllegalCallerException("Not a Drawer !");
+                    default -> throw new IllegalCallerException("Not SpatialPylonBlockEntityMixin Drawer !");
                 }
                 // If replace return value to CraftingTableMenu(although it's ridiculous), it will be opened normally.
             }

@@ -3,11 +3,7 @@ package net.smartercontraptionstorage.AddStorage.FluidHander;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -70,14 +66,11 @@ public abstract class FluidHandlerHelper implements MenuSupportHandler {
     public abstract boolean canCreateHandler(Item comparedItem);
     public abstract boolean canCreateHandler(Block block);
     public abstract boolean canCreateHandler(BlockEntity entity);
-    public abstract SmartFluidTank createHandler(BlockEntity entity);
+    public abstract @Nullable SmartFluidTank createHandler(BlockEntity entity);
     public static Set<FluidHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;
     }
     public static abstract class FluidHelper extends SmartFluidTank implements INBTSerializable<CompoundTag> {
-        public FluidHelper(int capacity, Consumer<FluidStack> updateCallback) {
-            super(capacity, updateCallback);
-        }
         public FluidHelper(int capacity){
             super(capacity,null);
         }

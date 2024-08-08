@@ -10,11 +10,30 @@ import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public abstract class StorageHandlerHelper implements MenuSupportHandler {
+    public static final ItemStackHandler nullHandler = new ItemStackHandler(){
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return stack;
+        }
+        @Override
+        public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return ItemStack.EMPTY;
+        }
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return false;
+        }
+    };
     private static final Set<StorageHandlerHelper> HandlerHelpers = new HashSet<>();
+    protected static final ArrayList<BlockEntity> BlockEntityList = new ArrayList<>();
+    public static void clearData(){
+        BlockEntityList.clear();
+    }
     public static void register(@NotNull StorageHandlerHelper helper){
         HandlerHelpers.add(helper);
     }
@@ -54,7 +73,7 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
     }
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);
-    public abstract ItemStackHandler createHandler(BlockEntity entity);
+    public abstract @NotNull ItemStackHandler createHandler(BlockEntity entity);
     public abstract boolean allowControl(Item comparedItem);
     public abstract boolean allowControl(Block block);
     // two allowDumping only need to achieve one, another can return false

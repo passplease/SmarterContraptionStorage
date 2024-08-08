@@ -1,7 +1,6 @@
 package net.smartercontraptionstorage.Ponder;
 
 import com.simibubi.create.AllItems;
-import com.simibubi.create.content.kinetics.deployer.DeployerBlock;
 import com.simibubi.create.content.kinetics.deployer.DeployerBlockEntity;
 import com.simibubi.create.content.kinetics.drill.DrillBlockEntity;
 import com.simibubi.create.foundation.ponder.*;
@@ -13,19 +12,15 @@ import com.simibubi.create.foundation.utility.Pointing;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Rotations;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.decoration.ArmorStand;
-import net.minecraft.world.entity.vehicle.MinecartChest;
 import net.minecraft.world.entity.vehicle.MinecartFurnace;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RailBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.phys.Vec3;
 
@@ -172,7 +167,7 @@ public class ToolboxScenes {
         scene.world.moveSection(stones,vec,20);
         scene.special.moveCart(cart,vec,20);
         scene.idle(20);
-        scene.overlay.showText(70).placeNearTarget().pointAt(util.vector.topOf(4,0,2)).text("But you may encounter some embarrassing scenes like this: fall into a hole and have not enough blocks to get out");
+        scene.overlay.showText(70).placeNearTarget().pointAt(util.vector.topOf(4,0,2)).text("But you may encounter some embarrassing scenes like this: fall into SpatialPylonBlockEntityMixin hole and have not enough blocks to get out");
         scene.idle(75);
         scene.world.hideIndependentSection(contraption,Direction.UP);
         scene.world.hideIndependentSection(stones,Direction.UP);
@@ -237,7 +232,7 @@ public class ToolboxScenes {
             scene.world.modifyEntity(player, (entity) -> entity.move(MoverType.PLAYER, finalVec3));
         }
         scene.idle(40);
-        scene.overlay.showText(150).pointAt(vec).placeNearTarget().text("Must point out that, though you can close toolbox by controls block, the controls block will distinguish nbt labels, so you best use a new box to set the filter and make sure the color of filter and block are the same (color also matters)");
+        scene.overlay.showText(150).pointAt(vec).placeNearTarget().text("Must point out that, though you can close toolbox by controls block, the controls block will distinguish nbt labels, so you best use SpatialPylonBlockEntityMixin new box to set the filter and make sure the color of filter and block are the same (color also matters)");
         scene.idle(150);
     }
     private static void setSpeed(SceneBuilder scene, SceneBuildingUtil util,float speed){

@@ -2,11 +2,15 @@ package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
 import com.simibubi.create.content.equipment.toolbox.ToolboxBlock;
 import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
+import com.simibubi.create.content.equipment.toolbox.ToolboxHandler;
 import com.simibubi.create.content.equipment.toolbox.ToolboxInventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.AddStorage.NeedDealWith;
+import net.smartercontraptionstorage.Utils;
+import org.jetbrains.annotations.NotNull;
 
 public class ToolboxHandlerHelper extends StorageHandlerHelper{
     @Override
@@ -17,13 +21,15 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof ToolboxInventory;
+        ToolboxHandler.onUnload((ToolboxBlockEntity) entity);
         ((ToolboxBlockEntity)entity).readInventory(handler.serializeNBT());
     }
 
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
-        ToolboxInventory inventory = new ToolboxInventory((ToolboxBlockEntity) entity);
+        ToolboxHandler.onLoad((ToolboxBlockEntity) entity);
+        ToolboxHelper inventory = new ToolboxHelper((ToolboxBlockEntity) entity);
         inventory.deserializeNBT(entity.serializeNBT().getCompound("Inventory"));
         return inventory;
     }
@@ -35,5 +41,20 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
     @Override
     public boolean allowControl(Block block) {
         return block instanceof ToolboxBlock;
+    }
+
+    public static class ToolboxHelper extends ToolboxInventory implements NeedDealWith {
+        public ToolboxHelper(ToolboxBlockEntity be) {
+            super(be);
+        }
+
+        @Override
+        public void doSomething(BlockEntity entity) {
+            StorageHandlerHelper.BlockEntityList.add(entity);
+            Utils.addInventory((ToolboxBlockEntity) entity);
+        }
+
+        @Override
+        public void finallyDo() {}
     }
 }

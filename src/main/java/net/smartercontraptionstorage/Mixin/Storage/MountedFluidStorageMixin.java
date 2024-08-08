@@ -42,8 +42,11 @@ public class MountedFluidStorageMixin {
         if(cir.getReturnValue() == null){
             if(smarterContraptionStorage$canUseForStorage) {
                 smarterContraptionStorage$handlerHelper = FluidHandlerHelper.findSuitableHelper(be);
-                if (smarterContraptionStorage$handlerHelper != null)
-                    cir.setReturnValue(smarterContraptionStorage$handlerHelper.createHandler(be));
+                if (smarterContraptionStorage$handlerHelper != null) {
+                    SmartFluidTank tank = smarterContraptionStorage$handlerHelper.createHandler(be);
+                    if(tank != null)
+                        cir.setReturnValue(tank);
+                }
             }else cir.setReturnValue(new SmartFluidTank(0,null){
                 @Override
                 public int fill(FluidStack resource, FluidAction action) {

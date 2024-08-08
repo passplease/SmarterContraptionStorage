@@ -50,7 +50,7 @@ public abstract class ContraptionMixin {
         smarterContraptionStorage$waitAddBlock = false;
     }
     @Inject(method = "searchMovedStructure",at = @At("RETURN"),remap = false)
-    // To add storage block after "searchMovedStructure" (use Excludes.a variant to do this)
+    // To add storage block after "searchMovedStructure" (use Excludes.SpatialPylonBlockEntityMixin variant to do this)
     public void addBlock(Level world, BlockPos pos, Direction forcedDirection, CallbackInfoReturnable<Boolean> cir) {
         if(smarterContraptionStorage$waitAddBlock)
             return;

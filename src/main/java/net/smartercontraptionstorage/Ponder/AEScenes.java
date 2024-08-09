@@ -71,7 +71,7 @@ public class AEScenes {
         scene.idle(16);
         scene.world.modifyBlockEntity(drill, DrillBlockEntity.class,entity -> entity.setSpeed(0F));
         scene.idle(120);
-        scene.overlay.showText(80).pointAt(util.vector.topOf(3,1,2)).text("One more thing, ME Interface can set the white filter for extracting AE Net, so that it costs less computer source (I really recommend to set that)");
+        scene.overlay.showText(80).pointAt(util.vector.topOf(2,1,2)).text("One more thing, ME Interface() can set the white filter for extracting AE Net, so that it costs less computer source (I really recommend to set that)");
         scene.idle(80);
     }
     public static void spatialCell(SceneBuilder scene, SceneBuildingUtil util){

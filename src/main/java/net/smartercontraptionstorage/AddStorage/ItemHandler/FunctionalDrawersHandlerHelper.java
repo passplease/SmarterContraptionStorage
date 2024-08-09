@@ -27,7 +27,7 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         return new FDrawersHandler(((DrawerTile)entity).getHandler());
     }

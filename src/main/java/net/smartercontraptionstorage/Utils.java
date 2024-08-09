@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage;
 
+import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
@@ -31,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class Utils {
+public final class Utils {
     public static final HashMap<Integer, Pair<StructureTemplate.StructureBlockInfo, BlockEntity>> pair = new HashMap<>();
     public static final HashMap<Integer, BlockPos> pos = new HashMap<>();
     public static boolean playerInteracting = false;
@@ -43,6 +44,7 @@ public class Utils {
         pair.clear();
         pos.clear();
         smarterContraptionStorage$canUseForStorage = false;
+        toolboxInventory = new CompoundTag();
     }
     public static <T> void addData(HashMap<Integer,T> map, T t){
         map.put(map.size(), t);
@@ -55,11 +57,14 @@ public class Utils {
         return FluidHandlerHelper.canUseAsStorage(comparedItem);
     }
     public static boolean canUseModdedInventory(Item comparedItem){
+        return canUseCreateInventory(comparedItem) ||
+                StorageHandlerHelper.canControl(comparedItem);
+    }
+    public static boolean canUseCreateInventory(Item comparedItem){
         return comparedItem instanceof ItemVaultItem ||
                 comparedItem == Items.CHEST ||
                 comparedItem == Items.TRAPPED_CHEST ||
-                comparedItem == Items.BARREL ||
-                StorageHandlerHelper.canControl(comparedItem);
+                comparedItem == Items.BARREL;
     }
     public static boolean canBeControlledBlock(Block comparedBlock){
         return canUseModdedInventory(comparedBlock) ||
@@ -69,11 +74,14 @@ public class Utils {
         return FluidHandlerHelper.canUseAsStorage(comparedBlock);
     }
     public static boolean canUseModdedInventory(Block comparedBlock){
+        return canUseCreateInventory(comparedBlock) ||
+                StorageHandlerHelper.canControl(comparedBlock);
+    }
+    public static boolean canUseCreateInventory(Block comparedBlock){
         return comparedBlock instanceof ItemVaultBlock ||
                 comparedBlock == Blocks.CHEST ||
                 comparedBlock == Blocks.TRAPPED_CHEST ||
-                comparedBlock == Blocks.BARREL ||
-                StorageHandlerHelper.canControl(comparedBlock);
+                comparedBlock == Blocks.BARREL;
     }
     public static BlockPos[] getAroundedBlockPos(BlockPos pos){
         BlockPos[] block = new BlockPos[6];
@@ -85,14 +93,14 @@ public class Utils {
         block[5] = pos.below();
         return block;
     }
-    /**<pre>
-     * <code>search_or_stop</code> is used to check whether we should stop search Block or we should hang on searching other Block
-     * <code>setReturnValue</code> is used to set what we should return the last time
-     * <code>finallyDo</code> is used to do anything you want to do before</pre>
+    /**
+     * @param search_or_stop is used to check whether we should stop search Blocks or we should hang on searching other Block
+     * @param  setReturnValue is used to set what we should return the last time
+     * @param  finallyDo is used to do anything you want to do before
      * */
-    public static <T> @NotNull T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T> finallyDo,@Nullable T t){
+    public static <T> @NotNull T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T> finallyDo,@Nullable T startValue){
         Set<BlockPos> checkedPos = new HashSet<>();
-        T returnValue = t;
+        T returnValue = startValue;
         returnValue = searchBlockPos(checkedPos,returnValue,level,initialBlock,initialBlock,search_or_stop,setReturnValue);
         Iterator<BlockPos> CheckedPos = checkedPos.iterator();
         if (finallyDo != null)
@@ -150,5 +158,8 @@ public class Utils {
     }
     public static void forEachTankDo(ICapabilityProvider can, Consumer<IFluidHandler> consumer){
         can.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).resolve().ifPresent(consumer);
+    }
+    public static void addWarning(String text){
+        LogUtils.getLogger().warn(text);
     }
 }

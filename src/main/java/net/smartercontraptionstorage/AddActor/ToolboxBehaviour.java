@@ -26,7 +26,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
         if(context.blockEntityData.get("Inventory") instanceof CompoundTag tag) {
             List<ItemStack> toolboxItems = NBTHelper.readItemList(tag.getList("Compartments", Tag.TAG_COMPOUND));
             for (Player player : context.world.players()) {
-                if (Utils.calcDistance(getEntityPos(context), player.getOnPos()) <= MAX_DISTANCE) {
+                if (!player.isCreative() && Utils.calcDistance(getEntityPos(context), player.getOnPos()) <= MAX_DISTANCE) {
                     if(context.world.isClientSide)
                         sendMessage("contraption.toolbox.behaviour.open",player);
                     replenishPlayer(context,getPlayerItems(player),toolboxItems);
@@ -56,6 +56,8 @@ public class ToolboxBehaviour implements MovementBehaviour {
             for(ItemStack filterItem : filterItems){
                 if(ItemStack.isSameItem(filterItem,playerItem)){
                     halfMaxSize = playerItem.getMaxStackSize() / 2;
+                    if(halfMaxSize == 0)
+                        continue;
                     count = playerItem.getCount();
                     if(count > halfMaxSize){
                         item = playerItem.copy();

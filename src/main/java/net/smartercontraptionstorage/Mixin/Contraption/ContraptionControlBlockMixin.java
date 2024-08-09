@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.smartercontraptionstorage.Utils;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
@@ -26,11 +27,11 @@ public abstract class ContraptionControlBlockMixin extends ControlsBlock impleme
     /**
      * @author passplease
      * @reason <code>@Inject</code> can not work properly. I can use it in IDEA , but it can not be loaded in HMCL,
-     * it says can't find "use" method. And because I don't know very well about Mixin , I can't solve it for Excludes.a moment.
+     * it says can't find "use" method. And because I don't know very well about Mixin , I can't solve it for Excludes.SpatialPylonBlockEntityMixin moment.
      * Thank you for any advice.
      */
     @Overwrite
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit){
+    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit){
         return this.onBlockEntityUse(level, pos, (cte) -> {
             cte.pressButton();
             if (!level.isClientSide()) {
@@ -59,7 +60,7 @@ public abstract class ContraptionControlBlockMixin extends ControlsBlock impleme
 //            if (!level.isClientSide()) {
 //                ContraptionControlsBlockEntity entity = GetBlockEntity(level,pos);
 //                boolean open;
-//                if(MathMethod.canBeControlledBlock(entity.filtering.getFilter().getItem()))
+//                if(Utils.canBeControlledBlock(entity.filtering.getFilter().getItem()))
 //                    open = !MoreContraptionStorageConfig.getDefaultOpen(entity.disabled);
 //                else open = !entity.disabled;
 //                cte.notifyUpdate();

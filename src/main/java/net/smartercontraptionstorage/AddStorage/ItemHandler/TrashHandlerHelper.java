@@ -2,16 +2,15 @@ package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +31,10 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         }
     }
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         TrashCanBlockEntity Entity = (TrashCanBlockEntity)entity;
-        return new TrashHandler(Entity.itemFilterWhitelist,Entity.itemFilter, Utils.getInventory());
+        return new TrashHandler(Entity.itemFilterWhitelist,Entity.itemFilter);
     }
     @Override
     public boolean allowControl(Item comparedItem) {
@@ -47,25 +46,22 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         return false;
     }
 
-    protected static class TrashHandler extends HandlerHelper {
+    public static class TrashHandler extends HandlerHelper implements NeedDealWith {
         public final boolean whiteOrBlack;
-        public final List<ItemStack> toolboxItem;
+        public List<ItemStack> toolboxItem;
         // false : black
         // true : white
-        public TrashHandler(boolean whiteOrBlack, ArrayList<ItemStack> itemFilter, @Nullable CompoundTag toolboxItem) {
+        public TrashHandler(boolean whiteOrBlack, ArrayList<ItemStack> itemFilter) {
             super(itemFilter.size());
             this.whiteOrBlack = whiteOrBlack;
             for (int i = items.length - 1; i >= 0; i--) {
                 items[i] = itemFilter.get(i);
                 slotLimits[i] = Integer.MAX_VALUE;
             }
-            if (toolboxItem != null) {
-                this.toolboxItem = NBTHelper.readItemList(toolboxItem.getList("Compartments", Tag.TAG_COMPOUND));
-            }else this.toolboxItem = new ArrayList<>();
         }
         protected boolean canDelete(ItemStack stack){
             for (ItemStack itemStack : toolboxItem) {
-                if(ItemStack.isSameItem(itemStack,stack))
+                if(ItemStack.isSameItem(stack,itemStack))
                     return false;
             }
             for (ItemStack item : items){
@@ -81,6 +77,12 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         @Override
         public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
             return ItemStack.EMPTY;
+        }
+        @Override
+        public void doSomething(BlockEntity entity) {}
+        @Override
+        public void finallyDo() {
+            this.toolboxItem = NBTHelper.readItemList(Utils.getInventory().getList("Compartments", Tag.TAG_COMPOUND));
         }
     }
 }

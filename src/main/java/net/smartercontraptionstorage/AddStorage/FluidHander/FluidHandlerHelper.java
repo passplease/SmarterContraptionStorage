@@ -10,14 +10,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
+import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Consumer;
 
-public abstract class FluidHandlerHelper {
+public abstract class FluidHandlerHelper implements MenuSupportHandler {
     /**
      * Due to we can only add one tank to the contraption for each entity, so we add DefaultSlot of muti-slots entity
      * */
@@ -65,14 +65,11 @@ public abstract class FluidHandlerHelper {
     public abstract boolean canCreateHandler(Item comparedItem);
     public abstract boolean canCreateHandler(Block block);
     public abstract boolean canCreateHandler(BlockEntity entity);
-    public abstract SmartFluidTank createHandler(BlockEntity entity);
+    public abstract @Nullable SmartFluidTank createHandler(BlockEntity entity);
     public static Set<FluidHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;
     }
     public static abstract class FluidHelper extends SmartFluidTank implements INBTSerializable<CompoundTag> {
-        public FluidHelper(int capacity, Consumer<FluidStack> updateCallback) {
-            super(capacity, updateCallback);
-        }
         public FluidHelper(int capacity){
             super(capacity,null);
         }

@@ -16,4 +16,8 @@
 	#automatically fill bucket with fluid when contraption extract it (such as extracting water bucket, and make water bucket right now)
 	#
 	AutoDumping = true
+	#Allow to use AE2 on contraption
+	AE2_Support = true
+	#Load Spatial chunks those are used on contraptions
+	load_chunk_auto = true
 

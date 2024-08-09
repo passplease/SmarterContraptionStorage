@@ -1,8 +1,6 @@
 package Excludes;
 
-import Excludes.Scenes.replenish_item;
-import Excludes.Scenes.storage_control;
-import Excludes.Scenes.trash_control;
+import Excludes.Scenes.*;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
@@ -25,6 +23,8 @@ public final class BuildNBTFile {
         map.put(map.size(),new storage_control("storage_control"));
         map.put(map.size(),new trash_control("trash_control"));
         map.put(map.size(),new replenish_item("replenish_item"));
+        map.put(map.size(),new use_ae("use_ae"));
+        map.put(map.size(),new spatial_cell("spatial_cell"));
     }
     public static void createNBTFile() {
         String path;

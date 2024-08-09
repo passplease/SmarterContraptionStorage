@@ -8,6 +8,7 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedcore.inventory.InventoryHandler;
+import org.jetbrains.annotations.NotNull;
 
 public class SBackPacksHandlerHelper extends StorageHandlerHelper{
     @Override
@@ -22,7 +23,7 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         return ((BackpackBlockEntity)entity).getStorageWrapper().getInventoryHandler();
     }

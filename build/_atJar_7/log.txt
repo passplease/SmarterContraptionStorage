@@ -1,0 +1,7 @@
+Java Launcher: C:\Program Files\Java\jdk-17\bin\java.exe
+Arguments: '--inJar, C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.19.2-43.3.0\forge-1.19.2-43.3.0-injected.jar, --outJar, C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2\forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2.jar, --logFile, accesstransform.log, --atFile, C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\src\main\resources\META-INF\accesstransformer_at.cfg, --atFile, C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\_atJar_7\parent_at.cfg'
+Classpath:
+ - C:\Users\Administrator\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\accesstransformers\8.2.0\accesstransformers-8.2.0-fatjar.jar
+Working directory: C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\_atJar_7
+Main class: net.minecraftforge.accesstransformer.TransformerProcessor
+====================================

@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "FilterBehaviourMixin",
-    "Storage.MountedStorageMixin",
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",
-    "Storage.MountedFluidStorageMixin"
+    "Storage.MountedFluidStorageMixin",
+    "Storage.MountedStorageMixin"
   ],
   "client": [
   ],

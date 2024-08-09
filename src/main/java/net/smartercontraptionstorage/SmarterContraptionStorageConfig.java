@@ -9,6 +9,8 @@ public class SmarterContraptionStorageConfig {
     public static final ForgeConfigSpec.BooleanValue CHECK_ADJACENT_BLOCK;
     public static final ForgeConfigSpec.BooleanValue AUTO_DUMPING;
     public static final ForgeConfigSpec.ConfigValue<Integer> SEARCH_RANGE;
+    public static final ForgeConfigSpec.BooleanValue AE2SUPPORT;
+    public static final ForgeConfigSpec.BooleanValue LOAD_CHUNK_AUTO;
     static {
         BUILDER.push("Config for More legal Storage on Contraption !");// push will create an indent
         DEFAULT_OPEN = BUILDER.comment("""
@@ -25,6 +27,8 @@ public class SmarterContraptionStorageConfig {
                 we will automatically dump fluid into tanks and return an empty tankItem and
                 automatically fill bucket with fluid when contraption extract it (such as extracting water bucket, and make water bucket right now)
                 """).define("AutoDumping",true);
+        AE2SUPPORT = BUILDER.comment("Allow to use AE2 on contraption").define("AE2_Support",false);
+        LOAD_CHUNK_AUTO = BUILDER.comment("Load Spatial chunks those are used on contraptions").define("load_chunk_auto",true);
         BUILDER.pop();// pop will unindent
         SPEC = BUILDER.build();
     }

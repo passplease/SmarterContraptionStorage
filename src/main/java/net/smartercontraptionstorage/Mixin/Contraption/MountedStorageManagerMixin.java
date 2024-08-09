@@ -1,19 +1,16 @@
 package net.smartercontraptionstorage.Mixin.Contraption;
 
-import com.simibubi.create.content.contraptions.Contraption;
-import com.simibubi.create.content.contraptions.MountedFluidStorage;
-import com.simibubi.create.content.contraptions.MountedStorage;
-import com.simibubi.create.content.contraptions.MountedStorageManager;
-import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
+import com.simibubi.create.content.contraptions.*;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.smartercontraptionstorage.AddStorage.FluidHander.DumpHandler;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
+import net.smartercontraptionstorage.AddStorage.NeedDealWith;
+import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
-import net.smartercontraptionstorage.Utils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -47,23 +44,34 @@ public abstract class MountedStorageManagerMixin {
 
     @Shadow(remap = false) protected Contraption.ContraptionInvWrapper fuelInventory;
     @Unique public DumpHandler smarterContraptionStorage$handler;
-
-    @Inject(method = "handlePlayerStorageInteraction",at = @At("HEAD"),remap = false)
-    public void handlePlayerStorageInteraction_head(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
+    @ForFunctionChanger(method = {"net.smartercontraptionstorage.Mixin.Storage.getItemHandler","openGUI"})
+    @Inject(method = "handlePlayerStorageInteraction",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/Contraption;getStorageForSpawnPacket()Lcom/simibubi/create/content/contraptions/MountedStorageManager;",by = -1),remap = false)
+    public void openGUI(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
         playerInteracting = true;
+//        if(FunctionChanger.openGUI(contraption,player,localPos)){
+//            cir.setReturnValue(true);
+//            cir.cancel();
+//        }
     }
+    @Deprecated
+    @ForFunctionChanger(method = "openGUI")
+    @Inject(method = "getItems",at = @At("HEAD"),remap = false)
+    public void getMap(CallbackInfoReturnable<IItemHandlerModifiable> cir){
+        if(FunctionChanger.isOpenGUI())
+            FunctionChanger.setMap(storage);
+    }
+    @Deprecated
+    @ForFunctionChanger(method = "openGUI")
     @Inject(method = "handlePlayerStorageInteraction",at = @At("RETURN"),remap = false)
     public void handlePlayerStorageInteraction_bottom(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
         playerInteracting = false;
     }
-    @Inject(method = "removeStorageFromWorld",at = @At("HEAD"),remap = false)
+    @Inject(method = "removeStorageFromWorld",at = @At("RETURN"),remap = false)
     public void removeStorageFromWorld_head(CallbackInfo ci){
-        for(MountedStorage mountedStorage : this.storage.values()) {
-            BlockEntity entity = FunctionChanger.findMountedEntity(mountedStorage);
-            if(entity instanceof ToolboxBlockEntity){
-                Utils.addInventory((ToolboxBlockEntity) entity);
-            }
-        }
+        for(MountedStorage mountedStorage : this.storage.values())
+            if(mountedStorage.getItemHandler() instanceof NeedDealWith)
+                ((NeedDealWith) mountedStorage.getItemHandler()).finallyDo();
+        StorageHandlerHelper.clearData();
     }
     @Unique
     public Collection<IItemHandlerModifiable> smarterContraptionStorage$addDumpFillingHandler(Collection<IItemHandlerModifiable> list){

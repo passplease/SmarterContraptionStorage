@@ -34,7 +34,7 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         if(entity instanceof CompactingDrawerTile)
             return new FCDrawersHandler(((CompactingDrawerTile)entity).getHandler());

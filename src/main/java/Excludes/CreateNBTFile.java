@@ -105,7 +105,7 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
         if(id == WRONG_BLOCK_ID)
             id = addPalette(blockId,properties);
         if(tag != null)
-            Tag.put(name, tag);
+            Tag.put(name, tag.copy());
         ListTag pos = new ListTag();
         pos.add(IntTag.valueOf(x));
         pos.add(IntTag.valueOf(y));
@@ -130,7 +130,7 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
         Tag.put("pos",pos);
         Tag.put("state",IntTag.valueOf(id));
         if(name != null && tag != null)
-            Tag.put(name,tag);
+            Tag.put(name,tag.copy());
         b.add(Tag);
     }
     public int findBlockId(String blockId){

@@ -79,7 +79,7 @@ public class replenish_item extends CreateNBTFile {
         return 3;
     }
     public boolean addOres(int x,int y,int z){
-        if(x == MAX_x / 2 && y <= -1 && z == 2)// leave a hole to let player fall in
+        if(x == MAX_x / 2 && y <= -1 && z == 2)// leave SpatialPylonBlockEntityMixin hole to let player fall in
             return true;
         Ores ore = searchOres(x,y,z);
         if(ore != null) {

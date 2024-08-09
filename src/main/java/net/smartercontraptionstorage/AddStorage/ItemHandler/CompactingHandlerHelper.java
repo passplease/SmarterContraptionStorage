@@ -16,7 +16,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         return entity instanceof BlockEntityDrawersComp;
     }
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         IDrawerGroup group = ((BlockEntityDrawersComp) entity).getGroup();
         return new CompactingHandler(group);

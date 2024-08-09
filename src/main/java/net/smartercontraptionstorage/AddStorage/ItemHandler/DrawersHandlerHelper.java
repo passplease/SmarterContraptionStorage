@@ -4,7 +4,15 @@ import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
 import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersComp;
+import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersStandard;
+import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers1;
+import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers2;
+import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers4;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -12,11 +20,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
-        return entity instanceof BlockEntityDrawers && !(entity instanceof BlockEntityDrawersComp);
+        return entity instanceof BlockEntityDrawersStandard;
     }
     @Override
     public void addStorageToWorld(BlockEntity entity,ItemStackHandler handler) {
@@ -30,7 +39,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         }
     }
     @Override
-    public ItemStackHandler createHandler(BlockEntity entity) {
+    public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
         return new NormalDrawerHandler(group);
@@ -42,6 +51,38 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
     public boolean allowControl(Block block){
         return block instanceof BlockDrawers && !(block instanceof BlockCompDrawers);
+    }
+    @Override
+    public boolean canHandlerCreateMenu() {
+        return true;
+    }
+    @Override
+    public @Nullable MenuProvider createHandlerMenu(BlockEntity entity, ItemStackHandler handler, @Nullable Player player) {
+        addStorageToWorld(entity,handler);
+        BlockEntityDrawersStandard drawer = (BlockEntityDrawersStandard)entity;
+        return new MenuProvider() {
+            @Override
+            public @NotNull Component getDisplayName() {
+                return Component.empty();
+            }
+
+            @Override
+            public @NotNull AbstractContainerMenu createMenu(int i, @NotNull Inventory inventory, @NotNull Player player) {
+                switch (drawer.getGroup().getDrawerCount()){
+                    case 1 -> {
+                        return new ContainerDrawers1(i,inventory,drawer);
+                    }
+                    case 2 -> {
+                        return new ContainerDrawers2(i,inventory,drawer);
+                    }
+                    case 4 -> {
+                        return new ContainerDrawers4(i,inventory,drawer);
+                    }
+                    default -> throw new IllegalCallerException("Not SpatialPylonBlockEntityMixin Drawer !");
+                }
+                // If replace return value to CraftingTableMenu(although it's ridiculous), it will be opened normally.
+            }
+        };
     }
     protected static class NormalDrawerHandler extends HandlerHelper{
         public final int[] count;

@@ -8,6 +8,7 @@ import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersStanda
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers1;
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers2;
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers4;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -23,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class DrawersHandlerHelper extends StorageHandlerHelper {
+    public static final String NAME = "DrawersHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof BlockEntityDrawersStandard;
@@ -30,12 +32,11 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
     public void addStorageToWorld(BlockEntity entity,ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof NormalDrawerHandler;
-        if(handler instanceof NormalDrawerHandler Handler) {
-            IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
-            for (int i = handler.getSlots() - 1; i >= 0; i--) {
-                group.getDrawer(i).setStoredItem(Handler.items[i]);
-                group.getDrawer(i).setStoredItemCount(Handler.count[i]);
-            }
+        IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
+        NormalDrawerHandler Handler = (NormalDrawerHandler) handler;
+        for (int i = handler.getSlots() - 1; i >= 0; i--) {
+            group.getDrawer(i).setStoredItem(Handler.items[i]);
+            group.getDrawer(i).setStoredItemCount(Handler.count[i]);
         }
     }
     @Override
@@ -51,6 +52,14 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
     public boolean allowControl(Block block){
         return block instanceof BlockDrawers && !(block instanceof BlockCompDrawers);
+    }
+    @Override
+    public String getName() {
+        return NAME;
+    }
+    @Override
+    public ItemStackHandler deserialize(CompoundTag nbt) {
+        return null;
     }
     @Override
     public boolean canHandlerCreateMenu() {
@@ -170,6 +179,16 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 }
             }
             return toExtract;
+        }
+
+        @Override
+        public CompoundTag serializeNBT() {
+            return super.serializeNBT();
+        }
+
+        @Override
+        public String getName() {
+            return NAME;
         }
     }
 }

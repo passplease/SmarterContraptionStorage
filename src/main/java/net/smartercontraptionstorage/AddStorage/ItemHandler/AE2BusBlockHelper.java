@@ -18,11 +18,14 @@ import appeng.blockentity.networking.*;
 import appeng.blockentity.spatial.SpatialIOPortBlockEntity;
 import appeng.core.definitions.AEItems;
 import appeng.items.tools.powered.WirelessCraftingTerminalItem;
+import appeng.me.GridNode;
 import appeng.me.service.EnergyService;
 import appeng.parts.automation.ExportBusPart;
 import appeng.parts.automation.IOBusPart;
 import appeng.util.ConfigInventory;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -37,6 +40,7 @@ import java.util.ArrayList;
 import java.util.OptionalLong;
 
 public class AE2BusBlockHelper extends StorageHandlerHelper{
+    public static final String NAME = "AE2BusBlockHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof CableBusBlockEntity;
@@ -122,6 +126,17 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return false;
     }
+
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    @Override
+    public ItemStackHandler deserialize(CompoundTag nbt) {
+        return AE2HandlerHelper.create(nbt);
+    }
+
     public static class AE2HandlerHelper extends ItemStackHandler implements NeedDealWith {
         public final @Nullable IGridNode extractNode;
         public final @Nullable IGridNode importNode;
@@ -147,6 +162,17 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             int size = extractNet == null ? 1 : extractNet.getInventory().getAvailableStacks().size();
 
             return new AE2HandlerHelper(size,extractHost,importHost);
+        }
+
+        private AE2HandlerHelper(int size,CompoundTag nbt){
+            super(size);
+            extractNode = new GridNode()
+        }
+
+        public static AE2HandlerHelper create(CompoundTag nbt){
+            if(nbt.contains("size"))
+                return new AE2HandlerHelper(nbt.getInt("size"),nbt);
+            else throw new IllegalStateException("The NBT has a wrong format for: " + NAME);
         }
 
         public boolean canWork(boolean extractOrImport,boolean simulate){
@@ -268,9 +294,9 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
                         continue;
                     MEStorage storage = node.getGrid().getStorageService().getInventory();
                     extractKeys.addAll(storage.getAvailableStacks().keySet());
-                } else if (entity instanceof ControllerBlockEntity)
+                } else if (controller || entity instanceof ControllerBlockEntity)
                     controller = true;
-                else if(entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)
+                else if(energy || entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)
                     energy = true;
                 else if(entity instanceof SpatialIOPortBlockEntity){
                     canWork = false;
@@ -279,6 +305,26 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             }
             canWork = controller && energy;
             hasFilter = !extractKeys.isEmpty();
+        }
+
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag tag = super.serializeNBT();
+            if(canWork) {
+                tag.putString(DESERIALIZE_MARKER, NAME);
+                if (importNode instanceof GridNode node) {
+                    node.saveToNBT("importNode", tag);
+                }
+                if (extractNode instanceof GridNode node) {
+                    node.saveToNBT("extractNode", tag);
+                }
+                ListTag keys = new ListTag();
+                extractKeys.forEach((key) -> keys.add(key.toTagGeneric()));
+                tag.put("extractKeys", keys);
+                tag.putBoolean("hasFilter", hasFilter);
+                tag.putInt("size",super.getSlots());
+            }
+            return tag;
         }
 
         public boolean canWork() {

@@ -1,11 +1,13 @@
 package net.smartercontraptionstorage.Mixin.Storage;
 
 import com.simibubi.create.content.contraptions.MountedStorage;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
+import net.smartercontraptionstorage.Settable;
 import net.smartercontraptionstorage.Utils;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
@@ -20,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.nullHandler;
 
 @Mixin(MountedStorage.class)
-public abstract class MountedStorageMixin {
+public abstract class MountedStorageMixin implements Settable<ItemStackHandler> {
     @Shadow(remap = false) private BlockEntity blockEntity;
 
     @Shadow(remap = false) boolean valid;
@@ -82,6 +84,16 @@ public abstract class MountedStorageMixin {
         }
         return handler;
     }
+    @Inject(method = "deserialize",at = @At("HEAD"),cancellable = true,remap = false)
+    private static void deserialize(CompoundTag nbt, CallbackInfoReturnable<MountedStorage> cir){
+        if(nbt.contains(StorageHandlerHelper.DESERIALIZE_MARKER)){
+            MountedStorage storage = new MountedStorage(null);
+            StorageHandlerHelper helper = StorageHandlerHelper.findByName(nbt.getString(StorageHandlerHelper.DESERIALIZE_MARKER));
+            ((Settable<ItemStackHandler>)storage).setT(helper.deserialize(nbt));
+            cir.setReturnValue(storage);
+            cir.cancel();
+        }
+    }
     @ForFunctionChanger(method = "findMountedEntity")
     @Inject(method = "isValid",at = @At("HEAD"),remap = false)
     public void getBlockEntity(CallbackInfoReturnable<Boolean> cir){
@@ -102,5 +114,11 @@ public abstract class MountedStorageMixin {
                 cir.setReturnValue(false);
             cir.cancel();
         }
+    }
+
+    @Unique
+    @Override
+    public void setT(ItemStackHandler handler) {
+        this.handler = handler;
     }
 }

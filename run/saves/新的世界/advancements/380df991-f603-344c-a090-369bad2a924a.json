@@ -144,6 +144,18 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/magenta_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/blast_furnace": {
+    "criteria": {
+      "has_smooth_stone": "2024-08-31 07:52:29 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/cut_copper_stairs_from_copper_block_stonecutting": {
     "criteria": {
       "has_copper_block": "2024-07-06 13:59:12 +0800"
@@ -153,6 +165,12 @@
   "ae2:recipes/ae2.main/network/blocks/spatial_io_pylon": {
     "criteria": {
       "has_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/cyan_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
     },
     "done": true
   },
@@ -330,6 +348,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/light_gray_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/hopper": {
     "criteria": {
       "has_iron_ingot": "2024-06-27 09:35:44 +0800"
@@ -339,6 +363,12 @@
   "create:recipes/transportation/crafting/kinetics/minecart_from_contraption_cart": {
     "criteria": {
       "has_item": "2024-06-06 20:17:46 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/light_blue_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
     },
     "done": true
   },
@@ -381,6 +411,12 @@
   "ae2:recipes/ae2.main/network/cables/dense_smart_white": {
     "criteria": {
       "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/purple_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
     },
     "done": true
   },
@@ -483,6 +519,12 @@
   "ae2:recipes/ae2.main/network/cables/covered_fluix": {
     "criteria": {
       "has_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/brown_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
     },
     "done": true
   },
@@ -618,6 +660,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/yellow_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/lime_stained_glass": {
     "criteria": {
       "has_glass": "2024-07-29 07:48:49 +0800"
@@ -684,6 +732,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/red_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/misc/light_blue_dye_from_blue_white_dye": {
     "criteria": {
       "has_white_dye": "2024-07-03 21:46:47 +0800"
@@ -717,6 +771,12 @@
   "minecraft:recipes/building_blocks/light_blue_stained_glass": {
     "criteria": {
       "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/baked_potato_from_campfire_cooking": {
+    "criteria": {
+      "has_potato": "2024-08-31 07:59:20 +0800"
     },
     "done": true
   },
@@ -828,6 +888,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/lime_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/amethyst_block": {
     "criteria": {
       "has_amethyst_shard": "2024-07-06 21:54:45 +0800"
@@ -867,6 +933,12 @@
   "storagedrawers:recipes/storagedrawers/max_redstone_upgrade": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
+    },
+    "done": true
+  },
+  "minecraft:husbandry/obtain_netherite_hoe": {
+    "criteria": {
+      "netherite_hoe": "2024-08-31 07:57:33 +0800"
     },
     "done": true
   },
@@ -957,6 +1029,12 @@
   "ae2:recipes/ae2.main/network/cables/glass_brown": {
     "criteria": {
       "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/appliances/tree_fertilizer": {
+    "criteria": {
+      "has_item": "2024-08-31 07:51:22 +0800"
     },
     "done": true
   },
@@ -1099,6 +1177,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/schematics/schematicannon": {
+    "criteria": {
+      "has_item": "2024-08-31 07:49:00 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/stone_pressure_plate": {
     "criteria": {
       "has_stone": "2024-07-16 17:43:18 +0800"
@@ -1108,6 +1192,12 @@
   "minecraft:recipes/building_blocks/brown_stained_glass": {
     "criteria": {
       "has_glass": "2024-07-29 07:48:49 +0800"
+    },
+    "done": true
+  },
+  "minecraft:husbandry/plant_seed": {
+    "criteria": {
+      "wheat": "2024-08-31 07:53:55 +0800"
     },
     "done": true
   },
@@ -1423,6 +1513,18 @@
     },
     "done": true
   },
+  "minecraft:recipes/misc/white_dye": {
+    "criteria": {
+      "has_bone_meal": "2024-08-31 07:51:22 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/black_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/transportation/spruce_boat": {
     "criteria": {
       "in_water": "2024-07-08 15:58:04 +0800"
@@ -1462,6 +1564,18 @@
   "ae2:recipes/ae2.main/network/cables/dense_smart_yellow": {
     "criteria": {
       "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/blue_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/green_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
     },
     "done": true
   },
@@ -1621,6 +1735,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/smooth_stone_slab": {
+    "criteria": {
+      "has_smooth_stone": "2024-08-31 07:52:29 +0800"
+    },
+    "done": true
+  },
   "trashcans:trash_can": {
     "criteria": {
       "has_item_trash_can": "2024-06-27 11:00:08 +0800"
@@ -1699,6 +1819,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/pink_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/cut_copper_from_copper_block_stonecutting": {
     "criteria": {
       "has_copper_block": "2024-07-06 13:59:12 +0800"
@@ -1759,6 +1885,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/food/baked_potato_from_smoking": {
+    "criteria": {
+      "has_potato": "2024-08-31 07:59:20 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/transportation/activator_rail": {
     "criteria": {
       "has_rail": "2024-07-04 08:26:52 +0800"
@@ -1768,6 +1900,12 @@
   "ae2:recipes/ae2.main/network/cables/dense_smart_brown": {
     "criteria": {
       "has_fluix_smart_dense_cable": "2024-07-19 17:22:59 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/baked_potato": {
+    "criteria": {
+      "has_potato": "2024-08-31 07:59:20 +0800"
     },
     "done": true
   },
@@ -1879,6 +2017,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/smooth_stone_slab_from_smooth_stone_stonecutting": {
+    "criteria": {
+      "has_smooth_stone": "2024-08-31 07:52:29 +0800"
+    },
+    "done": true
+  },
   "ae2:recipes/ae2.main/network/cables/covered_white": {
     "criteria": {
       "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
@@ -1936,6 +2080,12 @@
   "ae2:main/crafting_terminal": {
     "criteria": {
       "certus": "2024-07-20 10:11:22 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/white_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
     },
     "done": true
   },
@@ -2017,6 +2167,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/schematics/schematic_table": {
+    "criteria": {
+      "has_item": "2024-08-31 07:49:00 +0800"
+    },
+    "done": true
+  },
   "ae2:main/controller": {
     "criteria": {
       "certus": "2024-07-19 12:57:47 +0800"
@@ -2056,6 +2212,12 @@
   "minecraft:recipes/decorations/white_stained_glass_pane_from_glass_pane": {
     "criteria": {
       "has_white_dye": "2024-07-03 21:46:47 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/kinetics/orange_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
     },
     "done": true
   },
@@ -2251,6 +2413,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/gray_valve_handle_from_other_valve_handle": {
+    "criteria": {
+      "has_valve": "2024-08-31 07:52:38 +0800"
+    },
+    "done": true
+  },
   "storagedrawers:recipes/storagedrawers/drawer_key": {
     "criteria": {
       "has_template": "2024-06-06 21:31:26 +0800"
@@ -2290,6 +2458,12 @@
   "ae2:recipes/ae2.main/network/cables/covered_purple": {
     "criteria": {
       "has_fluix_covered_cable": "2024-07-19 17:35:15 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/carrot_on_a_stick": {
+    "criteria": {
+      "has_carrot": "2024-08-31 07:54:03 +0800"
     },
     "done": true
   },
@@ -2452,6 +2626,12 @@
   "ae2:recipes/ae2.main/network/cables/glass_orange": {
     "criteria": {
       "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/bone_block": {
+    "criteria": {
+      "has_bone_meal": "2024-08-31 07:51:22 +0800"
     },
     "done": true
   },

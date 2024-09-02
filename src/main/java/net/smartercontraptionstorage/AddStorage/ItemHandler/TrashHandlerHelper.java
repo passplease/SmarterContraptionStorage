@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrashHandlerHelper extends StorageHandlerHelper{
+    public static final String NAME = "TrashHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof TrashCanBlockEntity && ((TrashCanBlockEntity)entity).items;
@@ -45,7 +46,10 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return false;
     }
-
+    @Override
+    public String getName() {
+        return NAME;
+    }
     public static class TrashHandler extends HandlerHelper implements NeedDealWith {
         public final boolean whiteOrBlack;
         public List<ItemStack> toolboxItem;

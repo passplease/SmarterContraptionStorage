@@ -20,6 +20,7 @@ import java.util.List;
 import static com.buuz135.functionalstorage.inventory.CompactingInventoryHandler.*;
 
 public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
+    public static final String NAME = "FunctionalCompactingHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof CompactingDrawerTile || entity instanceof SimpleCompactingDrawerTile;
@@ -50,6 +51,12 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return block instanceof CompactingDrawerBlock || block instanceof SimpleCompactingDrawerBlock;
     }
+
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
     public static class FCDrawersHandler extends HandlerHelper {
         public final int PARENT_SLOT;
         public final int[] needed;

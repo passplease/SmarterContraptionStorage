@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.buuz135.functionalstorage.inventory.BigInventoryHandler.*;
 
 public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
+    public static final String NAME = "FunctionalDrawersHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof DrawerTile;
@@ -41,6 +42,12 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return block instanceof DrawerBlock;
     }
+
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
     public static class FDrawersHandler extends HandlerHelper{
         public final int[] count;
         public final boolean isCreative;

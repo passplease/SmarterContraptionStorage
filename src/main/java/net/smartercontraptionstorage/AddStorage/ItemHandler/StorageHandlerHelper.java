@@ -1,20 +1,25 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import com.simibubi.create.foundation.utility.NBTHelper;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.AddStorage.HandlerMarkers;
 import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public abstract class StorageHandlerHelper implements MenuSupportHandler {
+    public static final String DESERIALIZE_MARKER = "OtherHandlers";
     public static final ItemStackHandler nullHandler = new ItemStackHandler(){
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
@@ -71,23 +76,40 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
                 return handlerHelper;
         return null;
     }
+    public static StorageHandlerHelper findByName(String name){
+        return HandlerHelpers.stream().filter((helper)-> Objects.equals(helper.getName(), name)).findFirst().orElse(null);
+    }
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);
     public abstract @NotNull ItemStackHandler createHandler(BlockEntity entity);
     public abstract boolean allowControl(Item comparedItem);
     public abstract boolean allowControl(Block block);
+    public abstract String getName();
+    public abstract ItemStackHandler deserialize(CompoundTag nbt);
     // two allowDumping only need to achieve one, another can return false
     public static Set<StorageHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;
     }
 
-    public abstract static class HandlerHelper extends ItemStackHandler{
+    public abstract static class HandlerHelper extends ItemStackHandler implements HandlerMarkers {
         public final int[] slotLimits;
         protected final ItemStack[] items;
         public HandlerHelper(int size) {
             super(size);
             slotLimits = new int[size];
             items = new ItemStack[size];
+        }
+        protected HandlerHelper(CompoundTag nbt){
+            super(nbt.getInt("size"));
+            ListTag list_slotLimits = nbt.getList("slotLimits", Tag.TAG_INT);
+            List<ItemStack> list_items = NBTHelper.readItemList(nbt.getList("items", Tag.TAG_COMPOUND));
+            int size = list_items.size();
+            slotLimits = new int[size];
+            items = new ItemStack[size];
+            for (int slot = 0; slot < size; slot++) {
+                slotLimits[slot] = list_slotLimits.getInt(slot);
+                items[slot] = list_items.get(slot);
+            }
         }
         @Override
         public int getSlots() {
@@ -111,5 +133,20 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
         public abstract @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate);
         @Override
         public abstract @NotNull ItemStack extractItem(int slot, int amount, boolean simulate);
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag tag = super.serializeNBT();
+            tag.putString(DESERIALIZE_MARKER,getName());
+            ListTag list = new ListTag(),itemList = new ListTag();
+            for (int slot = 0; slot < slotLimits.length; slot++) {
+                list.add(IntTag.valueOf(slotLimits[slot]));
+                itemList.add(items[slot].serializeNBT());
+            }
+            tag.put("slotLimits",list);
+            tag.put("items",itemList);
+            tag.putInt("size",slotLimits.length);
+            return tag;
+        }
+        public abstract String getName();
     }
 }

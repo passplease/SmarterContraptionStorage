@@ -1,0 +1,8 @@
+Java Launcher: C:\Program Files\Java\jdk-17\bin\java.exe
+Arguments: '--clean, C:\Users\11758\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.19.2-20220805.130853\joined-1.19.2-20220805.130853-srg.jar, --output, C:\Users\11758\Desktop\JAVA自学程序\SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.19.2-43.3.0\forge-1.19.2-43.3.0-binpatched.jar, --apply, C:\Users\11758\Desktop\JAVA自学程序\SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.19.2-43.3.0\forge-1.19.2-43.3.0-binpatches.lzma'
+Classpath:
+ - C:\Users\11758\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\binarypatcher\1.1.1\binarypatcher-1.1.1-fatjar.jar
+Working directory: C:\Users\11758\Desktop\JAVA自学程序\SmarterContraptionStorage\build\_applyBinpatches_3
+Main class: net.minecraftforge.binarypatcher.ConsoleTool
+====================================
+Could not delete output file: C:\Users\11758\Desktop\JAVA￨ﾇﾪ￥ﾭﾦ￧ﾨﾋ￥ﾺﾏ\SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.19.2-43.3.0\forge-1.19.2-43.3.0-binpatched.jar

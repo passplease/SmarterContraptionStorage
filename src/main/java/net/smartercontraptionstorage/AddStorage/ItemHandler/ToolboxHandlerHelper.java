@@ -4,6 +4,7 @@ import com.simibubi.create.content.equipment.toolbox.ToolboxBlock;
 import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.content.equipment.toolbox.ToolboxHandler;
 import com.simibubi.create.content.equipment.toolbox.ToolboxInventory;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -47,6 +48,16 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public boolean canDeserialize() {
+        return false;
+    }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+        throw new IllegalAccessException();
     }
 
     public static class ToolboxHelper extends ToolboxInventory implements NeedDealWith {

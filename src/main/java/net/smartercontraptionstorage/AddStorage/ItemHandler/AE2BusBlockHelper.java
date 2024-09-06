@@ -55,7 +55,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         CableBusBlockEntity bus = (CableBusBlockEntity)entity;
         ICablePart center = (ICablePart)bus.getPart(null);
         if(center == null || center.getCableConnectionType() != AECableType.COVERED)
-            return nullHandler;// Must use covered_cable
+            return NULL_HANDLER;// Must use covered_cable
         ConfigInventory config;
         AEKey key;
         ItemStack item;
@@ -93,7 +93,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             if(exportHost != null && importHost != null)
                 return AE2HandlerHelper.create(exportHost,importHost);
         }
-        return exportHost == null && importHost == null ? nullHandler : AE2HandlerHelper.create(exportHost,importHost);
+        return exportHost == null && importHost == null ? NULL_HANDLER : AE2HandlerHelper.create(exportHost,importHost);
     }
 
     private static IPart[] getAllPart(CableBusBlockEntity bus){
@@ -133,8 +133,13 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public ItemStackHandler deserialize(CompoundTag nbt) {
-        return AE2HandlerHelper.create(nbt);
+    public boolean canDeserialize() {
+        return false;
+    }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+        throw new IllegalAccessException();
     }
 
     public static class AE2HandlerHelper extends ItemStackHandler implements NeedDealWith {
@@ -162,17 +167,6 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             int size = extractNet == null ? 1 : extractNet.getInventory().getAvailableStacks().size();
 
             return new AE2HandlerHelper(size,extractHost,importHost);
-        }
-
-        private AE2HandlerHelper(int size,CompoundTag nbt){
-            super(size);
-            extractNode = new GridNode()
-        }
-
-        public static AE2HandlerHelper create(CompoundTag nbt){
-            if(nbt.contains("size"))
-                return new AE2HandlerHelper(nbt.getInt("size"),nbt);
-            else throw new IllegalStateException("The NBT has a wrong format for: " + NAME);
         }
 
         public boolean canWork(boolean extractOrImport,boolean simulate){

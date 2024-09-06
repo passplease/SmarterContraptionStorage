@@ -2,6 +2,7 @@ package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
@@ -50,12 +51,21 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
     public String getName() {
         return NAME;
     }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+        return new TrashHandler(
+                nbt.getBoolean("whiteOrBlack"),
+                NBTHelper.readItemList(nbt.getList("toolboxItem",Tag.TAG_COMPOUND))
+        );
+    }
+
     public static class TrashHandler extends HandlerHelper implements NeedDealWith {
         public final boolean whiteOrBlack;
         public List<ItemStack> toolboxItem;
         // false : black
         // true : white
-        public TrashHandler(boolean whiteOrBlack, ArrayList<ItemStack> itemFilter) {
+        public TrashHandler(boolean whiteOrBlack, List<ItemStack> itemFilter) {
             super(itemFilter.size());
             this.whiteOrBlack = whiteOrBlack;
             for (int i = items.length - 1; i >= 0; i--) {
@@ -83,10 +93,21 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
             return ItemStack.EMPTY;
         }
         @Override
+        public String getName() {
+            return NAME;
+        }
+        @Override
         public void doSomething(BlockEntity entity) {}
         @Override
         public void finallyDo() {
             this.toolboxItem = NBTHelper.readItemList(Utils.getInventory().getList("Compartments", Tag.TAG_COMPOUND));
+        }
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag tag = super.serializeNBT();
+            tag.putBoolean("whiteOrBlack",whiteOrBlack);
+            tag.put("toolboxItem",NBTHelper.writeItemList(toolboxItem));
+            return tag;
         }
     }
 }

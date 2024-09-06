@@ -162,4 +162,7 @@ public final class Utils {
     public static void addWarning(String text){
         LogUtils.getLogger().warn(text);
     }
+    public static void addError(String text){
+        LogUtils.getLogger().error(text);
+    }
 }

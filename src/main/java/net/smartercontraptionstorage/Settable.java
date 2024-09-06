@@ -1,5 +1,8 @@
 package net.smartercontraptionstorage;
 
-public interface Settable<T> {
-    void setT(T t);
+public interface Settable {
+    void set(Object object);
+    default void set(String parameterName, Object object){
+        set(object);
+    }
 }

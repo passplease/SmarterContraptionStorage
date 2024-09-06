@@ -7,6 +7,9 @@ import com.buuz135.functionalstorage.block.tile.SimpleCompactingDrawerTile;
 import com.buuz135.functionalstorage.inventory.CompactingInventoryHandler;
 import com.buuz135.functionalstorage.util.CompactingUtil;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -57,6 +60,11 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
         return NAME;
     }
 
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+        return new FCDrawersHandler(nbt);
+    }
+
     public static class FCDrawersHandler extends HandlerHelper {
         public final int PARENT_SLOT;
         public final int[] needed;
@@ -80,6 +88,15 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
             if(parent_slot != -1)
                 PARENT_SLOT = parent_slot;
             else PARENT_SLOT = handler.getSlots() - 1;
+        }
+        public FCDrawersHandler(CompoundTag nbt){
+            super(nbt);
+            PARENT_SLOT = nbt.getInt(PARENT);
+            isCreative = nbt.getBoolean("isCreative");
+            ListTag list = nbt.getList("needed", Tag.TAG_INT);
+            needed = new int[list.size()];
+            for (int slot = 0; slot < needed.length; slot++)
+                needed[slot] = ((IntTag)list.get(slot)).getAsInt();
         }
         public boolean canInsert(int slot, @NotNull ItemStack stack) {
             if(stack.isEmpty())
@@ -142,20 +159,18 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
 
         @Override
         public CompoundTag serializeNBT() {
-            CompoundTag compoundTag = new CompoundTag();
-            compoundTag.put(PARENT, this.items[PARENT_SLOT].serializeNBT());
-            compoundTag.putInt(AMOUNT,amount);
-            CompoundTag items = new CompoundTag();
-
-            for(int i = 0; i < this.items.length; ++i) {
-                CompoundTag bigStack = new CompoundTag();
-                bigStack.put(STACK, this.items[i].serializeNBT());
-                bigStack.putInt(AMOUNT, getCountInSlot(i));
-                items.put("" + i, bigStack);
-            }
-
-            compoundTag.put(BIG_ITEMS, items);
-            return compoundTag;
+            CompoundTag tag = super.serializeNBT();
+            tag.putInt(PARENT,PARENT_SLOT);
+            ListTag list = new ListTag();
+            for(int i : needed)
+                list.add(IntTag.valueOf(i));
+            tag.put("needed",list);
+            tag.putBoolean("isCreative",isCreative);
+            return tag;
+        }
+        @Override
+        public String getName() {
+            return NAME;
         }
     }
 }

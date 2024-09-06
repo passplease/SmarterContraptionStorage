@@ -20,7 +20,7 @@ import java.util.*;
 
 public abstract class StorageHandlerHelper implements MenuSupportHandler {
     public static final String DESERIALIZE_MARKER = "OtherHandlers";
-    public static final ItemStackHandler nullHandler = new ItemStackHandler(){
+    public static final ItemStackHandler NULL_HANDLER = new ItemStackHandler(){
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             return stack;
@@ -77,7 +77,10 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
         return null;
     }
     public static StorageHandlerHelper findByName(String name){
-        return HandlerHelpers.stream().filter((helper)-> Objects.equals(helper.getName(), name)).findFirst().orElse(null);
+        return HandlerHelpers.stream().filter((helper)-> helper.canDeserialize() && Objects.equals(helper.getName(), name)).findFirst().orElse(null);
+    }
+    public boolean canDeserialize(){
+        return true;
     }
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);
@@ -85,7 +88,7 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
     public abstract boolean allowControl(Item comparedItem);
     public abstract boolean allowControl(Block block);
     public abstract String getName();
-    public abstract ItemStackHandler deserialize(CompoundTag nbt);
+    public abstract @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException;
     // two allowDumping only need to achieve one, another can return false
     public static Set<StorageHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;

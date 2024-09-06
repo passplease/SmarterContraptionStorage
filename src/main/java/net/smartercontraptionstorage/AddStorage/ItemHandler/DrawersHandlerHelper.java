@@ -9,6 +9,9 @@ import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers1;
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers2;
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers4;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -58,8 +61,8 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         return NAME;
     }
     @Override
-    public ItemStackHandler deserialize(CompoundTag nbt) {
-        return null;
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
+        return new NormalDrawerHandler(nbt);
     }
     @Override
     public boolean canHandlerCreateMenu() {
@@ -106,6 +109,13 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 count[i] = group.getDrawer(i).getStoredItemCount();
                 // Empty and locked drawers are not supported (they will be filled with item)
             }
+        }
+        public NormalDrawerHandler(CompoundTag nbt){
+            super(nbt);
+            count = new int[items.length];
+            ListTag list = nbt.getList("count", Tag.TAG_INT);
+            for (int slot = 0; slot < count.length; slot++)
+                count[slot] = ((IntTag)list.get(slot)).getAsInt();
         }
         public boolean canInsert(int slot,ItemStack stack){
             return !stack.isEmpty() && (items[slot].sameItem(stack) || items[slot].is(Items.AIR));
@@ -180,12 +190,15 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             }
             return toExtract;
         }
-
         @Override
         public CompoundTag serializeNBT() {
-            return super.serializeNBT();
+            CompoundTag tag = super.serializeNBT();
+            ListTag list = new ListTag();
+            for (int i : count)
+                list.add(IntTag.valueOf(i));
+            tag.put("count",list);
+            return tag;
         }
-
         @Override
         public String getName() {
             return NAME;

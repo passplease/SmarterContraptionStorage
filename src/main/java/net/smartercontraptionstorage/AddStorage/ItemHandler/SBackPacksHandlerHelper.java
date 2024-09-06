@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -42,5 +43,15 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper{
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public boolean canDeserialize() {
+        return false;
+    }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+        throw new IllegalAccessException();
     }
 }

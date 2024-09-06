@@ -4,6 +4,9 @@ import com.buuz135.functionalstorage.block.DrawerBlock;
 import com.buuz135.functionalstorage.block.tile.DrawerTile;
 import com.buuz135.functionalstorage.inventory.BigInventoryHandler;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -48,6 +51,11 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
         return NAME;
     }
 
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+        return new FDrawersHandler(nbt);
+    }
+
     public static class FDrawersHandler extends HandlerHelper{
         public final int[] count;
         public final boolean isCreative;
@@ -61,6 +69,14 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
                 count[i] = items[i].getCount();
                 items[i].setCount(1);
             }
+        }
+        public FDrawersHandler(CompoundTag nbt) {
+            super(nbt);
+            isCreative = nbt.getBoolean("isCreative");
+            ListTag list = nbt.getList("count", Tag.TAG_INT);
+            count = new int[list.size()];
+            for (int slot = 0; slot < count.length; slot++)
+                count[slot] = ((IntTag)list.get(slot)).getAsInt();
         }
         public boolean canInsert(int slot,@NotNull ItemStack stack){
             return !stack.isEmpty() && (items[slot].sameItem(stack) || items[slot].is(Items.AIR));
@@ -117,18 +133,17 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
         }
         @Override
         public CompoundTag serializeNBT() {
-            CompoundTag compoundTag = new CompoundTag();
-            CompoundTag items = new CompoundTag();
-
-            for(int i = 0; i < this.items.length; ++i) {
-                CompoundTag bigStack = new CompoundTag();
-                bigStack.put(STACK, this.items[i].serializeNBT());
-                bigStack.putInt(AMOUNT,isCreative ? Integer.MAX_VALUE : count[i]);
-                items.put("" + i, bigStack);
-            }
-
-            compoundTag.put(BIG_ITEMS, items);
-            return compoundTag;
+            CompoundTag tag = super.serializeNBT();
+            tag.putBoolean("isCreative",isCreative);
+            ListTag list = new ListTag();
+            for(int i : count)
+                list.add(IntTag.valueOf(i));
+            tag.put("count",list);
+            return tag;
+        }
+        @Override
+        public String getName() {
+            return NAME;
         }
     }
 }

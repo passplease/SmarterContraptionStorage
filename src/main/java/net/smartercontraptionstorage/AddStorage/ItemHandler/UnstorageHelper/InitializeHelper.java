@@ -25,7 +25,7 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
     @Override
     public final @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         doSomething(entity);
-        return nullHandler;
+        return NULL_HANDLER;
     }
 
     @Override
@@ -47,17 +47,12 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
     }
 
     @Override
-    public CompoundTag serializeNBT() {
-        return new CompoundTag();
-    }
-
-    @Override
     public final String getName() {
         return "InitializeHelper";
     }
 
     @Override
-    public final ItemStackHandler deserialize(CompoundTag nbt) {
-        return nullHandler;
+    public final @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+        return NULL_HANDLER;
     }
 }

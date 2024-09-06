@@ -3,7 +3,9 @@ package net.smartercontraptionstorage.Mixin.Contraption;
 import com.simibubi.create.content.contraptions.*;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.smartercontraptionstorage.AddStorage.FluidHander.DumpHandler;
@@ -94,5 +96,15 @@ public abstract class MountedStorageManagerMixin {
         Collection<MountedStorage> itemHandlers = this.storage.values();
         this.inventory = this.wrapItems(smarterContraptionStorage$addDumpFillingHandler(itemHandlers.stream().map(MountedStorage::getItemHandler).toList()), false);
         this.fuelInventory = this.wrapItems(smarterContraptionStorage$addDumpFillingHandler(itemHandlers.stream().filter(MountedStorage::canUseForFuel).map(MountedStorage::getItemHandler).toList()), true);
+    }
+    @ForFunctionChanger(method = "deserialize")
+    @Inject(method = "read",at = @At("HEAD"),remap = false)
+    public void help_deserialize(CompoundTag nbt, Map<BlockPos, BlockEntity> presentBlockEntities, boolean clientPacket, CallbackInfo ci){
+        FunctionChanger.presentBlockEntities = presentBlockEntities;
+    }
+    @ForFunctionChanger(method = "deserialize")
+    @Inject(method = "read",at = @At("RETURN"),remap = false)
+    public void clearData(CompoundTag nbt, Map<BlockPos, BlockEntity> presentBlockEntities, boolean clientPacket, CallbackInfo ci){
+        FunctionChanger.presentBlockEntities = null;
     }
 }

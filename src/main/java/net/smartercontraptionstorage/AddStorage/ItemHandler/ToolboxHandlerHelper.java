@@ -68,7 +68,6 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
         @Override
         public void doSomething(BlockEntity entity) {
             StorageHandlerHelper.BlockEntityList.add(entity);
-            Utils.addInventory((ToolboxBlockEntity) entity);
         }
 
         @Override

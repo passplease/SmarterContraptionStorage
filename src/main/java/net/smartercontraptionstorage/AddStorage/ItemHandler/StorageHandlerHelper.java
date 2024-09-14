@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
-import net.smartercontraptionstorage.AddStorage.HandlerMarkers;
 import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -94,7 +93,7 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
         return HandlerHelpers;
     }
 
-    public abstract static class HandlerHelper extends ItemStackHandler implements HandlerMarkers {
+    public abstract static class HandlerHelper extends ItemStackHandler {
         public final int[] slotLimits;
         protected final ItemStack[] items;
         public HandlerHelper(int size) {
@@ -139,7 +138,6 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
         @Override
         public CompoundTag serializeNBT() {
             CompoundTag tag = super.serializeNBT();
-            tag.putString(DESERIALIZE_MARKER,getName());
             ListTag list = new ListTag(),itemList = new ListTag();
             for (int slot = 0; slot < slotLimits.length; slot++) {
                 list.add(IntTag.valueOf(slotLimits[slot]));

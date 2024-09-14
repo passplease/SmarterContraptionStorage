@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: smartercontraptionstorage
+Specification-Vendor: No Name
+Specification-Version: 1
+Implementation-Title: smartercontraptionstorage
+Implementation-Version: 1.19.2-beta 0.6
+Implementation-Vendor: No Name
+Implementation-Timestamp: 2024-09-11T14:04:49+0800
+MixinConfigs: smartercontraptionstorage.mixins.json
+

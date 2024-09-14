@@ -305,7 +305,6 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         public CompoundTag serializeNBT() {
             CompoundTag tag = super.serializeNBT();
             if(canWork) {
-                tag.putString(DESERIALIZE_MARKER, NAME);
                 if (importNode instanceof GridNode node) {
                     node.saveToNBT("importNode", tag);
                 }

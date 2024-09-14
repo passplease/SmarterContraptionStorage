@@ -13,6 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import static com.buuz135.functionalstorage.inventory.BigInventoryHandler.*;
@@ -79,7 +80,7 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
                 count[slot] = ((IntTag)list.get(slot)).getAsInt();
         }
         public boolean canInsert(int slot,@NotNull ItemStack stack){
-            return !stack.isEmpty() && (items[slot].sameItem(stack) || items[slot].is(Items.AIR));
+            return !stack.isEmpty() && (Utils.isSameItem(items[slot],stack) || items[slot].is(Items.AIR));
         }
         public void setCountInSlot(int slot, @NotNull ItemStack stack, int count){
             if(items[slot].is(Items.AIR))

@@ -138,6 +138,12 @@
     },
     "done": true
   },
+  "create:super_glue": {
+    "criteria": {
+      "0": "2024-09-09 10:56:09 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/copper_block": {
     "criteria": {
       "has_copper_ingot": "2024-07-06 14:00:33 +0800"
@@ -1591,6 +1597,12 @@
     },
     "done": true
   },
+  "create:display_link": {
+    "criteria": {
+      "0": "2024-09-11 13:44:12 +0800"
+    },
+    "done": true
+  },
   "ae2:recipes/ae2.main/network/cables/glass_light_blue": {
     "criteria": {
       "has_fluix_glass_cable": "2024-07-19 15:13:17 +0800"
@@ -2077,6 +2089,12 @@
     },
     "done": true
   },
+  "create:recipes/create.base/crafting/kinetics/gearbox": {
+    "criteria": {
+      "has_item": "2024-09-11 13:43:22 +0800"
+    },
+    "done": true
+  },
   "ae2:main/crafting_terminal": {
     "criteria": {
       "certus": "2024-07-20 10:11:22 +0800"
@@ -2104,6 +2122,12 @@
   "trashcans:recipes/decorations/energy_trash_can": {
     "criteria": {
       "recipe_condition": "2024-07-09 09:21:41 +0800"
+    },
+    "done": true
+  },
+  "create:recipes/create.base/crafting/appliances/filter_clear": {
+    "criteria": {
+      "has_item": "2024-09-09 10:53:50 +0800"
     },
     "done": true
   },

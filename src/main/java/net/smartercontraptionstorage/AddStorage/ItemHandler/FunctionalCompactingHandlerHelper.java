@@ -16,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -101,7 +102,7 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
         public boolean canInsert(int slot, @NotNull ItemStack stack) {
             if(stack.isEmpty())
                 return false;
-            return items[slot].sameItem(stack);
+            return Utils.isSameItem(items[slot],stack);
         }
         public void addCountInSlot(int slot, int count){
             amount += count * needed[slot];

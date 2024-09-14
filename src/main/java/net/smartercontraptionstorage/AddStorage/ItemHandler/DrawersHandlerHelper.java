@@ -23,6 +23,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -118,7 +119,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 count[slot] = ((IntTag)list.get(slot)).getAsInt();
         }
         public boolean canInsert(int slot,ItemStack stack){
-            return !stack.isEmpty() && (items[slot].sameItem(stack) || items[slot].is(Items.AIR));
+            return !stack.isEmpty() && (Utils.isSameItem(items[slot],stack) || items[slot].is(Items.AIR));
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack) {
@@ -154,16 +155,15 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                     }
                 }
                 if(simulate){
-                    if(stack.getCount() <= slotLimits[slot])
+                    if(stack.getCount() + count[slot] <= slotLimits[slot])
                         return ItemStack.EMPTY;
                     else {
                         stack.setCount(stack.getCount() - slotLimits[slot]);
                         return stack;
                     }
-                }
-                if(count[slot] + stack.getCount() > slotLimits[slot]) {
-                    stack.grow(slotLimits[slot] - count[slot]);
-                    count[slot] += slotLimits[slot];
+                }else if(count[slot] + stack.getCount() > slotLimits[slot]) {
+                    stack.shrink(slotLimits[slot] - count[slot]);
+                    count[slot] = slotLimits[slot];
                     return stack;
                 }else {
                     count[slot] += stack.getCount();

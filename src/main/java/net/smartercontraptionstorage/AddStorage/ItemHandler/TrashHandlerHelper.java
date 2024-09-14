@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -54,10 +55,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
-        return new TrashHandler(
-                nbt.getBoolean("whiteOrBlack"),
-                NBTHelper.readItemList(nbt.getList("toolboxItem",Tag.TAG_COMPOUND))
-        );
+        return new TrashHandler(nbt);
     }
 
     public static class TrashHandler extends HandlerHelper implements NeedDealWith {
@@ -73,13 +71,18 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
                 slotLimits[i] = Integer.MAX_VALUE;
             }
         }
+        public TrashHandler(CompoundTag nbt){
+            super(nbt);
+            whiteOrBlack = nbt.getBoolean("whiteOrBlack");
+            toolboxItem = NBTHelper.readItemList(nbt.getList("toolboxItem", Tag.TAG_COMPOUND));
+        }
         protected boolean canDelete(ItemStack stack){
-            for (ItemStack itemStack : toolboxItem) {
-                if(itemStack.sameItem(stack))
+            for (ItemStack item : toolboxItem) {
+                if(Utils.isSameItem(item,stack))
                     return false;
             }
             for (ItemStack item : items){
-                if(item.sameItem(stack))
+                if(Utils.isSameItem(item,stack))
                     return whiteOrBlack;
             }
             return !whiteOrBlack;
@@ -100,7 +103,12 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         public void doSomething(BlockEntity entity) {}
         @Override
         public void finallyDo() {
-            this.toolboxItem = NBTHelper.readItemList(Utils.getInventory().getList("Compartments", Tag.TAG_COMPOUND));
+            ArrayList<ItemStack> toolboxItem = new ArrayList<>();
+            for(BlockEntity entity : BlockEntityList)
+                if(entity instanceof ToolboxBlockEntity){
+                    toolboxItem.addAll(NBTHelper.readItemList(entity.serializeNBT().getCompound("Inventory").getList("Compartments", Tag.TAG_COMPOUND)));
+                }
+            this.toolboxItem = toolboxItem.stream().filter((item)->!item.isEmpty()).toList();
         }
         @Override
         public CompoundTag serializeNBT() {

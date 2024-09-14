@@ -87,12 +87,17 @@ public abstract class MountedStorageMixin implements Settable {
         }
         return handler;
     }
-    @Inject(method = "serialize",at = @At(value = "INVOKE", target = "Lnet/minecraftforge/items/ItemStackHandler;serializeNBT()Lnet/minecraft/nbt/CompoundTag;"),remap = false)
+    @Inject(method = "serialize",at = @At(value = "RETURN"),cancellable = true,remap = false)
     public void serialize(CallbackInfoReturnable<CompoundTag> cir){
-        if(smarterContraptionStorage$helper != null && !smarterContraptionStorage$helper.canDeserialize()){
-            smarterContraptionStorage$helper.addStorageToWorld(blockEntity,handler);
-            CompoundTag tag = new CompoundTag();
-            tag.put("pos",NbtUtils.writeBlockPos(blockEntity.getBlockPos()));
+        if(smarterContraptionStorage$helper != null){
+            CompoundTag tag = cir.getReturnValue();
+            if(tag == null)
+                return;
+            tag.putString(StorageHandlerHelper.DESERIALIZE_MARKER,smarterContraptionStorage$helper.getName());
+            if(!smarterContraptionStorage$helper.canDeserialize()) {
+                smarterContraptionStorage$helper.addStorageToWorld(blockEntity, handler);
+                tag.put("pos", NbtUtils.writeBlockPos(blockEntity.getBlockPos()));
+            }
             cir.setReturnValue(tag);
         }
     }
@@ -116,7 +121,6 @@ public abstract class MountedStorageMixin implements Settable {
                 ((Settable) storage).set(helper);
                 ((Settable) storage).set(true);
                 cir.setReturnValue(storage);
-                cir.cancel();
             }catch (Exception e){
                 Utils.addError("Illegal state! Unchecked deserialize try!");
                 Utils.addWarning((helper == null ? "Unknown handler" : helper.getName()) + "can't deserialize !");
@@ -141,7 +145,6 @@ public abstract class MountedStorageMixin implements Settable {
                 cir.setReturnValue(true);
             }else
                 cir.setReturnValue(false);
-            cir.cancel();
         }
     }
     @Unique

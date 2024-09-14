@@ -12,6 +12,8 @@ import appeng.spatial.SpatialStoragePlotManager;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -30,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class SpatialHandler extends StorageHandlerHelper{
+    public static final String NAME = "SpatialHandler";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof SpatialIOPortBlockEntity;
@@ -54,7 +57,7 @@ public class SpatialHandler extends StorageHandlerHelper{
                     return SpatialHelper.create(cell.getAllocatedPlotId(stack));
             }
         }
-        return nullHandler;
+        return NULL_HANDLER;
     }
 
     @Override
@@ -66,6 +69,24 @@ public class SpatialHandler extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return false;
     }
+
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
+        try {
+            SpatialHelper handler = SpatialHelper.create(nbt.getInt("plotId"));
+            handler.canWork = nbt.getBoolean("canWork");
+            return handler;
+        }catch (RuntimeException e){
+            Utils.addError(e.getMessage());
+            return NULL_HANDLER;
+        }
+    }
+
     public static class SpatialHelper extends ItemStackHandler implements NeedDealWith {
         public final ArrayList<IItemHandler> insertHandlers;
         public final ArrayList<IItemHandler> exportHandlers;
@@ -174,7 +195,7 @@ public class SpatialHandler extends StorageHandlerHelper{
                 }
                 Utils.addWarning("Slot is too big !");
             }
-            return Pair.of(nullHandler,0);
+            return Pair.of(NULL_HANDLER,0);
         }
 
         @Override
@@ -220,6 +241,14 @@ public class SpatialHandler extends StorageHandlerHelper{
                 }else if(entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)
                     canWork = true;
             }
+        }
+
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag tag = super.serializeNBT();
+            tag.putBoolean("canWork",canWork);
+            tag.putInt("plotId",plotId);
+            return tag;
         }
 
         public boolean canWork() {

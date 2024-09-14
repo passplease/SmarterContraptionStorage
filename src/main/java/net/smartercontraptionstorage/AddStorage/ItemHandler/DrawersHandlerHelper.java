@@ -8,6 +8,10 @@ import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersStanda
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers1;
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers2;
 import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawers4;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,10 +23,12 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class DrawersHandlerHelper extends StorageHandlerHelper {
+    public static final String NAME = "DrawersHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof BlockEntityDrawersStandard;
@@ -30,12 +36,11 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
     public void addStorageToWorld(BlockEntity entity,ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof NormalDrawerHandler;
-        if(handler instanceof NormalDrawerHandler Handler) {
-            IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
-            for (int i = handler.getSlots() - 1; i >= 0; i--) {
-                group.getDrawer(i).setStoredItem(Handler.items[i]);
-                group.getDrawer(i).setStoredItemCount(Handler.count[i]);
-            }
+        IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
+        NormalDrawerHandler Handler = (NormalDrawerHandler) handler;
+        for (int i = handler.getSlots() - 1; i >= 0; i--) {
+            group.getDrawer(i).setStoredItem(Handler.items[i]);
+            group.getDrawer(i).setStoredItemCount(Handler.count[i]);
         }
     }
     @Override
@@ -51,6 +56,14 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
     @Override
     public boolean allowControl(Block block){
         return block instanceof BlockDrawers && !(block instanceof BlockCompDrawers);
+    }
+    @Override
+    public String getName() {
+        return NAME;
+    }
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
+        return new NormalDrawerHandler(nbt);
     }
     @Override
     public boolean canHandlerCreateMenu() {
@@ -98,8 +111,15 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 // Empty and locked drawers are not supported (they will be filled with item)
             }
         }
+        public NormalDrawerHandler(CompoundTag nbt){
+            super(nbt);
+            count = new int[items.length];
+            ListTag list = nbt.getList("count", Tag.TAG_INT);
+            for (int slot = 0; slot < count.length; slot++)
+                count[slot] = ((IntTag)list.get(slot)).getAsInt();
+        }
         public boolean canInsert(int slot,ItemStack stack){
-            return !stack.isEmpty() && (ItemStack.isSameItem(items[slot],stack) || items[slot].is(Items.AIR));
+            return !stack.isEmpty() && (Utils.isSameItem(items[slot],stack) || items[slot].is(Items.AIR));
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack) {
@@ -135,16 +155,15 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                     }
                 }
                 if(simulate){
-                    if(stack.getCount() <= slotLimits[slot])
+                    if(stack.getCount() + count[slot] <= slotLimits[slot])
                         return ItemStack.EMPTY;
                     else {
                         stack.setCount(stack.getCount() - slotLimits[slot]);
                         return stack;
                     }
-                }
-                if(count[slot] + stack.getCount() > slotLimits[slot]) {
-                    stack.grow(slotLimits[slot] - count[slot]);
-                    count[slot] += slotLimits[slot];
+                }else if(count[slot] + stack.getCount() > slotLimits[slot]) {
+                    stack.shrink(slotLimits[slot] - count[slot]);
+                    count[slot] = slotLimits[slot];
                     return stack;
                 }else {
                     count[slot] += stack.getCount();
@@ -170,6 +189,19 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 }
             }
             return toExtract;
+        }
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag tag = super.serializeNBT();
+            ListTag list = new ListTag();
+            for (int i : count)
+                list.add(IntTag.valueOf(i));
+            tag.put("count",list);
+            return tag;
+        }
+        @Override
+        public String getName() {
+            return NAME;
         }
     }
 }

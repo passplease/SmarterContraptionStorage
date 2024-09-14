@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,7 +25,7 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
     @Override
     public final @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         doSomething(entity);
-        return nullHandler;
+        return NULL_HANDLER;
     }
 
     @Override
@@ -43,5 +44,15 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
     protected final void normallyDo(BlockEntity entity) {
         assert canCreateHandler(entity);
         StorageHandlerHelper.BlockEntityList.add(entity);
+    }
+
+    @Override
+    public final String getName() {
+        return "InitializeHelper";
+    }
+
+    @Override
+    public final @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+        return NULL_HANDLER;
     }
 }

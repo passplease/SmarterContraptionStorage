@@ -8,6 +8,11 @@ import net.minecraft.world.entity.player.Player;
 import java.util.Optional;
 
 public record AE2ContraptionSource(IActionHost host) implements IActionSource {
+
+    public static AE2ContraptionSource create(IGridNode extractNode) {
+        return new AE2ContraptionSource(()->extractNode);
+    }
+
     @Override
     public Optional<Player> player() {
         return Optional.empty();
@@ -21,9 +26,5 @@ public record AE2ContraptionSource(IActionHost host) implements IActionSource {
     @Override
     public <T> Optional<T> context(Class<T> aClass) {
         return Optional.empty();
-    }
-
-    public static AE2ContraptionSource create(IGridNode node){
-        return new AE2ContraptionSource(()->node);
     }
 }

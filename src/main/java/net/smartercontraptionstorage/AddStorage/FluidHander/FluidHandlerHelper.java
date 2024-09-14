@@ -14,6 +14,7 @@ import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public abstract class FluidHandlerHelper implements MenuSupportHandler {
      * Due to we can only add one tank to the contraption for each entity, so we add DefaultSlot of muti-slots entity
      * */
     public static final int DefaultSlot = 0;
+    protected static final ArrayList<BlockEntity> BlockEntityList = new ArrayList<>();
     public static boolean canUseAsStorage(@NotNull Item comparedItem){
         return canUseAsStorage(comparedItem,Block.byItem(comparedItem));
     }
@@ -57,6 +59,11 @@ public abstract class FluidHandlerHelper implements MenuSupportHandler {
                 return handlerHelper;
         return null;
     }
+
+    public static void clearData() {
+        BlockEntityList.clear();
+    }
+
     public boolean sendPacket(){
         return false;
     }

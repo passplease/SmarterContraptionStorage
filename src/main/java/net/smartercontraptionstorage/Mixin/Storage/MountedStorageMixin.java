@@ -1,11 +1,14 @@
 package net.smartercontraptionstorage.Mixin.Storage;
 
 import com.simibubi.create.content.contraptions.MountedStorage;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.*;
 import net.minecraft.world.entity.player.Player;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
+import net.smartercontraptionstorage.Settable;
 import net.smartercontraptionstorage.Utils;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
@@ -17,10 +20,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.nullHandler;
+import java.util.Objects;
+
+import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.NULL_HANDLER;
 
 @Mixin(MountedStorage.class)
-public abstract class MountedStorageMixin {
+public abstract class MountedStorageMixin implements Settable {
     @Shadow(remap = false) private BlockEntity blockEntity;
 
     @Shadow(remap = false) boolean valid;
@@ -38,7 +43,7 @@ public abstract class MountedStorageMixin {
     @Inject(method = "removeStorageFromWorld",at = @At("HEAD"),cancellable = true,remap = false)
     public void removeStorageFromWorld(CallbackInfo ci){
         if(!smarterContraptionStorage$canUseForStorage){
-            handler = nullHandler;
+            handler = NULL_HANDLER;
             valid = true;
             ci.cancel();
             return;
@@ -49,7 +54,7 @@ public abstract class MountedStorageMixin {
             if(handler instanceof NeedDealWith)
                 ((NeedDealWith) handler).doSomething(blockEntity);
             if(handler == null) {
-                handler = nullHandler;
+                handler = NULL_HANDLER;
                 valid = false;
             }else valid = true;
             ci.cancel();
@@ -57,7 +62,7 @@ public abstract class MountedStorageMixin {
     }
     @Inject(method = "addStorageToWorld",at = @At("HEAD"),cancellable = true,remap = false)
     public void addStorageToWorld(BlockEntity be, CallbackInfo ci){
-        if(smarterContraptionStorage$helper != null && handler != nullHandler) {
+        if(smarterContraptionStorage$helper != null && handler != NULL_HANDLER) {
             smarterContraptionStorage$helper.addStorageToWorld(be, handler);
             ci.cancel();
         }
@@ -82,6 +87,46 @@ public abstract class MountedStorageMixin {
         }
         return handler;
     }
+    @Inject(method = "serialize",at = @At(value = "RETURN"),cancellable = true,remap = false)
+    public void serialize(CallbackInfoReturnable<CompoundTag> cir){
+        if(smarterContraptionStorage$helper != null){
+            CompoundTag tag = cir.getReturnValue();
+            if(tag == null)
+                return;
+            tag.putString(StorageHandlerHelper.DESERIALIZE_MARKER,smarterContraptionStorage$helper.getName());
+            if(!smarterContraptionStorage$helper.canDeserialize()) {
+                smarterContraptionStorage$helper.addStorageToWorld(blockEntity, handler);
+                tag.put("pos", NbtUtils.writeBlockPos(blockEntity.getBlockPos()));
+            }
+            cir.setReturnValue(tag);
+        }
+    }
+    @Inject(method = "deserialize",at = @At("HEAD"),cancellable = true,remap = false)
+    private static void deserialize(CompoundTag nbt, CallbackInfoReturnable<MountedStorage> cir){
+        if(nbt.contains(StorageHandlerHelper.DESERIALIZE_MARKER)){
+            StorageHandlerHelper helper = null;
+            try{
+                MountedStorage storage = new MountedStorage(null);
+                helper = StorageHandlerHelper.findByName(nbt.getString(StorageHandlerHelper.DESERIALIZE_MARKER));
+                if(helper.canDeserialize()) {
+                    ((Settable) storage).set(helper.deserialize(nbt));
+                }else {
+                    BlockPos blockPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
+                    BlockEntity blockEntity = FunctionChanger.presentBlockEntities.get(blockPos);
+                    if(helper.canCreateHandler(blockEntity)) {
+                        ((Settable) storage).set(helper.canCreateHandler(blockEntity));
+                        ((Settable) storage).set(blockEntity);
+                    }
+                }
+                ((Settable) storage).set(helper);
+                ((Settable) storage).set(true);
+                cir.setReturnValue(storage);
+            }catch (Exception e){
+                Utils.addError("Illegal state! Unchecked deserialize try!");
+                Utils.addWarning((helper == null ? "Unknown handler" : helper.getName()) + "can't deserialize !");
+            }
+        }
+    }
     @ForFunctionChanger(method = "findMountedEntity")
     @Inject(method = "isValid",at = @At("HEAD"),remap = false)
     public void getBlockEntity(CallbackInfoReturnable<Boolean> cir){
@@ -100,7 +145,18 @@ public abstract class MountedStorageMixin {
                 cir.setReturnValue(true);
             }else
                 cir.setReturnValue(false);
-            cir.cancel();
         }
+    }
+    @Unique
+    @Override
+    public void set(Object object) {
+        if(object instanceof ItemStackHandler handler)
+            this.handler = handler;
+        else if(object instanceof Boolean valid)
+            this.valid = valid;
+        else if(object instanceof StorageHandlerHelper helper)
+            this.smarterContraptionStorage$helper = helper;
+        else if(object instanceof BlockEntity blockEntity)
+            this.blockEntity = blockEntity;
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
 import net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper;
+import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -24,6 +25,7 @@ public class MountedFluidStorageMixin {
     SmartFluidTank tank;
     @Shadow(remap = false) private boolean valid;
     @Shadow(remap = false) private boolean sendPacket;
+    @Shadow private BlockEntity blockEntity;
     @Unique @Nullable
     FluidHandlerHelper smarterContraptionStorage$handlerHelper;
     @Unique boolean smarterContraptionStorage$canUseForStorage;
@@ -75,6 +77,8 @@ public class MountedFluidStorageMixin {
         if(!valid && smarterContraptionStorage$handlerHelper != null){
             valid = true;
             sendPacket = smarterContraptionStorage$handlerHelper.sendPacket();
+            if(tank instanceof NeedDealWith)
+                ((NeedDealWith) tank).doSomething(blockEntity);
         }
     }
     @Inject(method = "addStorageToWorld",at = @At("HEAD"),remap = false,cancellable = true)

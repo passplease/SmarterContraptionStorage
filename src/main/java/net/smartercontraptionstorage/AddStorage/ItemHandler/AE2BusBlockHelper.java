@@ -21,6 +21,7 @@ import appeng.parts.automation.ExportBusPart;
 import appeng.parts.automation.IOBusPart;
 import appeng.util.ConfigInventory;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -34,6 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 
 public class AE2BusBlockHelper extends StorageHandlerHelper{
+    public static final String NAME = "AE2BusBlockHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof CableBusBlockEntity;
@@ -48,13 +50,13 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         CableBusBlockEntity bus = (CableBusBlockEntity)entity;
         ICablePart center = (ICablePart)bus.getPart(null);
         if(center == null || center.getCableConnectionType() != AECableType.COVERED)
-            return nullHandler;// Must use covered_cable
+            return NULL_HANDLER;// Must use covered_cable
         ConfigInventory config;
         AEKey key;
         ItemStack item;
         WirelessCraftingTerminalItem terminal;
         IGrid id;
-        IGridNode host,exportHost = null,importHost = null;
+        IGridNode node,exportNode = null,importNode = null;
 
         for(IPart part : getAllPart(bus)){
             if(part instanceof IOBusPart){
@@ -72,21 +74,21 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
                         id = terminal.getLinkedGrid(item,entity.getLevel(),null);
 
                         if (id != null) {
-                            host = id.getPivot();
-                            if(host == null)
+                            node = id.getPivot();
+                            if(node == null)
                                 continue;
                             if(part instanceof ExportBusPart)
-                                exportHost = host;
+                                exportNode = node;
                             else
-                                importHost = host;
+                                importNode = node;
                         }
                     }
                 }
             }
-            if(exportHost != null && importHost != null)
-                return AE2HandlerHelper.create(exportHost,importHost);
+            if(exportNode != null && importNode != null)
+                return AE2HandlerHelper.create(exportNode,importNode);
         }
-        return exportHost == null && importHost == null ? nullHandler : AE2HandlerHelper.create(exportHost,importHost);
+        return exportNode == null && importNode == null ? NULL_HANDLER : AE2HandlerHelper.create(exportNode,importNode);
     }
 
     private static IPart[] getAllPart(CableBusBlockEntity bus){
@@ -123,6 +125,17 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return false;
     }
+
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+        return null;
+    }
+
     public static class AE2HandlerHelper extends ItemStackHandler implements NeedDealWith {
         public final @Nullable IGridNode extractNode;
         public final @Nullable IGridNode importNode;

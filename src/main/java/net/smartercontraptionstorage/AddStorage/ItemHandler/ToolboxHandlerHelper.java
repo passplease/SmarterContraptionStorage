@@ -4,6 +4,7 @@ import com.simibubi.create.content.equipment.toolbox.ToolboxBlock;
 import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.content.equipment.toolbox.ToolboxHandler;
 import com.simibubi.create.content.equipment.toolbox.ToolboxInventory;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,6 +14,7 @@ import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 public class ToolboxHandlerHelper extends StorageHandlerHelper{
+    public static final String NAME = "ToolboxHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof ToolboxBlockEntity;
@@ -43,6 +45,21 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
         return block instanceof ToolboxBlock;
     }
 
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    @Override
+    public boolean canDeserialize() {
+        return false;
+    }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+        throw new IllegalAccessException();
+    }
+
     public static class ToolboxHelper extends ToolboxInventory implements NeedDealWith {
         public ToolboxHelper(ToolboxBlockEntity be) {
             super(be);
@@ -51,7 +68,6 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
         @Override
         public void doSomething(BlockEntity entity) {
             StorageHandlerHelper.BlockEntityList.add(entity);
-            Utils.addInventory((ToolboxBlockEntity) entity);
         }
 
         @Override

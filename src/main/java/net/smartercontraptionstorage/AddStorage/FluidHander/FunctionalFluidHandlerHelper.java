@@ -30,7 +30,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
 
     @Override
     public boolean canCreateHandler(Item comparedItem) {
-        return false;
+        return comparedItem instanceof FluidDrawerBlock.DrawerItem;
     }
 
     @Override

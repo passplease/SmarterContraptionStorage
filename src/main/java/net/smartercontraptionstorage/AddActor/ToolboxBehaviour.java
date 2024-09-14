@@ -3,6 +3,7 @@ package net.smartercontraptionstorage.AddActor;
 import com.simibubi.create.content.contraptions.behaviour.MovementBehaviour;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.content.equipment.toolbox.ToolboxHandler;
+import com.simibubi.create.content.logistics.filter.FilterItem;
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.foundation.utility.NBTHelper;
@@ -54,7 +55,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
         ItemStack item;
         for(ItemStack playerItem : playerItems){
             for(ItemStack filterItem : filterItems){
-                if(ItemStack.isSameItem(filterItem,playerItem)){
+                if(Utils.isSameItem(filterItem,playerItem)){
                     halfMaxSize = playerItem.getMaxStackSize() / 2;
                     if(halfMaxSize == 0)
                         continue;
@@ -65,7 +66,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
                         halfMaxSize += ItemHandlerHelper.insertItem(context.contraption.getSharedInventory(),item,false).getCount();
                         playerItem.setCount(halfMaxSize);
                     }else if(count < halfMaxSize){
-                        count += ItemHelper.extract(context.contraption.getSharedInventory(),(stack) -> ItemStack.isSameItem(stack,playerItem),halfMaxSize - count,false).getCount();
+                        count += ItemHelper.extract(context.contraption.getSharedInventory(),(stack) -> Utils.isSameItem(playerItem,stack),halfMaxSize - count,false).getCount();
                         playerItem.setCount(count);
                     }
                 }

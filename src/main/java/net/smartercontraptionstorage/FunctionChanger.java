@@ -69,4 +69,5 @@ public final class FunctionChanger {
     public static Contraption getContraption() {
         return contraption;
     }
+    public static Map<BlockPos, BlockEntity> presentBlockEntities;
 }

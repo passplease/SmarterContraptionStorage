@@ -44,7 +44,6 @@ public final class Utils {
         pair.clear();
         pos.clear();
         smarterContraptionStorage$canUseForStorage = false;
-        toolboxInventory = new CompoundTag();
     }
     public static <T> void addData(HashMap<Integer,T> map, T t){
         map.put(map.size(), t);
@@ -128,25 +127,6 @@ public final class Utils {
         double Z = Math.abs(pos1.getZ() - pos2.getZ());
         return Math.max(X,Math.max(Y,Z));
     }
-    private static CompoundTag toolboxInventory = new CompoundTag();
-    public static void addInventory(ToolboxBlockEntity entity){
-        toolboxInventory.put(String.valueOf(toolboxInventory.size()),entity.serializeNBT().getCompound("Inventory"));
-    }
-    public static CompoundTag getInventory(){
-        CompoundTag tag = new CompoundTag();
-        ListTag inventory = new ListTag();
-        for (int i = toolboxInventory.size() - 1; i >= 0; i--) {
-            if(toolboxInventory.get(String.valueOf(i)) instanceof CompoundTag list){
-                ListTag List = list.getList("Compartments", Tag.TAG_COMPOUND);
-                for (int j = List.size() - 1; j >= 0; j--)
-                    if(!((CompoundTag) List.get(j)).getString("id").endsWith("air"))
-                        inventory.add(List.get(j));
-            }
-        }
-        toolboxInventory = new CompoundTag();
-        tag.put("Compartments",inventory);
-        return tag;
-    }
     public static @Nullable ArrayList<FluidStack> getFluidByItem(ItemStack can){
         IFluidHandler fluidHandler = can.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null);
         if(fluidHandler == null)
@@ -161,5 +141,11 @@ public final class Utils {
     }
     public static void addWarning(String text){
         LogUtils.getLogger().warn(text);
+    }
+    public static void addError(String text){
+        LogUtils.getLogger().error(text);
+    }
+    public static boolean isSameItem(ItemStack stack1,ItemStack stack2){
+        return ItemStack.isSameItem(stack1,stack2);
     }
 }

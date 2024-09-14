@@ -1,7 +1,7 @@
 Java Launcher: C:\Program Files\Java\jdk-17\bin\java.exe
-Arguments: '--inJar, C:\Users\Administrator\Desktop\JAVA閾ｪ蟄ｦ遞句ｺ十SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.20.1-47.1.43\forge-1.20.1-47.1.43-injected.jar, --outJar, C:\Users\Administrator\Desktop\JAVA閾ｪ蟄ｦ遞句ｺ十SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1\forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar, --logFile, accesstransform.log, --atFile, C:\Users\Administrator\Desktop\JAVA閾ｪ蟄ｦ遞句ｺ十SmarterContraptionStorage\src\main\resources\META-INF\accesstransformer_at.cfg, --atFile, C:\Users\Administrator\Desktop\JAVA閾ｪ蟄ｦ遞句ｺ十SmarterContraptionStorage\build\_atJar_4\parent_at.cfg'
+Arguments: '--inJar, C:\Users\Administrator\Desktop\JAVAﾗﾔﾑｧｳﾌﾐSmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.20.1-47.1.43\forge-1.20.1-47.1.43-injected.jar, --outJar, C:\Users\Administrator\Desktop\JAVAﾗﾔﾑｧｳﾌﾐSmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1\forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar, --logFile, accesstransform.log, --atFile, C:\Users\Administrator\Desktop\JAVAﾗﾔﾑｧｳﾌﾐSmarterContraptionStorage\src\main\resources\META-INF\accesstransformer_at.cfg, --atFile, C:\Users\Administrator\Desktop\JAVAﾗﾔﾑｧｳﾌﾐSmarterContraptionStorage\build\_atJar_4\parent_at.cfg'
 Classpath:
  - C:\Users\Administrator\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\accesstransformers\8.0.7\accesstransformers-8.0.7-fatjar.jar
-Working directory: C:\Users\Administrator\Desktop\JAVA閾ｪ蟄ｦ遞句ｺ十SmarterContraptionStorage\build\_atJar_4
+Working directory: C:\Users\Administrator\Desktop\JAVAﾗﾔﾑｧｳﾌﾐSmarterContraptionStorage\build\_atJar_4
 Main class: net.minecraftforge.accesstransformer.TransformerProcessor
 ====================================

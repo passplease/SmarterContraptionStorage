@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.FluidHander;
 
+import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
@@ -11,9 +12,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
+import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +43,13 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     @Override
     public SmartFluidTank createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
-        return new TrashcanHelper((TrashCanBlockEntity) entity, Utils.getInventory());
+        return new TrashcanHelper((TrashCanBlockEntity) entity);
     }
-    public static class TrashcanHelper extends FluidHelper{
+    public static class TrashcanHelper extends FluidHelper implements NeedDealWith {
         public final boolean whiteOrBlack;
         public final ArrayList<FluidStack> filter;
-        public final List<FluidStack> toolboxFluid;
-        public TrashcanHelper(TrashCanBlockEntity entity,@Nullable CompoundTag toolboxItem) {
+        public List<FluidStack> toolboxFluid;
+        public TrashcanHelper(TrashCanBlockEntity entity) {
             super(entity.FLUID_HANDLER.getTankCapacity(0));
             whiteOrBlack = entity.liquidFilterWhitelist;
             filter = new ArrayList<>();
@@ -58,13 +59,6 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
                     list = getFluidByItem(item.getRepresentingItem());
                     if (list != null)
                         filter.addAll(list);
-                }
-            this.toolboxFluid = new ArrayList<>();
-            if (toolboxItem != null)
-                for(ItemStack fluidItem : NBTHelper.readItemList(toolboxItem.getList("Compartments", Tag.TAG_COMPOUND))){
-                    list = getFluidByItem(fluidItem);
-                    if(list != null)
-                        toolboxFluid.addAll(list);
                 }
             fluid = FluidStack.EMPTY;
         }
@@ -104,6 +98,19 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
         @Override
         public CompoundTag serializeNBT() {
             return new CompoundTag();
+        }
+
+        @Override
+        public void doSomething(BlockEntity entity) {}
+
+        @Override
+        public void finallyDo() {
+            List<ItemStack> toolboxItem = new ArrayList<>();
+            for(BlockEntity entity : BlockEntityList)
+                if(entity instanceof ToolboxBlockEntity){
+                    toolboxItem.addAll(NBTHelper.readItemList(entity.serializeNBT().getCompound("Inventory").getList("Compartments", Tag.TAG_COMPOUND)));
+                }
+            this.toolboxFluid = toolboxItem.stream().filter((item)->!item.isEmpty()).collect(ArrayList::new,(fluid,item)-> fluid.addAll(getFluidByItem(item)), ArrayList::addAll);
         }
     }
 }

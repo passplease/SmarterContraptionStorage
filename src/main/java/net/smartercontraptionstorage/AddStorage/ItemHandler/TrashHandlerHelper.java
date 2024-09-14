@@ -1,7 +1,9 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrashHandlerHelper extends StorageHandlerHelper{
+    public static final String NAME = "TrashHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof TrashCanBlockEntity && ((TrashCanBlockEntity)entity).items;
@@ -45,13 +48,22 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
     public boolean allowControl(Block block) {
         return false;
     }
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    @Override
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+        return new TrashHandler(nbt);
+    }
 
     public static class TrashHandler extends HandlerHelper implements NeedDealWith {
         public final boolean whiteOrBlack;
         public List<ItemStack> toolboxItem;
         // false : black
         // true : white
-        public TrashHandler(boolean whiteOrBlack, ArrayList<ItemStack> itemFilter) {
+        public TrashHandler(boolean whiteOrBlack, List<ItemStack> itemFilter) {
             super(itemFilter.size());
             this.whiteOrBlack = whiteOrBlack;
             for (int i = items.length - 1; i >= 0; i--) {
@@ -59,13 +71,18 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
                 slotLimits[i] = Integer.MAX_VALUE;
             }
         }
+        public TrashHandler(CompoundTag nbt){
+            super(nbt);
+            whiteOrBlack = nbt.getBoolean("whiteOrBlack");
+            toolboxItem = NBTHelper.readItemList(nbt.getList("toolboxItem", Tag.TAG_COMPOUND));
+        }
         protected boolean canDelete(ItemStack stack){
-            for (ItemStack itemStack : toolboxItem) {
-                if(ItemStack.isSameItem(stack,itemStack))
+            for (ItemStack item : toolboxItem) {
+                if(Utils.isSameItem(item,stack))
                     return false;
             }
             for (ItemStack item : items){
-                if(ItemStack.isSameItem(item,stack))
+                if(Utils.isSameItem(item,stack))
                     return whiteOrBlack;
             }
             return !whiteOrBlack;
@@ -79,10 +96,26 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
             return ItemStack.EMPTY;
         }
         @Override
+        public String getName() {
+            return NAME;
+        }
+        @Override
         public void doSomething(BlockEntity entity) {}
         @Override
         public void finallyDo() {
-            this.toolboxItem = NBTHelper.readItemList(Utils.getInventory().getList("Compartments", Tag.TAG_COMPOUND));
+            ArrayList<ItemStack> toolboxItem = new ArrayList<>();
+            for(BlockEntity entity : BlockEntityList)
+                if(entity instanceof ToolboxBlockEntity){
+                    toolboxItem.addAll(NBTHelper.readItemList(entity.serializeNBT().getCompound("Inventory").getList("Compartments", Tag.TAG_COMPOUND)));
+                }
+            this.toolboxItem = toolboxItem.stream().filter((item)->!item.isEmpty()).toList();
+        }
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag tag = super.serializeNBT();
+            tag.putBoolean("whiteOrBlack",whiteOrBlack);
+            tag.put("toolboxItem",NBTHelper.writeItemList(toolboxItem));
+            return tag;
         }
     }
 }

@@ -56,7 +56,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         ItemStack item;
         WirelessCraftingTerminalItem terminal;
         IGrid id;
-        IGridNode node,exportNode = null,importNode = null;
+        IGridNode host,exportHost = null,importHost = null;
 
         for(IPart part : getAllPart(bus)){
             if(part instanceof IOBusPart){
@@ -74,21 +74,21 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
                         id = terminal.getLinkedGrid(item,entity.getLevel(),null);
 
                         if (id != null) {
-                            node = id.getPivot();
-                            if(node == null)
+                            host = id.getPivot();
+                            if(host == null)
                                 continue;
                             if(part instanceof ExportBusPart)
-                                exportNode = node;
+                                exportHost = host;
                             else
-                                importNode = node;
+                                importHost = host;
                         }
                     }
                 }
             }
-            if(exportNode != null && importNode != null)
-                return AE2HandlerHelper.create(exportNode,importNode);
+            if(exportHost != null && importHost != null)
+                return AE2HandlerHelper.create(exportHost,importHost);
         }
-        return exportNode == null && importNode == null ? NULL_HANDLER : AE2HandlerHelper.create(exportNode,importNode);
+        return exportHost == null && importHost == null ? NULL_HANDLER : AE2HandlerHelper.create(exportHost,importHost);
     }
 
     private static IPart[] getAllPart(CableBusBlockEntity bus){
@@ -133,7 +133,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
 
     @Override
     public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
-        return null;
+        throw new IllegalAccessException();
     }
 
     public static class AE2HandlerHelper extends ItemStackHandler implements NeedDealWith {

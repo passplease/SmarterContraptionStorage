@@ -43,14 +43,29 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public SmartFluidTank createHandler(BlockEntity entity) {
+    public @NotNull SmartFluidTank createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         return new BackPackFluidHelper(((BackpackBlockEntity)entity).getBackpackWrapper().getFluidHandler().get());
     }
+
+    @Override
+    public String getName() {
+        return "SBackPacksFluidHandlerHelper";
+    }
+
+    @Override
+    public @NotNull SmartFluidTank deserialize(CompoundTag nbt) throws IllegalAccessException {
+        return new BackPackFluidHelper(nbt);
+    }
+
     public static class BackPackFluidHelper extends FluidHelper {
         public BackPackFluidHelper(IFluidHandler handler) {
             super(handler.getTankCapacity(0));
             fluid = handler.getFluidInTank(0);
+        }
+
+        public BackPackFluidHelper(CompoundTag nbt) {
+            super(nbt);
         }
 
         @Override
@@ -71,8 +86,8 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
         }
 
         @Override
-        public CompoundTag serializeNBT() {
-            return fluid.writeToNBT(new CompoundTag());
+        public CompoundTag serialize(CompoundTag nbt) {
+            return nbt;
         }
     }
 }

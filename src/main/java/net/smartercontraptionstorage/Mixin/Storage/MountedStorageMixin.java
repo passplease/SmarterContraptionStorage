@@ -114,16 +114,15 @@ public abstract class MountedStorageMixin implements Settable {
                     BlockPos blockPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
                     BlockEntity blockEntity = FunctionChanger.presentBlockEntities.get(blockPos);
                     if(helper.canCreateHandler(blockEntity)) {
-                        ((Settable) storage).set(helper.canCreateHandler(blockEntity));
+                        helper.createHandler(blockEntity);
                         ((Settable) storage).set(blockEntity);
                     }
                 }
-                ((Settable) storage).set(helper);
-                ((Settable) storage).set(true);
+                ((Settable) storage).set(helper,true);
                 cir.setReturnValue(storage);
             }catch (Exception e){
                 Utils.addError("Illegal state! Unchecked deserialize try!");
-                Utils.addWarning((helper == null ? "Unknown handler" : helper.getName()) + "can't deserialize !");
+                Utils.addWarning((helper == null ? "Unknown item handler" : helper.getName()) + "can't deserialize !");
             }
         }
     }
@@ -150,13 +149,13 @@ public abstract class MountedStorageMixin implements Settable {
     @Unique
     @Override
     public void set(Object object) {
-        if(object instanceof ItemStackHandler handler)
-            this.handler = handler;
-        else if(object instanceof Boolean valid)
-            this.valid = valid;
-        else if(object instanceof StorageHandlerHelper helper)
-            this.smarterContraptionStorage$helper = helper;
-        else if(object instanceof BlockEntity blockEntity)
-            this.blockEntity = blockEntity;
+        if(object instanceof ItemStackHandler)
+            this.handler = (ItemStackHandler) object;
+        else if(object instanceof Boolean)
+            this.valid = (boolean) object;
+        else if(object instanceof StorageHandlerHelper)
+            this.smarterContraptionStorage$helper = (StorageHandlerHelper) object;
+        else if(object instanceof BlockEntity)
+            this.blockEntity = (BlockEntity) object;
     }
 }

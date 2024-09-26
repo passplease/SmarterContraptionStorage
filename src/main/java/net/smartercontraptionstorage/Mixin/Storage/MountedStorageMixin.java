@@ -114,12 +114,10 @@ public abstract class MountedStorageMixin implements Settable {
                     BlockPos blockPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
                     BlockEntity blockEntity = FunctionChanger.presentBlockEntities.get(blockPos);
                     if(helper.canCreateHandler(blockEntity)) {
-                        ((Settable) storage).set(helper.canCreateHandler(blockEntity));
-                        ((Settable) storage).set(blockEntity);
+                        ((Settable) storage).set(helper.canCreateHandler(blockEntity),blockEntity);
                     }
                 }
-                ((Settable) storage).set(helper);
-                ((Settable) storage).set(true);
+                ((Settable) storage).set(helper,true);
                 cir.setReturnValue(storage);
             }catch (Exception e){
                 Utils.addError("Illegal state! Unchecked deserialize try!");

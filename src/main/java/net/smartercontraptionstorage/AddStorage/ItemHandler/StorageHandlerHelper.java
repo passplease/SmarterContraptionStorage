@@ -12,12 +12,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
+import net.smartercontraptionstorage.AddStorage.SerializableHandler;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public abstract class StorageHandlerHelper implements MenuSupportHandler {
+public abstract class StorageHandlerHelper implements MenuSupportHandler, SerializableHandler {
     public static final String DESERIALIZE_MARKER = "OtherHandlers";
     public static final ItemStackHandler NULL_HANDLER = new ItemStackHandler(){
         @Override
@@ -78,16 +80,11 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
     public static StorageHandlerHelper findByName(String name){
         return HandlerHelpers.stream().filter((helper)-> helper.canDeserialize() && Objects.equals(helper.getName(), name)).findFirst().orElse(null);
     }
-    public boolean canDeserialize(){
-        return true;
-    }
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);
     public abstract @NotNull ItemStackHandler createHandler(BlockEntity entity);
     public abstract boolean allowControl(Item comparedItem);
     public abstract boolean allowControl(Block block);
-    public abstract String getName();
-    public abstract @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException;
     // two allowDumping only need to achieve one, another can return false
     public static Set<StorageHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;
@@ -123,7 +120,7 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler {
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack){
-            if(items[slot].sameItem(stack))
+            if(Utils.isSameItem(items[slot],stack))
                 return slotLimits[slot];
             else return 0;
         }

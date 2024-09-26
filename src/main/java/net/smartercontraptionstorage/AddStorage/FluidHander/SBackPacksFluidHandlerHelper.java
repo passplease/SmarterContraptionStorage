@@ -2,20 +2,15 @@ package net.smartercontraptionstorage.AddStorage.FluidHander;
 
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     @Override
@@ -43,14 +38,29 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public SmartFluidTank createHandler(BlockEntity entity) {
+    public @NotNull SmartFluidTank createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         return new BackPackFluidHelper(((BackpackBlockEntity)entity).getBackpackWrapper().getFluidHandler().get());
     }
+
+    @Override
+    public String getName() {
+        return "SBackPacksFluidHandlerHelper";
+    }
+
+    @Override
+    public @NotNull SmartFluidTank deserialize(CompoundTag nbt) {
+        return new BackPackFluidHelper(nbt);
+    }
+
     public static class BackPackFluidHelper extends FluidHelper {
         public BackPackFluidHelper(IFluidHandler handler) {
             super(handler.getTankCapacity(0));
             fluid = handler.getFluidInTank(0);
+        }
+
+        public BackPackFluidHelper(CompoundTag nbt) {
+            super(nbt);
         }
 
         @Override
@@ -71,8 +81,8 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
         }
 
         @Override
-        public CompoundTag serializeNBT() {
-            return fluid.writeToNBT(new CompoundTag());
+        public CompoundTag serialize(CompoundTag nbt) {
+            return nbt;
         }
     }
 }

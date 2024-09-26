@@ -8,17 +8,40 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
 import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
+import net.smartercontraptionstorage.AddStorage.SerializableHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-public abstract class FluidHandlerHelper implements MenuSupportHandler {
+public abstract class FluidHandlerHelper implements MenuSupportHandler, SerializableHandler<SmartFluidTank> {
+    public static final String DESERIALIZE_MARKER = "FluidHandlers";
+    public static final SmartFluidTank NULL_HANDLER = new SmartFluidTank(0,null){
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return 0;
+        }
+
+        @Override
+        public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
+            return FluidStack.EMPTY;
+        }
+
+        @Override
+        public boolean isFluidValid(FluidStack stack) {
+            return false;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+    };
     /**
      * Due to we can only add one tank to the contraption for each entity, so we add DefaultSlot of muti-slots entity
      * */
@@ -60,6 +83,10 @@ public abstract class FluidHandlerHelper implements MenuSupportHandler {
         return null;
     }
 
+    public static FluidHandlerHelper findByName(String name){
+        return HandlerHelpers.stream().filter((helper)-> Objects.equals(helper.getName(),name)).findFirst().orElse(null);
+    }
+
     public static void clearData() {
         BlockEntityList.clear();
     }
@@ -72,13 +99,17 @@ public abstract class FluidHandlerHelper implements MenuSupportHandler {
     public abstract boolean canCreateHandler(Item comparedItem);
     public abstract boolean canCreateHandler(Block block);
     public abstract boolean canCreateHandler(BlockEntity entity);
-    public abstract @Nullable SmartFluidTank createHandler(BlockEntity entity);
+    public abstract @NotNull SmartFluidTank createHandler(BlockEntity entity);
     public static Set<FluidHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;
     }
-    public static abstract class FluidHelper extends SmartFluidTank implements INBTSerializable<CompoundTag> {
+    public static abstract class FluidHelper extends SmartFluidTank{
         public FluidHelper(int capacity){
             super(capacity,null);
+        }
+        public FluidHelper(CompoundTag nbt){
+            super(nbt.getInt("capacity"),null);
+            super.readFromNBT(nbt);
         }
         public abstract boolean canFill(FluidStack fluid);
         public abstract void setFluid(int amount,FluidStack stack);
@@ -108,7 +139,12 @@ public abstract class FluidHandlerHelper implements MenuSupportHandler {
             return toExtract;
         }
         @Override
-        public void deserializeNBT(CompoundTag tag) {}
+        public final CompoundTag writeToNBT(CompoundTag nbt){
+            CompoundTag tag = serialize(super.writeToNBT(nbt));
+            tag.putInt("capacity",capacity);
+            return tag;
+        }
+        public abstract CompoundTag serialize(CompoundTag nbt);
         @Override
         public int getFluidAmount() {
             return getAmount();

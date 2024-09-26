@@ -52,7 +52,7 @@ public class BackpackBehaviour extends ToolboxBehaviour{
             stack = ItemHandlerHelper.insertItem(context.contraption.getSharedInventory(), item.getItem(), false);
             if(stack.isEmpty())
                 item.kill();
-            else item.setItem(stack);
+            else Utils.isSameItem(item.getItem(),stack);
         }
     }
     public void refillTick(MovementContext context,double range){

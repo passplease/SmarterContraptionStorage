@@ -55,7 +55,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
         ItemStack item;
         for(ItemStack playerItem : playerItems){
             for(ItemStack filterItem : filterItems){
-                if(filterItem.sameItem(playerItem)){
+                if(Utils.isSameItem(playerItem,filterItem)){
                     halfMaxSize = playerItem.getMaxStackSize() / 2;
                     if(halfMaxSize == 0)
                         continue;
@@ -66,7 +66,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
                         halfMaxSize += ItemHandlerHelper.insertItem(context.contraption.getSharedInventory(),item,false).getCount();
                         playerItem.setCount(halfMaxSize);
                     }else if(count < halfMaxSize){
-                        count += ItemHelper.extract(context.contraption.getSharedInventory(),(stack) -> FilterItem.test(context.world, stack, playerItem),halfMaxSize - count,false).getCount();
+                        count += ItemHelper.extract(context.contraption.getSharedInventory(),(stack) -> Utils.isSameItem(playerItem,stack),halfMaxSize - count,false).getCount();
                         playerItem.setCount(count);
                     }
                 }

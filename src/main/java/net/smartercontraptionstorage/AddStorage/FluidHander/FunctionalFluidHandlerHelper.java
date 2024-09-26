@@ -12,7 +12,6 @@ import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     public static final String Slot = Integer.toString(DefaultSlot);
@@ -22,9 +21,8 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
         assert canCreateHandler(entity);
         FluidDrawerTile Entity = (FluidDrawerTile)entity;
         CompoundTag nbt = Entity.getFluidHandler().serializeNBT();
-        CompoundTag tag = ((FluidDrawerHandler)helper).serializeNBT();
-        nbt.put(Slot, Objects.requireNonNull(tag.get(Slot)));
-        nbt.put(Locked, Objects.requireNonNull(tag.get(Locked)));
+        nbt.put(Slot, helper.getFluid().writeToNBT(new CompoundTag()));
+        nbt.put(Locked,((FluidDrawerHandler)helper).filter.writeToNBT(new CompoundTag()));
         Entity.getFluidHandler().deserializeNBT(nbt);
     }
 
@@ -44,16 +42,32 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public SmartFluidTank createHandler(BlockEntity entity) {
+    public @NotNull SmartFluidTank createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
         return new FluidDrawerHandler(((FluidDrawerTile) entity).getFluidHandler());
     }
+
+    @Override
+    public String getName() {
+        return "FunctionalFluidHandlerHelper";
+    }
+
+    @Override
+    public @NotNull FluidDrawerHandler deserialize(CompoundTag nbt) {
+        return new FluidDrawerHandler(nbt);
+    }
+
     public static class FluidDrawerHandler extends FluidHelper{
         public final FluidStack filter;
         public FluidDrawerHandler(BigFluidHandler handler) {
             super(handler.getTankCapacity(DefaultSlot));
             fluid = handler.getFluidInTank(DefaultSlot);
             filter = Arrays.stream(handler.getFilterStack()).toList().get(DefaultSlot);
+        }
+
+        public FluidDrawerHandler(CompoundTag nbt){
+            super(nbt);
+            filter = FluidStack.loadFluidStackFromNBT(nbt);
         }
 
         @Override
@@ -73,10 +87,8 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
         }
 
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = new CompoundTag();
-            tag.put(Slot,fluid.writeToNBT(new CompoundTag()));
-            tag.put(Locked,filter.writeToNBT(new CompoundTag()));
+        public CompoundTag serialize(CompoundTag tag) {
+            filter.writeToNBT(tag);
             return tag;
         }
     }

@@ -137,7 +137,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             if(canInsert(slot,stack)){
                 // below should change markedItem in time, but I don't know how to do this right now.
-                if(items[slot].is(Items.AIR)){
+                if(Utils.isSameItem(Items.AIR.getDefaultInstance(),items[slot])){
                     if(stack.getCount() <= slotLimits[slot]) {
                         if(!simulate) {
                             count[slot] = stack.getCount();

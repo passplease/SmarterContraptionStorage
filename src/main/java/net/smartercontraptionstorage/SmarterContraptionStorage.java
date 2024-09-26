@@ -92,6 +92,8 @@ public class SmarterContraptionStorage {
                 register(new SpatialHandler());
                 SCS_Ponder.registerAE();
             }
+            if(list.isLoaded("cobblefordays"))
+                register(new CobblestoneGenerator());
         }
     }
 

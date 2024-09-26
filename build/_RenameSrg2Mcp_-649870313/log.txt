@@ -1,0 +1,15 @@
+Java Launcher: C:\Program Files\Java\jdk-17\bin\java.exe
+Arguments: '--task, SRG_TO_MCP, --input, C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.tterrag.registrate\Registrate\MC1.19-1.1.5\75db69f700053a6517721349738c2e2a3ee2d3d\Registrate-MC1.19-1.1.5.jar, --output, C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\com\tterrag\registrate\Registrate\MC1.19-1.1.5_mapped_parchment_2022.08.14-1.19.2\Registrate-MC1.19-1.1.5_mapped_parchment_2022.08.14-1.19.2.jar, --mcp, C:\Users\Administrator\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.19.2\2022.08.14\parchment-1.19.2-2022.08.14.zip, --strip-signatures'
+Classpath:
+ - C:\Users\Administrator\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\installertools\1.4.4\installertools-1.4.4-fatjar.jar
+Working directory: C:\Users\Administrator\Desktop\JAVA×ÔÑ§³ÌÐò\SmarterContraptionStorage\build\_RenameSrg2Mcp_-649870313
+Main class: net.minecraftforge.installertools.ConsoleTool
+====================================
+Task: SRG_TO_MCP
+Input:  C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.tterrag.registrate\Registrate\MC1.19-1.1.5\75db69f700053a6517721349738c2e2a3ee2d3d\Registrate-MC1.19-1.1.5.jar
+Output: C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\com\tterrag\registrate\Registrate\MC1.19-1.1.5_mapped_parchment_2022.08.14-1.19.2\Registrate-MC1.19-1.1.5_mapped_parchment_2022.08.14-1.19.2.jar
+MCP:    C:\Users\Administrator\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.19.2\2022.08.14\parchment-1.19.2-2022.08.14.zip
+Loading MCP Data
+Processing ZIP file
+Stripped Manifest of sha digests
+Process complete

@@ -31,40 +31,26 @@ import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandle
 import static net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper.register;
 import static net.smartercontraptionstorage.Ponder.SCS_Ponder.CONTROLLABLE_CONTAINERS;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(SmarterContraptionStorage.MODID)
 public class SmarterContraptionStorage {
-
-    // Define mod id in Excludes.SpatialPylonBlockEntityMixin common place for everything to reference
     public static final String MODID = "smartercontraptionstorage";
-    // Directly reference Excludes.SpatialPylonBlockEntityMixin slf4j logger
     public SmarterContraptionStorage() {
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SmarterContraptionStorageConfig.SPEC,"Smarter_Contraption_Storage.toml");
     }
-
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        // Some common setup code
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
         ModList list = ModList.get();
         if(list.isLoaded("create")){
             register(new ToolboxHandlerHelper());
-            SCS_Ponder.register();
             for (BlockEntry<ToolboxBlock> toolboxBlockBlockEntry : AllBlocks.TOOLBOXES) {
                 AllMovementBehaviours.registerBehaviour(toolboxBlockBlockEntry.get(), new ToolboxBehaviour());
             }
             if(list.isLoaded("trashcans")) {
-                SCS_Ponder.registerTrashCan();
                 register(new TrashHandlerHelper());
                 register(new TrashcanFluidHelper());
             }
             if(list.isLoaded("storagedrawers")) {
-                PonderRegistry.TAGS.forTag(CONTROLLABLE_CONTAINERS).add(ModBlocks.CONTROLLER.get());
                 register(new DrawersHandlerHelper());
                 register(new CompactingHandlerHelper());
             }
@@ -90,20 +76,26 @@ public class SmarterContraptionStorage {
                 register(new AEControllerBlock());
                 register(new AEEnergyBlock());
                 register(new SpatialHandler());
-                SCS_Ponder.registerAE();
             }
             if(list.isLoaded("cobblefordays"))
                 register(new CobblestoneGenerator());
         }
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
-
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
+            ModList list = ModList.get();
+            if(list.isLoaded("create")){
+                SCS_Ponder.register();
+                if(list.isLoaded("trashcans"))
+                    SCS_Ponder.registerTrashCan();
+                if(list.isLoaded("storagedrawers"))
+                    PonderRegistry.TAGS.forTag(CONTROLLABLE_CONTAINERS).add(ModBlocks.CONTROLLER.get());
+                if(SmarterContraptionStorageConfig.AE2SUPPORT.get() && list.isLoaded("ae2"))
+                    SCS_Ponder.registerAE();
+            }
         }
     }
 }

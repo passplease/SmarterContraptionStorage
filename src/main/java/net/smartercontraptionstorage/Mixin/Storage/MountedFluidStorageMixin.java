@@ -30,7 +30,7 @@ public class MountedFluidStorageMixin implements Settable {
     SmartFluidTank tank;
     @Shadow(remap = false) private boolean valid;
     @Shadow(remap = false) private boolean sendPacket;
-    @Shadow private BlockEntity blockEntity;
+    @Shadow(remap = false) private BlockEntity blockEntity;
     @Unique @Nullable
     FluidHandlerHelper smarterContraptionStorage$handlerHelper;
     @Unique boolean smarterContraptionStorage$canUseForStorage;

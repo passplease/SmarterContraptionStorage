@@ -14,7 +14,6 @@ import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 public class ToolboxHandlerHelper extends StorageHandlerHelper{
-    public static final String NAME = "ToolboxHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof ToolboxBlockEntity;
@@ -47,7 +46,7 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public String getName() {
-        return NAME;
+        return "ToolboxHandlerHelper";
     }
 
     @Override

@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.OptionalLong;
 
 public class AE2BusBlockHelper extends StorageHandlerHelper{
-    public static final String NAME = "AE2BusBlockHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof CableBusBlockEntity;
@@ -129,7 +128,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
 
     @Override
     public String getName() {
-        return NAME;
+        return "AE2BusBlockHelper";
     }
 
     @Override

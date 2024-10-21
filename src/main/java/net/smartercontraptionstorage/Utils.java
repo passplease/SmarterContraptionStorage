@@ -1,12 +1,8 @@
 package net.smartercontraptionstorage;
 
 import com.mojang.logging.LogUtils;
-import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -49,13 +45,13 @@ public final class Utils {
         map.put(map.size(), t);
     }
     public static boolean canBeControlledItem(Item comparedItem){
-        return canUseModdedInventory(comparedItem) ||
+        return canUseModInventory(comparedItem) ||
                 canUseAsStorage(comparedItem);
     }
     public static boolean canUseAsStorage(Item comparedItem){
         return FluidHandlerHelper.canUseAsStorage(comparedItem);
     }
-    public static boolean canUseModdedInventory(Item comparedItem){
+    public static boolean canUseModInventory(Item comparedItem){
         return canUseCreateInventory(comparedItem) ||
                 StorageHandlerHelper.canControl(comparedItem);
     }
@@ -66,13 +62,13 @@ public final class Utils {
                 comparedItem == Items.BARREL;
     }
     public static boolean canBeControlledBlock(Block comparedBlock){
-        return canUseModdedInventory(comparedBlock) ||
+        return canUseModInventory(comparedBlock) ||
                 canUseAsStorage(comparedBlock);
     }
     public static boolean canUseAsStorage(Block comparedBlock){
         return FluidHandlerHelper.canUseAsStorage(comparedBlock);
     }
-    public static boolean canUseModdedInventory(Block comparedBlock){
+    public static boolean canUseModInventory(Block comparedBlock){
         return canUseCreateInventory(comparedBlock) ||
                 StorageHandlerHelper.canControl(comparedBlock);
     }

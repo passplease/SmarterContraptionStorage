@@ -11,7 +11,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 public class CompactingHandlerHelper extends DrawersHandlerHelper{
-    public static final String NAME = "CompactingHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof BlockEntityDrawersComp;
@@ -28,7 +27,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
     }
     @Override
     public String getName() {
-        return NAME;
+        return "CompactingHandlerHelper";
     }
     protected static class CompactingHandler extends NormalDrawerHandler{
         private static final ItemStack placeHolder = Items.STONE.getDefaultInstance();

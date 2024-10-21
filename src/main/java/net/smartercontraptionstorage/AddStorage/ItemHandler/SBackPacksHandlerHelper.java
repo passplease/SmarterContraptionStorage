@@ -12,7 +12,6 @@ import net.p3pp3rf1y.sophisticatedcore.inventory.InventoryHandler;
 import org.jetbrains.annotations.NotNull;
 
 public class SBackPacksHandlerHelper extends StorageHandlerHelper{
-    public static final String NAME = "SBackPacksHandlerHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof BackpackBlockEntity;
@@ -42,7 +41,7 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public String getName() {
-        return NAME;
+        return "SBackPacksHandlerHelper";
     }
 
     @Override

@@ -32,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class SpatialHandler extends StorageHandlerHelper{
-    public static final String NAME = "SpatialHandler";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof SpatialIOPortBlockEntity;
@@ -72,7 +71,7 @@ public class SpatialHandler extends StorageHandlerHelper{
 
     @Override
     public String getName() {
-        return NAME;
+        return "SpatialHandler";
     }
 
     @Override

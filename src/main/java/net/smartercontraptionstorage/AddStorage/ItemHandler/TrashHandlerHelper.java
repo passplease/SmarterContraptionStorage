@@ -26,7 +26,8 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof TrashHandler;
-        if(entity instanceof TrashCanBlockEntity Entity && handler instanceof TrashHandler Handler) {
+        if(entity instanceof TrashCanBlockEntity Entity) {
+            TrashHandler Handler = (TrashHandler) handler;
             Entity.itemFilterWhitelist = Handler.whiteOrBlack;
             for (int i = Entity.itemFilter.size() - 1; i >= 0; i--)
                 Entity.itemFilter.set(i, Handler.items[i]);

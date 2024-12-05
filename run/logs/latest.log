@@ -1,191 +1,189 @@
-[21Oct2024 21:01:39.567] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.1.43, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, smartercontraptionstorage.mixins.json]
-[21Oct2024 21:01:39.570] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0
-[21Oct2024 21:01:39.646] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
-[21Oct2024 21:01:39.706] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
-[21Oct2024 21:01:39.850] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
-[21Oct2024 21:01:39.942] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[21Oct2024 21:01:39.966] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce GT 710/PCIe/SSE2 GL version 4.6.0 NVIDIA 474.64, NVIDIA Corporation
-[21Oct2024 21:01:40.225] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.1.43\12e5cc2b50158bec903b4d511dfa0a0feb3209ab\javafmllanguage-1.20.1-47.1.43.jar is missing mods.toml file
-[21Oct2024 21:01:40.229] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.1.43\e25689773289037192545f72e23dff4d5023fe62\lowcodelanguage-1.20.1-47.1.43.jar is missing mods.toml file
-[21Oct2024 21:01:40.233] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.1.43\e6f54a896fcb804058c3c1713db61c205cb4b002\mclanguage-1.20.1-47.1.43.jar is missing mods.toml file
-[21Oct2024 21:01:40.238] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.1.43\f3f16308ded6e5e44588520dcdb767607f4ccafa\fmlcore-1.20.1-47.1.43.jar is missing mods.toml file
-[21Oct2024 21:01:40.591] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
-[21Oct2024 21:01:42.010] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[21Oct2024 21:01:42.024] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --assetIndex, 5]
-[21Oct2024 21:01:42.380] [main/INFO] [mixin/]: Remapping refMap ae2.mixins.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[21Oct2024 21:01:42.382] [main/INFO] [mixin/]: Remapping refMap supermartijn642corelib.mixins.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[21Oct2024 21:01:42.384] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[21Oct2024 21:01:42.391] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[21Oct2024 21:01:42.394] [main/INFO] [mixin/]: Remapping refMap create.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
-[21Oct2024 21:01:46.046] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 100 milliseconds
-[21Oct2024 21:01:47.943] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[21Oct2024 21:01:47.944] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[21Oct2024 21:01:47.962] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[21Oct2024 21:01:47.968] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[21Oct2024 21:01:48.096] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
-[21Oct2024 21:01:48.367] [modloading-worker-0/INFO] [PluginManager/]: Scanning classes for titanium
-[21Oct2024 21:01:48.368] [modloading-worker-0/INFO] [PluginManager/]: Scanning classes for functionalstorage
-[21Oct2024 21:01:48.373] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.1.43, for MC 1.20.1 with MCP 20230612.114412
-[21Oct2024 21:01:48.373] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.1.43 Initialized
-[21Oct2024 21:01:48.400] [modloading-worker-0/INFO] [com.jozufozu.flywheel.backend.Backend/]: No shaders mod detected.
-[21Oct2024 21:01:52.401] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [smartercontraptionstorage]
-[21Oct2024 21:01:52.766] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
-[21Oct2024 21:01:52.876] [Worker-Main-5/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 snowball = 1 snow_block
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 glowstone_dust = 1 glowstone
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 brick = 1 bricks
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 nether_brick = 1 nether_bricks
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 nether_wart = 1 nether_wart_block
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 quartz = 1 quartz_block
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 melon_slice = 1 melon
-[21Oct2024 21:01:52.903] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 sand = 1 sandstone
-[21Oct2024 21:01:52.904] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 red_sand = 1 red_sandstone
-[21Oct2024 21:01:52.907] [Worker-Main-3/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
-[21Oct2024 21:01:52.941] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[21Oct2024 21:01:54.106] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.1.43 Target: 47.3.0
-[21Oct2024 21:01:54.106] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [flywheel] Starting version check at https://api.modrinth.com/updates/flywheel/forge_updates.json
-[21Oct2024 21:01:54.331] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=west'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=east'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=north'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=south'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=west'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=south'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=south'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=north'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=north'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=north'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=south'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=south'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=north'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=west'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=south'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=south'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=west'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=east'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=east'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=north'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=east'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=west'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=west'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=east'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=north'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=east'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=east'
-[21Oct2024 21:01:54.332] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=west'
-[21Oct2024 21:01:54.333] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=north'
-[21Oct2024 21:01:54.333] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=west'
-[21Oct2024 21:01:54.333] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=east'
-[21Oct2024 21:01:54.333] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=south'
-[21Oct2024 21:01:54.333] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/machine_test.json' missing model for variant: 'titanium:machine_test#'
-[21Oct2024 21:01:54.333] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/creative_generator.json' missing model for variant: 'titanium:creative_generator#'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=true,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=true,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=false,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=false,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=true,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=false,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=true,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=false,slots=3'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=north,half=true'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=south,half=true'
-[21Oct2024 21:01:54.751] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=west,half=true'
-[21Oct2024 21:01:54.752] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=east,half=true'
-[21Oct2024 21:01:54.757] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:block_test#inventory' referenced from: titanium:block_test#inventory: java.io.FileNotFoundException: titanium:models/item/block_test.json
-[21Oct2024 21:01:54.757] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:block_twenty_four_test#inventory' referenced from: titanium:block_twenty_four_test#inventory: java.io.FileNotFoundException: titanium:models/item/block_twenty_four_test.json
-[21Oct2024 21:01:54.757] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:block_asset_test#inventory' referenced from: titanium:block_asset_test#inventory: java.io.FileNotFoundException: titanium:models/item/block_asset_test.json
-[21Oct2024 21:01:54.757] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:machine_test#inventory' referenced from: titanium:machine_test#inventory: java.io.FileNotFoundException: titanium:models/item/machine_test.json
-[21Oct2024 21:01:54.757] [Worker-Main-3/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:creative_generator#inventory' referenced from: titanium:creative_generator#inventory: java.io.FileNotFoundException: titanium:models/item/creative_generator.json
-[21Oct2024 21:01:54.823] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [flywheel] Found status: BETA Current: 0.6.10-7 Target: null
-[21Oct2024 21:01:55.763] [Render thread/INFO] [com.jozufozu.flywheel.backend.Backend/]: Loaded all shader sources.
-[21Oct2024 21:01:57.303] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
-[21Oct2024 21:01:57.304] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
-[21Oct2024 21:01:57.349] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 扬声器 (Realtek High Definition Audio)
-[21Oct2024 21:01:57.349] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[21Oct2024 21:01:57.461] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 2048x1024x4 minecraft:textures/atlas/blocks.png-atlas
-[21Oct2024 21:01:57.485] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[21Oct2024 21:01:57.486] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[21Oct2024 21:01:57.487] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[21Oct2024 21:01:57.488] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[21Oct2024 21:01:57.492] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[21Oct2024 21:01:57.497] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[21Oct2024 21:01:57.498] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[21Oct2024 21:01:57.499] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[21Oct2024 21:01:57.601] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
-[21Oct2024 21:01:57.647] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[21Oct2024 21:01:57.649] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
-[21Oct2024 21:01:57.650] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-[21Oct2024 21:01:58.239] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
-[21Oct2024 21:02:01.110] [Render thread/WARN] [net.minecraftforge.common.ForgeHooks/WP]: The following mods have version differences that were not resolved:
-smartercontraptionstorage (version 1.20.1-beta 0.6 -> 1.20.1-1.0)
+[05Dec2024 19:27:01.177] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.1.43, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, smartercontraptionstorage.mixins.json]
+[05Dec2024 19:27:01.181] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0
+[05Dec2024 19:27:01.271] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[05Dec2024 19:27:01.343] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[05Dec2024 19:27:01.494] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[05Dec2024 19:27:01.576] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[05Dec2024 19:27:01.632] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce GT 710/PCIe/SSE2 GL version 4.6.0 NVIDIA 474.64, NVIDIA Corporation
+[05Dec2024 19:27:02.027] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.1.43\12e5cc2b50158bec903b4d511dfa0a0feb3209ab\javafmllanguage-1.20.1-47.1.43.jar is missing mods.toml file
+[05Dec2024 19:27:02.037] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.1.43\e25689773289037192545f72e23dff4d5023fe62\lowcodelanguage-1.20.1-47.1.43.jar is missing mods.toml file
+[05Dec2024 19:27:02.044] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.1.43\e6f54a896fcb804058c3c1713db61c205cb4b002\mclanguage-1.20.1-47.1.43.jar is missing mods.toml file
+[05Dec2024 19:27:02.050] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.1.43\f3f16308ded6e5e44588520dcdb767607f4ccafa\fmlcore-1.20.1-47.1.43.jar is missing mods.toml file
+[05Dec2024 19:27:02.759] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[05Dec2024 19:27:04.535] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[05Dec2024 19:27:04.550] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Administrator\.gradle\caches\forge_gradle\assets, --assetIndex, 5]
+[05Dec2024 19:27:04.909] [main/INFO] [mixin/]: Remapping refMap ae2.mixins.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[05Dec2024 19:27:04.912] [main/INFO] [mixin/]: Remapping refMap supermartijn642corelib.mixins.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[05Dec2024 19:27:04.915] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[05Dec2024 19:27:04.920] [main/INFO] [mixin/]: Remapping refMap flywheel.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[05Dec2024 19:27:04.921] [main/INFO] [mixin/]: Remapping refMap create.refmap.json using C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\createSrgToMcp\output.srg
+[05Dec2024 19:27:08.914] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 140 milliseconds
+[05Dec2024 19:27:11.211] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[05Dec2024 19:27:11.212] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Administrator/Desktop/JAVA自学程序/SmarterContraptionStorage/build/fg_cache/net/minecraftforge/forge/1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1/forge-1.20.1-47.1.43_mapped_parchment_2023.06.26-1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[05Dec2024 19:27:11.240] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[05Dec2024 19:27:11.264] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[05Dec2024 19:27:11.383] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
+[05Dec2024 19:27:11.716] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.1.43, for MC 1.20.1 with MCP 20230612.114412
+[05Dec2024 19:27:11.717] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.1.43 Initialized
+[05Dec2024 19:27:11.742] [modloading-worker-0/INFO] [PluginManager/]: Scanning classes for titanium
+[05Dec2024 19:27:11.742] [modloading-worker-0/INFO] [PluginManager/]: Scanning classes for functionalstorage
+[05Dec2024 19:27:11.742] [modloading-worker-0/INFO] [com.jozufozu.flywheel.backend.Backend/]: No shaders mod detected.
+[05Dec2024 19:27:15.592] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [smartercontraptionstorage]
+[05Dec2024 19:27:15.952] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
+[05Dec2024 19:27:16.083] [Worker-Main-1/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
+[05Dec2024 19:27:16.101] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 snowball = 1 snow_block
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 glowstone_dust = 1 glowstone
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 brick = 1 bricks
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 nether_brick = 1 nether_bricks
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 nether_wart = 1 nether_wart_block
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 quartz = 1 quartz_block
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 9 melon_slice = 1 melon
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 sand = 1 sandstone
+[05Dec2024 19:27:16.102] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 red_sand = 1 red_sandstone
+[05Dec2024 19:27:16.105] [Worker-Main-7/INFO] [com.jaquadro.minecraft.storagedrawers.StorageDrawers/]: New compacting rule 4 clay_ball = 1 clay
+[05Dec2024 19:27:16.125] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[05Dec2024 19:27:17.386] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.1.43 Target: 47.3.0
+[05Dec2024 19:27:17.386] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [flywheel] Starting version check at https://api.modrinth.com/updates/flywheel/forge_updates.json
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_test.json' missing model for variant: 'titanium:block_test#subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=west,subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=north,subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=east,subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=down,subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=up,subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_twenty_four_test.json' missing model for variant: 'titanium:block_twenty_four_test#facing=south,subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=north'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=west'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=east'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/block_asset_test.json' missing model for variant: 'titanium:block_asset_test#subfacing=south'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/machine_test.json' missing model for variant: 'titanium:machine_test#'
+[05Dec2024 19:27:17.595] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'titanium:blockstates/creative_generator.json' missing model for variant: 'titanium:creative_generator#'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=true,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=true,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=north,half=false,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=west,half=false,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=true,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=south,half=false,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=true,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_indicator.json' missing model for variant: 'storagedrawers:meta_indicator#facing=east,half=false,slots=3'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=north,half=true'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=south,half=true'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=west,half=true'
+[05Dec2024 19:27:18.027] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Exception loading blockstate definition: 'storagedrawers:blockstates/meta_comp_indicator.json' missing model for variant: 'storagedrawers:meta_comp_indicator#facing=east,half=true'
+[05Dec2024 19:27:18.033] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:block_test#inventory' referenced from: titanium:block_test#inventory: java.io.FileNotFoundException: titanium:models/item/block_test.json
+[05Dec2024 19:27:18.033] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:block_twenty_four_test#inventory' referenced from: titanium:block_twenty_four_test#inventory: java.io.FileNotFoundException: titanium:models/item/block_twenty_four_test.json
+[05Dec2024 19:27:18.033] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:block_asset_test#inventory' referenced from: titanium:block_asset_test#inventory: java.io.FileNotFoundException: titanium:models/item/block_asset_test.json
+[05Dec2024 19:27:18.033] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:machine_test#inventory' referenced from: titanium:machine_test#inventory: java.io.FileNotFoundException: titanium:models/item/machine_test.json
+[05Dec2024 19:27:18.033] [Worker-Main-11/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'titanium:creative_generator#inventory' referenced from: titanium:creative_generator#inventory: java.io.FileNotFoundException: titanium:models/item/creative_generator.json
+[05Dec2024 19:27:18.050] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [flywheel] Found status: BETA Current: 0.6.10-7 Target: null
+[05Dec2024 19:27:19.074] [Render thread/INFO] [com.jozufozu.flywheel.backend.Backend/]: Loaded all shader sources.
+[05Dec2024 19:27:20.620] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[05Dec2024 19:27:20.620] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[05Dec2024 19:27:20.674] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 扬声器 (Realtek High Definition Audio)
+[05Dec2024 19:27:20.675] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[05Dec2024 19:27:20.885] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 2048x1024x4 minecraft:textures/atlas/blocks.png-atlas
+[05Dec2024 19:27:20.903] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[05Dec2024 19:27:20.904] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[05Dec2024 19:27:20.904] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[05Dec2024 19:27:20.904] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[05Dec2024 19:27:20.908] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[05Dec2024 19:27:20.910] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[05Dec2024 19:27:20.910] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[05Dec2024 19:27:20.910] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[05Dec2024 19:27:20.993] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[05Dec2024 19:27:21.031] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[05Dec2024 19:27:21.033] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[05Dec2024 19:27:21.033] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[05Dec2024 19:27:21.602] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
+[05Dec2024 19:27:32.316] [Render thread/WARN] [net.minecraftforge.common.ForgeHooks/WP]: The following mods have version differences that were not resolved:
+smartercontraptionstorage (version 1.20.1-1.0 -> 1.20.1-1.1)
 Things may not work well.
-[21Oct2024 21:02:01.119] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
-[21Oct2024 21:02:03.809] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 29 recipes
-[21Oct2024 21:02:03.892] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 2748 advancements
-[21Oct2024 21:02:04.795] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
-[21Oct2024 21:02:04.795] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[21Oct2024 21:02:05.819] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[21Oct2024 21:02:08.880] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[21Oct2024 21:02:08.881] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[21Oct2024 21:02:08.900] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[21Oct2024 21:02:08.900] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[21Oct2024 21:02:08.900] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[21Oct2024 21:02:08.900] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[21Oct2024 21:02:08.900] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[21Oct2024 21:02:09.340] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：44%
-[21Oct2024 21:02:09.590] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[21Oct2024 21:02:09.591] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 3756 ms
-[21Oct2024 21:02:09.616] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.TestPlots for plots
-[21Oct2024 21:02:09.619] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.AutoCraftingTestPlots for plots
-[21Oct2024 21:02:09.619] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.InscriberTestPlots for plots
-[21Oct2024 21:02:09.622] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.P2PTestPlots for plots
-[21Oct2024 21:02:09.622] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.ItemP2PTestPlots for plots
-[21Oct2024 21:02:09.622] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.MemoryCardTestPlots for plots
-[21Oct2024 21:02:09.622] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.PatternProviderLockModePlots for plots
-[21Oct2024 21:02:09.623] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.PatternProviderPlots for plots
-[21Oct2024 21:02:09.623] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.SpatialTestPlots for plots
-[21Oct2024 21:02:09.623] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.QnbTestPlots for plots
-[21Oct2024 21:02:09.623] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.GuidebookPlot for plots
-[21Oct2024 21:02:09.623] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.SubnetPlots for plots
-[21Oct2024 21:02:09.623] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.AnnihilationPlaneTests for plots
-[21Oct2024 21:02:09.885] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
-[21Oct2024 21:02:09.887] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
-[21Oct2024 21:02:10.044] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
-[21Oct2024 21:02:10.625] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
-[21Oct2024 21:02:10.631] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:2771eb03] logged in with entity id 181 at (44.731601475005455, 91.75178390334713, 59.74130194967714)
-[21Oct2024 21:02:10.730] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev加入了游戏
-[21Oct2024 21:02:10.783] [Server thread/WARN] [net.minecraft.server.level.ServerEntity/]: Fetching packet for removed entity ItemEntity['空气'/7, l='ServerLevel[新的世界]', x=45.13, y=79.00, z=55.15, removed=DISCARDED]
-[21Oct2024 21:02:10.785] [Server thread/WARN] [net.minecraft.server.level.ServerEntity/]: Fetching packet for removed entity ItemEntity['空气'/36, l='ServerLevel[新的世界]', x=44.10, y=78.00, z=64.48, removed=DISCARDED]
-[21Oct2024 21:02:10.793] [Server thread/WARN] [net.minecraft.server.level.ServerEntity/]: Fetching packet for removed entity ItemEntity['空气'/17, l='ServerLevel[新的世界]', x=50.85, y=79.00, z=63.88, removed=DISCARDED]
-[21Oct2024 21:02:10.794] [Server thread/WARN] [net.minecraft.server.level.ServerEntity/]: Fetching packet for removed entity ItemEntity['空气'/37, l='ServerLevel[新的世界]', x=52.52, y=86.00, z=66.87, removed=DISCARDED]
-[21Oct2024 21:02:10.955] [Render thread/INFO] [BatchExecutor/]: Started 6 worker threads
-[21Oct2024 21:02:11.016] [Render thread/WARN] [net.minecraft.client.ClientRecipeBook/]: Unknown recipe category: ae2:charger/ae2:charger/meteorite_compass
-[21Oct2024 21:02:11.030] [Render thread/WARN] [net.minecraft.client.ClientRecipeBook/]: Unknown recipe category: ae2:charger/ae2:charger/charged_certus_quartz_crystal
-[21Oct2024 21:02:11.030] [Render thread/WARN] [net.minecraft.client.ClientRecipeBook/]: Unknown recipe category: ae2:charger/ae2:charger/guide
-[21Oct2024 21:02:11.539] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 311 advancements
-[21Oct2024 21:02:12.867] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[21Oct2024 21:02:12.896] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[21Oct2024 21:02:13.843] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[21Oct2024 21:02:13.845] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[21Oct2024 21:02:13.847] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/ae2:spatial_storage
-[21Oct2024 21:06:05.579] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[21Oct2024 21:06:05.592] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[21Oct2024 21:06:05.599] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[21Oct2024 21:06:05.600] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[21Oct2024 21:06:05.600] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/ae2:spatial_storage
-[21Oct2024 21:06:06.364] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
-[21Oct2024 21:06:06.434] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: 连接中断
-[21Oct2024 21:06:06.434] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev退出了游戏
-[21Oct2024 21:06:06.445] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
-[21Oct2024 21:06:06.479] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[21Oct2024 21:06:06.479] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[21Oct2024 21:06:06.479] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[21Oct2024 21:06:07.133] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[21Oct2024 21:06:07.361] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[21Oct2024 21:06:07.362] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[21Oct2024 21:06:07.362] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/ae2:spatial_storage
-[21Oct2024 21:06:07.388] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界): All chunks are saved
-[21Oct2024 21:06:07.388] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[21Oct2024 21:06:07.388] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[21Oct2024 21:06:07.388] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (spatial_storage): All chunks are saved
-[21Oct2024 21:06:07.388] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[05Dec2024 19:27:32.325] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[05Dec2024 19:27:35.053] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 29 recipes
+[05Dec2024 19:27:35.110] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 2748 advancements
+[05Dec2024 19:27:35.918] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
+[05Dec2024 19:27:35.919] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[05Dec2024 19:27:36.997] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[05Dec2024 19:27:40.095] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[05Dec2024 19:27:40.150] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[05Dec2024 19:27:40.150] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[05Dec2024 19:27:40.168] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[05Dec2024 19:27:40.204] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[05Dec2024 19:27:40.204] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[05Dec2024 19:27:40.204] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[05Dec2024 19:27:40.512] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：11%
+[05Dec2024 19:27:40.840] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[05Dec2024 19:27:40.848] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 3837 ms
+[05Dec2024 19:27:40.873] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.TestPlots for plots
+[05Dec2024 19:27:40.877] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.AutoCraftingTestPlots for plots
+[05Dec2024 19:27:40.877] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.InscriberTestPlots for plots
+[05Dec2024 19:27:40.880] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.P2PTestPlots for plots
+[05Dec2024 19:27:40.881] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.ItemP2PTestPlots for plots
+[05Dec2024 19:27:40.881] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.MemoryCardTestPlots for plots
+[05Dec2024 19:27:40.882] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.PatternProviderLockModePlots for plots
+[05Dec2024 19:27:40.882] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.PatternProviderPlots for plots
+[05Dec2024 19:27:40.882] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.SpatialTestPlots for plots
+[05Dec2024 19:27:40.882] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.QnbTestPlots for plots
+[05Dec2024 19:27:40.884] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.GuidebookPlot for plots
+[05Dec2024 19:27:40.884] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.SubnetPlots for plots
+[05Dec2024 19:27:40.884] [Server thread/INFO] [AE2:S/]: Scanning class appeng.server.testplots.AnnihilationPlaneTests for plots
+[05Dec2024 19:27:41.174] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
+[05Dec2024 19:27:41.177] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
+[05Dec2024 19:27:41.456] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
+[05Dec2024 19:27:42.031] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
+[05Dec2024 19:27:42.035] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:673a82a4] logged in with entity id 165 at (50.965068738836756, 87.0, 63.38534417777786)
+[05Dec2024 19:27:42.112] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev加入了游戏
+[05Dec2024 19:27:42.185] [Render thread/INFO] [BatchExecutor/]: Started 6 worker threads
+[05Dec2024 19:27:42.308] [Render thread/WARN] [net.minecraft.client.ClientRecipeBook/]: Unknown recipe category: ae2:charger/ae2:charger/guide
+[05Dec2024 19:27:42.311] [Render thread/WARN] [net.minecraft.client.ClientRecipeBook/]: Unknown recipe category: ae2:charger/ae2:charger/charged_certus_quartz_crystal
+[05Dec2024 19:27:42.314] [Render thread/WARN] [net.minecraft.client.ClientRecipeBook/]: Unknown recipe category: ae2:charger/ae2:charger/meteorite_compass
+[05Dec2024 19:27:42.867] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 311 advancements
+[05Dec2024 19:27:43.214] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[05Dec2024 19:27:43.251] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[05Dec2024 19:27:44.544] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[05Dec2024 19:27:44.546] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[05Dec2024 19:27:44.547] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/ae2:spatial_storage
+[05Dec2024 19:28:13.833] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: 杀死了31个实体]
+[05Dec2024 19:28:13.852] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] 杀死了31个实体
+[05Dec2024 19:28:52.041] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[05Dec2024 19:28:52.048] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[05Dec2024 19:28:52.055] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[05Dec2024 19:28:52.056] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[05Dec2024 19:28:52.057] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/ae2:spatial_storage
+[05Dec2024 19:28:52.546] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
+[05Dec2024 19:28:52.600] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: 连接中断
+[05Dec2024 19:28:52.600] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev退出了游戏
+[05Dec2024 19:28:52.614] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
+[05Dec2024 19:28:52.649] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[05Dec2024 19:28:52.650] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[05Dec2024 19:28:52.650] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[05Dec2024 19:28:53.189] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[05Dec2024 19:28:53.463] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[05Dec2024 19:28:53.464] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[05Dec2024 19:28:53.464] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/ae2:spatial_storage
+[05Dec2024 19:28:53.490] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界): All chunks are saved
+[05Dec2024 19:28:53.490] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[05Dec2024 19:28:53.490] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[05Dec2024 19:28:53.490] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (spatial_storage): All chunks are saved
+[05Dec2024 19:28:53.490] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved

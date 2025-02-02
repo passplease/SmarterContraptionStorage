@@ -1,8 +1,19 @@
 package net.smartercontraptionstorage;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.logging.LogUtils;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Quaternion;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.LiteralContents;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -16,34 +27,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import net.smartercontraptionstorage.FunctionInterface.FiveFunction;
-import net.smartercontraptionstorage.FunctionInterface.FourFunction;
-import net.smartercontraptionstorage.FunctionInterface.TriFunction;
-import org.apache.commons.lang3.tuple.Pair;
+import net.smartercontraptionstorage.Interface.FiveFunction;
+import net.smartercontraptionstorage.Interface.FourFunction;
+import net.smartercontraptionstorage.Interface.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.util.*;
 import java.util.function.Consumer;
 
 public final class Utils {
-    public static final HashMap<Integer, Pair<StructureTemplate.StructureBlockInfo, BlockEntity>> pair = new HashMap<>();
-    public static final HashMap<Integer, BlockPos> pos = new HashMap<>();
-    public static boolean playerInteracting = false;
-    public static boolean smarterContraptionStorage$canUseForStorage = false;
-    // A foolish variant to avoid adding disabled storage blocks to our contraptions
-    // The reason I use this way: after @Unique comments it cannot be called outside the Mixin class
-    // Wish some guys teach me how to deal with this problem, thanks ahead!
-    public static void resetData(){
-        pair.clear();
-        pos.clear();
-        smarterContraptionStorage$canUseForStorage = false;
-    }
-    public static <T> void addData(HashMap<Integer,T> map, T t){
-        map.put(map.size(), t);
-    }
     public static boolean canBeControlledItem(Item comparedItem){
         return canUseModInventory(comparedItem) ||
                 canUseAsStorage(comparedItem);
@@ -80,18 +74,18 @@ public final class Utils {
     }
     public static BlockPos[] getAroundedBlockPos(BlockPos pos){
         BlockPos[] block = new BlockPos[6];
-        block[0] = pos.north();
+        block[0] = pos.above();
         block[1] = pos.south();
-        block[2] = pos.west();
-        block[3] = pos.east();
-        block[4] = pos.above();
+        block[2] = pos.east();
+        block[3] = pos.north();
+        block[4] = pos.west();
         block[5] = pos.below();
         return block;
     }
     /**
-     * @param search_or_stop is used to check whether we should stop search Blocks or we should hang on searching other Block
-     * @param  setReturnValue is used to set what we should return the last time
-     * @param  finallyDo is used to do anything you want to do before
+     * @param search_or_stop is used to check whether it should stop search Blocks or it should hang on searching other Block
+     * @param setReturnValue is used to set what it should return the last time
+     * @param finallyDo is used to do anything you want to do last
      * */
     public static <T> @NotNull T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T> finallyDo,@Nullable T startValue){
         Set<BlockPos> checkedPos = new HashSet<>();
@@ -110,7 +104,7 @@ public final class Utils {
         if(checkedPos.contains(pos) || calcDistance(pos,initialBlock) >= SmarterContraptionStorageConfig.SEARCH_RANGE.get())
             return setReturnValue.function(level,pos,initialBlock,t,null);
         checkedPos.add(pos);
-        if(search_or_stop.function(level,pos,initialBlock)){
+        if(search_or_stop.function(level,pos,initialBlock) || pos == initialBlock){
             for (BlockPos Pos : getAroundedBlockPos(pos))
                 t = setReturnValue.function(level,pos,initialBlock,t,searchBlockPos(checkedPos,t,level,Pos,initialBlock,search_or_stop,setReturnValue));
         }
@@ -142,6 +136,109 @@ public final class Utils {
         LogUtils.getLogger().error(text);
     }
     public static boolean isSameItem(ItemStack stack1,ItemStack stack2){
-        return stack1.sameItem(stack2);
+        return ItemStack.isSameItemSameTags(stack1, stack2);
+    }
+    public static ResourceLocation asResources(String name){
+        return new ResourceLocation(SmarterContraptionStorage.MODID,name);
+    }
+    public static void renderInto(VertexConsumer builder, Matrix4f matrix, float x, float y, float z,Color color, TextureAtlasSprite uv, double u, double v, int overlay, int light, float normal_1, float normal_2, float normal_3){
+        builder.vertex(matrix,x,y,z)
+                .color(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha())
+                .uv(uv.getU(u),uv.getV(v))
+                .overlayCoords(overlay)
+                .uv2(light)
+                .normal(normal_1, normal_2, normal_3)
+                .endVertex();
+    }
+    /**
+     * @param u (based on 16 pixels) to locate the texture in UV map
+     * @param v (based on 16 pixels) to locate the texture in UV map
+     * @param UVSize the size of UV map (must be the power of 2)
+     */
+    public static void renderInto(VertexConsumer builder, Matrix4f matrix4f,float x,float y,float z,Color color,TextureAtlasSprite uv,float u, float v,int UVSize, int overlay, int light, float normal_1, float normal_2,float normal_3){
+        if(UVSize == 16)
+            renderInto(builder,matrix4f,x,y,z,color,uv,u,v,overlay,light,normal_1,normal_2,normal_3);
+        else {
+            assert UVSize >= 32 && (UVSize & (UVSize - 1)) == 0;// ensure UVSize is powers of 2
+            renderInto(builder, matrix4f, x, y, z, color, uv, (double) u * 16 / UVSize, (double) v * 16 / UVSize, overlay, light, normal_1, normal_2, normal_3);
+        }
+    }
+    /**
+     * @param x1 to locate the pixels those needed be rendered
+     * @param z1 to locate the pixels those needed be rendered
+     * @param x2 to locate the pixels those needed be rendered
+     * @param z2 to locate the pixels those needed be rendered<br>
+     *  The rendered area is determined by parameters above, from (x1,z1) to (x2,z2)<br>
+     *  x1,x2 is the pixel's horizontal coordinate<br>
+     *  z1,z2 is the pixel's vertical coordinate<br>
+     *  lower left corner is the origin of coordinate system, positive to the right and upwards.<br>
+     */
+    public static void renderRectangle(Direction facing, float axis, float x1, float z1, float x2, float z2, TextureAtlasSprite uv, int UVSize, VertexConsumer builder, PoseStack poseStack, Color color, int overlay, int light){
+        assert x1 <= x2 && z1 <= z2;
+        Matrix4f matrix4f = poseStack.last().pose();
+        switch (facing){
+            case NORTH->{
+                renderInto(builder,matrix4f,x1,z1,axis,color,uv,x1,z1,UVSize,overlay,light,0,0,1);
+                renderInto(builder,matrix4f,x1,z2,axis,color,uv,x1,z2,UVSize,overlay,light,0,0,1);
+                renderInto(builder,matrix4f,x2,z2,axis,color,uv,x2,z2,UVSize,overlay,light,0,0,1);
+                renderInto(builder,matrix4f,x2,z1,axis,color,uv,x2,z1,UVSize,overlay,light,0,0,1);
+            }
+            case SOUTH->{
+                renderInto(builder,matrix4f,x1,z1,axis,color,uv,x1,z1,UVSize,overlay,light,0,0,-1);
+                renderInto(builder,matrix4f,x2,z1,axis,color,uv,x2,z1,UVSize,overlay,light,0,0,-1);
+                renderInto(builder,matrix4f,x2,z2,axis,color,uv,x2,z2,UVSize,overlay,light,0,0,-1);
+                renderInto(builder,matrix4f,x1,z2,axis,color,uv,x1,z2,UVSize,overlay,light,0,0,-1);
+            }
+            case EAST->{
+                renderInto(builder,matrix4f,axis,z1,x1,color,uv,z1,x1,UVSize,overlay,light,-1,0,0);
+                renderInto(builder,matrix4f,axis,z2,x1,color,uv,z2,x1,UVSize,overlay,light,-1,0,0);
+                renderInto(builder,matrix4f,axis,z2,x2,color,uv,z2,x2,UVSize,overlay,light,-1,0,0);
+                renderInto(builder,matrix4f,axis,z1,x2,color,uv,z1,x2,UVSize,overlay,light,-1,0,0);
+            }
+            case WEST->{
+                renderInto(builder,matrix4f,axis,z1,x1,color,uv,z1,x1,UVSize,overlay,light,1,0,0);
+                renderInto(builder,matrix4f,axis,z1,x2,color,uv,z1,x2,UVSize,overlay,light,1,0,0);
+                renderInto(builder,matrix4f,axis,z2,x2,color,uv,z2,x2,UVSize,overlay,light,1,0,0);
+                renderInto(builder,matrix4f,axis,z2,x1,color,uv,z2,x1,UVSize,overlay,light,1,0,0);
+            }
+            case UP->{
+                renderInto(builder,matrix4f,x1,axis,z1,color,uv,x1,z1,UVSize,overlay,light,0,1,0);
+                renderInto(builder,matrix4f,x1,axis,z2,color,uv,x1,z2,UVSize,overlay,light,0,1,0);
+                renderInto(builder,matrix4f,x2,axis,z2,color,uv,x2,z2,UVSize,overlay,light,0,1,0);
+                renderInto(builder,matrix4f,x2,axis,z1,color,uv,x2,z1,UVSize,overlay,light,0,1,0);
+            }
+            case DOWN->{
+                renderInto(builder,matrix4f,x1,axis,z1,color,uv,x1,z1,UVSize,overlay,light,0,-1,0);
+                renderInto(builder,matrix4f,x1,axis,z2,color,uv,x1,z2,UVSize,overlay,light,0,-1,0);
+                renderInto(builder,matrix4f,x2,axis,z2,color,uv,x2,z2,UVSize,overlay,light,0,-1,0);
+                renderInto(builder,matrix4f,x2,axis,z1,color,uv,x2,z1,UVSize,overlay,light,0,-1,0);
+            }
+            default -> {
+                addError("Unable to get CCW facing of " + facing);
+                throw new IllegalStateException("Unable to get CCW facing of " + facing);
+            }
+        }
+    }
+    public static void rotate(PoseStack poseStack, Direction direction,float degrees){
+        poseStack.translate(0.5f,0.5f,0.5f);
+        poseStack.mulPose(new Quaternion(direction.step(),degrees,true));
+        poseStack.translate(-0.5f,-0.5f,-0.5f);
+    }
+    public static int calcHorizonDegrees(Direction tragetDirection,Direction facing){
+        int degrees = 0;
+        while(!facing.equals(tragetDirection)){
+            facing = facing.getCounterClockWise().getOpposite();
+            degrees += 90;
+        }
+        return degrees;
+    }
+    public static void sendMessage(ServerPlayer player, String text){
+        player.sendSystemMessage(MutableComponent.create(new LiteralContents(text)));
+    }
+    public static void sendMessage(ServerPlayer player,MutableComponent component){
+        player.sendSystemMessage(component);
+    }
+    public static void sendMessage(String pKey,ServerPlayer player, Object... pArgs){
+        player.sendSystemMessage(Component.translatable(SmarterContraptionStorage.MODID + '.' + pKey,pArgs));
     }
 }

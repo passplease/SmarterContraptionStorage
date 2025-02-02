@@ -32,10 +32,23 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
-        assert canCreateHandler(entity);
+        assert canCreateHandler(entity) && handler instanceof FCDrawersHandler;
+        FCDrawersHandler h = (FCDrawersHandler) handler;
+        CompoundTag tag;
+        CompoundTag nbt = new CompoundTag();
+        CompoundTag compoundTag = new CompoundTag();
+        nbt.putInt(AMOUNT,h.amount);
+        nbt.put(PARENT,h.items[h.PARENT_SLOT].serializeNBT());
+        for (int slot = 0; slot < h.getSlots(); slot++) {
+            tag = new CompoundTag();
+            tag.putInt(AMOUNT,h.isItemEmpty(slot) ? 0 : 1);
+            tag.put(STACK,h.items[slot].serializeNBT());
+            compoundTag.put(Integer.toString(slot),tag);
+        }
+        nbt.put(BIG_ITEMS,compoundTag);
         if(entity instanceof CompactingDrawerTile)
-            ((CompactingDrawerTile)entity).getHandler().deserializeNBT(handler.serializeNBT());
-        else ((SimpleCompactingDrawerTile)entity).getHandler().deserializeNBT(handler.serializeNBT());
+            ((CompactingDrawerTile)entity).getHandler().deserializeNBT(nbt);
+        else ((SimpleCompactingDrawerTile)entity).getHandler().deserializeNBT(nbt);
     }
 
     @Override
@@ -113,6 +126,7 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             if(canInsert(slot,stack)){
+                items[slot] = stack;
                 if(isCreative)
                     return ItemStack.EMPTY;
                 int slotCount = getCountInSlot(slot);

@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
+        // These repositories are only for Gradle plugins, put any other repositories in the repository overlays further below
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
@@ -165,15 +165,15 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     runtimeOnly fg.deobf("curse.maven:mekanism-268560:4644795")// Only for me to test
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-    implementation fg.deobf("curse.maven:create-328085:4625534")
-    implementation fg.deobf("curse.maven:storage-drawers-223852:3884263")
+    implementation fg.deobf("curse.maven:create-328085:4835190")
+    implementation fg.deobf("curse.maven:storage-drawers-223852:5648923")
     implementation fg.deobf("curse.maven:trash-cans-394535:4606893")
     implementation fg.deobf("curse.maven:supermartijn642s-config-lib-438332:4715406")
     implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:4660114")
     implementation fg.deobf("curse.maven:sophisticated-core-618298:5296313")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:5194759")
     implementation fg.deobf("curse.maven:titanium-287342:5356458")
-    implementation fg.deobf("curse.maven:functional-storage-556861:5499169")
+    implementation fg.deobf("curse.maven:functional-storage-556861:4992914")
     implementation fg.deobf("curse.maven:applied-energistics-2-223794:5014801")
     implementation fg.deobf("curse.maven:cobblefordays-349460:3975349")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
@@ -194,7 +194,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
-// This block of code expands all declared replace properties in the specified resource targets.
+// This overlays of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
 // When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
 // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html

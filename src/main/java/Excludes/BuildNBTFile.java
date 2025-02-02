@@ -10,32 +10,32 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class BuildNBTFile {
     private static int num = 1;
     private static final String Path = Paths.get("").toAbsolutePath().toString()
             .replace("run","src/main/resources/assets/" + SmarterContraptionStorage.MODID + "/ponder/")
             .replace('\\','/');
-    private static final Map<Integer, CreateNBTFile> map = new HashMap<>();
+    private static final List<CreateNBTFile> list = new ArrayList<>();
     static {
-        map.put(map.size(),new storage_control("storage_control"));
-        map.put(map.size(),new trash_control("trash_control"));
-        map.put(map.size(),new replenish_item("replenish_item"));
-        map.put(map.size(),new use_ae("use_ae"));
-        map.put(map.size(),new spatial_cell("spatial_cell"));
+        list.add(new storage_control("storage_control"));
+        list.add(new trash_control("trash_control"));
+        list.add(new replenish_item("replenish_item"));
+        list.add(new use_ae("use_ae"));
+        list.add(new spatial_cell("spatial_cell"));
+        list.add(new ordinary_control("ordinary_control"));
     }
     public static void createNBTFile() {
         String path;
-        for(int i = map.size() - 1;i >= 0; i--) {
-            path = map.get(i).Name + ".nbt";
-            createNBTFile(Path + path, map.get(i));
+        for(CreateNBTFile ponder : list) {
+            path = ponder.Name + ".nbt";
+            createNBTFile(Path + path, ponder);
         }
     }
     private static void createNBTFile(String path, CreateNBTFile writeToCompoundTag){
-        CompoundTag nbt = new CompoundTag();
-        nbt = writeToCompoundTag.function(nbt,path,num);
+        CompoundTag nbt = writeToCompoundTag.function(new CompoundTag(),path,num);
         File file = new File(path);
         try(OutputStream stream = new FileOutputStream(file)){
             NbtIo.writeCompressed(nbt,stream);

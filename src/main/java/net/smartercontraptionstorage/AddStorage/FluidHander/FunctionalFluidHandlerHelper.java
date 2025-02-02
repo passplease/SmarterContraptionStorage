@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     public static final String Slot = Integer.toString(DefaultSlot);
-    public static final String Locked = "Locked" + DefaultSlot;
+    public static final String Locked = "Locked" + Slot;
     @Override
     public void addStorageToWorld(BlockEntity entity, SmartFluidTank helper) {
         assert canCreateHandler(entity);

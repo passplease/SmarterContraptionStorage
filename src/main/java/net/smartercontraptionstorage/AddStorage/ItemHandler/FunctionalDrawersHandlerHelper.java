@@ -27,8 +27,19 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
-        assert canCreateHandler(entity);
-        ((DrawerTile)entity).handler.deserializeNBT(handler.serializeNBT());
+        assert canCreateHandler(entity) && handler instanceof FDrawersHandler;
+        CompoundTag nbt = new CompoundTag();
+        CompoundTag tag;
+        FDrawersHandler h = (FDrawersHandler)handler;
+        for (int slot = 0; slot < h.getSlots(); slot++) {
+            tag = new CompoundTag();
+            tag.putInt(AMOUNT,h.count[slot]);
+            tag.put(STACK,h.items[slot].serializeNBT());
+            nbt.put(Integer.toString(slot),tag);
+        }
+        CompoundTag compoundTag = new CompoundTag();
+        compoundTag.put(BIG_ITEMS,nbt);
+        ((DrawerTile)entity).getHandler().deserializeNBT(compoundTag);
     }
 
     @Override
@@ -83,7 +94,7 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
             return !stack.isEmpty() && (Utils.isSameItem(items[slot],stack) || items[slot].is(Items.AIR));
         }
         public void setCountInSlot(int slot, @NotNull ItemStack stack, int count){
-            if(items[slot].is(Items.AIR))
+            if(isItemEmpty(slot))
                 items[slot] = stack.copy();
             this.count[slot] = count;
         }

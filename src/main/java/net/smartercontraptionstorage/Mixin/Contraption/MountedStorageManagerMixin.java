@@ -4,7 +4,6 @@ import com.simibubi.create.content.contraptions.*;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -14,6 +13,8 @@ import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
+import net.smartercontraptionstorage.Interface.Changeable;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,18 +22,14 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static net.smartercontraptionstorage.Utils.playerInteracting;
-
 @Mixin(MountedStorageManager.class)
-public abstract class MountedStorageManagerMixin {
+public abstract class MountedStorageManagerMixin implements Changeable {
     @Shadow(remap = false) protected Map<BlockPos, MountedStorage> storage;
+
     @Shadow(remap = false) protected Map<BlockPos, MountedFluidStorage> fluidStorage;
 
     @Shadow(remap = false) protected CombinedTankWrapper fluidInventory;
@@ -47,28 +44,6 @@ public abstract class MountedStorageManagerMixin {
 
     @Shadow(remap = false) protected Contraption.ContraptionInvWrapper fuelInventory;
     @Unique public DumpHandler smarterContraptionStorage$handler;
-    @ForFunctionChanger(method = {"net.smartercontraptionstorage.Mixin.Storage.getItemHandler","openGUI"})
-    @Inject(method = "handlePlayerStorageInteraction",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/Contraption;getStorageForSpawnPacket()Lcom/simibubi/create/content/contraptions/MountedStorageManager;",by = -1),remap = false)
-    public void openGUI(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
-        playerInteracting = true;
-//        if(FunctionChanger.openGUI(contraption,player,localPos)){
-//            cir.setReturnValue(true);
-//            cir.cancel();
-//        }
-    }
-    @Deprecated
-    @ForFunctionChanger(method = "openGUI")
-    @Inject(method = "getItems",at = @At("HEAD"),remap = false)
-    public void getMap(CallbackInfoReturnable<IItemHandlerModifiable> cir){
-        if(FunctionChanger.isOpenGUI())
-            FunctionChanger.setMap(storage);
-    }
-    @Deprecated
-    @ForFunctionChanger(method = "openGUI")
-    @Inject(method = "handlePlayerStorageInteraction",at = @At("RETURN"),remap = false)
-    public void handlePlayerStorageInteraction_bottom(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
-        playerInteracting = false;
-    }
     @Inject(method = "removeStorageFromWorld",at = @At("RETURN"),remap = false)
     public void removeStorageFromWorld_head(CallbackInfo ci){
         for(MountedStorage mountedStorage : this.storage.values())
@@ -111,5 +86,27 @@ public abstract class MountedStorageManagerMixin {
     @Inject(method = "read",at = @At("RETURN"),remap = false)
     public void clearData(CompoundTag nbt, Map<BlockPos, BlockEntity> presentBlockEntities, boolean clientPacket, CallbackInfo ci){
         FunctionChanger.presentBlockEntities = null;
+    }
+
+    @Override
+    public void set(Object object) {}
+
+    @Override
+    public void set(String parameterName, Object object) {
+        if(parameterName.equals("storage")) {
+            this.storage = (Map<BlockPos, MountedStorage>) object;
+        } else if(parameterName.equals("add storage")){
+            Map<BlockPos, MountedStorage> map = (Map<BlockPos, MountedStorage>) object;
+            map.putAll(this.storage);
+            this.storage = map;
+        }
+    }
+
+    @Nullable
+    @Override
+    public Object get(String name) {
+        if(Objects.equals(name, "storage"))
+            return this.storage;
+        return null;
     }
 }

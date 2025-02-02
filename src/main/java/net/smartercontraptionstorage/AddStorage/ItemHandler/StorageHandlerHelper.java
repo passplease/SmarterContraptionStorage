@@ -7,6 +7,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -146,5 +147,8 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler, Serial
             return tag;
         }
         public abstract String getName();
+        protected boolean isItemEmpty(int slot){
+            return items[slot].isEmpty() || items[slot].getItem() == Items.AIR;
+        }
     }
 }

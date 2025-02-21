@@ -4,7 +4,7 @@ package net.smartercontraptionstorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import java.util.Map;
+import java.util.function.Function;
 
 public final class FunctionChanger {
     /**
@@ -12,5 +12,5 @@ public final class FunctionChanger {
      * value set in MountedStorageManagerMixin,
      * used in MountedStorageMixin, MountedFluidStorageMixin
      */
-    public static Map<BlockPos, BlockEntity> presentBlockEntities;
+    public static Function<BlockPos, BlockEntity> getBlockEntity;
 }

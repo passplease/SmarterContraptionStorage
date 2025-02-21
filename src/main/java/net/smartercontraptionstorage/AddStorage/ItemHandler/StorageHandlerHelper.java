@@ -14,12 +14,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
-import net.smartercontraptionstorage.AddStorage.GUI.MovingMenuProvider;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingMenuProvider;
 import net.smartercontraptionstorage.AddStorage.SerializableHandler;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 public abstract class StorageHandlerHelper implements SerializableHandler<ItemStackHandler>{
@@ -84,8 +85,11 @@ public abstract class StorageHandlerHelper implements SerializableHandler<ItemSt
                 return handlerHelper;
         return null;
     }
-    public static StorageHandlerHelper findByName(String name){
-        return HandlerHelpers.stream().filter((helper)-> helper.canDeserialize() && Objects.equals(helper.getName(), name)).findFirst().orElse(null);
+    public static @Nonnull StorageHandlerHelper findByName(String name){
+        StorageHandlerHelper h = HandlerHelpers.stream().filter((helper) -> Objects.equals(helper.getName(), name)).findFirst().orElse(null);
+        if(h == null)
+            Utils.addWarning("Invalid storage handler name: " + name);
+        return Objects.requireNonNull(h);
     }
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);

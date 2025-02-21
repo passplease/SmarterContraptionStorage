@@ -6,11 +6,14 @@ import com.simibubi.create.AllMovementBehaviours;
 import com.simibubi.create.content.equipment.toolbox.ToolboxBlock;
 import com.simibubi.create.foundation.ponder.PonderRegistry;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.smartercontraptionstorage.Message.MenuLevelPacket;
+import net.smartercontraptionstorage.Message.ModMessage;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -26,7 +29,9 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.smartercontraptionstorage.AddStorage.FluidHander.FunctionalFluidHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.FluidHander.SBackPacksFluidHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.FluidHander.TrashcanFluidHelper;
-import net.smartercontraptionstorage.AddStorage.GUI.*;
+import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityScreen;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEControllerBlock;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEEnergyBlock;
@@ -46,8 +51,12 @@ public class SmarterContraptionStorage {
         MinecraftForge.EVENT_BUS.register(this);
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MENU_TYPES.register(modEventBus);
+        modEventBus.addListener(this::commonSetup);
         ModList list = ModList.get();
         if(list.isLoaded("create")) {
+            MovingBlockEntityMenu.BlockEntityMenu = MENU_TYPES.register("moving_blockentity",() -> IForgeMenuType.create(
+                    MovingBlockEntityMenu::new
+            ));
             if (list.isLoaded("trashcans")) {
                 TrashHandlerHelper.TrashHandler.TrashCanMenu = MENU_TYPES.register("moving_trashcans", () -> IForgeMenuType.create(
                         MovingTrashCanMenu::new));
@@ -76,7 +85,7 @@ public class SmarterContraptionStorage {
         // Do something when the server starts
         ModList list = ModList.get();
         if(list.isLoaded("create")){
-            register(new ToolboxHandlerHelper());
+            register(ToolboxHandlerHelper.INSTANCE);
             ToolboxBehaviour behaviour = new ToolboxBehaviour();
             for (BlockEntry<ToolboxBlock> toolboxBlockBlockEntry : AllBlocks.TOOLBOXES) {
                 AllMovementBehaviours.registerBehaviour(toolboxBlockBlockEntry.get(), behaviour);
@@ -90,7 +99,7 @@ public class SmarterContraptionStorage {
                 register(new CompactingHandlerHelper());
             }
             if(list.isLoaded("sophisticatedbackpacks")){
-                register(new SBackPacksHandlerHelper());
+                register(SBackPacksHandlerHelper.INSTANCE);
                 register(new SBackPacksFluidHandlerHelper());
                 BackpackBehaviour backpackBehaviour = new BackpackBehaviour();
                 AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.BACKPACK.get(),backpackBehaviour);
@@ -100,6 +109,8 @@ public class SmarterContraptionStorage {
                 AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.DIAMOND_BACKPACK.get(),backpackBehaviour);
                 AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.NETHERITE_BACKPACK.get(),backpackBehaviour);
             }
+//            if(list.isLoaded("sophisticatedstorage"))
+//                register(SStorageBlockHelper.INSTANCE);
             if(list.isLoaded("functionalstorage")){
                 register(new FunctionalDrawersHandlerHelper());
                 register(new FunctionalCompactingHandlerHelper());
@@ -116,6 +127,10 @@ public class SmarterContraptionStorage {
                 register(new CobblestoneGenerator());
         }
     }
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        ModMessage.register(new MenuLevelPacket());
+        ModMessage.registerMessages();
+    }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -125,7 +140,7 @@ public class SmarterContraptionStorage {
             // Some client setup code
             ModList list = ModList.get();
             if(list.isLoaded("create")){
-                register(new ToolboxHandlerHelper());
+                register(ToolboxHandlerHelper.INSTANCE);
                 SCS_Ponder.register();
                 if(list.isLoaded("trashcans")) {
                     register(new TrashHandlerHelper());
@@ -148,9 +163,11 @@ public class SmarterContraptionStorage {
                 if(list.isLoaded("cobblefordays"))
                     register(new CobblestoneGenerator());
                 if(list.isLoaded("sophisticatedbackpacks")){
-                    register(new SBackPacksHandlerHelper());
+                    register(SBackPacksHandlerHelper.INSTANCE);
                     register(new SBackPacksFluidHandlerHelper());
                 }
+//                if(list.isLoaded("sophisticatedstorage"))
+//                    register(SStorageBlockHelper.INSTANCE);
                 if(list.isLoaded("functionalstorage")){
                     register(new FunctionalDrawersHandlerHelper());
                     register(new FunctionalCompactingHandlerHelper());
@@ -159,6 +176,7 @@ public class SmarterContraptionStorage {
             }
             event.enqueueWork(() -> {
                 if(list.isLoaded("create")){
+                    MenuScreens.register(MovingBlockEntityMenu.BlockEntityMenu.get(), MovingBlockEntityScreen::new);
                     if(list.isLoaded("trashcans")) {
                         MenuScreens.register(TrashHandlerHelper.TrashHandler.TrashCanMenu.get(), MovingTrashCanScreen::new);
                     }

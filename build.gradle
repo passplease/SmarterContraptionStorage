@@ -179,6 +179,7 @@ dependencies {
     implementation fg.deobf("curse.maven:functional-storage-556861:4992914")
     implementation fg.deobf("curse.maven:applied-energistics-2-223794:5014801")
     implementation fg.deobf("curse.maven:cobblefordays-349460:3975349")
+    implementation fg.deobf("curse.maven:sophisticated-storage-619320:5194750")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

@@ -243,7 +243,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             return ItemStack.EMPTY;
         }
 
-        public void refreshStack(@Nullable MEStorage extractStorage){// synchronize stored items in AE Net
+        public void refreshStack(@Nullable MEStorage extractStorage){// synchronizeToClient stored items in AE Net
             if(hasFilter)
                 return;
             extractKeys.clear();

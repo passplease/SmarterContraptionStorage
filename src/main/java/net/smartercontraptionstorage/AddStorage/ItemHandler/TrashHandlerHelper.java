@@ -15,12 +15,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.RegistryObject;
-import net.smartercontraptionstorage.AddStorage.GUI.AbstractMovingMenu;
-import net.smartercontraptionstorage.AddStorage.GUI.MovingTrashCanMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingTrashCanMenu;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,7 +136,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         }
 
         @Override
-        public @Nullable AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
+        public @NotNull AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
             return new MovingTrashCanMenu(this,i,player);
         }
         @Override

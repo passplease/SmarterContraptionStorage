@@ -6,26 +6,28 @@ import net.minecraft.nbt.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.FunctionChanger;
+import net.smartercontraptionstorage.Interface.Changeable;
 import net.smartercontraptionstorage.Interface.Settable;
 import net.smartercontraptionstorage.Utils;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Objects;
+
 import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.NULL_HANDLER;
 
 @Mixin(MountedStorage.class)
-public abstract class MountedStorageMixin implements Settable {
+public abstract class MountedStorageMixin implements Changeable {
     @Shadow(remap = false) private BlockEntity blockEntity;
 
     @Shadow(remap = false) boolean valid;
-
-    @Shadow(remap = false) @Final private static ItemStackHandler dummyHandler;
 
     @Shadow(remap = false) ItemStackHandler handler;
     @Unique public StorageHandlerHelper smarterContraptionStorage$helper;
@@ -41,6 +43,8 @@ public abstract class MountedStorageMixin implements Settable {
             handler = smarterContraptionStorage$helper.createHandler(blockEntity);
             if(handler instanceof NeedDealWith)
                 ((NeedDealWith) handler).doSomething(blockEntity);
+            else if(smarterContraptionStorage$helper instanceof NeedDealWith)
+                ((NeedDealWith) smarterContraptionStorage$helper).doSomething(blockEntity);
             if(handler == null) {
                 handler = NULL_HANDLER;
                 valid = false;
@@ -64,7 +68,7 @@ public abstract class MountedStorageMixin implements Settable {
             tag.putString(StorageHandlerHelper.DESERIALIZE_MARKER,smarterContraptionStorage$helper.getName());
             if(!smarterContraptionStorage$helper.canDeserialize()) {
                 smarterContraptionStorage$helper.addStorageToWorld(blockEntity, handler);
-                tag.put("pos", NbtUtils.writeBlockPos(blockEntity.getBlockPos()));
+                tag.put("BlockEntity", blockEntity.serializeNBT());
             }
             cir.setReturnValue(tag);
         }
@@ -79,10 +83,11 @@ public abstract class MountedStorageMixin implements Settable {
                 if(helper.canDeserialize()) {
                     ((Settable) storage).set(helper.deserialize(nbt));
                 }else {
-                    BlockPos blockPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
-                    BlockEntity blockEntity = FunctionChanger.presentBlockEntities.get(blockPos);
+                    BlockPos localPos = NbtUtils.readBlockPos(nbt.getCompound("LocalPos"));
+                    BlockEntity blockEntity = FunctionChanger.getBlockEntity.apply(localPos);
                     if(helper.canCreateHandler(blockEntity)) {
-                        ((Settable) storage).set(helper.canCreateHandler(blockEntity),blockEntity);
+                        blockEntity.deserializeNBT(nbt.getCompound("BlockEntity"));
+                        ((Settable) storage).set(true,blockEntity,helper.createHandler(blockEntity));
                     }
                 }
                 ((Settable) storage).set(helper,true);
@@ -104,5 +109,14 @@ public abstract class MountedStorageMixin implements Settable {
             this.smarterContraptionStorage$helper = helper;
         else if(object instanceof BlockEntity blockEntity)
             this.blockEntity = blockEntity;
+    }
+
+    @Override
+    public @Nullable Object get(String name) {
+        if(Objects.equals(name, "helper"))
+            return this.smarterContraptionStorage$helper;
+        else if(Objects.equals(name, "blockEntity"))
+            return this.blockEntity;
+        return null;
     }
 }

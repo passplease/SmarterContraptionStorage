@@ -25,7 +25,7 @@ public final class BuildNBTFile {
         list.add(new replenish_item("replenish_item"));
         list.add(new use_ae("use_ae"));
         list.add(new spatial_cell("spatial_cell"));
-        list.add(new ordinary_control("ordinary_control"));
+        //list.add(new ordinary_control("ordinary_control"));
     }
     public static void createNBTFile() {
         String path;

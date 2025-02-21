@@ -1,6 +1,5 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.foundation.utility.Pair;
 import net.minecraft.core.BlockPos;
@@ -10,66 +9,62 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
-import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
-import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
-import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
-import net.p3pp3rf1y.sophisticatedbackpacks.client.gui.BackpackScreen;
-import net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContainer;
-import net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContext;
 import net.p3pp3rf1y.sophisticatedcore.inventory.InventoryHandler;
+import net.p3pp3rf1y.sophisticatedcore.util.BlockItemBase;
+import net.p3pp3rf1y.sophisticatedstorage.block.LimitedBarrelBlock;
+import net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockBase;
+import net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockEntity;
+import net.p3pp3rf1y.sophisticatedstorage.client.gui.LimitedBarrelScreen;
+import net.p3pp3rf1y.sophisticatedstorage.client.gui.StorageScreen;
+import net.p3pp3rf1y.sophisticatedstorage.common.gui.LimitedBarrelContainerMenu;
+import net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.HelperMenuProvider;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MenuLevel;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
-import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityScreen;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class SBackPacksHandlerHelper extends StorageHandlerHelper implements HelperMenuProvider<SBackPacksHandlerHelper> {
-    public static final SBackPacksHandlerHelper INSTANCE = new SBackPacksHandlerHelper();
-
+@Deprecated
+public class SStorageBlockHelper extends StorageHandlerHelper implements HelperMenuProvider<SStorageBlockHelper> {
+    public static final SStorageBlockHelper INSTANCE = new SStorageBlockHelper();
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
-        return entity instanceof BackpackBlockEntity;
+        return entity instanceof StorageBlockEntity;
     }
 
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity);
-        ((InventoryHandler)handler).copyStacksTo(((BackpackBlockEntity)entity).getStorageWrapper().getInventoryHandler());
+        ((InventoryHandler)handler).changeSlots(0);
+        ((StorageBlockEntity)entity).getStorageWrapper().getInventoryHandler().deserializeNBT(handler.serializeNBT());
     }
 
     @Override
     public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
-        return ((BackpackBlockEntity)entity).getStorageWrapper().getInventoryHandler();
+        return ((StorageBlockEntity)entity).getStorageWrapper().getInventoryHandler();
     }
 
     @Override
     public boolean allowControl(Item comparedItem) {
-        return comparedItem instanceof BackpackItem;
+        return comparedItem instanceof BlockItemBase;
     }
 
     @Override
     public boolean allowControl(Block block) {
-        return block instanceof BackpackBlock;
+        return block instanceof StorageBlockBase;
     }
 
     @Override
     public String getName() {
-        return "SBackPacksHandlerHelper";
-    }
-
-    @Override
-    public boolean canDeserialize() {
-        return false;
+        return "SStorageBlockHelper";
     }
 
     @Override
@@ -78,49 +73,61 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper implements Hel
     }
 
     @Override
-    public HelperMenuProvider<SBackPacksHandlerHelper> get() {
-        return new SBackPacksHandlerHelper();
+    public boolean canDeserialize() {
+        return false;
     }
 
     @Override
-    public SBackPacksHandlerHelper getHelper() {
+    public HelperMenuProvider<SStorageBlockHelper> get() {
+        return new SStorageBlockHelper();
+    }
+
+    @Override
+    public SStorageBlockHelper getHelper() {
         return INSTANCE;
     }
 
-    private BackpackBlockEntity blockEntity;
+    private StorageBlockEntity blockEntity;
 
     @Override
     public void setBlockEntity(@Nullable BlockEntity blockEntity) {
-        if(blockEntity instanceof BackpackBlockEntity)
-            this.blockEntity = (BackpackBlockEntity) blockEntity;
+        if(blockEntity instanceof StorageBlockEntity)
+            this.blockEntity = (StorageBlockEntity)blockEntity;
         else this.blockEntity = null;
     }
 
     @Override
-    public BackpackBlockEntity getBlockEntity() {
+    public StorageBlockEntity getBlockEntity() {
         return blockEntity;
+    }
+
+    public boolean isLimitedBarrelBlock() {
+        return getBlockEntity().getBlockState().getBlock() instanceof LimitedBarrelBlock;
     }
 
     @Override
     public AbstractContainerMenu createMenu(int i, Player player, Inventory inventory) {
-        return MenuLevel.levelRun((setter) -> {
-            setter.accept(getBlockEntity());
+        StorageContainerMenu menu = null;
+        if(getPair() != null) {
+            MenuLevel.tickingBlockEntity(getPair(),player.level);
             Level level = player.level;
             player.level = MenuLevel.level;
-            BackpackContainer container = new BackpackContainer(i, player, new BackpackContext.Block(getBlockEntity().getBlockPos()));
+            menu = isLimitedBarrelBlock() ? new LimitedBarrelContainerMenu(i, player, getBlockEntity().getBlockPos()) : new StorageContainerMenu(i,player,getBlockEntity().getBlockPos());
             player.level = level;
-            return container;
-        });
+        }
+        return menu;
     }
 
     @Override
     public boolean checkMenu(MovingBlockEntityMenu menu) {
-        return menu.getMenu() instanceof BackpackContainer;
+        return isLimitedBarrelBlock() ? menu.getMenu() instanceof LimitedBarrelContainerMenu : menu.getMenu() instanceof StorageContainerMenu;
     }
 
     @Override
-    public BackpackScreen createScreen(MovingBlockEntityMenu menu, Inventory inventory, Component component) {
-        return new BackpackScreen((BackpackContainer) menu.getMenu(), inventory, component);
+    public StorageScreen createScreen(MovingBlockEntityMenu menu, Inventory inventory, Component component) {
+        if(isLimitedBarrelBlock()) {
+            return new LimitedBarrelScreen((StorageContainerMenu)menu.getMenu(),inventory,component);
+        }else return StorageScreen.constructScreen((StorageContainerMenu)menu.getMenu(),inventory,component);
     }
 
     private Pair<Integer, Long> pair;
@@ -173,21 +180,6 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper implements Hel
 
     @Override
     public @NotNull Component getDisplayName() {
-        return getBlockEntity().getBackpackWrapper().getDisplayName();
-    }
-
-    @Override
-    public boolean shouldClickScreen(MovingBlockEntityScreen screen, double mouseX, double mouseY, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean shouldClickScreen(MovingBlockEntityMenu menu, int index, int flag, ClickType type, Player player) {
-        return true;
-    }
-
-    @Override
-    public void render(MovingBlockEntityScreen screen, PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        screen.renderTooltip(poseStack,Component.translatable("smartercontraptionstorage.moving_container.backpack.reminder"), 0, screen.getScreen().getGuiTop() - 10);
+        return getBlockEntity().getDisplayName();
     }
 }

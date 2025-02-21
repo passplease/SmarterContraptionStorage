@@ -10,6 +10,6 @@
 * First of all, GitHub is always the best place
 * For Chinese, you can also find more links in [MCMODS](https://www.mcmod.cn/class/15306.html)
 ## About Plans
-1) Add GUI support to [Backpack](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks) and Toolbox
+1) Support 1.21.1
 ## License
 [MIT_License](https://mit-license.org/)

@@ -4,16 +4,21 @@ import com.simibubi.create.content.contraptions.*;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.network.NetworkHooks;
 import net.smartercontraptionstorage.AddStorage.FluidHander.DumpHandler;
 import net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper;
+import net.smartercontraptionstorage.AddStorage.GUI.MovingMenuProvider;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
 import net.smartercontraptionstorage.Interface.Changeable;
+import net.smartercontraptionstorage.Interface.Gettable;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -22,6 +27,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -88,17 +94,27 @@ public abstract class MountedStorageManagerMixin implements Changeable {
         FunctionChanger.presentBlockEntities = null;
     }
 
+    @Inject(method = "handlePlayerStorageInteraction",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/Contraption;getStorageForSpawnPacket()Lcom/simibubi/create/content/contraptions/MountedStorageManager;",shift = At.Shift.AFTER,by = -1),remap = false,cancellable = true)
+    public void handlePlayerStorageInteraction(Contraption contraption, Player player, BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
+        MountedStorage storage = ((Map<BlockPos, MountedStorage>) ((Gettable) ((Gettable) contraption).get("manager")).get("storage")).get(localPos);
+        if(storage != null && storage.getItemHandler() instanceof MovingMenuProvider handler){
+            handler.setContraption(contraption.entity);
+            handler.setLocalPos(localPos);
+            if(handler.check()) {
+                NetworkHooks.openScreen((ServerPlayer) player,handler,handler::writeToBuffer);
+                handler.playSound(player.level);
+                cir.setReturnValue(true);
+            }else handler.error();
+        }
+    }
+
     @Override
     public void set(Object object) {}
 
     @Override
     public void set(String parameterName, Object object) {
-        if(parameterName.equals("storage")) {
+        if(parameterName.equals("storage") && object instanceof Map) {
             this.storage = (Map<BlockPos, MountedStorage>) object;
-        } else if(parameterName.equals("add storage")){
-            Map<BlockPos, MountedStorage> map = (Map<BlockPos, MountedStorage>) object;
-            map.putAll(this.storage);
-            this.storage = map;
         }
     }
 

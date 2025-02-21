@@ -3,7 +3,6 @@ package net.smartercontraptionstorage.AddActor;
 import com.simibubi.create.content.contraptions.behaviour.MovementBehaviour;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.content.equipment.toolbox.ToolboxHandler;
-import com.simibubi.create.content.logistics.filter.FilterItem;
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.foundation.utility.NBTHelper;
@@ -75,5 +74,9 @@ public class ToolboxBehaviour implements MovementBehaviour {
     }
     public static void sendMessage(String key,Player player){
         Lang.builder(SmarterContraptionStorage.MODID).translate(key).style(ChatFormatting.GOLD).sendStatus(player);
+    }
+    @Override
+    public boolean renderAsNormalBlockEntity() {
+        return true;
     }
 }

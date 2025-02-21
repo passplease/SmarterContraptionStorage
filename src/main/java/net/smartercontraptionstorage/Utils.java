@@ -2,7 +2,6 @@ package net.smartercontraptionstorage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.logging.LogUtils;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
@@ -26,15 +25,16 @@ import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-import net.smartercontraptionstorage.Interface.FiveFunction;
 import net.smartercontraptionstorage.Interface.FourFunction;
 import net.smartercontraptionstorage.Interface.TriFunction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 public final class Utils {
@@ -87,31 +87,30 @@ public final class Utils {
      * @param setReturnValue is used to set what it should return the last time
      * @param finallyDo is used to do anything you want to do last
      * */
-    public static <T> @NotNull T searchBlockPos(@NotNull Level level, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue, @Nullable FourFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T> finallyDo,@Nullable T startValue){
-        Set<BlockPos> checkedPos = new HashSet<>();
-        T returnValue = startValue;
-        returnValue = searchBlockPos(checkedPos,returnValue,level,initialBlock,initialBlock,search_or_stop,setReturnValue);
-        Iterator<BlockPos> CheckedPos = checkedPos.iterator();
-        if (finallyDo != null)
-            while (CheckedPos.hasNext()){
-                finallyDo.function(level,CheckedPos.next(),initialBlock,returnValue);
-            }
-        if(returnValue == null)
-            throw new RuntimeException("The return value is null!");
+    public static <T> @NotNull T searchBlockPos(@NotNull BlockPos initialBlock, @NotNull BiFunction<BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FourFunction<BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue, @Nullable TriFunction<HashMap<BlockPos,Boolean>,BlockPos,@Nullable T,@NotNull T> finallyDo, @Nullable T startValue){
+        HashMap<BlockPos,Boolean> checkedPos = new HashMap<>();
+        T returnValue = searchBlockPos(checkedPos,startValue,initialBlock,initialBlock,search_or_stop,setReturnValue);
+        if(finallyDo != null)
+            returnValue = finallyDo.function(checkedPos,initialBlock,returnValue);
+
+        Objects.requireNonNull(returnValue);
         return returnValue;
     }
-    private static <T> T searchBlockPos(@NotNull Set<BlockPos> checkedPos,@Nullable T t, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull TriFunction<Level,BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FiveFunction<Level,BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue){
-        if(checkedPos.contains(pos) || calcDistance(pos,initialBlock) >= SmarterContraptionStorageConfig.SEARCH_RANGE.get())
-            return setReturnValue.function(level,pos,initialBlock,t,null);
-        checkedPos.add(pos);
-        if(search_or_stop.function(level,pos,initialBlock) || pos == initialBlock){
-            for (BlockPos Pos : getAroundedBlockPos(pos))
-                t = setReturnValue.function(level,pos,initialBlock,t,searchBlockPos(checkedPos,t,level,Pos,initialBlock,search_or_stop,setReturnValue));
+    private static <T> T searchBlockPos(@NotNull HashMap<BlockPos,Boolean> checkedPos,@Nullable T t, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull BiFunction<BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FourFunction<BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue){
+        if(checkedPos.containsKey(pos) || calcDistance(pos,initialBlock) >= SmarterContraptionStorageConfig.SEARCH_RANGE.get())
+            return null;
+        if(checkedPos.size() >= 300){
+            addWarning("To much block pos searched !");
+            return null;
         }
-        t = setReturnValue.function(level,pos,initialBlock,t);
+        if(search_or_stop.apply(pos,initialBlock) || pos == initialBlock){
+            checkedPos.put(pos,true);
+            for (BlockPos Pos : getAroundedBlockPos(pos))
+                t = setReturnValue.function(pos,initialBlock,t,searchBlockPos(checkedPos,t,Pos,initialBlock,search_or_stop,setReturnValue));
+        }else checkedPos.put(pos,false);
         return t;
     }
-        public static double calcDistance(BlockPos pos1,BlockPos pos2){
+    public static double calcDistance(BlockPos pos1,BlockPos pos2){
         double X = Math.abs(pos1.getX() - pos2.getX());
         double Y = Math.abs(pos1.getY() - pos2.getY());
         double Z = Math.abs(pos1.getZ() - pos2.getZ());
@@ -129,14 +128,18 @@ public final class Utils {
     public static void forEachTankDo(ICapabilityProvider can, Consumer<IFluidHandler> consumer){
         can.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).resolve().ifPresent(consumer);
     }
+    public static final Logger LOGGER = LogManager.getLogger();
     public static void addWarning(String text){
-        LogUtils.getLogger().warn(text);
+        LOGGER.warn(text);
     }
     public static void addError(String text){
-        LogUtils.getLogger().error(text);
+        LOGGER.error(text);
     }
     public static boolean isSameItem(ItemStack stack1,ItemStack stack2){
         return ItemStack.isSameItemSameTags(stack1, stack2);
+    }
+    public static boolean isItemEmpty(ItemStack stack){
+        return stack.isEmpty() || stack.getItem() == Items.AIR;
     }
     public static ResourceLocation asResources(String name){
         return new ResourceLocation(SmarterContraptionStorage.MODID,name);

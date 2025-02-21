@@ -1,6 +1,6 @@
 package net.smartercontraptionstorage.Ponder;
 
-import Excludes.BuildNBTFile;
+//import Excludes.BuildNBTFile;
 import appeng.api.ids.AEBlockIds;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.ponder.PonderRegistrationHelper;
@@ -22,7 +22,7 @@ public class SCS_Ponder {
         HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS).addStoryBoard("storage_control", MovementActorScenes::controlStorageBlock,CONTROLLABLE_CONTAINERS);
         HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS).addStoryBoard("ordinary_control", MovementActorScenes::changeOrdinary,CONTROLLABLE_CONTAINERS);
         HELPER.forComponents(AllBlocks.TOOLBOXES).addStoryBoard("replenish_item",ToolboxScenes::replenishItem,CONTROLLABLE_CONTAINERS);
-        BuildNBTFile.createNBTFile();
+        //BuildNBTFile.createNBTFile();
     }
     public static void registerTrashCan(){
         HELPER.forComponents(AllBlocks.TOOLBOXES).addStoryBoard("trash_control", ToolboxScenes::trashcansControl, CONTROLLABLE_CONTAINERS);

@@ -1,2 +1,4 @@
 run/
-src/main/java/Excludes/
+.vscode/
+.idea/
+bin/

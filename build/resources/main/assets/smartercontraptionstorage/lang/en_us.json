@@ -39,7 +39,7 @@
   "smartercontraptionstorage.ponder.ordinary_control.header": "Change the ordinary of containers and actors",
   "smartercontraptionstorage.ponder.ordinary_control.text_1": "When you use contraption to plant trees, you may want to change the working order of deployer and saw",
   "smartercontraptionstorage.ponder.ordinary_control.text_2": "Like this situation, due to saw works behind of deployer, sapling is not placed down. At this time, you can use controller to adjust the order",
-  "smartercontraptionstorage.ponder.ordinary_control.text_3": "Place the controller nearby the deployer, and use dye to set controller state. Different dye means different working order. You can use /scs command to check working ordinal",
+  "smartercontraptionstorage.ponder.ordinary_control.text_3": "Place the controller nearby the saw, and use dye to set controller state. Different dye means different working order. You can use /scs command to check working ordinal",
   "smartercontraptionstorage.ponder.ordinary_control.text_4": "After set controller, you can just let contraption work. There is no need to set controller active. If you do so, the saw will be closed instead, because controller changes order independently and won't conflict with other function",
   "smartercontraptionstorage.ponder.ordinary_control.text_5": "Not only active block could be ordered, but also containers such as barrels and chests ( even trashcan ) do",
   "smartercontraptionstorage.ponder.ordinary_control.text_6": "Must be noticed is the filter of controller doesn't matter, the controller will change the order of any block around it, unless it has been given higher priority",
@@ -49,5 +49,11 @@
   "smartercontraptionstorage.contraption.toolbox.behaviour.open": "Toolboxes are replenishing to your hotbar",
   "smartercontraptionstorage.ordinary.color.success": "The ordinary of %1$s is %2$d. The contraption controller with color of %1$s will be loaded %2$dth",
   "smartercontraptionstorage.ordinary.color.dye.failure": "Please try again with the dye in your hand",
-  "smartercontraptionstorage.ordinary.color.item.failure": "Only dye can be asked"
+  "smartercontraptionstorage.ordinary.color.item.failure": "Only dye can be asked",
+  "smartercontraptionstorage.moving_container.trashcans": "Moving Trashcan",
+  "smartercontraptionstorage.moving_container.trashcans.scrolling": "(Scrolling to check toolbox)",
+  "smartercontraptionstorage.moving_container.trashcans.toolbox": "Toolbox: %1$d",
+  "smartercontraptionstorage.moving_container.drawer": "Moving Drawer %1$dx%1$d",
+  "smartercontraptionstorage.moving_container.compacting_drawer": "Moving Compacting Drawer",
+  "smartercontraptionstorage.moving_container.backpack": "Moving Backpack"
 }

@@ -1,4 +1,4 @@
-C:\Users\Administrator\Desktop\JAVA自学程序\SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2\forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2-recomp.jar
+E:\JAVA自学程序\SmarterContraptionStorage\build\fg_cache\net\minecraftforge\forge\1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2\forge-1.19.2-43.3.0_mapped_parchment_2022.08.14-1.19.2-recomp.jar
 D:\IDEA\Gradle\caches\forge_gradle\minecraft_repo\versions\1.19.2\client-extra.jar
 D:\IDEA\Gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.19.2-43.3.0\2edd99fb09dd01b6487188e8da2ce4b034d79217\javafmllanguage-1.19.2-43.3.0.jar
 D:\IDEA\Gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.19.2-43.3.0\5facdae56496bfc1ea0e1dbe1385463d7aa7bc69\lowcodelanguage-1.19.2-43.3.0.jar

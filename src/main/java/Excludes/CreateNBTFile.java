@@ -1,7 +1,8 @@
 package Excludes;
 
 import net.minecraft.world.level.block.Block;
-import net.smartercontraptionstorage.FunctionInterface.TriFunction;
+import net.minecraft.world.level.block.Blocks;
+import net.smartercontraptionstorage.Interface.TriFunction;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -133,6 +134,16 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
             Tag.put(name,tag.copy());
         b.add(Tag);
     }
+    public boolean containsBlock(int x,int y,int z){
+        return b.stream().anyMatch(nbt -> {
+            assert nbt instanceof CompoundTag;
+            ListTag pos = (ListTag) ((CompoundTag) nbt).get("pos");
+            assert pos != null;
+            return pos.getInt(0) == x &&
+                    pos.getInt(1) == y &&
+                    pos.getInt(2) == z;
+        });
+    }
     public int findBlockId(String blockId){
         for (int i = 0; i < p.size(); i++){
             if(p.get(i) instanceof CompoundTag){
@@ -155,16 +166,21 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
         p.add(tag);
         return p.size() - 1;
     }
-    public void setBasePlate(int x,int z){
-        setBasePlate(new String[]{"minecraft:white_concrete","minecraft:snow_block"},x,z);
+    public void setBasePlate(int x, int z){
+        setBasePlate(0,0,x,z,null,"minecraft:white_concrete","minecraft:snow_block");
     }
-    public void setBasePlate(String[] blockId,int x,int z){
-        setBasePlate(blockId,0,0,x,z);
+    public void setBasePlate(int x, int z,@Nullable Runnable runner){
+        setBasePlate(0,0,x,z,runner,"minecraft:white_concrete","minecraft:snow_block");
     }
-    public void setBasePlate(String[] blockId,int x,int z,int X,int Z){
+    public void setBasePlate(int x,int z,@Nullable Runnable runner,String... blockId){
+        setBasePlate(0,0,x,z,runner,blockId);
+    }
+    public void setBasePlate(int x,int z,int X,int Z,@Nullable Runnable runner,String... blockId){
         int size = blockId.length;
         int i = 0;
         int[] id = new int[size];
+        if(runner != null)
+            runner.run();
         for (int j = 0; j < size; j++) {
             id[j] = findBlockId(blockId[j]);
             if(id[j] == WRONG_BLOCK_ID)
@@ -172,7 +188,8 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
         }
         for(int a = x;a <= X;a++,i = (a - x) % size)
             for (int c = z; c <= Z; c++) {
-                addBlock(a,0,c,id[i]);
+                if(runner == null || !containsBlock(a,0,c))
+                    addBlock(a,0,c,id[i]);
                 i++;
                 i = i >= size ? i - size : i;
             }
@@ -208,7 +225,33 @@ public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, I
         });
     }
     public static String getBlockId(@NotNull Block block){
-        return block.getDescriptionId().replace("block.","").replace('.', ':');
+        return block.getDescriptionId().replace("blocks.", "").replace("block.","");
+    }
+    public void addTree(int x,int y,int z){
+        String log = getBlockId(Blocks.OAK_LOG);
+        String leaf = getBlockId(Blocks.OAK_LEAVES);
+        for(int height = 0;height < 5;height++)
+            addBlock(x,y + height,z,log);
+        for (int x_offset = -2; x_offset <= 2; x_offset++)
+            for (int z_offset = -2; z_offset <= 2; z_offset++)
+                if(x_offset != 0 || z_offset != 0) {
+                    if ((x_offset != -2 || z_offset != -2)) {// for beautiful
+                        addBlock(x + x_offset, y + 2, z + z_offset, leaf);
+                        if(x_offset != 2 || z_offset != 2)
+                            addBlock(x + x_offset, y + 3, z + z_offset, leaf);
+                    }
+                }
+        addBlock(x + 1,y + 4,z,leaf);
+        addBlock(x - 1,y + 4,z,leaf);
+        addBlock(x,y + 4,z + 1,leaf);
+        addBlock(x,y + 4,z - 1,leaf);
+        addBlock(x - 1,y + 4,z - 1,leaf);// for beautiful
+
+        addBlock(x + 1,y + 5,z,leaf);
+        addBlock(x - 1,y + 5,z,leaf);
+        addBlock(x,y + 5,z + 1,leaf);
+        addBlock(x,y + 5,z - 1,leaf);
+        addBlock(x,y + 5,z,leaf);
     }
     private static class StressBlock {
         int x;

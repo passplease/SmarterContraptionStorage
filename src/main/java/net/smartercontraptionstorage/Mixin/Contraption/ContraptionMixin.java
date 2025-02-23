@@ -1,109 +1,138 @@
 package net.smartercontraptionstorage.Mixin.Contraption;
 
 import com.simibubi.create.content.contraptions.Contraption;
+import com.simibubi.create.content.contraptions.MountedStorage;
 import com.simibubi.create.content.contraptions.MountedStorageManager;
 import com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity;
+import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import net.smartercontraptionstorage.ForFunctionChanger;
-import net.smartercontraptionstorage.FunctionChanger;
-import net.smartercontraptionstorage.Utils;
-import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
+import net.smartercontraptionstorage.*;
+import net.smartercontraptionstorage.Interface.Changeable;
+import net.smartercontraptionstorage.Interface.Gettable;
+import net.smartercontraptionstorage.Render.Overlay;
+import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.*;
 
-import static net.smartercontraptionstorage.Utils.*;
 @Mixin(Contraption.class)
-public abstract class ContraptionMixin {
-    @Shadow(remap = false) protected abstract void addBlock(BlockPos pos, Pair<StructureTemplate.StructureBlockInfo, BlockEntity> pair);
-
+public abstract class ContraptionMixin implements Gettable{
     @Shadow(remap = false) protected MountedStorageManager storage;
-    @Unique private boolean smarterContraptionStorage$waitAddBlock = true;
-    // To know when it will return ("searchMovedStructure" method) and my "addBlock" method work for once
-    @Unique private final HashMap<BlockPos,Boolean> smarterContraptionStorage$checkedBlockPos = new HashMap<>();
-    @Redirect(method = "moveBlock",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/Contraption;addBlock(Lnet/minecraft/core/BlockPos;Lorg/apache/commons/lang3/tuple/Pair;)V"),remap = false)
-    public void storeBlock(Contraption instance, BlockPos pos, Pair<StructureTemplate.StructureBlockInfo, BlockEntity> pair){
-        BlockEntity entity = pair.getRight();
-        if(entity != null) {
-            if (canBeControlledBlock(entity.getBlockState().getBlock())) {
-                addData(Utils.pos, pos);
-                addData(Utils.pair, pair);
-                return;
+    @Shadow(remap = false) protected List<MutablePair<StructureTemplate.StructureBlockInfo, MovementContext>> actors;
+    @Shadow(remap = false) protected abstract BlockPos toLocalPos(BlockPos globalPos);
+
+    @Shadow(remap = false) protected Map<BlockPos, StructureTemplate.StructureBlockInfo> blocks;
+
+    @Shadow(remap = false) protected abstract MountedStorageManager getStorageForSpawnPacket();
+
+    @Unique protected Map<Overlay,List<BlockPos>> smarterContraptionStorage$orderedBlocks = new HashMap<>();
+
+    @Unique protected List<BlockPos> smarterContraptionStorage$removedBlocks = new ArrayList<>();
+    @Inject(method = "searchMovedStructure",at = @At("RETURN"),remap = false)
+    public void changeOrdinary(Level world, BlockPos pos, Direction forcedDirection, CallbackInfoReturnable<Boolean> cir){
+        Changeable storage = (Changeable) this.storage;
+        Map<BlockPos, MountedStorage> storages = (Map<BlockPos, MountedStorage>) storage.get("storage");
+        assert storages != null;
+        Map<BlockPos, MountedStorage> newStorage = new LinkedHashMap<>();
+        smarterContraptionStorage$removedBlocks.forEach(storages::remove);
+        if(!smarterContraptionStorage$orderedBlocks.isEmpty()) {
+            List<MutablePair<StructureTemplate.StructureBlockInfo, MovementContext>> newActors = new LinkedList<>();
+            Overlay.forEachSequentially((overlay) -> {
+                List<BlockPos> list = smarterContraptionStorage$orderedBlocks.get(overlay);
+                if(list != null)
+                    for (BlockPos blockPos : list) {
+                        Optional<MutablePair<StructureTemplate.StructureBlockInfo, MovementContext>> actor = actors.stream().filter((act) -> act.getLeft().pos.equals(blockPos)).findFirst();
+                        // I think there is no any block could be used as actor and container at the same time
+                        // So use if-else to reduce computation
+                        // * Toolbox and Backpack could be used both two
+                        if(actor.isPresent()) {
+                            newActors.add(actor.get());
+                            actors.remove(actor.get());
+                        }else storages.computeIfPresent(blockPos, (p, s) -> {
+                            newStorage.putIfAbsent(p,s);
+                            return null;
+                        });
+                    }
+            });
+            newActors.addAll(actors);
+            this.actors = newActors;
+        }
+        newStorage.putAll(storages);
+        if(!smarterContraptionStorage$removedBlocks.isEmpty() || !newStorage.isEmpty())
+            storage.set("storage", newStorage);
+    }
+    @Inject(method = "addBlock",at = @At("RETURN"),remap = false)
+    public void addBlock(BlockPos pos, Pair<StructureTemplate.StructureBlockInfo, BlockEntity> pair, CallbackInfo ci){
+        if(pair.getRight() instanceof ContraptionControlsBlockEntity entity && entity.getLevel() != null) {
+            // pos may be not equal to entity.getBlockPos() !!!
+            // I think it's bug, but I'm not very sure right now.
+            pos = entity.getBlockPos();
+            Level level = entity.getLevel();
+            if (((Gettable) entity).get("overlay") instanceof Overlay overlay) {
+                List<Block> orderedBlock = new ArrayList<>();
+                List<BlockPos> list = smarterContraptionStorage$orderedBlocks.getOrDefault(overlay,new ArrayList<>());
+                Arrays.stream(Utils.getAroundedBlockPos(pos)).forEach(p -> orderedBlock.add(level.getBlockState(p).getBlock()));
+                Utils.searchBlockPos(pos,
+                        (thisPos, initialPos) -> orderedBlock.contains(this.smarterContraptionStorage$getBlockAt(level,thisPos)),
+                        (thisPos, initialPos, nowValue, returnValue) -> !Boolean.FALSE.equals(nowValue) && !Boolean.FALSE.equals(returnValue),
+                        (checkedBlocks, initialPos, returnValue) -> {
+                            if (Boolean.TRUE.equals(returnValue)) {
+                                checkedBlocks.forEach((p, b) -> {
+                                    if(b)
+                                        list.add(this.toLocalPos(p));
+                                });
+                                return true;
+                            }
+                            return false;
+                        },
+                        true
+                );
+            }
+            if(Utils.canBeControlledItem(entity.filtering.getFilter().getItem()) && SmarterContraptionStorageConfig.getDefaultOpen(entity.disabled)){
+                Block filterBlock = Block.byItem(entity.filtering.getFilter().getItem());
+                Utils.searchBlockPos(pos,
+                        (thisPos,initialPos) -> this.smarterContraptionStorage$getBlockAt(level,thisPos) == filterBlock,
+                        (thisPos,initialPos,nowValue,returnValue) -> !Boolean.FALSE.equals(nowValue) && !Boolean.FALSE.equals(returnValue),
+                        (checkedBlocks,initialPos,returnValue) -> {
+                            if(Boolean.TRUE.equals(returnValue)) {
+                                checkedBlocks.forEach((p, b) -> {
+                                    if(b)
+                                        smarterContraptionStorage$removedBlocks.add(this.toLocalPos(p));
+                                });
+                                return true;
+                            }
+                            return false;
+                        },
+                        true
+                );
             }
         }
-        addBlock(pos,pair);
-    }
-    @Inject(method = "moveBlock",at = @At("HEAD"),remap = false)
-    public void setNeedAddBlock(Level world, Direction forcedDirection, Queue<BlockPos> frontier, Set<BlockPos> visited, CallbackInfoReturnable<Boolean> cir){
-        smarterContraptionStorage$waitAddBlock = false;
-    }
-    @Inject(method = "searchMovedStructure",at = @At("RETURN"),remap = false)
-    // To add storage block after "searchMovedStructure" (use Excludes.SpatialPylonBlockEntityMixin variant to do this)
-    public void addBlock(Level world, BlockPos pos, Direction forcedDirection, CallbackInfoReturnable<Boolean> cir) {
-        if(smarterContraptionStorage$waitAddBlock)
-            return;
-        if (Utils.pos.isEmpty() && pair.isEmpty())
-            return;
-        else if (Utils.pos.size() != pair.size())
-            throw new IllegalCallerException("The block data is broken or doesn't have block status at all!", new Exception());
-        Block thisBlock;
-        for (int i = 0; i < Utils.pos.size(); i++) {
-            thisBlock = pair.get(i).getRight().getBlockState().getBlock();
-            pos = Utils.pos.get(i);
-            if (canBeControlledBlock(thisBlock))
-                smarterContraptionStorage$canUseForStorage = !SmarterContraptionStorage$checkAddToStorage(world,pos,thisBlock, SmarterContraptionStorageConfig.CHECK_ADJACENT_BLOCK.get());
-            smarterContraptionStorage$checkedBlockPos.put(pos, smarterContraptionStorage$canUseForStorage);
-            this.addBlock(pos,pair.get(i));
-        }
-        smarterContraptionStorage$waitAddBlock = true;
-        smarterContraptionStorage$checkedBlockPos.clear();
-        resetData();
     }
     @Unique
-    public boolean SmarterContraptionStorage$checkAddToStorage(Level world, BlockPos thisPos, Block thisBlock, boolean search){
-        Boolean checked = smarterContraptionStorage$checkedBlockPos.get(thisPos);
-        if(checked != null)
-            return checked;
-        for (BlockPos block : getAroundedBlockPos(thisPos)) {
-            BlockEntity Block = world.getBlockEntity(block);
-            if (Block instanceof ContraptionControlsBlockEntity CB &&
-                    CB.filtering.getFilter().getItem() == thisBlock.asItem()) {
-                return SmarterContraptionStorageConfig.getDefaultOpen(CB.disabled);
-            }
-            if (search && Block != null && thisBlock == Block.getBlockState().getBlock()) {
-                return searchBlockPos(world,thisPos,
-                        (level,pos,initialBlock) -> thisBlock == level.getBlockState(pos).getBlock(),
-                        (level,pos,initialBlock,nowReturnValue,t) -> {
-                            if (t == null)
-                                t = false;
-                            return nowReturnValue || t || level.getBlockState(pos).getBlock() == thisBlock && SmarterContraptionStorage$checkAddToStorage(level, pos, thisBlock, false);
-                        },
-                        (level, pos, blockState,returnValue) -> smarterContraptionStorage$checkedBlockPos.put(pos, returnValue),false);
-            }
-        }
-        return !SmarterContraptionStorageConfig.DEFAULT_OPEN.get();
-        // Make sure if player set false I can close storage block without ContraptionControlsBlock
+    protected Block smarterContraptionStorage$getBlockAt(Level level, BlockPos pos){
+        BlockPos localPos = this.toLocalPos(pos);
+        if(this.blocks.containsKey(localPos))
+            return this.blocks.get(localPos).state.getBlock();
+        else return level.getBlockState(pos).getBlock();
     }
-    @Deprecated
-    @ForFunctionChanger(method = "openGUI")
-    @Inject(method = "isHiddenInPortal",at = @At("HEAD"),cancellable = true,remap = false)
-    public void getStorageForSpawnPacket(BlockPos localPos, CallbackInfoReturnable<Boolean> cir){
-        if(FunctionChanger.isOpenGUI()){
-            FunctionChanger.setStorage(storage);
-            cir.setReturnValue(false);
-            cir.cancel();
-        }
+
+    @Override
+    public @Nullable Object get(String name) {
+        if(Objects.equals(name, "manager"))
+            return this.getStorageForSpawnPacket();
+        return null;
     }
 }

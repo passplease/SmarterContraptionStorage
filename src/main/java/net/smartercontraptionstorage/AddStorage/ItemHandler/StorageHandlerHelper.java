@@ -1,17 +1,20 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.foundation.utility.NBTHelper;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
-import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
+import net.smartercontraptionstorage.AddStorage.GUI.MovingMenuProvider;
 import net.smartercontraptionstorage.AddStorage.SerializableHandler;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -19,8 +22,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public abstract class StorageHandlerHelper implements MenuSupportHandler, SerializableHandler<ItemStackHandler> {
-    public static final String DESERIALIZE_MARKER = "ItemHandlers";
+public abstract class StorageHandlerHelper implements SerializableHandler<ItemStackHandler>{
+    public static final String DESERIALIZE_MARKER = "OtherHandlers";
     public static final ItemStackHandler NULL_HANDLER = new ItemStackHandler(){
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
@@ -33,6 +36,10 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler, Serial
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return false;
+        }
+        @Override
+        public @NotNull ItemStack getStackInSlot(int slot) {
+            return ItemStack.EMPTY;
         }
     };
     private static final Set<StorageHandlerHelper> HandlerHelpers = new HashSet<>();
@@ -78,19 +85,19 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler, Serial
         return null;
     }
     public static StorageHandlerHelper findByName(String name){
-        return HandlerHelpers.stream().filter((helper)-> Objects.equals(helper.getName(), name)).findFirst().orElse(null);
+        return HandlerHelpers.stream().filter((helper)-> helper.canDeserialize() && Objects.equals(helper.getName(), name)).findFirst().orElse(null);
     }
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract void addStorageToWorld(BlockEntity entity,ItemStackHandler handler);
     public abstract @NotNull ItemStackHandler createHandler(BlockEntity entity);
     public abstract boolean allowControl(Item comparedItem);
     public abstract boolean allowControl(Block block);
-    // two allowControl only need to achieve one, another can return false
+    // two allowDumping only need to achieve one, another can return false
     public static Set<StorageHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;
     }
 
-    public abstract static class HandlerHelper extends ItemStackHandler {
+    public abstract static class HandlerHelper extends ItemStackHandler implements MovingMenuProvider {
         public final int[] slotLimits;
         protected final ItemStack[] items;
         public HandlerHelper(int size) {
@@ -129,6 +136,11 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler, Serial
             return slotLimits[slot];
         }
         @Override
+        public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+            if(slot >= 0 && slot < items.length)
+                items[slot] = stack.copy();
+        }
+        @Override
         public abstract @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate);
         @Override
         public abstract @NotNull ItemStack extractItem(int slot, int amount, boolean simulate);
@@ -145,6 +157,40 @@ public abstract class StorageHandlerHelper implements MenuSupportHandler, Serial
             tag.putInt("size",slotLimits.length);
             return tag;
         }
+
         public abstract String getName();
+
+        @Override
+        public void writeToBuffer(@NotNull FriendlyByteBuf buffer) {
+            buffer.writeNbt(serializeNBT());
+        }
+
+        protected boolean isItemEmpty(int slot){
+            return Utils.isItemEmpty(getStackInSlot(slot));
+        }
+
+        private AbstractContraptionEntity contraption;
+
+        private BlockPos localPos;
+
+        @Override
+        public void setContraption(AbstractContraptionEntity contraption) {
+            this.contraption = contraption;
+        }
+
+        @Override
+        public AbstractContraptionEntity getContraption() {
+            return contraption;
+        }
+
+        @Override
+        public void setLocalPos(BlockPos localPos) {
+            this.localPos = localPos;
+        }
+
+        @Override
+        public BlockPos getLocalPos() {
+            return localPos;
+        }
     }
 }

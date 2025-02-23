@@ -9,10 +9,16 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.smartercontraptionstorage.Interface.Gettable;
+import net.smartercontraptionstorage.Render.Overlay;
+import net.smartercontraptionstorage.Interface.Settable;
 import net.smartercontraptionstorage.Utils;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +26,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(ContraptionControlsBlock.class)
-public abstract class ContraptionControlBlockMixin extends ControlsBlock implements IBE<ContraptionControlsBlockEntity>{
+public abstract class ContraptionControlBlockMixin extends ControlsBlock implements IBE<ContraptionControlsBlockEntity> {
     public ContraptionControlBlockMixin(BlockBehaviour.Properties pProperties) {
         super(pProperties);
     }
@@ -33,15 +39,26 @@ public abstract class ContraptionControlBlockMixin extends ControlsBlock impleme
     @Overwrite
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit){
         return this.onBlockEntityUse(level, pos, (cte) -> {
+            ItemStack stack = player.getMainHandItem();
+            if(stack.getItem() instanceof DyeItem item){
+                Overlay overlay = (Overlay)((Gettable)cte).get("overlay");
+                if(overlay == null || !overlay.getColor().equals(item.getDyeColor())) {
+                    ((Settable) cte).set("overlay", item);
+                    if (!player.isCreative())
+                        stack.shrink(1);
+                    return InteractionResult.SUCCESS;
+                }
+            }else if(stack.getItem() == Items.WATER_BUCKET) {
+                ((Settable) cte).set("overlay", null);
+                return InteractionResult.SUCCESS;
+            }
+
             cte.pressButton();
             if (!level.isClientSide()) {
-                ContraptionControlsBlockEntity entity = getBlockEntity(level,pos);
-                if(entity == null)
-                    return InteractionResult.FAIL;
                 boolean open;
-                if(Utils.canBeControlledItem(entity.filtering.getFilter().getItem()))
-                    open = !SmarterContraptionStorageConfig.getDefaultOpen(entity.disabled);
-                else open = !entity.disabled;
+                if(Utils.canBeControlledItem(cte.filtering.getFilter().getItem()))
+                    open = !SmarterContraptionStorageConfig.getDefaultOpen(cte.disabled);
+                else open = !cte.disabled;
                 cte.notifyUpdate();
                 cte.disabled = !cte.disabled;
                 ContraptionControlsBlockEntity.sendStatus(player, cte.filtering.getFilter(), !open);

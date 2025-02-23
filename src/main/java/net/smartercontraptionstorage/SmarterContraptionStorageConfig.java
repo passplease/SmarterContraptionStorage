@@ -23,9 +23,9 @@ public class SmarterContraptionStorageConfig {
         CHECK_ADJACENT_BLOCK = BUILDER.comment("Check neighboring storage block automatically (such as Vault):").define("CheckAdjacentBlock",true);
         SEARCH_RANGE = BUILDER.comment("Search range for neighboring block (best bigger than 9, because Vault maxsize is 9)").define("SearchRange",10);
         AUTO_DUMPING = BUILDER.comment("""
-                When contraption want to store any item that can save fluid (such as water bucket),
+                When contraption want to store any item which can save fluid (such as water bucket),
                 we will automatically dump fluid into tanks and return an empty tankItem and
-                automatically fill bucket with fluid when contraption extracts it (such as extracting water bucket, and make water bucket right now)
+                automatically fill bucket with fluid when contraption extract it (such as extracting water bucket, and make water bucket right now)
                 """).define("AutoDumping",true);
         AE2SUPPORT = BUILDER.comment("Allow to use AE2 on contraption").define("AE2_Support",false);
         LOAD_CHUNK_AUTO = BUILDER.comment("Load Spatial chunks those are used on contraptions").define("load_chunk_auto",true);

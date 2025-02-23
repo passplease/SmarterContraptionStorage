@@ -9,8 +9,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.smartercontraptionstorage.AddStorage.MenuSupportHandler;
 import net.smartercontraptionstorage.AddStorage.SerializableHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +18,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public abstract class FluidHandlerHelper implements MenuSupportHandler, SerializableHandler<SmartFluidTank> {
+public abstract class FluidHandlerHelper implements SerializableHandler<SmartFluidTank> {
     public static final String DESERIALIZE_MARKER = "FluidHandlers";
     public static final SmartFluidTank NULL_HANDLER = new SmartFluidTank(0,null){
         @Override

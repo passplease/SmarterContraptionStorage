@@ -3,24 +3,19 @@ package net.smartercontraptionstorage.Mixin.Storage;
 import com.simibubi.create.content.contraptions.MountedStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.*;
-import net.minecraft.world.entity.player.Player;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
-import net.smartercontraptionstorage.ForFunctionChanger;
 import net.smartercontraptionstorage.FunctionChanger;
-import net.smartercontraptionstorage.Settable;
+import net.smartercontraptionstorage.Interface.Settable;
 import net.smartercontraptionstorage.Utils;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Objects;
 
 import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.NULL_HANDLER;
 
@@ -34,7 +29,6 @@ public abstract class MountedStorageMixin implements Settable {
 
     @Shadow(remap = false) ItemStackHandler handler;
     @Unique public StorageHandlerHelper smarterContraptionStorage$helper;
-    @Unique public boolean smarterContraptionStorage$canUseForStorage;
     @Inject(method = "canUseModdedInventory",at = @At("RETURN"),cancellable = true,remap = false)
     private static void canUseModdedInventory(BlockEntity be, IItemHandler handler, CallbackInfoReturnable<Boolean> cir){
         if(!cir.getReturnValue())
@@ -42,12 +36,6 @@ public abstract class MountedStorageMixin implements Settable {
     }
     @Inject(method = "removeStorageFromWorld",at = @At("HEAD"),cancellable = true,remap = false)
     public void removeStorageFromWorld(CallbackInfo ci){
-        if(!smarterContraptionStorage$canUseForStorage){
-            handler = NULL_HANDLER;
-            valid = true;
-            ci.cancel();
-            return;
-        }
         smarterContraptionStorage$helper = StorageHandlerHelper.findSuitableHelper(blockEntity);
         if(smarterContraptionStorage$helper != null){
             handler = smarterContraptionStorage$helper.createHandler(blockEntity);
@@ -66,26 +54,6 @@ public abstract class MountedStorageMixin implements Settable {
             smarterContraptionStorage$helper.addStorageToWorld(be, handler);
             ci.cancel();
         }
-    }
-    @Inject(method = "<init>",at = @At("RETURN"))
-    public void init(BlockEntity be, CallbackInfo ci){
-        smarterContraptionStorage$canUseForStorage = Utils.smarterContraptionStorage$canUseForStorage;
-        Utils.smarterContraptionStorage$canUseForStorage = true;
-    }
-    /**
-     * @author PassPlease
-     * @reason
-     * To make sure we can open closed containers
-     */
-    @Overwrite(remap = false)
-    public IItemHandlerModifiable getItemHandler(){
-        if(Utils.playerInteracting && !smarterContraptionStorage$canUseForStorage) {
-            MountedStorage storage = new MountedStorage(blockEntity);
-            storage.removeStorageFromWorld();
-            // To generate storage.handler, though, it makes much redundancy calculation
-            return storage.getItemHandler();
-        }
-        return handler;
     }
     @Inject(method = "serialize",at = @At(value = "RETURN"),cancellable = true,remap = false)
     public void serialize(CallbackInfoReturnable<CompoundTag> cir){
@@ -114,48 +82,27 @@ public abstract class MountedStorageMixin implements Settable {
                     BlockPos blockPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
                     BlockEntity blockEntity = FunctionChanger.presentBlockEntities.get(blockPos);
                     if(helper.canCreateHandler(blockEntity)) {
-                        helper.createHandler(blockEntity);
-                        ((Settable) storage).set(blockEntity);
+                        ((Settable) storage).set(helper.canCreateHandler(blockEntity),blockEntity);
                     }
                 }
                 ((Settable) storage).set(helper,true);
                 cir.setReturnValue(storage);
             }catch (Exception e){
                 Utils.addError("Illegal state! Unchecked deserialize try!");
-                Utils.addWarning((helper == null ? "Unknown item handler" : helper.getName()) + "can't deserialize !");
+                Utils.addWarning((helper == null ? "Unknown handler" : helper.getName()) + "can't deserialize !");
             }
-        }
-    }
-    @ForFunctionChanger(method = "findMountedEntity")
-    @Inject(method = "isValid",at = @At("HEAD"),remap = false)
-    public void getBlockEntity(CallbackInfoReturnable<Boolean> cir){
-        if(FunctionChanger.isMountedEntity())
-            FunctionChanger.setMounted_entity(this.blockEntity);
-    }
-    @Deprecated
-    @ForFunctionChanger(method = "openGUI")
-    @Inject(method = "canUseForFuel",at = @At("HEAD"),cancellable = true,remap = false)
-    public void openGUI(CallbackInfoReturnable<Boolean> cir){
-        if(FunctionChanger.isOpenGUI()){
-            if(smarterContraptionStorage$helper != null && smarterContraptionStorage$helper.canHandlerCreateMenu()) {
-                Player player = FunctionChanger.getPlayer();
-                player.containerMenu = player.inventoryMenu;
-                player.openMenu(smarterContraptionStorage$helper.createHandlerMenu(blockEntity,handler,player));
-                cir.setReturnValue(true);
-            }else
-                cir.setReturnValue(false);
         }
     }
     @Unique
     @Override
     public void set(Object object) {
-        if(object instanceof ItemStackHandler)
-            this.handler = (ItemStackHandler) object;
-        else if(object instanceof Boolean)
-            this.valid = (boolean) object;
-        else if(object instanceof StorageHandlerHelper)
-            this.smarterContraptionStorage$helper = (StorageHandlerHelper) object;
-        else if(object instanceof BlockEntity)
-            this.blockEntity = (BlockEntity) object;
+        if(object instanceof ItemStackHandler handler)
+            this.handler = handler;
+        else if(object instanceof Boolean valid)
+            this.valid = valid;
+        else if(object instanceof StorageHandlerHelper helper)
+            this.smarterContraptionStorage$helper = helper;
+        else if(object instanceof BlockEntity blockEntity)
+            this.blockEntity = blockEntity;
     }
 }

@@ -2,20 +2,15 @@ package net.smartercontraptionstorage.AddStorage.FluidHander;
 
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     @Override
@@ -54,7 +49,7 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull SmartFluidTank deserialize(CompoundTag nbt) throws IllegalAccessException {
+    public @NotNull SmartFluidTank deserialize(CompoundTag nbt) {
         return new BackPackFluidHelper(nbt);
     }
 

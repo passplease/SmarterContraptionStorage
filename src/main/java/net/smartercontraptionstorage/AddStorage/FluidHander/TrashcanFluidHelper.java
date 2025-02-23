@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
-import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
-    public @NotNull SmartFluidTank deserialize(CompoundTag nbt) throws IllegalAccessException {
+    public @NotNull SmartFluidTank deserialize(CompoundTag nbt) {
         return new TrashcanHelper(nbt);
     }
 

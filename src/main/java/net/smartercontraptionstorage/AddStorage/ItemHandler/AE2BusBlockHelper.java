@@ -1,10 +1,12 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
 import appeng.api.config.Actionable;
+import appeng.api.features.Locatables;
 import appeng.api.implementations.parts.ICablePart;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
+import appeng.api.networking.security.IActionHost;
 import appeng.api.networking.storage.IStorageService;
 import appeng.api.parts.IPart;
 import appeng.api.stacks.AEItemKey;
@@ -16,12 +18,14 @@ import appeng.blockentity.networking.*;
 import appeng.blockentity.spatial.SpatialIOPortBlockEntity;
 import appeng.core.definitions.AEItems;
 import appeng.items.tools.powered.WirelessCraftingTerminalItem;
+import appeng.me.GridNode;
 import appeng.me.service.EnergyService;
 import appeng.parts.automation.ExportBusPart;
 import appeng.parts.automation.IOBusPart;
 import appeng.util.ConfigInventory;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -33,9 +37,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.OptionalLong;
 
 public class AE2BusBlockHelper extends StorageHandlerHelper{
-    public static final String NAME = "AE2BusBlockHelper";
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
         return entity instanceof CableBusBlockEntity;
@@ -55,12 +59,12 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         AEKey key;
         ItemStack item;
         WirelessCraftingTerminalItem terminal;
-        IGrid id;
-        IGridNode host,exportHost = null,importHost = null;
+        OptionalLong id;
+        IActionHost host,exportHost = null,importHost = null;
 
         for(IPart part : getAllPart(bus)){
             if(part instanceof IOBusPart){
-                if(!checkUpgrade(((IOBusPart) part).getUpgrades(), AEItems.SPEED_CARD.asItem(),3))
+                if(!checkUpgrade(((IOBusPart) part).getUpgrades(), AEItems.SPEED_CARD.asItem()))
                     continue;// Must use 4 speed_cards
                 config = ((IOBusPart)part).getConfig();
                 key = config.getKey(0);
@@ -71,10 +75,10 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
                         terminal = (WirelessCraftingTerminalItem) item.getItem();
                         if(!checkUpgrade(terminal.getUpgrades(item), AEItems.ENERGY_CARD.asItem()))
                             continue;// Must use 2 energy_cards
-                        id = terminal.getLinkedGrid(item,entity.getLevel(),null);
+                        id = terminal.getGridKey(item);
 
-                        if (id != null) {
-                            host = id.getPivot();
+                        if (id.isPresent()) {
+                            host = Locatables.securityStations().get(entity.getLevel(), id.getAsLong());
                             if(host == null)
                                 continue;
                             if(part instanceof ExportBusPart)
@@ -102,18 +106,14 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         return iParts;
     }
 
-    public static boolean checkUpgrade(InternalInventory upgrade, Item targetUpgrade,int size){
+    public static boolean checkUpgrade(InternalInventory upgrade, Item targetUpgrade){
         ItemStack item;
-        for(int i = size;i >= 0;i--){
+        for(int i = upgrade.size() - 1;i >= 0;i--){
             item = upgrade.getStackInSlot(i);
-            if(item.isEmpty() || !item.is(targetUpgrade))
+            if(item == null || !item.is(targetUpgrade))
                 return false;
         }
         return true;
-    }
-
-    public static boolean checkUpgrade(InternalInventory upgrade,Item targetUpgrade){
-        return checkUpgrade(upgrade,targetUpgrade, upgrade.size() - 1);
     }
 
     @Override
@@ -128,7 +128,12 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
 
     @Override
     public String getName() {
-        return NAME;
+        return "AE2BusBlockHelper";
+    }
+
+    @Override
+    public boolean canDeserialize() {
+        return false;
     }
 
     @Override
@@ -144,21 +149,23 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         private boolean canWork = false;
         private final AE2ContraptionSource extractSource;
         private final AE2ContraptionSource importSource;
-        private AE2HandlerHelper(int size,@Nullable IGridNode extractNode,@Nullable IGridNode importNode) {
+        private AE2HandlerHelper(int size,@Nullable IActionHost extractHost,@Nullable IActionHost importHost) {
             super(size);
-            this.extractNode = extractNode;
-            this.importNode = importNode;
-            extractSource = AE2ContraptionSource.create(extractNode);
-            importSource = AE2ContraptionSource.create(importNode);
+            this.extractNode = extractHost == null ? null : extractHost.getActionableNode();
+            this.importNode = importHost == null ? null : importHost.getActionableNode();
+            extractSource = new AE2ContraptionSource(extractHost);
+            importSource = new AE2ContraptionSource(importHost);
         }
 
-        public static AE2HandlerHelper create(@Nullable IGridNode extractNode,@Nullable IGridNode importNode){
+        public static AE2HandlerHelper create(@Nullable IActionHost extractHost,@Nullable IActionHost importHost){
             IStorageService extractNet = null;
-            if(extractNode != null)
-                extractNet = extractNode.getGrid().getStorageService();
+            if(extractHost != null) {
+                IGridNode extractNode = extractHost.getActionableNode();
+                extractNet = extractNode == null ? null : extractNode.getGrid().getStorageService();
+            }
             int size = extractNet == null ? 1 : extractNet.getInventory().getAvailableStacks().size();
 
-            return new AE2HandlerHelper(size,extractNode,importNode);
+            return new AE2HandlerHelper(size,extractHost,importHost);
         }
 
         public boolean canWork(boolean extractOrImport,boolean simulate){
@@ -280,9 +287,9 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
                         continue;
                     MEStorage storage = node.getGrid().getStorageService().getInventory();
                     extractKeys.addAll(storage.getAvailableStacks().keySet());
-                } else if (entity instanceof ControllerBlockEntity)
+                } else if (controller || entity instanceof ControllerBlockEntity)
                     controller = true;
-                else if(entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)
+                else if(energy || entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)
                     energy = true;
                 else if(entity instanceof SpatialIOPortBlockEntity){
                     canWork = false;
@@ -291,6 +298,25 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             }
             canWork = controller && energy;
             hasFilter = !extractKeys.isEmpty();
+        }
+
+        @Override
+        public CompoundTag serializeNBT() {
+            CompoundTag tag = super.serializeNBT();
+            if(canWork) {
+                if (importNode instanceof GridNode node) {
+                    node.saveToNBT("importNode", tag);
+                }
+                if (extractNode instanceof GridNode node) {
+                    node.saveToNBT("extractNode", tag);
+                }
+                ListTag keys = new ListTag();
+                extractKeys.forEach((key) -> keys.add(key.toTagGeneric()));
+                tag.put("extractKeys", keys);
+                tag.putBoolean("hasFilter", hasFilter);
+                tag.putInt("size",super.getSlots());
+            }
+            return tag;
         }
 
         public boolean canWork() {

@@ -12,11 +12,10 @@ import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     public static final String Slot = Integer.toString(DefaultSlot);
-    public static final String Locked = "Locked" + DefaultSlot;
+    public static final String Locked = "Locked" + Slot;
     @Override
     public void addStorageToWorld(BlockEntity entity, SmartFluidTank helper) {
         assert canCreateHandler(entity);
@@ -54,7 +53,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull FluidDrawerHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+    public @NotNull FluidDrawerHandler deserialize(CompoundTag nbt) {
         return new FluidDrawerHandler(nbt);
     }
 

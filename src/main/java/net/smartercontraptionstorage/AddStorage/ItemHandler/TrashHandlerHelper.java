@@ -5,17 +5,26 @@ import com.simibubi.create.foundation.utility.NBTHelper;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.RegistryObject;
+import net.smartercontraptionstorage.AddStorage.GUI.AbstractMovingMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.MovingTrashCanMenu;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TrashHandlerHelper extends StorageHandlerHelper{
     public static final String NAME = "TrashHandlerHelper";
@@ -26,11 +35,13 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof TrashHandler;
-        if(entity instanceof TrashCanBlockEntity Entity && handler instanceof TrashHandler Handler) {
+        if(entity instanceof TrashCanBlockEntity Entity) {
+            TrashHandler Handler = (TrashHandler) handler;
             Entity.itemFilterWhitelist = Handler.whiteOrBlack;
             for (int i = Entity.itemFilter.size() - 1; i >= 0; i--)
                 Entity.itemFilter.set(i, Handler.items[i]);
-            entity.setChanged();
+            Entity.setChanged();
+            Entity.update();
         }
     }
     @Override
@@ -52,14 +63,13 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
     public String getName() {
         return NAME;
     }
-
     @Override
     public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
         return new TrashHandler(nbt);
     }
 
     public static class TrashHandler extends HandlerHelper implements NeedDealWith {
-        public final boolean whiteOrBlack;
+        public boolean whiteOrBlack;
         public List<ItemStack> toolboxItem;
         // false : black
         // true : white
@@ -68,7 +78,8 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
             this.whiteOrBlack = whiteOrBlack;
             for (int i = items.length - 1; i >= 0; i--) {
                 items[i] = itemFilter.get(i);
-                slotLimits[i] = Integer.MAX_VALUE;
+                items[i].setCount(1);
+                slotLimits[i] = 1;
             }
         }
         public TrashHandler(CompoundTag nbt){
@@ -76,7 +87,9 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
             whiteOrBlack = nbt.getBoolean("whiteOrBlack");
             toolboxItem = NBTHelper.readItemList(nbt.getList("toolboxItem", Tag.TAG_COMPOUND));
         }
-        protected boolean canDelete(ItemStack stack){
+        public boolean canDelete(ItemStack stack){
+            if(Utils.isItemEmpty(stack))
+                return false;
             for (ItemStack item : toolboxItem) {
                 if(Utils.isSameItem(item,stack))
                     return false;
@@ -116,6 +129,33 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
             tag.putBoolean("whiteOrBlack",whiteOrBlack);
             tag.put("toolboxItem",NBTHelper.writeItemList(toolboxItem));
             return tag;
+        }
+
+        @Override
+        public String getTranslationKey() {
+            return "trashcans";
+        }
+
+        @Override
+        public @Nullable AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
+            return new MovingTrashCanMenu(this,i,player);
+        }
+        @Override
+        public void writeToBuffer(@NotNull FriendlyByteBuf buffer) {
+            buffer.writeNbt(serializeNBT());
+        }
+
+        public static RegistryObject<MenuType<MovingTrashCanMenu>> TrashCanMenu;
+
+        @Override
+        public MenuType<MovingTrashCanMenu> getMenuType() {
+            Objects.requireNonNull(TrashCanMenu);
+            return TrashCanMenu.get();
+        }
+
+        public void setFilter(int slot,ItemStack stack){
+            if(slot >= 0 && slot < items.length)
+                items[slot] = stack;
         }
     }
 }

@@ -3,18 +3,34 @@ package net.smartercontraptionstorage.AddStorage.ItemHandler;
 import com.buuz135.functionalstorage.block.DrawerBlock;
 import com.buuz135.functionalstorage.block.tile.DrawerTile;
 import com.buuz135.functionalstorage.inventory.BigInventoryHandler;
+import com.simibubi.create.foundation.utility.NBTHelper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.RegistryObject;
+import net.smartercontraptionstorage.AddStorage.GUI.AbstractMovingMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.MovingFunctionalDrawerMenu;
+import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import static com.buuz135.functionalstorage.inventory.BigInventoryHandler.*;
 
@@ -27,14 +43,26 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
-        assert canCreateHandler(entity);
-        ((DrawerTile)entity).handler.deserializeNBT(handler.serializeNBT());
+        assert canCreateHandler(entity) && handler instanceof FDrawersHandler;
+        CompoundTag nbt = new CompoundTag();
+        CompoundTag tag;
+        FDrawersHandler h = (FDrawersHandler)handler;
+        for (int slot = 0; slot < h.getSlots(); slot++) {
+            tag = new CompoundTag();
+            tag.putInt(AMOUNT,h.count[slot]);
+            tag.put(STACK,h.items[slot].serializeNBT());
+            nbt.put(Integer.toString(slot),tag);
+        }
+        CompoundTag compoundTag = new CompoundTag();
+        compoundTag.put(BIG_ITEMS,nbt);
+        ((DrawerTile)entity).getHandler().deserializeNBT(compoundTag);
     }
 
     @Override
     public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
         assert canCreateHandler(entity);
-        return new FDrawersHandler(((DrawerTile)entity).getHandler());
+        DrawerTile drawer = (DrawerTile) entity;
+        return new FDrawersHandler(drawer.getHandler(),drawer.getUtilityUpgrades(),drawer.getStorageUpgrades());
     }
 
     @Override
@@ -59,10 +87,13 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
 
     public static class FDrawersHandler extends HandlerHelper{
         public final int[] count;
+        public final List<ItemStack> upgrades;
         public final boolean isCreative;
-        public FDrawersHandler(BigInventoryHandler handler){
-            super(handler.getSlots());
-            count = new int[handler.getSlots()];
+        public final boolean isVoid;
+        public FDrawersHandler(BigInventoryHandler handler, ItemStackHandler utility_upgrades, ItemStackHandler storage_upgrades){
+            super(handler.isVoid() ? handler.getSlots() - 1 : handler.getSlots());
+            isVoid = handler.isVoid();
+            count = new int[items.length];
             this.isCreative = handler.isCreative();
             for (int i = slotLimits.length - 1; i >= 0; i--) {
                 slotLimits[i] = handler.getSlotLimit(i);
@@ -70,27 +101,38 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
                 count[i] = items[i].getCount();
                 items[i].setCount(1);
             }
+            upgrades = new ArrayList<>();
+            for (int slot = 0; slot < storage_upgrades.getSlots(); slot++) {
+                upgrades.add(storage_upgrades.getStackInSlot(slot));
+            }
+            for (int slot = 0; slot < utility_upgrades.getSlots(); slot++) {
+                upgrades.add(utility_upgrades.getStackInSlot(slot));
+            }
+            assert upgrades.size() == 7;
         }
         public FDrawersHandler(CompoundTag nbt) {
             super(nbt);
             isCreative = nbt.getBoolean("isCreative");
+            isVoid = nbt.getBoolean("isVoid");
             ListTag list = nbt.getList("count", Tag.TAG_INT);
             count = new int[list.size()];
             for (int slot = 0; slot < count.length; slot++)
                 count[slot] = ((IntTag)list.get(slot)).getAsInt();
+            upgrades = NBTHelper.readItemList(nbt.getList("upgrades", Tag.TAG_COMPOUND));
+            assert upgrades.size() == 7;
         }
         public boolean canInsert(int slot,@NotNull ItemStack stack){
             return !stack.isEmpty() && (Utils.isSameItem(items[slot],stack) || items[slot].is(Items.AIR));
         }
         public void setCountInSlot(int slot, @NotNull ItemStack stack, int count){
-            if(items[slot].is(Items.AIR))
+            if(isItemEmpty(slot))
                 items[slot] = stack.copy();
             this.count[slot] = count;
         }
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             if(canInsert(slot,stack)){
-                if(isCreative)
+                if(isCreative || isVoid)
                     return ItemStack.EMPTY;
                 int sumCount = count[slot] + stack.getCount();
                 if(sumCount >= slotLimits[slot]){
@@ -136,15 +178,40 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
         public CompoundTag serializeNBT() {
             CompoundTag tag = super.serializeNBT();
             tag.putBoolean("isCreative",isCreative);
+            tag.putBoolean("isVoid",isVoid);
             ListTag list = new ListTag();
             for(int i : count)
                 list.add(IntTag.valueOf(i));
             tag.put("count",list);
+            tag.put("upgrades", NBTHelper.writeItemList(upgrades));
             return tag;
         }
         @Override
         public String getName() {
             return NAME;
+        }
+
+        public static RegistryObject<MenuType<MovingFunctionalDrawerMenu>> MENU_TYPE;
+
+        @Override
+        public MenuType<? extends AbstractMovingMenu<?>> getMenuType() {
+            Objects.requireNonNull(MENU_TYPE);
+            return MENU_TYPE.get();
+        }
+
+        @Override
+        public @Nullable AbstractMovingMenu<?> createMenu(int id, Inventory inventory, Player player) {
+            return new MovingFunctionalDrawerMenu(this,id,player);
+        }
+
+        @Override
+        public String getTranslationKey() {
+            return "drawer";
+        }
+
+        @Override
+        public @NotNull Component getDisplayName() {
+            return Component.translatable(SmarterContraptionStorage.MODID + ".moving_container." + getTranslationKey(),items.length).setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GRAY));
         }
     }
 }

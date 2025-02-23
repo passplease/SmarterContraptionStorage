@@ -7,14 +7,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fluids.FluidStack;
 import net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.FunctionChanger;
-import net.smartercontraptionstorage.Settable;
+import net.smartercontraptionstorage.Interface.Settable;
 import net.smartercontraptionstorage.Utils;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -33,28 +30,19 @@ public class MountedFluidStorageMixin implements Settable {
     @Shadow(remap = false) private BlockEntity blockEntity;
     @Unique @Nullable
     FluidHandlerHelper smarterContraptionStorage$handlerHelper;
-    @Unique boolean smarterContraptionStorage$canUseForStorage;
     @Inject(method = "canUseAsStorage",at = @At("RETURN"),remap = false, cancellable = true)
     private static void canUseAsStorage(BlockEntity be, CallbackInfoReturnable<Boolean> cir){
         if(!cir.getReturnValue())
             cir.setReturnValue(FluidHandlerHelper.canUseAsStorage(be));
     }
-    @Inject(method = "assignBlockEntity",at = @At("HEAD"),remap = false)
-    public void init(BlockEntity be, CallbackInfo ci){
-        smarterContraptionStorage$canUseForStorage = Utils.smarterContraptionStorage$canUseForStorage;
-        Utils.smarterContraptionStorage$canUseForStorage = true;
-    }
     @Inject(method = "createMountedTank",at = @At("RETURN"),remap = false, cancellable = true)
     public void createMountedTank(BlockEntity be, CallbackInfoReturnable<SmartFluidTank> cir){
         if(cir.getReturnValue() == null){
-            if(smarterContraptionStorage$canUseForStorage) {
-                smarterContraptionStorage$handlerHelper = FluidHandlerHelper.findSuitableHelper(be);
-                if (smarterContraptionStorage$handlerHelper != null) {
-                    SmartFluidTank tank = smarterContraptionStorage$handlerHelper.createHandler(be);
-                    if(tank != null)
-                        cir.setReturnValue(tank);
-                }
-            }else cir.setReturnValue(FluidHandlerHelper.NULL_HANDLER);
+            smarterContraptionStorage$handlerHelper = FluidHandlerHelper.findSuitableHelper(be);
+            if (smarterContraptionStorage$handlerHelper != null) {
+                SmartFluidTank tank = smarterContraptionStorage$handlerHelper.createHandler(be);
+                cir.setReturnValue(tank);
+            }
         }
     }
     @Inject(method = "removeStorageFromWorld",at = @At("RETURN"),remap = false)
@@ -111,7 +99,7 @@ public class MountedFluidStorageMixin implements Settable {
                 }
                 ((Settable)storage).set(helper,true);
                 cir.setReturnValue(storage);
-            } catch (IllegalAccessException e) {
+            } catch (Exception e) {
                 Utils.addError("Illegal state! Unchecked deserialize try!");
                 Utils.addWarning((helper == null ? "Unknown fluid handler" : helper.getName()) + "can't deserialize !");
             }

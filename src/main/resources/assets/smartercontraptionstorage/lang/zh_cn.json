@@ -55,5 +55,6 @@
   "smartercontraptionstorage.moving_container.trashcans.toolbox": "工具箱: %1$d",
   "smartercontraptionstorage.moving_container.drawer": "移动抽屉 %1$dx%1$d",
   "smartercontraptionstorage.moving_container.compacting_drawer": "移动压缩抽屉",
-  "smartercontraptionstorage.moving_container.backpack": "移动背包"
+  "smartercontraptionstorage.moving_blockentity_container": "移动的",
+  "smartercontraptionstorage.moving_container.backpack.reminder": "由于技术原因，背包GUI仅可查看"
 }

@@ -1,4 +1,4 @@
-package net.smartercontraptionstorage.AddStorage.GUI;
+package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.client.renderer.StorageRenderItem;

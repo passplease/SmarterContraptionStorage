@@ -1,4 +1,4 @@
-package net.smartercontraptionstorage.AddStorage.GUI;
+package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;

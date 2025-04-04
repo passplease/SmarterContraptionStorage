@@ -1,9 +1,10 @@
-package net.smartercontraptionstorage.AddStorage.GUI;
+package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.items.SlotItemHandler;
+import net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.FunctionalDrawersHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +25,7 @@ public class MovingFunctionalDrawerMenu extends AbstractMovingMenu<FunctionalDra
     @Override
     public void addSlots() {
         for (int slot = 0; slot < getHandlerSlot(); slot++) {
-            // to synchronize handler
+            // to synchronizeToClient handler
             addSlot(new SlotItemHandler(getHandler(),slot,Integer.MAX_VALUE,Integer.MAX_VALUE));
         }
         addSlot(UnchangeableSlot.create(getHandler().upgrades.get(0),10,70));

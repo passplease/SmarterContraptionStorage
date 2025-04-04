@@ -1,8 +1,9 @@
-package net.smartercontraptionstorage.AddStorage.GUI;
+package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.FunctionalCompactingHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 

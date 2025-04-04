@@ -1,4 +1,4 @@
-package net.smartercontraptionstorage.AddStorage.GUI;
+package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -73,13 +73,6 @@ public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> exte
 
     public void drawContent(PoseStack poseStack,String key,float x,float y,Object... objects) {
         font.draw(poseStack,Component.translatable(key,objects),x,y,4210752);
-    }
-
-    @Override
-    public void removed() {
-        super.removed();
-        if (this.minecraft != null && this.minecraft.player != null)
-            this.menu.getHandler().removed(this, this.minecraft.player);
     }
 
     public int getCenterX(){

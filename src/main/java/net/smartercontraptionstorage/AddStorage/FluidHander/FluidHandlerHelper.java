@@ -10,9 +10,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
 import net.smartercontraptionstorage.AddStorage.SerializableHandler;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
@@ -82,8 +84,11 @@ public abstract class FluidHandlerHelper implements SerializableHandler<SmartFlu
         return null;
     }
 
-    public static FluidHandlerHelper findByName(String name){
-        return HandlerHelpers.stream().filter((helper)-> Objects.equals(helper.getName(),name)).findFirst().orElse(null);
+    public static @Nonnull FluidHandlerHelper findByName(String name){
+        FluidHandlerHelper h = HandlerHelpers.stream().filter((helper) -> Objects.equals(helper.getName(), name)).findFirst().orElse(null);
+        if(h == null)
+            Utils.addWarning("Invalid fluid handler name: " + name);
+        return Objects.requireNonNull(h);
     }
 
     public static void clearData() {

@@ -11,8 +11,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.smartercontraptionstorage.Render.Overlay;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +21,6 @@ import java.awt.*;
 
 import static net.smartercontraptionstorage.Utils.*;
 
-@OnlyIn(Dist.CLIENT)
 @Mixin(ContraptionControlsRenderer.class)
 public class RenderMixin extends SmartBlockEntityRenderer<ContraptionControlsBlockEntity> {
     public RenderMixin(BlockEntityRendererProvider.Context context) {

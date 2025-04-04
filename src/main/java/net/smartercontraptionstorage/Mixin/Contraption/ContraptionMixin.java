@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.Mixin.Contraption;
 
+import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.content.contraptions.Contraption;
 import com.simibubi.create.content.contraptions.MountedStorage;
 import com.simibubi.create.content.contraptions.MountedStorageManager;
@@ -7,6 +8,7 @@ import com.simibubi.create.content.contraptions.actors.contraptionControls.Contr
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -29,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.*;
 
 @Mixin(Contraption.class)
-public abstract class ContraptionMixin implements Gettable{
+public abstract class ContraptionMixin implements Gettable {
     @Shadow(remap = false) protected MountedStorageManager storage;
     @Shadow(remap = false) protected List<MutablePair<StructureTemplate.StructureBlockInfo, MovementContext>> actors;
     @Shadow(remap = false) protected abstract BlockPos toLocalPos(BlockPos globalPos);
@@ -38,6 +40,8 @@ public abstract class ContraptionMixin implements Gettable{
 
     @Shadow(remap = false) protected abstract MountedStorageManager getStorageForSpawnPacket();
 
+    @Shadow(remap = false) public AbstractContraptionEntity entity;
+    @Shadow(remap = false) public Map<BlockPos, BlockEntity> presentBlockEntities;
     @Unique protected Map<Overlay,List<BlockPos>> smarterContraptionStorage$orderedBlocks = new HashMap<>();
 
     @Unique protected List<BlockPos> smarterContraptionStorage$removedBlocks = new ArrayList<>();
@@ -127,6 +131,35 @@ public abstract class ContraptionMixin implements Gettable{
         if(this.blocks.containsKey(localPos))
             return this.blocks.get(localPos).state.getBlock();
         else return level.getBlockState(pos).getBlock();
+    }
+
+    @ForFunctionChanger(method = "deserialize")
+    @Inject(method = "readNBT",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/MountedStorageManager;read(Lnet/minecraft/nbt/CompoundTag;Ljava/util/Map;Z)V"),remap = false)
+    public void help_deserialize(Level world, CompoundTag nbt, boolean spawnData, CallbackInfo ci){
+        FunctionChanger.getBlockEntity = (pos) -> {
+            try {
+                if(spawnData) {
+                    BlockPos localPos = toLocalPos(pos);
+                    return presentBlockEntities.get(localPos);
+                } else {
+                    StructureTemplate.StructureBlockInfo info = blocks.get(pos);
+                    CompoundTag tag = info.nbt;
+                    if(tag != null) {
+                        tag.putInt("x", info.pos.getX());
+                        tag.putInt("y", info.pos.getY());
+                        tag.putInt("z", info.pos.getZ());
+                        return BlockEntity.loadStatic(info.pos,info.state,tag);
+                    } else return null;
+                }
+            } catch (Exception e) {
+                return presentBlockEntities.values().stream().filter(blockEntity -> blockEntity.getBlockPos().equals(pos)).findFirst().orElse(null);
+            }
+        };
+    }
+    @ForFunctionChanger(method = "deserialize")
+    @Inject(method = "readNBT",at = @At("RETURN"),remap = false)
+    public void clearData(Level world, CompoundTag nbt, boolean spawnData, CallbackInfo ci){
+        FunctionChanger.getBlockEntity = null;
     }
 
     @Override

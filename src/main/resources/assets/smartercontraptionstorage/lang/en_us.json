@@ -55,5 +55,6 @@
   "smartercontraptionstorage.moving_container.trashcans.toolbox": "Toolbox: %1$d",
   "smartercontraptionstorage.moving_container.drawer": "Moving Drawer %1$dx%1$d",
   "smartercontraptionstorage.moving_container.compacting_drawer": "Moving Compacting Drawer",
-  "smartercontraptionstorage.moving_container.backpack": "Moving Backpack"
+  "smartercontraptionstorage.moving_blockentity_container": "Moving ",
+  "smartercontraptionstorage.moving_container.backpack.reminder": "For technical reasons, backpack menu can't react for your click"
 }

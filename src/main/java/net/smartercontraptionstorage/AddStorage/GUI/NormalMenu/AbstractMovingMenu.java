@@ -1,4 +1,4 @@
-package net.smartercontraptionstorage.AddStorage.GUI;
+package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.sounds.SoundEvent;
@@ -69,7 +69,7 @@ public abstract class AbstractMovingMenu<T extends ItemStackHandler & MovingMenu
 
     @Override
     public boolean stillValid(@NotNull Player player) {
-        return getHandler().stillValid(player);
+        return getHandler().stillValid(player,this);
     }
 
     protected void addPlayerSlots(Inventory inventory, int x, int y) {
@@ -86,5 +86,11 @@ public abstract class AbstractMovingMenu<T extends ItemStackHandler & MovingMenu
 
     public void playSound(@NotNull Player player, SoundEvent soundEvent) {
         player.level.playSound(player,player,soundEvent, SoundSource.BLOCKS,0.75f,1f);
+    }
+
+    @Override
+    public void removed(Player pPlayer) {
+        super.removed(pPlayer);
+        getHandler().removed(this, pPlayer);
     }
 }

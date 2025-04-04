@@ -1,4 +1,4 @@
-package net.smartercontraptionstorage.AddStorage.GUI;
+package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.mojang.blaze3d.vertex.*;
 import com.supermartijn642.trashcans.screen.WhitelistButton;

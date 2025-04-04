@@ -21,11 +21,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.RegistryObject;
-import net.smartercontraptionstorage.AddStorage.GUI.AbstractMovingMenu;
-import net.smartercontraptionstorage.AddStorage.GUI.MovingFunctionalCompactingMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingFunctionalCompactingMenu;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -228,7 +227,7 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
         }
 
         @Override
-        public @Nullable AbstractMovingMenu<?> createMenu(int id, Inventory inventory, Player player) {
+        public @NotNull AbstractMovingMenu<?> createMenu(int id, Inventory inventory, Player player) {
             return new MovingFunctionalCompactingMenu(this,id,player);
         }
 

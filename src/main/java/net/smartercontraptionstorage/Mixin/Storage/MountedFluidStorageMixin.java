@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.FunctionChanger;
+import net.smartercontraptionstorage.Interface.Changeable;
 import net.smartercontraptionstorage.Interface.Settable;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.Nullable;
@@ -22,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MountedFluidStorage.class)
-public class MountedFluidStorageMixin implements Settable {
+public class MountedFluidStorageMixin implements Changeable {
     @Shadow(remap = false)
     SmartFluidTank tank;
     @Shadow(remap = false) private boolean valid;
@@ -52,6 +53,8 @@ public class MountedFluidStorageMixin implements Settable {
             sendPacket = smarterContraptionStorage$handlerHelper.sendPacket();
             if(tank instanceof NeedDealWith)
                 ((NeedDealWith) tank).doSomething(blockEntity);
+            else if(smarterContraptionStorage$handlerHelper instanceof NeedDealWith)
+                ((NeedDealWith)smarterContraptionStorage$handlerHelper).doSomething(blockEntity);
         }
     }
     @Inject(method = "addStorageToWorld",at = @At("HEAD"),remap = false,cancellable = true)
@@ -75,7 +78,6 @@ public class MountedFluidStorageMixin implements Settable {
             tag.putString(FluidHandlerHelper.DESERIALIZE_MARKER,smarterContraptionStorage$handlerHelper.getName());
             if(!smarterContraptionStorage$handlerHelper.canDeserialize()){
                 smarterContraptionStorage$handlerHelper.addStorageToWorld(blockEntity,tank);
-                tag.put("pos", NbtUtils.writeBlockPos(blockEntity.getBlockPos()));
             }
             cir.setReturnValue(tag);
         }
@@ -90,8 +92,8 @@ public class MountedFluidStorageMixin implements Settable {
                 if(helper.canDeserialize()) {
                     ((Settable) storage).set(helper.deserialize(nbt));
                 } else {
-                    BlockPos blockPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
-                    BlockEntity blockEntity = FunctionChanger.presentBlockEntities.get(blockPos);
+                    BlockPos localPos = NbtUtils.readBlockPos(nbt.getCompound("LocalPos"));
+                    BlockEntity blockEntity = FunctionChanger.getBlockEntity.apply(localPos);
                     if(helper.canCreateHandler(blockEntity)) {
                         helper.createHandler(blockEntity);
                         ((Settable) storage).set(blockEntity);
@@ -116,5 +118,12 @@ public class MountedFluidStorageMixin implements Settable {
             this.smarterContraptionStorage$handlerHelper = (FluidHandlerHelper) object;
         else if(object instanceof BlockEntity)
             this.blockEntity = (BlockEntity) object;
+    }
+
+    @Override
+    public @Nullable Object get(String name) {
+        if(name.equals("helper"))
+            return this.smarterContraptionStorage$handlerHelper;
+        return null;
     }
 }

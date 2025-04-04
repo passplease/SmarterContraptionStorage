@@ -21,12 +21,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.RegistryObject;
-import net.smartercontraptionstorage.AddStorage.GUI.AbstractMovingMenu;
-import net.smartercontraptionstorage.AddStorage.GUI.MovingDrawerMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
+import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingDrawerMenu;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -219,7 +218,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         }
 
         @Override
-        public @Nullable AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
+        public @NotNull AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
             return new MovingDrawerMenu(this,i,player);
         }
 

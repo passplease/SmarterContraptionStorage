@@ -1,6 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
-import com.jaquadro.minecraft.storagedrawers.client.renderer.StorageRenderItem;
+import com.jaquadro.minecraft.storagedrawers.client.gui.StorageGuiGraphics;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -17,11 +17,11 @@ import java.util.function.Function;
 
 public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.NormalDrawerHandler>{
     @OnlyIn(Dist.CLIENT)
-    public StorageRenderItem activeRenderItem;
+    public StorageGuiGraphics storageGuiGraphics;
     private final boolean isClient;
     public MovingDrawerMenu(@NotNull DrawersHandlerHelper.NormalDrawerHandler handler, int pContainerId, @NotNull Player player) {
         super(handler, pContainerId, player);
-        isClient = player.level.isClientSide();
+        isClient = player.getCommandSenderWorld().isClientSide();
     }
 
     public MovingDrawerMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
@@ -30,7 +30,7 @@ public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.No
 
     public MovingDrawerMenu(int id, Inventory inventory, FriendlyByteBuf buf, Function<FriendlyByteBuf,DrawersHandlerHelper.NormalDrawerHandler> getHandler){
         super(id,inventory,buf,getHandler);
-        isClient = inventory.player.level.isClientSide();
+        isClient = inventory.player.getCommandSenderWorld().isClientSide();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.No
         for (int column = 0; column < 7; column++) {
             h = new ItemStackHandler();
             h.setStackInSlot(0,getHandler().getUpgrades(column));
-            addSlot(new UnchangeableSlot(h,0,26 + column * 18, 86));
+            addSlot(new net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot(h,0,26 + column * 18, 86));
         }
     }
 
@@ -76,8 +76,8 @@ public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.No
     }
 
     public void setLastAccessedItem(ItemStack stack) {
-        if (this.isClient() && this.activeRenderItem != null) {
-            this.activeRenderItem.overrideStack = stack;
+        if (this.isClient() && this.storageGuiGraphics != null) {
+            this.storageGuiGraphics.overrideStack = stack;
         }
     }
 

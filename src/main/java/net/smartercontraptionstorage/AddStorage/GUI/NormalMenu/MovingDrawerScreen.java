@@ -1,8 +1,9 @@
 package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
-import com.jaquadro.minecraft.storagedrawers.client.renderer.StorageRenderItem;
+import com.jaquadro.minecraft.storagedrawers.client.gui.StorageGuiGraphics;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
@@ -17,7 +18,7 @@ public class MovingDrawerScreen extends AbstractMovingScreen<MovingDrawerMenu>{
 
     public static final ResourceLocation BACKGROUND_4 = new ResourceLocation(StorageDrawers.MOD_ID,"textures/gui/drawers_4.png");
 
-    protected static StorageRenderItem storageItemRender;
+    protected static StorageGuiGraphics storageGuiGraphics;
     
     public MovingDrawerScreen(MovingDrawerMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -30,38 +31,31 @@ public class MovingDrawerScreen extends AbstractMovingScreen<MovingDrawerMenu>{
         titleLabelY = 6;
         inventoryLabelX = 8;
         inventoryLabelY = 105;
-        if(storageItemRender == null && minecraft != null) 
-            storageItemRender = new StorageRenderItem(minecraft.getTextureManager(), minecraft.getItemRenderer().getItemModelShaper().getModelManager(), minecraft.getItemColors());
+        if(storageGuiGraphics == null && minecraft != null)
+            storageGuiGraphics = new StorageGuiGraphics(minecraft,minecraft.renderBuffers().bufferSource());
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        ItemRenderer preRender = setItemRender(storageItemRender);
-        menu.activeRenderItem = storageItemRender;
-        super.render(poseStack, mouseX, mouseY, partialTicks);
-        menu.activeRenderItem = null;
-        storageItemRender.overrideStack = ItemStack.EMPTY;
-        setItemRender(preRender);
-    }
-
-    protected ItemRenderer setItemRender(ItemRenderer renderItem) {
-        ItemRenderer prev = this.itemRenderer;
-        this.itemRenderer = renderItem;
-        return prev;
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        menu.storageGuiGraphics = storageGuiGraphics;
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        menu.storageGuiGraphics = null;
+        storageGuiGraphics.overrideStack = ItemStack.EMPTY;
     }
 
     @Override
-    protected void renderScreen(PoseStack poseStack, float partialTicks, int mouseX, int mouseY) {}
+    protected void renderScreen(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {}
+
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-        super.renderLabels(poseStack, mouseX, mouseY);
-        drawContent(poseStack,"container.storagedrawers.upgrades",8f,75f);
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        super.renderLabels(guiGraphics, mouseX, mouseY);
+        drawContent(guiGraphics,"container.storagedrawers.upgrades",8f,75f);
     }
 
     @Override
-    public void drawContent(PoseStack poseStack, String key, float x, float y, Object... objects) {
-        font.draw(poseStack, I18n.get(key,objects), x, y, 4210752);
+    public void drawContent(GuiGraphics guiGraphics, String key, float x, float y, Object... objects) {
+        guiGraphics.drawString(font,I18n.get("container.storagedrawers.upgrades", objects),x,y,4210752,false);
     }
 
     @Override

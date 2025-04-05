@@ -171,7 +171,7 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper implements NeedDe
 
     @Override
     public void playSound(Level level) {
-        BlockPos soundPos = new BlockPos(getSoundPos());
+        BlockPos soundPos = BlockPos.containing(getSoundPos());
         level.playSound(null,soundPos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 0.25f, level.random.nextFloat() * 0.1F + 1.2F);
         level.playSound(null,soundPos,SoundEvents.CHEST_OPEN, SoundSource.BLOCKS, 0.1F, level.random.nextFloat() * 0.1F + 1.1F);
     }
@@ -179,9 +179,9 @@ public class ToolboxHandlerHelper extends StorageHandlerHelper implements NeedDe
     @Override
     public void removed(MovingBlockEntityMenu menu, Player player) {
         if(check()) {
-            BlockPos soundPos = new BlockPos(getSoundPos());
-            player.level.playSound(null,soundPos, SoundEvents.CHEST_CLOSE, SoundSource.BLOCKS, 0.1F, player.level.random.nextFloat() * 0.1F + 1.1F);
-            player.level.playSound(null,soundPos, SoundEvents.IRON_DOOR_CLOSE, SoundSource.BLOCKS, 0.25F, player.level.random.nextFloat() * 0.1F + 1.2F);
+            BlockPos soundPos = BlockPos.containing(getSoundPos());
+            player.level().playSound(null,soundPos, SoundEvents.CHEST_CLOSE, SoundSource.BLOCKS, 0.1F, player.level().random.nextFloat() * 0.1F + 1.1F);
+            player.level().playSound(null,soundPos, SoundEvents.IRON_DOOR_CLOSE, SoundSource.BLOCKS, 0.25F, player.level().random.nextFloat() * 0.1F + 1.2F);
         }
         HelperMenuProvider.super.removed(menu, player);
     }

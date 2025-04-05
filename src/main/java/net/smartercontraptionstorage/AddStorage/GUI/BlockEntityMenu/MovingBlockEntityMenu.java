@@ -55,7 +55,7 @@ public class MovingBlockEntityMenu extends AbstractContainerMenu {
     public ItemStack quickMoveStack(Player player, int i) {
         Level level = setPlayerLevel(player);
         ItemStack itemStack = getMenu().quickMoveStack(player, i);
-        player.level = level;
+        player.setLevel(level);
         return itemStack;
     }
 
@@ -63,7 +63,7 @@ public class MovingBlockEntityMenu extends AbstractContainerMenu {
     public boolean stillValid(Player player) {
         Level level = setPlayerLevel(player);
         boolean value = getHelper().stillValid(player, this);
-        player.level = level;
+        player.setLevel(level);
         return value;
     }
 
@@ -81,8 +81,8 @@ public class MovingBlockEntityMenu extends AbstractContainerMenu {
     }
 
     protected Level setPlayerLevel(Player player) {
-        Level level = player.level;
-        player.level = MenuLevel.tickingBlockEntity(getHelper().getPair(),level);
+        Level level = player.level();
+        player.setLevel(MenuLevel.tickingBlockEntity(getHelper().getPair(),level));
         return level;
     }
 
@@ -95,7 +95,7 @@ public class MovingBlockEntityMenu extends AbstractContainerMenu {
     public boolean clickMenuButton(Player player, int id) {
         Level level = setPlayerLevel(player);
         boolean value = getMenu().clickMenuButton(player, id);
-        player.level = level;
+        player.setLevel(level);
         return value;
     }
 
@@ -110,7 +110,7 @@ public class MovingBlockEntityMenu extends AbstractContainerMenu {
             // Client will be synchronized
             Level level = setPlayerLevel(player);
             getMenu().clicked(index, flag, type, player);
-            player.level = level;
+            player.setLevel(level);
         }
     }
 
@@ -124,7 +124,7 @@ public class MovingBlockEntityMenu extends AbstractContainerMenu {
         Level level = setPlayerLevel(player);
         getMenu().removed(player);
         super.removed(player);
-        player.level = level;
+        player.setLevel(level);
         getHelper().removed(this, player);
     }
 

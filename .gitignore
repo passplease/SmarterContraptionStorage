@@ -1,5 +1,5 @@
-/run/
-/.vscode/
-/.idea/
-/bin/
-/build/
+run/
+.vscode/
+.idea/
+bin/
+build/

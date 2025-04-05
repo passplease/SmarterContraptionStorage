@@ -48,11 +48,12 @@ public enum Overlay {
     TextureAtlasSprite uv;
     @NotNull public final ResourceLocation location;
     @NotNull public final DyeItem item;
-    static void register(TextureStitchEvent.Pre event){
-        for(Overlay overlay : Overlay.values()){
-            event.addSprite(overlay.getResourceLocation());
-        }
-    }
+    // register by json file
+//    static void register(TextureStitchEvent.Pre event){
+//        for(Overlay overlay : Overlay.values()){
+//            event.addSprite(overlay.getResourceLocation());
+//        }
+//    }
     static void setUV(TextureStitchEvent.Post event){
         TextureAtlas atlas = event.getAtlas();
         for(Overlay overlay : Overlay.values()){

@@ -58,7 +58,7 @@ public abstract class ContraptionMixin implements Gettable {
                 List<BlockPos> list = smarterContraptionStorage$orderedBlocks.get(overlay);
                 if(list != null)
                     for (BlockPos blockPos : list) {
-                        Optional<MutablePair<StructureTemplate.StructureBlockInfo, MovementContext>> actor = actors.stream().filter((act) -> act.getLeft().pos.equals(blockPos)).findFirst();
+                        Optional<MutablePair<StructureTemplate.StructureBlockInfo, MovementContext>> actor = actors.stream().filter((act) -> act.getLeft().pos().equals(blockPos)).findFirst();
                         // I think there is no any block could be used as actor and container at the same time
                         // So use if-else to reduce computation
                         // * Toolbox and Backpack could be used both two
@@ -129,7 +129,7 @@ public abstract class ContraptionMixin implements Gettable {
     protected Block smarterContraptionStorage$getBlockAt(Level level, BlockPos pos){
         BlockPos localPos = this.toLocalPos(pos);
         if(this.blocks.containsKey(localPos))
-            return this.blocks.get(localPos).state.getBlock();
+            return this.blocks.get(localPos).state().getBlock();
         else return level.getBlockState(pos).getBlock();
     }
 
@@ -143,12 +143,12 @@ public abstract class ContraptionMixin implements Gettable {
                     return presentBlockEntities.get(localPos);
                 } else {
                     StructureTemplate.StructureBlockInfo info = blocks.get(pos);
-                    CompoundTag tag = info.nbt;
+                    CompoundTag tag = info.nbt();
                     if(tag != null) {
-                        tag.putInt("x", info.pos.getX());
-                        tag.putInt("y", info.pos.getY());
-                        tag.putInt("z", info.pos.getZ());
-                        return BlockEntity.loadStatic(info.pos,info.state,tag);
+                        tag.putInt("x", info.pos().getX());
+                        tag.putInt("y", info.pos().getY());
+                        tag.putInt("z", info.pos().getZ());
+                        return BlockEntity.loadStatic(info.pos(),info.state(),tag);
                     } else return null;
                 }
             } catch (Exception e) {

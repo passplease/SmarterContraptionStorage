@@ -2,8 +2,6 @@ package net.smartercontraptionstorage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Quaternion;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -31,6 +29,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 
 import java.awt.*;
 import java.util.*;
@@ -224,7 +224,7 @@ public final class Utils {
     }
     public static void rotate(PoseStack poseStack, Direction direction,float degrees){
         poseStack.translate(0.5f,0.5f,0.5f);
-        poseStack.mulPose(new Quaternion(direction.step(),degrees,true));
+        poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(direction.step(),degrees));
         poseStack.translate(-0.5f,-0.5f,-0.5f);
     }
     public static int calcHorizonDegrees(Direction tragetDirection,Direction facing){

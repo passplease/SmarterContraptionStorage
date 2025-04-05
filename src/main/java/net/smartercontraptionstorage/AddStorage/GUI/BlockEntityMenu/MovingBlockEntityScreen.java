@@ -3,6 +3,7 @@ package net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
@@ -52,13 +53,13 @@ public class MovingBlockEntityScreen extends AbstractContainerScreen<MovingBlock
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        getScreen().render(poseStack, mouseX, mouseY, partialTick);
-        getMenu().getHelper().render(this,poseStack,mouseX,mouseY,partialTick);
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        getScreen().render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        getMenu().getHelper().render(this,pGuiGraphics,pMouseX,pMouseY,pPartialTick);
     }
 
     @Override
-    protected void renderBg(PoseStack poseStack, float v, int i, int i1) {
+    protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
         throw new IllegalCallerException("This method should not be called !");
     }
 
@@ -89,78 +90,17 @@ public class MovingBlockEntityScreen extends AbstractContainerScreen<MovingBlock
     }
 
     @Override
-    public void renderTooltip(PoseStack poseStack, List<? extends FormattedCharSequence> lines, int x, int y, Font font) {
-        getScreen().renderTooltip(poseStack, lines, x, y, font);
+    public void renderWithTooltip(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        getScreen().renderWithTooltip(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        getMenu().getHelper().renderWithTooltip(this,pGuiGraphics,pMouseX,pMouseY,pPartialTick);
     }
 
-    @Override
-    public void renderTooltip(PoseStack pPoseStack, List<? extends FormattedCharSequence> pTooltips, int pMouseX, int pMouseY) {
-        getScreen().renderTooltip(pPoseStack, pTooltips, pMouseX, pMouseY);
+    public void drawContent(GuiGraphics guiGraphics,String key,int x,int y,Object... objects) {
+        guiGraphics.renderTooltip(font,Component.translatable(key,objects),x,y);
     }
 
-    @Override
-    public void renderTooltip(PoseStack pPoseStack, Component pText, int pMouseX, int pMouseY) {
-        getScreen().renderTooltip(pPoseStack, pText, pMouseX, pMouseY);
-    }
-
-    @Override
-    public void renderTooltip(PoseStack poseStack, List<Component> textComponents, Optional<TooltipComponent> tooltipComponent, int x, int y, @Nullable Font font) {
-        getScreen().renderTooltip(poseStack, textComponents, tooltipComponent, x, y, font);
-    }
-
-    @Override
-    public void renderTooltip(PoseStack pPoseStack, List<Component> pTooltips, Optional<TooltipComponent> pVisualTooltipComponent, int pMouseX, int pMouseY) {
-        getScreen().renderTooltip(pPoseStack,pTooltips,pVisualTooltipComponent,pMouseX,pMouseY);
-    }
-
-    @Override
-    public void renderTooltip(PoseStack poseStack, List<Component> textComponents, Optional<TooltipComponent> tooltipComponent, int x, int y, ItemStack stack) {
-        getScreen().renderTooltip(poseStack,textComponents,tooltipComponent,x,y);
-    }
-
-    @Override
-    public void renderTooltip(PoseStack poseStack, List<Component> textComponents, Optional<TooltipComponent> tooltipComponent, int x, int y, @Nullable Font font, ItemStack stack) {
-        getScreen().renderTooltip(poseStack,textComponents,tooltipComponent,x,y);
-    }
-
-    @Override
-    public List<Component> getTooltipFromItem(ItemStack pItemStack) {
-        return getScreen().getTooltipFromItem(pItemStack);
-    }
-
-    @Override
-    public void renderBackground(PoseStack pPoseStack) {
-        getScreen().renderBackground(pPoseStack);
-    }
-
-    @Override
-    public void renderBackground(PoseStack pPoseStack, int pVOffset) {
-        getScreen().renderBackground(pPoseStack,pVOffset);
-    }
-
-    @Override
-    public void renderComponentTooltip(PoseStack pPoseStack, List<Component> pTooltips, int pMouseX, int pMouseY) {
-        getScreen().renderComponentTooltip(pPoseStack,pTooltips,pMouseX,pMouseY);
-    }
-
-    @Override
-    public void renderComponentTooltip(PoseStack poseStack, List<? extends FormattedText> tooltips, int mouseX, int mouseY, @Nullable Font font) {
-        getScreen().renderComponentTooltip(poseStack,tooltips,mouseX,mouseY,font);
-    }
-
-    @Override
-    public void renderComponentTooltip(PoseStack poseStack, List<? extends FormattedText> tooltips, int mouseX, int mouseY, ItemStack stack) {
-        getScreen().renderComponentTooltip(poseStack,tooltips,mouseX,mouseY,stack);
-    }
-
-    @Override
-    public void renderComponentTooltip(PoseStack poseStack, List<? extends FormattedText> tooltips, int mouseX, int mouseY, @Nullable Font font, ItemStack stack) {
-        getScreen().renderComponentTooltip(poseStack,tooltips,mouseX,mouseY,font,stack);
-    }
-
-    @Override
-    public void renderDirtBackground(int pVOffset) {
-        getScreen().renderDirtBackground(pVOffset);
+    public Font getFont() {
+        return font;
     }
 
     @Override

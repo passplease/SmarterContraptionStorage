@@ -2,16 +2,20 @@ package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Matrix4f;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix4f;
+
+import javax.annotation.Nullable;
 
 public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> extends AbstractContainerScreen<T>{
+    @Nullable private ResourceLocation bindTexture;
+
     public AbstractMovingScreen(T menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
     }
@@ -24,28 +28,27 @@ public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> exte
     }
 
     @Override
-    protected void renderBg(@NotNull PoseStack poseStack, float v, int mouseX, int mouseY) {
-        renderBackground(poseStack);
-        poseStack.pushPose();
+    protected void renderBg(GuiGraphics guiGraphics, float v, int mouseX, int mouseY) {
+        renderBackground(guiGraphics);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(getBackground(),poseStack,leftPos,topPos,width() + leftPos,height() + topPos,getTextureLeft(),getTextureTop(),getTextureLeft() + getTextureWidth(),getTextureTop() + getTextureHeight());
-        renderScreen(poseStack, v, mouseX, mouseY);
+        drawTexture(getBackground(),guiGraphics,leftPos,topPos,width() + leftPos,height() + topPos,getTextureLeft(),getTextureTop(),getTextureLeft() + getTextureWidth(),getTextureTop() + getTextureHeight());
+        renderScreen(guiGraphics, v, mouseX, mouseY);
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        super.render(poseStack, mouseX, mouseY, partialTick);
-        renderTooltip(poseStack, mouseX, mouseY);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    protected abstract void renderScreen(PoseStack poseStack, float partialTicks, int mouseX, int mouseY);
+    protected abstract void renderScreen(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY);
 
-    public void drawTexture(ResourceLocation texture,PoseStack poseStack, float left, float top, float right, float bottom, float textureLeft, float textureTop, float textureRight, float textureBottom) {
+    public void drawTexture(ResourceLocation texture,GuiGraphics guiGraphics, float left, float top, float right, float bottom, float textureLeft, float textureTop, float textureRight, float textureBottom) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         bindTexture(texture);
-        Matrix4f matrix = poseStack.last().pose();
+        Matrix4f matrix = guiGraphics.pose().last().pose();
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder buffer = tesselator.getBuilder();
         buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
@@ -56,12 +59,15 @@ public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> exte
         tesselator.end();
     }
 
-    public void bindTexture(ResourceLocation location) {
-        RenderSystem.setShaderTexture(0, location);
+    public void bindTexture(@Nullable ResourceLocation location) {
+        if (location != null)
+            RenderSystem.setShaderTexture(0, location);
+        bindTexture = location;
     }
 
-    public void blit(int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight,PoseStack poseStack){
-        blit(poseStack, getXofScreen(x), getYofScreen(y), u, v, width, height, textureWidth, textureHeight);
+    public void blit(int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight,GuiGraphics guiGraphics){
+        if(bindTexture != null)
+            guiGraphics.blit(bindTexture,x,y,u,v,width,height,textureWidth,textureHeight);
     }
 
     public abstract ResourceLocation getBackground();
@@ -71,8 +77,8 @@ public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> exte
         titleLabelY = y;
     }
 
-    public void drawContent(PoseStack poseStack,String key,float x,float y,Object... objects) {
-        font.draw(poseStack,Component.translatable(key,objects),x,y,4210752);
+    public void drawContent(GuiGraphics guiGraphics,String key,float x,float y,Object... objects) {
+        guiGraphics.drawString(font,Component.translatable(key,objects).getString(),x,y,4210752,false);
     }
 
     public int getCenterX(){

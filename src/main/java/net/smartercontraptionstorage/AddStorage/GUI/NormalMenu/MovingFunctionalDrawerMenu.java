@@ -25,15 +25,15 @@ public class MovingFunctionalDrawerMenu extends AbstractMovingMenu<FunctionalDra
     @Override
     public void addSlots() {
         for (int slot = 0; slot < getHandlerSlot(); slot++) {
-            // to synchronizeToClient handler
+            // to synchronize handler
             addSlot(new SlotItemHandler(getHandler(),slot,Integer.MAX_VALUE,Integer.MAX_VALUE));
         }
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(0),10,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(1),28,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(2),46,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(3),64,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(4),114,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(5),132,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(0),10,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(1),28,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(2),46,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(3),64,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(4),114,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(5),132,70));
         addSlot(UnchangeableSlot.create(getHandler().upgrades.get(6),150,70));
     }
 

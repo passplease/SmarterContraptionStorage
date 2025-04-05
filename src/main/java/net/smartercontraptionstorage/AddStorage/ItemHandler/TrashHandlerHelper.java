@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.RegistryObject;
-import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingTrashCanMenu;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Utils;
@@ -67,7 +66,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         return new TrashHandler(nbt);
     }
 
-    public static class TrashHandler extends HandlerHelper implements NeedDealWith {
+    public static class TrashHandler extends HandlerHelper implements NeedDealWith{
         public boolean whiteOrBlack;
         public List<ItemStack> toolboxItem;
         // false : black
@@ -136,7 +135,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         }
 
         @Override
-        public @NotNull AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
+        public @NotNull MovingTrashCanMenu createMenu(int i, Inventory inventory, Player player) {
             return new MovingTrashCanMenu(this,i,player);
         }
         @Override

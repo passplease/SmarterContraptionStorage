@@ -23,11 +23,11 @@ public class MovingFunctionalCompactingMenu extends AbstractMovingMenu<Functiona
 
     @Override
     public void addSlots() {
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(0),10,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(1),28,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(2),46,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(3),114,70));
-        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(4),132,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(0),10,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(1),28,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(2),46,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(3),114,70));
+        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(4),132,70));
         addSlot(UnchangeableSlot.create(getHandler().upgrades.get(5),150,70));
     }
 

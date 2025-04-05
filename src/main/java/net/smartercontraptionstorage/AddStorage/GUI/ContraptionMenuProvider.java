@@ -47,7 +47,7 @@ public interface ContraptionMenuProvider<T extends AbstractContainerMenu> extend
     void writeToBuffer(@NotNull FriendlyByteBuf buffer);
 
     default void playSound(Level level){
-        level.playSound(null, new BlockPos(getSoundPos()), SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 0.75f, 1.0f);
+        level.playSound(null, BlockPos.containing(getSoundPos()), SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 0.75f, 1.0f);
     }
 
     default Vec3 getSoundPos(){

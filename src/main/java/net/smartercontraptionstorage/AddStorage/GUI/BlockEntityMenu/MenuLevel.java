@@ -104,7 +104,7 @@ public class MenuLevel extends WrappedWorld {
 
     @Override
     public boolean addFreshEntity(Entity entityIn) {
-        entityIn.level = tickingLevel;
+        entityIn.setLevel(tickingLevel);
         return tickingLevel.addFreshEntity(entityIn);
     }
 }

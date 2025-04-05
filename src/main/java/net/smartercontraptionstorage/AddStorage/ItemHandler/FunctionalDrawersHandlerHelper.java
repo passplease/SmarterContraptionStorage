@@ -66,7 +66,11 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public boolean allowControl(Item comparedItem) {
-        return comparedItem instanceof DrawerBlock.DrawerItem;
+        try{
+            return comparedItem instanceof DrawerBlock.DrawerItem;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

@@ -1,7 +1,7 @@
 package net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.foundation.utility.Pair;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.core.BlockPos;
@@ -109,7 +109,7 @@ public interface HelperMenuProvider<T extends StorageHandlerHelper> extends Cont
     }
 
     default boolean shouldClickScreen(MovingBlockEntityMenu menu, int index, int flag, ClickType type, Player player){
-        return !player.level.isClientSide();
+        return !player.level().isClientSide();
     }
 
     default boolean shouldClickScreen(MovingBlockEntityScreen screen, double mouseX, double mouseY, int button){
@@ -117,7 +117,12 @@ public interface HelperMenuProvider<T extends StorageHandlerHelper> extends Cont
     }
 
     @OnlyIn(Dist.CLIENT)
-    default void render(MovingBlockEntityScreen screen, PoseStack poseStack, int mouseX, int mouseY, float partialTick){}
+    default void render(MovingBlockEntityScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick){}
+
+    @OnlyIn(Dist.CLIENT)
+    default void renderWithTooltip(MovingBlockEntityScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick){
+        render(screen, guiGraphics, mouseX, mouseY, partialTick);
+    }
 
     default boolean slotClicked(MovingBlockEntityScreen screen, Slot slot, int slotId, int button, ClickType type){
         return true;

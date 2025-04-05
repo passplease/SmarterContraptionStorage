@@ -1,8 +1,8 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.foundation.utility.Pair;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -105,10 +105,10 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper implements Hel
     public AbstractContainerMenu createMenu(int i, Player player, Inventory inventory) {
         return MenuLevel.levelRun((setter) -> {
             setter.accept(getBlockEntity());
-            Level level = player.level;
-            player.level = MenuLevel.level;
+            Level level = player.level();
+            player.setLevel(MenuLevel.level);
             BackpackContainer container = new BackpackContainer(i, player, new BackpackContext.Block(getBlockEntity().getBlockPos()));
-            player.level = level;
+            player.setLevel(level);
             return container;
         });
     }
@@ -187,7 +187,7 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper implements Hel
     }
 
     @Override
-    public void render(MovingBlockEntityScreen screen, PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        screen.renderTooltip(poseStack,Component.translatable("smartercontraptionstorage.moving_container.backpack.reminder"), 0, screen.getScreen().getGuiTop() - 10);
+    public void render(MovingBlockEntityScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        screen.drawContent(guiGraphics,"smartercontraptionstorage.moving_container.backpack.reminder", 0, Math.max(screen.getScreen().getGuiTop() - 10,0));
     }
 }

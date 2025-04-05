@@ -73,7 +73,11 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public boolean allowControl(Item comparedItem) {
-        return comparedItem instanceof CompactingDrawerBlock.CompactingDrawerItem;
+        try{
+            return comparedItem instanceof CompactingDrawerBlock.CompactingDrawerItem;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

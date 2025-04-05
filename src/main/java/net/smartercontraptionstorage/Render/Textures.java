@@ -9,12 +9,13 @@ import net.smartercontraptionstorage.SmarterContraptionStorage;
 
 @Mod.EventBusSubscriber(modid = SmarterContraptionStorage.MODID,value = {Dist.CLIENT}, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Textures {
-    @SubscribeEvent
-    public static void register(TextureStitchEvent.Pre event){
-        if(event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)){
-            Overlay.register(event);
-        }
-    }
+    // register by json file
+//    @SubscribeEvent
+//    public static void register(TextureStitchEvent.Pre event){
+//        if(event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)){
+//            Overlay.register(event);
+//        }
+//    }
     @SubscribeEvent
     public static void setValue(TextureStitchEvent.Post event){
         if(event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)){

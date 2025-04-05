@@ -1,12 +1,10 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
 import appeng.api.config.Actionable;
-import appeng.api.features.Locatables;
 import appeng.api.implementations.parts.ICablePart;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
-import appeng.api.networking.security.IActionHost;
 import appeng.api.networking.storage.IStorageService;
 import appeng.api.parts.IPart;
 import appeng.api.stacks.AEItemKey;
@@ -37,7 +35,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.OptionalLong;
 
 public class AE2BusBlockHelper extends StorageHandlerHelper{
     @Override
@@ -50,49 +47,55 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
 
     @Override
     public @NotNull ItemStackHandler createHandler(BlockEntity entity) {
-        assert canCreateHandler(entity);
+        assert this.canCreateHandler(entity);
+
         CableBusBlockEntity bus = (CableBusBlockEntity)entity;
-        ICablePart center = (ICablePart)bus.getPart(null);
-        if(center == null || center.getCableConnectionType() != AECableType.COVERED)
-            return NULL_HANDLER;// Must use covered_cable
-        ConfigInventory config;
-        AEKey key;
-        ItemStack item;
-        WirelessCraftingTerminalItem terminal;
-        OptionalLong id;
-        IActionHost host,exportHost = null,importHost = null;
+        ICablePart center = (ICablePart)bus.getPart((Direction)null);
+        if (center != null && center.getCableConnectionType() == AECableType.COVERED) {
+            IGridNode exportHost = null;
+            IGridNode importHost = null;
 
-        for(IPart part : getAllPart(bus)){
-            if(part instanceof IOBusPart){
-                if(!checkUpgrade(((IOBusPart) part).getUpgrades(), AEItems.SPEED_CARD.asItem()))
-                    continue;// Must use 4 speed_cards
-                config = ((IOBusPart)part).getConfig();
-                key = config.getKey(0);
-                if (key != null) {
-                    item = key.wrapForDisplayOrFilter();
+            for(IPart part : getAllPart(bus)) {
+                if (part instanceof IOBusPart) {
+                    if (!checkUpgrade(((IOBusPart)part).getUpgrades(), AEItems.SPEED_CARD.asItem(), 3)) {
+                        continue;
+                    }
 
-                    if (item.getItem() instanceof WirelessCraftingTerminalItem) {
-                        terminal = (WirelessCraftingTerminalItem) item.getItem();
-                        if(!checkUpgrade(terminal.getUpgrades(item), AEItems.ENERGY_CARD.asItem()))
-                            continue;// Must use 2 energy_cards
-                        id = terminal.getGridKey(item);
-
-                        if (id.isPresent()) {
-                            host = Locatables.securityStations().get(entity.getLevel(), id.getAsLong());
-                            if(host == null)
+                    ConfigInventory config = ((IOBusPart)part).getConfig();
+                    AEKey key = config.getKey(0);
+                    if (key != null) {
+                        ItemStack item = key.wrapForDisplayOrFilter();
+                        if (item.getItem() instanceof WirelessCraftingTerminalItem terminal) {
+                            if (!checkUpgrade(terminal.getUpgrades(item), AEItems.ENERGY_CARD.asItem(),3)) {
                                 continue;
-                            if(part instanceof ExportBusPart)
-                                exportHost = host;
-                            else
-                                importHost = host;
+                            }
+
+                            IGrid id = terminal.getLinkedGrid(item, entity.getLevel(), null);
+                            if (id != null) {
+                                IGridNode host = id.getPivot();
+                                if (host == null) {
+                                    continue;
+                                }
+
+                                if (part instanceof ExportBusPart) {
+                                    exportHost = host;
+                                } else {
+                                    importHost = host;
+                                }
+                            }
                         }
                     }
                 }
+
+                if (exportHost != null && importHost != null) {
+                    return AE2HandlerHelper.create(exportHost, importHost);
+                }
             }
-            if(exportHost != null && importHost != null)
-                return AE2HandlerHelper.create(exportHost,importHost);
+
+            return exportHost == null && importHost == null ? NULL_HANDLER : AE2HandlerHelper.create(exportHost, importHost);
+        } else {
+            return NULL_HANDLER;
         }
-        return exportHost == null && importHost == null ? NULL_HANDLER : AE2HandlerHelper.create(exportHost,importHost);
     }
 
     private static IPart[] getAllPart(CableBusBlockEntity bus){
@@ -106,14 +109,19 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         return iParts;
     }
 
-    public static boolean checkUpgrade(InternalInventory upgrade, Item targetUpgrade){
-        ItemStack item;
-        for(int i = upgrade.size() - 1;i >= 0;i--){
-            item = upgrade.getStackInSlot(i);
-            if(item == null || !item.is(targetUpgrade))
+    public static boolean checkUpgrade(InternalInventory upgrade, Item targetUpgrade, int size) {
+        for(int i = size; i >= 0; --i) {
+            ItemStack item = upgrade.getStackInSlot(i);
+            if (item.isEmpty() || !item.is(targetUpgrade)) {
                 return false;
+            }
         }
+
         return true;
+    }
+
+    public static boolean checkUpgrade(InternalInventory upgrade, Item targetUpgrade) {
+        return checkUpgrade(upgrade, targetUpgrade, upgrade.size() - 1);
     }
 
     @Override
@@ -149,23 +157,22 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         private boolean canWork = false;
         private final AE2ContraptionSource extractSource;
         private final AE2ContraptionSource importSource;
-        private AE2HandlerHelper(int size,@Nullable IActionHost extractHost,@Nullable IActionHost importHost) {
+        private AE2HandlerHelper(int size, @Nullable IGridNode extractNode, @Nullable IGridNode importNode) {
             super(size);
-            this.extractNode = extractHost == null ? null : extractHost.getActionableNode();
-            this.importNode = importHost == null ? null : importHost.getActionableNode();
-            extractSource = new AE2ContraptionSource(extractHost);
-            importSource = new AE2ContraptionSource(importHost);
+            this.extractNode = extractNode;
+            this.importNode = importNode;
+            this.extractSource = AE2ContraptionSource.create(extractNode);
+            this.importSource = AE2ContraptionSource.create(importNode);
         }
 
-        public static AE2HandlerHelper create(@Nullable IActionHost extractHost,@Nullable IActionHost importHost){
+        public static AE2HandlerHelper create(@Nullable IGridNode extractNode, @Nullable IGridNode importNode) {
             IStorageService extractNet = null;
-            if(extractHost != null) {
-                IGridNode extractNode = extractHost.getActionableNode();
-                extractNet = extractNode == null ? null : extractNode.getGrid().getStorageService();
+            if (extractNode != null) {
+                extractNet = extractNode.getGrid().getStorageService();
             }
-            int size = extractNet == null ? 1 : extractNet.getInventory().getAvailableStacks().size();
 
-            return new AE2HandlerHelper(size,extractHost,importHost);
+            int size = extractNet == null ? 1 : extractNet.getInventory().getAvailableStacks().size();
+            return new AE2HandlerHelper(size, extractNode, importNode);
         }
 
         public boolean canWork(boolean extractOrImport,boolean simulate){

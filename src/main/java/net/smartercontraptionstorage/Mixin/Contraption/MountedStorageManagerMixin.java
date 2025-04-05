@@ -127,7 +127,7 @@ public abstract class MountedStorageManagerMixin implements Changeable {
                 if(provider.check()){
                     provider.rememberPlayer((ServerPlayer) player);
                     NetworkHooks.openScreen((ServerPlayer) player,provider,provider::writeToBuffer);
-                    provider.playSound(player.level);
+                    provider.playSound(player.level());
                     cir.setReturnValue(true);
                 }else provider.error();
             }

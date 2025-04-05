@@ -4,6 +4,7 @@ import com.buuz135.functionalstorage.FunctionalStorage;
 import com.buuz135.functionalstorage.client.gui.DrawerInfoGuiAddon;
 import com.hrznstudio.titanium.Titanium;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -12,7 +13,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class MovingFunctionalDrawerScreen extends AbstractMovingScreen<MovingFunctionalDrawerMenu>{
     public static final ResourceLocation BACKGROUND = new ResourceLocation(Titanium.MODID, "textures/gui/background.png");
-    public static final ResourceLocation TEXTURE = new ResourceLocation(FunctionalStorage.MOD_ID,"textures/blocks/oak_front_1.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(FunctionalStorage.MOD_ID,"textures/block/oak_front_1.png");
     public DrawerInfoGuiAddon inventorySlot;
     public MovingFunctionalDrawerScreen(MovingFunctionalDrawerMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -50,27 +51,27 @@ public class MovingFunctionalDrawerScreen extends AbstractMovingScreen<MovingFun
     }
 
     @Override
-    protected void renderScreen(PoseStack poseStack, float partialTicks, int mouseX, int mouseY) {
+    protected void renderScreen(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
         if (inventorySlot != null) {
-            inventorySlot.drawBackgroundLayer(poseStack,this,null,getGuiLeft(),getGuiTop(),mouseX,mouseY,partialTicks);
+            inventorySlot.drawBackgroundLayer(guiGraphics,this,null,getGuiLeft(),getGuiTop(),mouseX,mouseY,partialTicks);
         }
         bindTexture(BACKGROUND);
         for (int slot = 0; slot < 4; slot++) {
-            blit(8 + slot * 18,68,0f,height(),20,20,256,256,poseStack);
+            blit(getXofScreen(8 + slot * 18),getYofScreen(68),0f,height(),20,20,256,256,guiGraphics);
         }
         for (int slot = 0; slot < 3; slot++) {
-            blit(112 + slot * 18,68,0f,height(),20,20,256,256,poseStack);
+            blit(getXofScreen(112 + slot * 18),getYofScreen(68),0f,height(),20,20,256,256,guiGraphics);
         }
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-        super.renderLabels(poseStack, mouseX, mouseY);
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        super.renderLabels(guiGraphics, mouseX, mouseY);
         if(inventorySlot != null) {
-            inventorySlot.drawForegroundLayer(poseStack,this,null,getGuiLeft(),getGuiTop(),mouseX,mouseY,this.minecraft.getDeltaFrameTime());
+            inventorySlot.drawForegroundLayer(guiGraphics,this,null,getGuiLeft(),getGuiTop(),mouseX,mouseY,this.minecraft.getDeltaFrameTime());
         }
-        drawContent(poseStack,"key.categories.storage",10,59);
-        drawContent(poseStack,"key.categories.utility",114,59);
+        drawContent(guiGraphics,"key.categories.storage",10,59);
+        drawContent(guiGraphics,"key.categories.utility",114,59);
     }
 
     @Override

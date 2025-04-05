@@ -85,12 +85,12 @@ public abstract class AbstractMovingMenu<T extends ItemStackHandler & MovingMenu
     }
 
     public void playSound(@NotNull Player player, SoundEvent soundEvent) {
-        player.level.playSound(player,player,soundEvent, SoundSource.BLOCKS,0.75f,1f);
+        player.getCommandSenderWorld().playSound(player,player,soundEvent, SoundSource.BLOCKS,0.75f,1f);
     }
 
     @Override
-    public void removed(Player pPlayer) {
-        super.removed(pPlayer);
-        getHandler().removed(this, pPlayer);
+    public void removed(Player player) {
+        super.removed(player);
+        getHandler().removed(this, player);
     }
 }

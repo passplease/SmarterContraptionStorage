@@ -109,8 +109,6 @@ public class SmarterContraptionStorage {
                 AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.DIAMOND_BACKPACK.get(),backpackBehaviour);
                 AllMovementBehaviours.registerBehaviour(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.NETHERITE_BACKPACK.get(),backpackBehaviour);
             }
-//            if(list.isLoaded("sophisticatedstorage"))
-//                register(SStorageBlockHelper.INSTANCE);
             if(list.isLoaded("functionalstorage")){
                 register(new FunctionalDrawersHandlerHelper());
                 register(new FunctionalCompactingHandlerHelper());
@@ -166,8 +164,6 @@ public class SmarterContraptionStorage {
                     register(SBackPacksHandlerHelper.INSTANCE);
                     register(new SBackPacksFluidHandlerHelper());
                 }
-//                if(list.isLoaded("sophisticatedstorage"))
-//                    register(SStorageBlockHelper.INSTANCE);
                 if(list.isLoaded("functionalstorage")){
                     register(new FunctionalDrawersHandlerHelper());
                     register(new FunctionalCompactingHandlerHelper());

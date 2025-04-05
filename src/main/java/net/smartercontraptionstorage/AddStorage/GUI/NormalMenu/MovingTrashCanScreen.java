@@ -1,7 +1,9 @@
 package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.mojang.blaze3d.vertex.*;
+import com.supermartijn642.core.gui.widget.MutableWidgetRenderContext;
 import com.supermartijn642.trashcans.screen.WhitelistButton;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +15,8 @@ public class MovingTrashCanScreen extends AbstractMovingScreen<MovingTrashCanMen
     public static final int BUTTON_X_IN_SCREEN = 175;
 
     public static final int BUTTON_Y_IN_SCREEN = MovingTrashCanMenu.height - 118;
+
+    private static final MutableWidgetRenderContext widgetRender = MutableWidgetRenderContext.create();
 
     public WhitelistButton BUTTON;
 
@@ -32,20 +36,20 @@ public class MovingTrashCanScreen extends AbstractMovingScreen<MovingTrashCanMen
     }
 
     @Override
-    protected void renderScreen(PoseStack poseStack, float partialTicks, int mouseX, int mouseY) {
+    protected void renderScreen(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
         BUTTON.setFocused(checkButtonFocused(mouseX,mouseY));
-        BUTTON.render(poseStack, mouseX, mouseY);
+        BUTTON.render(getWidgetRender(guiGraphics, partialTicks), mouseX, mouseY);
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-        super.renderLabels(poseStack, mouseX, mouseY);
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        super.renderLabels(guiGraphics, mouseX, mouseY);
         if(menu.getToolboxNumber() == 0) {
             MutableComponent text = Component.translatable("trashcans.gui.liquid_trash_can.filter");
             if(!menu.getHandler().toolboxItem.isEmpty())
                 text.append(Component.translatable("smartercontraptionstorage.moving_container.trashcans.scrolling"));
-            font.draw(poseStack, text, 8f, 52f, 4210752);
-        } else drawContent(poseStack,"smartercontraptionstorage.moving_container.trashcans.toolbox",8f,52f,menu.getToolboxNumber());
+            guiGraphics.drawString(font,text.getString(),8f,52f,4210752,false);
+        } else drawContent(guiGraphics,"smartercontraptionstorage.moving_container.trashcans.toolbox",8f,52f,menu.getToolboxNumber());
     }
 
     protected boolean checkButtonFocused(double mouseX, double mouseY) {
@@ -96,5 +100,10 @@ public class MovingTrashCanScreen extends AbstractMovingScreen<MovingTrashCanMen
             }
         }
         return true;
+    }
+
+    public static MutableWidgetRenderContext getWidgetRender(GuiGraphics guiGraphics, float partialTicks){
+        widgetRender.update(guiGraphics, partialTicks);
+        return widgetRender;
     }
 }

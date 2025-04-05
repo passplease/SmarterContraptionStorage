@@ -1,8 +1,9 @@
 {
   "sources": [
     {
-      "type": "single",
-      "resource": "smartercontraptionstorage:overlays/blue"
+      "type": "directory",
+      "source": "overlays",
+      "prefix": "overlays/"
     }
   ]
 }

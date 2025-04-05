@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.CompactingHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 
-public class MovingCompactingDrawerMenu extends MovingDrawerMenu{
+public class MovingCompactingDrawerMenu extends MovingDrawerMenu {
     public MovingCompactingDrawerMenu(CompactingHandlerHelper.@NotNull CompactingHandler handler, int pContainerId, @NotNull Player player) {
         super(handler, pContainerId, player);
     }

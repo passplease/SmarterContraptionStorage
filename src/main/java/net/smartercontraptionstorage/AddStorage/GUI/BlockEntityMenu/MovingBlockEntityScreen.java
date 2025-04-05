@@ -1,27 +1,20 @@
 package net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.inventory.tooltip.TooltipComponent;
-import net.minecraft.world.item.ItemStack;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 public class MovingBlockEntityScreen extends AbstractContainerScreen<MovingBlockEntityMenu> {
@@ -144,11 +137,6 @@ public class MovingBlockEntityScreen extends AbstractContainerScreen<MovingBlock
     }
 
     @Override
-    public void narrationEnabled() {
-        getScreen().narrationEnabled();
-    }
-
-    @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
         return getMenu().getHelper().shouldClickScreen(this, pMouseX, pMouseY, pButton) && getScreen().mouseClicked(pMouseX, pMouseY, pButton);
     }
@@ -164,8 +152,8 @@ public class MovingBlockEntityScreen extends AbstractContainerScreen<MovingBlock
     }
 
     @Override
-    public boolean mouseScrolled(double pMouseX, double pMouseY, double pDelta) {
-        return getScreen().mouseScrolled(pMouseX,pMouseY,pDelta);
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        return getScreen().mouseScrolled(mouseX, mouseY, scrollX, scrollY);
     }
 
     @Override

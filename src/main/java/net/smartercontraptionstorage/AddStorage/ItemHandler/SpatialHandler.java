@@ -7,11 +7,11 @@ import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.CreativeEnergyCellBlockEntity;
 import appeng.blockentity.networking.EnergyCellBlockEntity;
 import appeng.blockentity.spatial.SpatialIOPortBlockEntity;
-import appeng.core.definitions.AEBlocks;
 import appeng.spatial.SpatialStoragePlot;
 import appeng.spatial.SpatialStoragePlotManager;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.SectionPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -20,9 +20,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
 import net.smartercontraptionstorage.Utils;
@@ -30,7 +30,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 public class SpatialHandler extends StorageHandlerHelper{
     @Override
@@ -71,17 +70,25 @@ public class SpatialHandler extends StorageHandlerHelper{
     }
 
     @Override
-    public void registerBlock(Consumer<Block> register) {
-        register.accept(AEBlocks.SPATIAL_IO_PORT.block());
-    }
-
-    @Override
     public String getName() {
         return "SpatialHandler";
     }
 
+    @Deprecated
     @Override
     public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
+        try {
+            SpatialHelper handler = SpatialHelper.create(nbt.getInt("plotId"));
+            handler.canWork = nbt.getBoolean("canWork");
+            return handler;
+        }catch (RuntimeException e){
+            Utils.addError(e.getMessage());
+            return NULL_HANDLER;
+        }
+    }
+
+    @Override
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider){
         try {
             SpatialHelper handler = SpatialHelper.create(nbt.getInt("plotId"));
             handler.canWork = nbt.getBoolean("canWork");
@@ -136,17 +143,12 @@ public class SpatialHandler extends StorageHandlerHelper{
                         pos = new BlockPos(x,y,z);
                         entity = level.getBlockEntity(pos);
                         if(entity != null && Utils.canUseCreateInventory(entity.getBlockState().getBlock())) {
-                            boolean isVault = entity instanceof ItemVaultBlockEntity;
-                            handler = entity.getCapability(ForgeCapabilities.ITEM_HANDLER).orElseGet(() -> {
-                                if(isVault)
-                                    return NULL_HANDLER;
-                                else throw new IllegalStateException("Can't find Handler for block entity");
-                            });
-                            if (isVault)
+                            handler = level.getCapability(Capabilities.ItemHandler.BLOCK,pos,entity.getBlockState(),entity,null);
+                            if (entity instanceof ItemVaultBlockEntity)
                                 insertHandlers.add(handler);
                             else {
                                 exportHandlers.add(handler);
-                                edge += handler.getSlots();
+                                edge += handler.getSlots() - 1;
                             }
                             size += handler.getSlots();
                         }
@@ -160,7 +162,7 @@ public class SpatialHandler extends StorageHandlerHelper{
         }
 
         private static void loadChunks(ServerLevel level, int minX, int minZ, int maxX, int maxZ) {
-            if(SmarterContraptionStorageConfig.LOAD_CHUNK_AUTO.get()) {
+            if(SmarterContraptionStorageConfig.loadChunkAuto()) {
                 ChunkPos pos;
                 for (int x = minX; x < maxX; x += 16)
                     for (int z = minZ; z < maxZ; z += 16) {
@@ -254,8 +256,8 @@ public class SpatialHandler extends StorageHandlerHelper{
         }
 
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = super.serializeNBT();
+        public CompoundTag serializeNBT(HolderLookup.Provider provider) {
+            CompoundTag tag = super.serializeNBT(provider);
             tag.putBoolean("canWork",canWork);
             tag.putInt("plotId",plotId);
             return tag;
@@ -263,12 +265,6 @@ public class SpatialHandler extends StorageHandlerHelper{
 
         public boolean canWork() {
             return canWork;
-        }
-
-        public void setWork() {
-            if(!Thread.currentThread().getStackTrace()[2].getClassName().startsWith("Excludes.GameTest"))
-                throw new IllegalCallerException("Illegal try of setting canWork !");
-            canWork = true;
         }
     }
 }

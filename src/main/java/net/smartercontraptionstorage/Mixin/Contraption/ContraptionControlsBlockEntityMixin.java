@@ -4,6 +4,7 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.content.contraptions.actors.contraptionControls.ContraptionControlsBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.DyeItem;
 import net.smartercontraptionstorage.Interface.Changeable;
@@ -56,12 +57,12 @@ public class ContraptionControlsBlockEntityMixin implements Changeable {
     }
 
     @Inject(method = "read",at = @At("HEAD"),remap = false)
-    protected void read(CompoundTag tag, boolean clientPacket, CallbackInfo ci){
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket, CallbackInfo ci){
         this.smarterContraptionStorage$overlay = Overlay.get(tag.getString("overlay"));
     }
 
     @Inject(method = "write",at = @At("HEAD"),remap = false)
-    protected void write(CompoundTag tag, boolean clientPacket, CallbackInfo ci){
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket, CallbackInfo ci){
         if(smarterContraptionStorage$overlay != null)
             tag.putString("overlay", this.smarterContraptionStorage$overlay.getName());
     }

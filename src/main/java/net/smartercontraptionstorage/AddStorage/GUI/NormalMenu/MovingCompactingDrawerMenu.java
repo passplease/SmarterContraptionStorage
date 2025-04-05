@@ -12,7 +12,7 @@ public class MovingCompactingDrawerMenu extends MovingDrawerMenu {
     }
 
     public MovingCompactingDrawerMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
-        super(id, inventory, buf,(buffer) -> new CompactingHandlerHelper.CompactingHandler(buf.readNbt()));
+        super(id, inventory, buf,(buffer,provider) -> new CompactingHandlerHelper.CompactingHandler(buf.readNbt(),provider));
     }
 
     @Override

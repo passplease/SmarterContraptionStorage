@@ -1,13 +1,13 @@
 package net.smartercontraptionstorage.Render;
 
 import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 
-@Mod.EventBusSubscriber(modid = SmarterContraptionStorage.MODID,value = {Dist.CLIENT}, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod(value = SmarterContraptionStorage.MODID,dist = Dist.CLIENT)
 public class Textures {
     // register by json file
 //    @SubscribeEvent
@@ -17,7 +17,7 @@ public class Textures {
 //        }
 //    }
     @SubscribeEvent
-    public static void setValue(TextureStitchEvent.Post event){
+    public static void setValue(TextureAtlasStitchedEvent event){
         if(event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)){
             Overlay.setUV(event);
         }

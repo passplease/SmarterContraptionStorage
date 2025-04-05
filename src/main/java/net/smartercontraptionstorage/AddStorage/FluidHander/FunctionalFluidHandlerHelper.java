@@ -3,12 +3,16 @@ package net.smartercontraptionstorage.AddStorage.FluidHander;
 import com.buuz135.functionalstorage.block.FluidDrawerBlock;
 import com.buuz135.functionalstorage.block.tile.FluidDrawerTile;
 import com.buuz135.functionalstorage.fluid.BigFluidHandler;
+import com.simibubi.create.foundation.fluid.SmartFluidTank;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -28,7 +32,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
 
     @Override
     public boolean canCreateHandler(Item comparedItem) {
-        return comparedItem instanceof FluidDrawerBlock.DrawerItem;
+        return comparedItem instanceof FluidDrawerBlock.FluidDrawerItem;
     }
 
     @Override
@@ -135,8 +139,8 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
         }
 
         @Override
-        protected CompoundTag serialize(CompoundTag tag) {
-            filter.writeToNBT(tag);
+        public CompoundTag serialize(CompoundTag tag, HolderLookup.Provider provider) {
+            filter.save(provider,tag);
             return tag;
         }
     }

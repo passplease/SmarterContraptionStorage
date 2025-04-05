@@ -131,13 +131,14 @@ public abstract class ContraptionMixin implements Gettable {
     }
 
     @ForFunctionChanger(method = "deserialize")
-    @Inject(method = "readNBT",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/MountedStorageManager;read(Lnet/minecraft/nbt/CompoundTag;ZLcom/simibubi/create/content/contraptions/Contraption;)V"),remap = false)
+    @Inject(method = "readNBT",at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/MountedStorageManager;read(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;ZLcom/simibubi/create/content/contraptions/Contraption;)V"),remap = false)
     public void help_deserialize(Level world, CompoundTag nbt, boolean spawnData, CallbackInfo ci){
         FunctionChanger.setGetBlockEntity((pos) -> {
             try {
+                BlockEntity blockEntity;
                 if (spawnData) {
                     BlockPos localPos = toLocalPos(pos);
-                    return presentBlockEntities.get(localPos);
+                    blockEntity = presentBlockEntities.get(localPos);
                 } else {
                     StructureTemplate.StructureBlockInfo info = blocks.get(pos);
                     CompoundTag tag = info.nbt();
@@ -145,9 +146,12 @@ public abstract class ContraptionMixin implements Gettable {
                         tag.putInt("x", info.pos().getX());
                         tag.putInt("y", info.pos().getY());
                         tag.putInt("z", info.pos().getZ());
-                        return BlockEntity.loadStatic(info.pos(), info.state(), tag);
+                        blockEntity = BlockEntity.loadStatic(info.pos(), info.state(), tag,world.registryAccess());
                     } else return null;
                 }
+                if(blockEntity != null && blockEntity.getLevel() == null)
+                    blockEntity.setLevel(world);
+                return blockEntity;
             } catch (Exception e) {
                 return presentBlockEntities.values().stream().filter(blockEntity -> blockEntity.getBlockPos().equals(pos)).findFirst().orElse(null);
             }

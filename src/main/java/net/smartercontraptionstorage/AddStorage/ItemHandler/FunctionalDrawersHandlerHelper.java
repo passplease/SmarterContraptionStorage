@@ -1,11 +1,12 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
-import com.buuz135.functionalstorage.FunctionalStorage;
 import com.buuz135.functionalstorage.block.DrawerBlock;
 import com.buuz135.functionalstorage.block.tile.DrawerTile;
 import com.buuz135.functionalstorage.inventory.BigInventoryHandler;
 import net.createmod.catnip.nbt.NBTHelper;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
@@ -20,8 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.RegistryObject;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingFunctionalDrawerMenu;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
@@ -45,18 +44,19 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof FDrawersHandler;
+        RegistryAccess registryAccess = entity.getLevel().registryAccess();
         CompoundTag nbt = new CompoundTag();
         CompoundTag tag;
         FDrawersHandler h = (FDrawersHandler)handler;
         for (int slot = 0; slot < h.getSlots(); slot++) {
             tag = new CompoundTag();
             tag.putInt(AMOUNT,h.count[slot]);
-            tag.put(STACK,h.items[slot].serializeNBT());
+            tag.put(STACK,h.items[slot].saveOptional(registryAccess));
             nbt.put(Integer.toString(slot),tag);
         }
         CompoundTag compoundTag = new CompoundTag();
         compoundTag.put(BIG_ITEMS,nbt);
-        ((DrawerTile)entity).getHandler().deserializeNBT(compoundTag);
+        ((DrawerTile)entity).getHandler().deserializeNBT(registryAccess,compoundTag);
     }
 
     @Override
@@ -95,8 +95,8 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
-        return new FDrawersHandler(nbt);
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+        return new FDrawersHandler(nbt,provider);
     }
 
     public static class FDrawersHandler extends HandlerHelper{
@@ -124,8 +124,8 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
             }
             assert upgrades.size() == 7;
         }
-        public FDrawersHandler(CompoundTag nbt) {
-            super(nbt);
+        public FDrawersHandler(CompoundTag nbt, HolderLookup.Provider provider) {
+            super(nbt,provider);
             isCreative = nbt.getBoolean("isCreative");
             isVoid = nbt.getBoolean("isVoid");
             ListTag list = nbt.getList("count", Tag.TAG_INT);
@@ -136,7 +136,7 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
             }else {
                 count = nbt.getIntArray("count");
             }
-            upgrades = NBTHelper.readItemList(nbt.getList("upgrades", Tag.TAG_COMPOUND));
+            upgrades = NBTHelper.readItemList(nbt.getList("upgrades", Tag.TAG_COMPOUND),provider);
             assert upgrades.size() == 7;
         }
         public boolean canInsert(int slot,@NotNull ItemStack stack){
@@ -192,16 +192,17 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
             stack.setCount(count[slot]);
             return stack;
         }
+
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = super.serializeNBT();
+        public @NotNull CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
+            CompoundTag tag = super.serializeNBT(provider);
             tag.putBoolean("isCreative",isCreative);
             tag.putBoolean("isVoid",isVoid);
             ListTag list = new ListTag();
             for(int i : count)
                 list.add(IntTag.valueOf(i));
             tag.put("count",list);
-            tag.put("upgrades", NBTHelper.writeItemList(upgrades));
+            tag.put("upgrades", NBTHelper.writeItemList(upgrades,provider));
             return tag;
         }
         @Override
@@ -209,7 +210,7 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
             return NAME;
         }
 
-        public static RegistryObject<MenuType<MovingFunctionalDrawerMenu>> MENU_TYPE;
+        public static DeferredHolder<MenuType<?>, MenuType<MovingFunctionalDrawerMenu>> MENU_TYPE;
 
         @Override
         public MenuType<? extends AbstractMovingMenu<?>> getMenuType() {

@@ -13,7 +13,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.Utils;
 
@@ -26,7 +26,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
     @Override
     public void tick(MovementContext context) {
         if(context.blockEntityData.get("Inventory") instanceof CompoundTag tag) {
-            List<ItemStack> toolboxItems = NBTHelper.readItemList(tag.getList("Compartments", Tag.TAG_COMPOUND));
+            List<ItemStack> toolboxItems = NBTHelper.readItemList(tag.getList("Compartments", Tag.TAG_COMPOUND),context.world.registryAccess());
             for (Player player : context.world.players()) {
                 if (!player.isCreative() && Utils.calcDistance(getEntityPos(context), player.getOnPos()) <= getMaxDistance()) {
                     if(context.world.isClientSide)
@@ -56,7 +56,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
         ItemStack item;
         for(ItemStack playerItem : playerItems){
             for(ItemStack filterItem : filterItems){
-                if(Utils.isSameItemSameTags(playerItem,filterItem)){
+                if(Utils.isSameItem(playerItem,filterItem)){
                     halfMaxSize = playerItem.getMaxStackSize() / 2;
                     if(halfMaxSize == 0)
                         continue;
@@ -67,7 +67,7 @@ public class ToolboxBehaviour implements MovementBehaviour {
                         halfMaxSize += ItemHandlerHelper.insertItem(context.contraption.getStorage().getAllItems(),item,false).getCount();
                         playerItem.setCount(halfMaxSize);
                     }else if(count < halfMaxSize){
-                        count += ItemHelper.extract(context.contraption.getStorage().getAllItems(), (stack) -> Utils.isSameItemSameTags(playerItem,stack),halfMaxSize - count,false).getCount();
+                        count += ItemHelper.extract(context.contraption.getStorage().getAllItems(), (stack) -> Utils.isSameItem(playerItem,stack),halfMaxSize - count,false).getCount();
                         playerItem.setCount(count);
                     }
                 }
@@ -77,4 +77,9 @@ public class ToolboxBehaviour implements MovementBehaviour {
     public static void sendMessage(String key,Player player){
         Lang.builder(SmarterContraptionStorage.MODID).translate(key).style(ChatFormatting.GOLD).sendStatus(player);
     }
+    // TODO 还能在presentBlockEntity里找到吗
+//    @Override
+//    public boolean renderAsNormalBlockEntity() {
+//        return true;
+//    }
 }

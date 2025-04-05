@@ -4,6 +4,7 @@ import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import net.createmod.catnip.data.Pair;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,14 +16,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import net.p3pp3rf1y.sophisticatedbackpacks.client.gui.BackpackScreen;
 import net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContainer;
 import net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContext;
-import net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks;
 import net.p3pp3rf1y.sophisticatedcore.inventory.InventoryHandler;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.HelperMenuProvider;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MenuLevel;
@@ -32,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
-import java.util.function.Consumer;
 
 @Deprecated
 public class SBackPacksHandlerHelper extends StorageHandlerHelper implements HelperMenuProvider<SBackPacksHandlerHelper> {
@@ -66,16 +65,6 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper implements Hel
     }
 
     @Override
-    public void registerBlock(Consumer<Block> register) {
-        register.accept(ModBlocks.BACKPACK.get());
-        register.accept(ModBlocks.COPPER_BACKPACK.get());
-        register.accept(ModBlocks.DIAMOND_BACKPACK.get());
-        register.accept(ModBlocks.GOLD_BACKPACK.get());
-        register.accept(ModBlocks.IRON_BACKPACK.get());
-        register.accept(ModBlocks.NETHERITE_BACKPACK.get());
-    }
-
-    @Override
     public String getName() {
         return "SBackPacksHandlerHelper";
     }
@@ -85,8 +74,14 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper implements Hel
         return false;
     }
 
+    @Deprecated
     @Override
     public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+        throw new IllegalAccessException();
+    }
+
+    @Override
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

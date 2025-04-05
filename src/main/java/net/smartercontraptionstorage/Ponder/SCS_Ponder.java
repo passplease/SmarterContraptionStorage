@@ -1,11 +1,12 @@
 package net.smartercontraptionstorage.Ponder;
 
-//import Excludes.Scenes.BuildNBTFile;
+//import Excludes.BuildNBTFile;
 import appeng.api.ids.AEBlockIds;
 import com.jaquadro.minecraft.storagedrawers.core.ModBlocks;
 import com.simibubi.create.AllBlocks;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.createmod.catnip.registry.RegisteredObjectsHelper;
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
@@ -13,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
 
@@ -29,7 +30,7 @@ public class SCS_Ponder implements PonderPlugin {
     @Override
     public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         //BuildNBTFile.createNBTFile();
-        PonderSceneRegistrationHelper<ItemProviderEntry<?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+        PonderSceneRegistrationHelper<ItemProviderEntry<?,?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
         HELPER.forComponents(AllBlocks.CONTRAPTION_CONTROLS)
                 .addStoryBoard("ordinary_control", MovementActorScenes::changeOrdinary,CONTROLLABLE_CONTAINERS)
                 .addStoryBoard("storage_control",MovementActorScenes::controlStorageBlock,CONTROLLABLE_CONTAINERS);
@@ -49,7 +50,7 @@ public class SCS_Ponder implements PonderPlugin {
 
     @Override
     public void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
-        PonderTagRegistrationHelper<Block> HELPER = helper.withKeyFunction(Block::getLootTable);
+        PonderTagRegistrationHelper<Block> HELPER = helper.withKeyFunction(RegisteredObjectsHelper::getKeyOrThrow);
         helper.registerTag(CONTROLLABLE_CONTAINERS)
                 .addToIndex()
                 .item(AllBlocks.CONTRAPTION_CONTROLS)

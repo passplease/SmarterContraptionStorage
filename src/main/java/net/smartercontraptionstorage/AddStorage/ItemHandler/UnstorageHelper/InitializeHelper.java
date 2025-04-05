@@ -1,10 +1,11 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import org.jetbrains.annotations.NotNull;
@@ -51,8 +52,14 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
         return "InitializeHelper";
     }
 
+    @Deprecated
     @Override
     public final @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+        return NULL_HANDLER;
+    }
+
+    @Override
+    public final ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
         return NULL_HANDLER;
     }
 }

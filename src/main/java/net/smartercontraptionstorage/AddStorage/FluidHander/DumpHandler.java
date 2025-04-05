@@ -4,9 +4,9 @@ import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.Utils;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +21,7 @@ public final class DumpHandler extends ItemStackHandler {
         this.fluidInventory = fluidInventory;
     }
     public static boolean isOpened(){
-        return SmarterContraptionStorageConfig.AUTO_DUMPING.get();
+        return SmarterContraptionStorageConfig.autoDumping();
     }
 
     @Override

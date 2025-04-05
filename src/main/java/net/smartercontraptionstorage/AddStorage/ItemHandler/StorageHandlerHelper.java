@@ -3,17 +3,19 @@ package net.smartercontraptionstorage.AddStorage.ItemHandler;
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import net.createmod.catnip.nbt.NBTHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingMenuProvider;
 import net.smartercontraptionstorage.AddStorage.SerializableHandler;
 import net.smartercontraptionstorage.Utils;
@@ -22,10 +24,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.*;
-import java.util.function.Consumer;
 
 public abstract class StorageHandlerHelper implements SerializableHandler<ItemStackHandler>{
-    public static final String DESERIALIZE_MARKER = "OtherHandlers";
     public static final ItemStackHandler NULL_HANDLER = new ItemStackHandler(){
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
@@ -112,9 +112,9 @@ public abstract class StorageHandlerHelper implements SerializableHandler<ItemSt
             slotLimits = new int[size];
             items = new ItemStack[size];
         }
-        protected HandlerHelper(CompoundTag nbt){
+        protected HandlerHelper(CompoundTag nbt, HolderLookup.Provider provider){
             super(nbt.getInt("size"));
-            List<ItemStack> list_items = NBTHelper.readItemList(nbt.getList("items", Tag.TAG_COMPOUND));
+            List<ItemStack> list_items = NBTHelper.readItemList(nbt.getList("items", Tag.TAG_COMPOUND),provider);
             int size = list_items.size();
             items = new ItemStack[size];
             ListTag list_slotLimits = nbt.getList("slotLimits", Tag.TAG_INT);
@@ -158,13 +158,14 @@ public abstract class StorageHandlerHelper implements SerializableHandler<ItemSt
         public abstract @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate);
         @Override
         public abstract @NotNull ItemStack extractItem(int slot, int amount, boolean simulate);
+
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = super.serializeNBT();
+        public @NotNull CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
+            CompoundTag tag = super.serializeNBT(provider);
             ListTag list = new ListTag(),itemList = new ListTag();
             for (int slot = 0; slot < slotLimits.length; slot++) {
                 list.add(IntTag.valueOf(slotLimits[slot]));
-                itemList.add(items[slot].serializeNBT());
+                itemList.add(items[slot].saveOptional(provider));
             }
             tag.put("slotLimits",list);
             tag.put("items",itemList);
@@ -175,8 +176,8 @@ public abstract class StorageHandlerHelper implements SerializableHandler<ItemSt
         public abstract String getName();
 
         @Override
-        public void writeToBuffer(@NotNull FriendlyByteBuf buffer) {
-            buffer.writeNbt(serializeNBT());
+        public void writeToBuffer(@NotNull FriendlyByteBuf buffer, ServerPlayer player) {
+            buffer.writeNbt(serializeNBT(player.registryAccess()));
         }
 
         protected boolean isItemEmpty(int slot){

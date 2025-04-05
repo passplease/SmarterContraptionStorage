@@ -149,7 +149,7 @@ public class MovementActorScenes {
         final BlockPos controller = util.grid().at(0,2,5);
         scene.world().showSection(util.select().position(bearing),Direction.DOWN);
         scene.idle(5);
-        scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class,tag -> tag.put("HeldItem",Items.OAK_SAPLING.getDefaultInstance().serializeNBT()));
+        scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class,tag -> tag.put("HeldItem",Items.OAK_SAPLING.getDefaultInstance().saveOptional(scene.world().getHolderLookupProvider())));
         ElementLink<WorldSectionElement> contraptionLink = scene.world().showIndependentSection(contraption,Direction.DOWN);
         scene.overlay().showText(60).placeNearTarget().independent(60).text("When you use contraption to plant trees, you may want to change the working order of deployer and saw");
         scene.idle(65);
@@ -170,7 +170,7 @@ public class MovementActorScenes {
             scene.world().showIndependentSectionImmediately(util.select().position(saplings[i]));
             scene.world().moveDeployer(deployer, -1f, 10);
             if(i == 3) {
-                scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class, tag -> tag.put("HeldItem", ItemStack.EMPTY.serializeNBT()), true);
+                scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class, tag -> tag.put("HeldItem", ItemStack.EMPTY.saveOptional(scene.world().getHolderLookupProvider())), true);
                 scene.addLazyKeyframe();
             }
             scene.idle(20);
@@ -186,7 +186,7 @@ public class MovementActorScenes {
             scene.idle(3);
             scene.world().incrementBlockBreakingProgress(saplings[0]);
         }
-        scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class,tag -> tag.put("HeldItem",Items.OAK_SAPLING.getDefaultInstance().serializeNBT()));
+        scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class,tag -> tag.put("HeldItem",Items.OAK_SAPLING.getDefaultInstance().saveOptional(scene.world().getHolderLookupProvider())));
         scene.world().setBlocks(tree,Blocks.AIR.defaultBlockState(),true);
         scene.world().rotateBearing(bearing,-90f,120);
         scene.world().rotateSection(contraptionLink,0,-90f,0,120);

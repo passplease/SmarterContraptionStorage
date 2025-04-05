@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -8,10 +9,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 public abstract class AbstractMovingMenu<T extends ItemStackHandler & MovingMenuProvider> extends AbstractContainerMenu {
     protected final @NotNull T handler;
@@ -23,8 +24,8 @@ public abstract class AbstractMovingMenu<T extends ItemStackHandler & MovingMenu
         addPlayerSlots(player);
     }
 
-    public AbstractMovingMenu(int id, Inventory inventory, FriendlyByteBuf buf, Function<FriendlyByteBuf,T> getHandler) {
-        this(getHandler.apply(buf),id,inventory.player);
+    public AbstractMovingMenu(int id, Inventory inventory, FriendlyByteBuf buf, BiFunction<FriendlyByteBuf, HolderLookup.Provider,T> getHandler) {
+        this(getHandler.apply(buf,inventory.player.registryAccess()),id,inventory.player);
     }
 
     @Override

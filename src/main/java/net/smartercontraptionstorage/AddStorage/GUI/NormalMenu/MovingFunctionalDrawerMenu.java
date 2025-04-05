@@ -3,7 +3,7 @@ package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.FunctionalDrawersHandlerHelper;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +14,7 @@ public class MovingFunctionalDrawerMenu extends AbstractMovingMenu<FunctionalDra
     }
 
     public MovingFunctionalDrawerMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
-        super(id, inventory, buf, (buffer) -> new FunctionalDrawersHandlerHelper.FDrawersHandler(buffer.readNbt()));
+        super(id, inventory, buf, (buffer,provider) -> new FunctionalDrawersHandlerHelper.FDrawersHandler(buffer.readNbt(),provider));
     }
 
     @Override
@@ -28,12 +28,12 @@ public class MovingFunctionalDrawerMenu extends AbstractMovingMenu<FunctionalDra
             // to synchronize handler
             addSlot(new SlotItemHandler(getHandler(),slot,Integer.MAX_VALUE,Integer.MAX_VALUE));
         }
-        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(0),10,70));
-        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(1),28,70));
-        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(2),46,70));
-        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(3),64,70));
-        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(4),114,70));
-        addSlot(net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot.create(getHandler().upgrades.get(5),132,70));
+        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(0),10,70));
+        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(1),28,70));
+        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(2),46,70));
+        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(3),64,70));
+        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(4),114,70));
+        addSlot(UnchangeableSlot.create(getHandler().upgrades.get(5),132,70));
         addSlot(UnchangeableSlot.create(getHandler().upgrades.get(6),150,70));
     }
 

@@ -1,7 +1,9 @@
 package Excludes.Scenes;
 
+import Excludes.CreateNBTFile;
 import com.simibubi.create.AllBlocks;
 import net.createmod.catnip.nbt.NBTHelper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.FloatTag;
@@ -17,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-import static Excludes.Scenes.CreateNBTFile.Facing.*;
+import static Excludes.CreateNBTFile.Facing.*;
 
 public class replenish_item extends CreateNBTFile {
     public replenish_item(@NotNull String name) {
@@ -69,7 +71,7 @@ public class replenish_item extends CreateNBTFile {
         nbt.putString("id","create:deployer");
         nbt.putString("Mode","USE");
         nbt.putFloat("Speed",0);
-        nbt.put("HeldItem", NBTHelper.writeItemList(Collections.singleton(Items.RAIL.getDefaultInstance())));
+        nbt.put("HeldItem", NBTHelper.writeItemList(Collections.singleton(Items.RAIL.getDefaultInstance()), Minecraft.getInstance().level.registryAccess()));
         addBlock(-10,0,-1, AllBlocks.DEPLOYER.get().getDescriptionId(),properties,"nbt",nbt);
         id = addBlock(-9,1,-1,Blocks.BARREL.getDescriptionId(),properties);
         addBlock(-10,1,-1,id,properties);

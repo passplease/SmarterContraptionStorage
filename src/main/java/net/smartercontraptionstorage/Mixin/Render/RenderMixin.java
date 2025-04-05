@@ -29,14 +29,14 @@ public class RenderMixin extends SmartBlockEntityRenderer<ContraptionControlsBlo
 
     @Inject(remap = false,method = "renderSafe(Lcom/simibubi/create/content/contraptions/actors/contraptionControls/ContraptionControlsBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V",at = @At("RETURN"))
     protected void renderSafe(ContraptionControlsBlockEntity entity, float pt, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, CallbackInfo ci) {
-        if(entity != null) {
+        if(entity != null && entity.getLevel() != null) {
             poseStack.pushPose();
             RenderSystem.enableBlend();
             VertexConsumer builder = buffer.getBuffer(RenderType.solid());
             Color color = new Color(255, 255, 255, 128);
             final float offset = 0.0001f;
 //            final float y = 14f / 16 + offset;
-            Overlay texture = Overlay.get(entity.getUpdateTag().getString("overlay"));
+            Overlay texture = Overlay.get(entity.getUpdateTag(entity.getLevel().registryAccess()).getString("overlay"));
             if(texture != null) {
                 TextureAtlasSprite uv = texture.getUV();
                 /*

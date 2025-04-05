@@ -14,8 +14,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.smartercontraptionstorage.AddStorage.GUI.ContraptionMenuProvider;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import org.jetbrains.annotations.NotNull;
@@ -73,7 +73,18 @@ public interface HelperMenuProvider<T extends StorageHandlerHelper> extends Cont
 
     <U extends Screen & MenuAccess<?>> U createScreen(MovingBlockEntityMenu menu, Inventory inventory, Component component);
 
+    @Deprecated
     default void writeToBuffer(@NotNull FriendlyByteBuf buffer) {
+        ContraptionMenuProvider.super.writeToBuffer(buffer);
+        buffer.writeUtf(getHelper().getName());
+        rememberPair(asPair());
+        buffer.writeInt(getPair().getFirst());
+        buffer.writeLong(getPair().getSecond());
+        MenuLevel.addBlockEntity(getPair(),getBlockEntity(),getPlayer());
+    }
+
+    @Override
+    default void writeToBuffer(@NotNull FriendlyByteBuf buffer, ServerPlayer player){
         buffer.writeUtf(getHelper().getName());
         rememberPair(asPair());
         buffer.writeInt(getPair().getFirst());

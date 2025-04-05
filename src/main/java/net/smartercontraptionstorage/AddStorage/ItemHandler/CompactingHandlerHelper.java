@@ -7,6 +7,7 @@ import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersComp;
 import com.jaquadro.minecraft.storagedrawers.block.tile.tiledata.UpgradeData;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,17 +16,15 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingCompactingDrawerMenu;
-import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingDrawerMenu;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
-import java.util.function.Consumer;
 
 public class CompactingHandlerHelper extends DrawersHandlerHelper{
     @Override
@@ -37,7 +36,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         super.addStorageToWorld(entity, handler);
         IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
         CompactingHandler Handler = (CompactingHandler) handler;
-        ItemStack item = Handler.items[Handler.baseSlot];
+        ItemStack item = Handler.getStackInSlot(Handler.baseSlot);
         group.getDrawer(Handler.baseSlot).setStoredItem(item,item.getCount());
     }
     @Override
@@ -58,8 +57,8 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         return "CompactingHandlerHelper";
     }
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
-        return new CompactingHandler(nbt);
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+        return new CompactingHandler(nbt, provider);
     }
     public static class CompactingHandler extends NormalDrawerHandler{
         public final int[] conversionRate;
@@ -81,10 +80,10 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
                 else conversionRate[i] = conversionRate[baseSlot] / conversionRate[i];
             }
             count[baseSlot] = group.getDrawer(baseSlot).getStoredItemCount();
-            slotLimits[baseSlot] = group.getDrawer(baseSlot).getMaxCapacity();
+            slotLimits[baseSlot] = group.getDrawer(baseSlot).getStoredItemStackSize();
         }
-        public CompactingHandler(CompoundTag tag){
-            super(tag);
+        public CompactingHandler(CompoundTag tag, HolderLookup.Provider provider) {
+            super(tag,provider);
             conversionRate = tag.getIntArray("conversionRate");
             assert conversionRate.length == 3;
             baseSlot = getBaseSlot();
@@ -133,9 +132,10 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
             back.setCount(Math.max(count[baseSlot] / conversionRate[slot],0));
             return back;
         }
+
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = super.serializeNBT();
+        public @NotNull CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
+            CompoundTag tag = super.serializeNBT(provider);
             assert conversionRate.length == 3;
             tag.putIntArray("conversionRate", conversionRate);
             return tag;
@@ -146,7 +146,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
             return "compacting_drawer";
         }
 
-        public static RegistryObject<MenuType<MovingDrawerMenu>> CompactingDrawerMenu;
+        public static DeferredHolder<MenuType<?>, MenuType<MovingCompactingDrawerMenu>> CompactingDrawerMenu;
 
         @Override
         public MenuType<? extends AbstractMovingMenu<?>> getMenuType() {

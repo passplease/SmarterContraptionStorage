@@ -1,7 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -9,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import org.joml.Matrix4f;
 
 import javax.annotation.Nullable;
 
@@ -28,12 +26,13 @@ public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> exte
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float v, int mouseX, int mouseY) {
-        renderBackground(guiGraphics);
+    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, getBackground());
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(getBackground(),guiGraphics,leftPos,topPos,width() + leftPos,height() + topPos,getTextureLeft(),getTextureTop(),getTextureLeft() + getTextureWidth(),getTextureTop() + getTextureHeight());
-        renderScreen(guiGraphics, v, mouseX, mouseY);
+        drawTexture(getBackground(),guiGraphics,leftPos,topPos,width(),height(),getTextureLeft(),getTextureTop(),getTextureWidth(),getTextureHeight());
+        bindTexture(bindTexture);
+        renderScreen(guiGraphics, partialTick, mouseX, mouseY);
     }
 
     @Override
@@ -44,19 +43,19 @@ public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> exte
 
     protected abstract void renderScreen(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY);
 
-    public void drawTexture(ResourceLocation texture,GuiGraphics guiGraphics, float left, float top, float right, float bottom, float textureLeft, float textureTop, float textureRight, float textureBottom) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        bindTexture(texture);
-        Matrix4f matrix = guiGraphics.pose().last().pose();
-        Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder buffer = tesselator.getBuilder();
-        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        buffer.vertex(matrix, left, bottom, 0.0F).uv(textureLeft, textureBottom).endVertex();
-        buffer.vertex(matrix, right, bottom, 0.0F).uv(textureRight, textureBottom).endVertex();
-        buffer.vertex(matrix, right, top, 0.0F).uv(textureRight, textureTop).endVertex();
-        buffer.vertex(matrix, left, top, 0.0F).uv(textureLeft, textureTop).endVertex();
-        tesselator.end();
+    public void drawTexture(ResourceLocation texture,GuiGraphics guiGraphics, int left, int top, int width, int height, float textureLeft, float textureTop, float textureWidth, float textureHeight) {
+//        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+//        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+//        bindTexture(texture);
+//        Matrix4f matrix = guiGraphics.pose().last().pose();
+//        Tesselator tesselator = Tesselator.getInstance();
+//        BufferBuilder buffer = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+//        buffer.addVertex(matrix, left, bottom, 0.0F).setUv(textureLeft, textureBottom);
+//        buffer.addVertex(matrix, right, bottom, 0.0F).setUv(textureRight, textureBottom);
+//        buffer.addVertex(matrix, right, top, 0.0F).setUv(textureRight, textureTop);
+//        buffer.addVertex(matrix, left, top, 0.0F).setUv(textureLeft, textureTop);
+//        buffer.buildOrThrow();
+        guiGraphics.blit(texture,left,top,width,height,textureLeft,textureTop,(int)(textureWidth * 256),(int)(textureHeight * 256),256,256);
     }
 
     public void bindTexture(@Nullable ResourceLocation location) {
@@ -67,7 +66,7 @@ public abstract class AbstractMovingScreen<T extends AbstractMovingMenu<?>> exte
 
     public void blit(int x, int y, float u, float v, int width, int height, int textureWidth, int textureHeight,GuiGraphics guiGraphics){
         if(bindTexture != null)
-            guiGraphics.blit(bindTexture,x,y,u,v,width,height,textureWidth,textureHeight);
+            guiGraphics.blit(bindTexture,x,y,width,height,u,v,width,height,textureWidth,textureHeight);
     }
 
     public abstract ResourceLocation getBackground();

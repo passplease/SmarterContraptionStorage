@@ -87,9 +87,9 @@ public class MovingTrashCanScreen extends AbstractMovingScreen<MovingTrashCanMen
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-        if(!super.mouseScrolled(mouseX, mouseY, delta)){
-            if(delta < 0.0 && menu.clickMenuButton(getPlayer(),1)) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if(!super.mouseScrolled(mouseX, mouseY, scrollX,scrollY)){
+            if(scrollY < 0.0 && menu.clickMenuButton(getPlayer(),1)) {
                 handleButtonClick(1);
                 BUTTON.update(false);
             } else if(menu.clickMenuButton(getPlayer(),-1)) {

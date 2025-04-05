@@ -66,7 +66,7 @@ public class MovingFunctionalCompactingScreen extends AbstractMovingScreen<Movin
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         super.renderLabels(guiGraphics, mouseX, mouseY);
         if(inventorySlot != null) {
-            inventorySlot.drawForegroundLayer(guiGraphics,this,null,getGuiLeft(),getGuiTop(),mouseX,mouseY,this.minecraft.getDeltaFrameTime());
+            inventorySlot.drawForegroundLayer(guiGraphics,this,null,getGuiLeft(),getGuiTop(),mouseX,mouseY,0);
         }
         drawContent(guiGraphics,"key.categories.storage",10,59);
         drawContent(guiGraphics,"key.categories.utility",114,59);

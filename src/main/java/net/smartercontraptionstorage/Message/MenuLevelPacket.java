@@ -1,25 +1,53 @@
 package net.smartercontraptionstorage.Message;
 
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
+import io.netty.buffer.ByteBuf;
 import net.createmod.catnip.data.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MenuLevel;
 import net.smartercontraptionstorage.Utils;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
 
-public class MenuLevelPacket extends ModMessage {
+public class MenuLevelPacket implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<MenuLevelPacket> TYPE = new Type<>(Utils.asResources("menu_level_packet"));
+
+    public static final StreamCodec<ByteBuf, MenuLevelPacket> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.STRING_UTF8,
+            MenuLevelPacket::name,
+            ByteBufCodecs.VAR_INT,
+            MenuLevelPacket::age,
+            MenuLevelPacket::new
+    );
+
+    private final String name;
+
+    private final int age;
+
+    public MenuLevelPacket(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public MenuLevelPacket(){
+        this("menu_level_packet",1);
+    }
+
     private Set<Pair<Integer, Long>> pairs;
 
     private boolean removeOrAdd = false;
 
-    @Override
     public void toBytes(FriendlyByteBuf buffer) {
         int[] contraptionIds = new int[pairs.size()];
         long[] blockPosIds = new long[pairs.size()];
@@ -34,7 +62,6 @@ public class MenuLevelPacket extends ModMessage {
         buffer.writeLongArray(blockPosIds);
     }
 
-    @Override
     public MenuLevelPacket fromBytes(FriendlyByteBuf buffer) {
         MenuLevelPacket packet = new MenuLevelPacket();
         Set<Pair<Integer, Long>> pair = new HashSet<>();
@@ -52,8 +79,7 @@ public class MenuLevelPacket extends ModMessage {
         return packet;
     }
 
-    @Override
-    public void handle(Supplier<NetworkEvent.Context> context) {
+    public void handle(IPayloadContext context) {
         if(removeOrAdd) {
             pairs.forEach(pair -> MenuLevel.getBlocks().remove(pair));
         } else {
@@ -71,5 +97,22 @@ public class MenuLevelPacket extends ModMessage {
         this.pairs = pairs;
         this.removeOrAdd = removeOrAdd;
         return this;
+    }
+
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
+    }
+
+    public String name(){
+        return name;
+    }
+
+    public int age(){
+        return age;
+    }
+
+    public void sendToClient(@Nullable ServerPlayer player) {
+        if(player != null)
+            PacketDistributor.sendToPlayer(player,this);
     }
 }

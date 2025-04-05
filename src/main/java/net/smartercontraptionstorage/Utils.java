@@ -10,12 +10,17 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.LiteralContents;
+import net.minecraft.network.chat.contents.PlainTextContents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
@@ -102,7 +107,7 @@ public final class Utils {
         return returnValue;
     }
     private static <T> T searchBlockPos(@NotNull HashMap<BlockPos,Boolean> checkedPos,@Nullable T t, @NotNull BlockPos pos, @NotNull BlockPos initialBlock, @NotNull BiFunction<BlockPos,BlockPos,Boolean> search_or_stop, @NotNull FourFunction<BlockPos,BlockPos,@Nullable T,@Nullable T,@Nullable T> setReturnValue){
-        if(checkedPos.containsKey(pos) || calcDistance(pos,initialBlock) >= SmarterContraptionStorageConfig.SEARCH_RANGE.get())
+        if(checkedPos.containsKey(pos) || calcDistance(pos,initialBlock) >= SmarterContraptionStorageConfig.maxSearchRange())
             return null;
         if(checkedPos.size() >= 300){
             addWarning("To much block pos searched !");
@@ -122,7 +127,7 @@ public final class Utils {
         return Math.max(X,Math.max(Y,Z));
     }
     public static @Nullable ArrayList<FluidStack> getFluidByItem(ItemStack can){
-        IFluidHandler fluidHandler = can.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null);
+        IFluidHandler fluidHandler = can.getCapability(Capabilities.FluidHandler.ITEM);
         if(fluidHandler == null)
             return null;
         ArrayList<FluidStack> list = new ArrayList<>();
@@ -130,8 +135,10 @@ public final class Utils {
             list.add(fluidHandler.getFluidInTank(i));
         return list;
     }
-    public static void forEachTankDo(ICapabilityProvider can, Consumer<IFluidHandler> consumer){
-        can.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).resolve().ifPresent(consumer);
+    public static void forEachTankDo(ItemStack can, Consumer<IFluidHandler> consumer){
+        IFluidHandlerItem handler = can.getCapability(Capabilities.FluidHandler.ITEM);
+        if(handler != null)
+            consumer.accept(handler);
     }
     public static final Logger LOGGER = LogManager.getLogger();
     public static void addWarning(String text){
@@ -144,22 +151,21 @@ public final class Utils {
         return ItemStack.isSameItem(stack1, stack2);
     }
     public static boolean isSameItemSameTags(ItemStack stack1, ItemStack stack2){
-        return ItemStack.isSameItemSameTags(stack1, stack2);
+        return ItemStack.isSameItemSameComponents(stack1, stack2);
     }
     public static boolean isItemEmpty(ItemStack stack){
         return stack.isEmpty() || stack.getItem() == Items.AIR;
     }
     public static ResourceLocation asResources(String name){
-        return ResourceLocation.tryBuild(SmarterContraptionStorage.MODID,name);
+        return ResourceLocation.fromNamespaceAndPath(SmarterContraptionStorage.MODID,name);
     }
     public static void renderInto(VertexConsumer builder, Matrix4f matrix, float x, float y, float z,Color color, TextureAtlasSprite uv, double u, double v, int overlay, int light, float normal_1, float normal_2, float normal_3){
-        builder.vertex(matrix,x,y,z)
-                .color(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha())
-                .uv(uv.getU(u),uv.getV(v))
-                .overlayCoords(overlay)
-                .uv2(light)
-                .normal(normal_1, normal_2, normal_3)
-                .endVertex();
+        builder.addVertex(matrix,x,y,z)
+                .setColor(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha())
+                .setUv(uv.getU((float) u),uv.getV((float) v))
+                .setOverlay(overlay)
+                .setLight(light)
+                .setNormal(normal_1, normal_2, normal_3);
     }
     /**
      * @param u (based on 16 pixels) to locate the texture in UV map
@@ -244,7 +250,7 @@ public final class Utils {
         return degrees;
     }
     public static void sendMessage(ServerPlayer player, String text){
-        player.sendSystemMessage(MutableComponent.create(new LiteralContents(text)));
+        player.sendSystemMessage(MutableComponent.create(new PlainTextContents.LiteralContents(text)));
     }
     public static void sendMessage(ServerPlayer player,MutableComponent component){
         player.sendSystemMessage(component);

@@ -1,8 +1,9 @@
 package Excludes.Scenes;
 
+import Excludes.CreateNBTFile;
 import net.minecraft.nbt.*;
 
-import static Excludes.Scenes.CreateNBTFile.Facing.*;
+import static Excludes.CreateNBTFile.Facing.*;
 
 public class storage_control extends CreateNBTFile {
     public storage_control(String name) {

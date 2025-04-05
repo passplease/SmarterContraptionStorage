@@ -1,6 +1,5 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
-import com.simibubi.create.api.contraption.storage.item.MountedItemStorage;
 import com.simibubi.create.api.contraption.storage.item.WrapperMountedItemStorage;
 import com.simibubi.create.content.contraptions.Contraption;
 import net.minecraft.core.BlockPos;
@@ -9,8 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.HelperMenuProvider;
 import net.smartercontraptionstorage.AddStorage.GUI.ContraptionMenuProvider;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingMenuProvider;
@@ -19,22 +17,22 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
-
 public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandler> {
     public final @NonNull StorageHandlerHelper helper;
 
-    public final BlockEntity blockEntity;
+    public BlockEntity blockEntity;
 
-    public MovingItemStorage(ItemStackHandler handler, @NotNull StorageHandlerHelper helper,BlockEntity blockEntity) {
+    public MovingItemStorage(ItemStackHandler handler, @NotNull StorageHandlerHelper helper) {
         super(MovingItemStorageType.HELPER_STORAGE.get(), handler);
         this.helper = helper;
-        this.blockEntity = blockEntity;
     }
 
     @Override
     public void unmount(Level level, BlockState blockState, BlockPos blockPos, @Nullable BlockEntity blockEntity) {
-        helper.addStorageToWorld(helper.canCreateHandler(blockEntity) ? blockEntity : this.blockEntity,getHandler());
+        if(helper.canCreateHandler(blockEntity)) {
+            helper.addStorageToWorld(blockEntity, getHandler());
+        } else helper.addStorageToWorld(this.blockEntity, getHandler());
+        this.blockEntity = blockEntity;
     }
 
     public ItemStackHandler getHandler() {
@@ -43,7 +41,7 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
 
     @Override
     public boolean handleInteraction(ServerPlayer player, Contraption contraption, StructureTemplate.StructureBlockInfo info) {
-        ContraptionMenuProvider<?> provider = null;
+        ContraptionMenuProvider<?> provider;
         if(getHandler() instanceof MovingMenuProvider h && !h.hasOpened())
             provider = h;
         else {
@@ -52,7 +50,11 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
                 if(h.canOpenMenu(blockEntity) && !h.hasOpened()) {
                     h.setBlockEntity(blockEntity);
                     provider = h;
+                } else {
+                    provider = null;
                 }
+            } else {
+                provider = null;
             }
         }
         if(provider != null){
@@ -60,7 +62,7 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
             provider.setLocalPos(info.pos());
             if(provider.check()){
                 provider.rememberPlayer(player);
-                NetworkHooks.openScreen(player,provider,provider::writeToBuffer);
+                player.openMenu(provider,buffer -> provider.writeToBuffer(buffer,player));
                 provider.playSound(player.level());
                 return true;
             }else provider.error();
@@ -76,17 +78,17 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
         return null;
     }
 
-    public void doSomething(Map<BlockPos, MountedItemStorage> itemsBuilder) {
+    public void doSomething() {
         NeedDealWith deal = getDeal();
         if(deal != null) {
-            deal.doSomething(blockEntity,itemsBuilder);
+            deal.doSomething(blockEntity);
         }
     }
 
-    public void finallyDo(Map<BlockPos, MountedItemStorage> itemsBuilder) {
+    public void finallyDo() {
         NeedDealWith deal = getDeal();
         if(deal != null) {
-            deal.finallyDo(itemsBuilder);
+            deal.finallyDo();
         }
     }
 }

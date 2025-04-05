@@ -11,8 +11,7 @@ import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.*;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.smartercontraptionstorage.Utils;
+import net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -54,7 +53,7 @@ public enum Overlay {
 //            event.addSprite(overlay.getResourceLocation());
 //        }
 //    }
-    static void setUV(TextureStitchEvent.Post event){
+    static void setUV(TextureAtlasStitchedEvent event){
         TextureAtlas atlas = event.getAtlas();
         for(Overlay overlay : Overlay.values()){
             overlay.uv = atlas.getSprite(overlay.getResourceLocation());
@@ -79,8 +78,7 @@ public enum Overlay {
             if(overlay.item.getDyeColor().equals(item.getDyeColor()))
                 return overlay;
         }
-        Utils.addError("Cannot find the overlay color of this dye:" + item.getDyeColor());
-        return null;
+        throw new Error("Cannot find the overlay color of this dye:" + item.getDyeColor());
     }
 
     public @NotNull ResourceLocation getResourceLocation() {

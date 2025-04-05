@@ -44,7 +44,12 @@ public interface ContraptionMenuProvider<T extends AbstractContainerMenu> extend
      * */
     @Nullable ServerPlayer getPlayer();
 
-    void writeToBuffer(@NotNull FriendlyByteBuf buffer);
+    @Deprecated
+    default void writeToBuffer(@NotNull FriendlyByteBuf buffer){
+        Utils.addError("writeToBuffer method is now deprecated");
+    }
+
+    void writeToBuffer(@NotNull FriendlyByteBuf buffer,ServerPlayer player);
 
     default void playSound(Level level){
         level.playSound(null, BlockPos.containing(getSoundPos()), SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 0.75f, 1.0f);

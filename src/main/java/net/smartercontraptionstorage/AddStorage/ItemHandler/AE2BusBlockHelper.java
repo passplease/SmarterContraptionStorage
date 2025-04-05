@@ -23,13 +23,14 @@ import appeng.parts.automation.ExportBusPart;
 import appeng.parts.automation.IOBusPart;
 import appeng.util.ConfigInventory;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.AE2ContraptionSource;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import org.jetbrains.annotations.NotNull;
@@ -52,7 +53,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         assert this.canCreateHandler(entity);
 
         CableBusBlockEntity bus = (CableBusBlockEntity)entity;
-        ICablePart center = (ICablePart)bus.getPart(null);
+        ICablePart center = (ICablePart)bus.getPart((Direction)null);
         if (center != null && center.getCableConnectionType() == AECableType.COVERED) {
             IGridNode exportHost = null;
             IGridNode importHost = null;
@@ -151,8 +152,14 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         return false;
     }
 
+    @Deprecated
     @Override
     public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+        throw new IllegalAccessException();
+    }
+
+    @Override
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 
@@ -296,7 +303,11 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             boolean controller = false,energy = false;
             for(BlockEntity entity : StorageHandlerHelper.BlockEntityList) {
                 if (entity instanceof InterfaceBlockEntity MEInterface) {
-                    extractKeys.addAll(MEInterface.getInterfaceLogic().getConfig().getAvailableStacks().keySet());
+                    IGridNode node = MEInterface.getInterfaceLogic().getActionableNode();
+                    if (node == null)
+                        continue;
+                    MEStorage storage = node.getGrid().getStorageService().getInventory();
+                    extractKeys.addAll(storage.getAvailableStacks().keySet());
                 } else if (controller || entity instanceof ControllerBlockEntity)
                     controller = true;
                 else if(energy || entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)
@@ -311,8 +322,8 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         }
 
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = super.serializeNBT();
+        public CompoundTag serializeNBT(HolderLookup.Provider provider) {
+            CompoundTag tag = super.serializeNBT(provider);
             if(canWork) {
                 if (importNode instanceof GridNode node) {
                     node.saveToNBT("importNode", tag);
@@ -321,7 +332,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
                     node.saveToNBT("extractNode", tag);
                 }
                 ListTag keys = new ListTag();
-                extractKeys.forEach((key) -> keys.add(key.toTagGeneric()));
+                extractKeys.forEach((key) -> keys.add(key.toTagGeneric(provider)));
                 tag.put("extractKeys", keys);
                 tag.putBoolean("hasFilter", hasFilter);
                 tag.putInt("size",super.getSlots());

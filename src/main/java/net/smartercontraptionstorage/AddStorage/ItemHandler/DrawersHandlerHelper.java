@@ -6,8 +6,8 @@ import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersStandard;
 import com.jaquadro.minecraft.storagedrawers.block.tile.tiledata.UpgradeData;
-import com.jaquadro.minecraft.storagedrawers.core.ModBlocks;
 import net.createmod.catnip.nbt.NBTHelper;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
@@ -20,8 +20,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingDrawerMenu;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
@@ -31,7 +31,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 public class DrawersHandlerHelper extends StorageHandlerHelper {
     public static final String NAME = "DrawersHandlerHelper";
@@ -40,7 +39,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         return entity instanceof BlockEntityDrawersStandard;
     }
     @Override
-    public void addStorageToWorld(BlockEntity entity,ItemStackHandler handler) {
+    public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof NormalDrawerHandler;
         BlockEntityDrawers drawer = (BlockEntityDrawers) entity;
         IDrawerGroup group = drawer.getGroup();
@@ -73,16 +72,13 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         return block instanceof BlockDrawers && !(block instanceof BlockCompDrawers);
     }
     @Override
-    public void registerBlock(Consumer<Block> register) {
-        ModBlocks.getDrawers().forEach(register);
-    }
-    @Override
     public String getName() {
         return NAME;
     }
+
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
-        return new NormalDrawerHandler(nbt);
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+        return new NormalDrawerHandler(nbt,provider);
     }
 
     public static class NormalDrawerHandler extends HandlerHelper{
@@ -104,8 +100,8 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
                 this.upgrades[slot] = upgrades.getUpgrade(slot);
             }
         }
-        public NormalDrawerHandler(CompoundTag nbt){
-            super(nbt);
+        public NormalDrawerHandler(CompoundTag nbt, HolderLookup.Provider provider) {
+            super(nbt,provider);
             this.upgrades = new ItemStack[nbt.getInt("upgradesSlot")];
             ListTag list = nbt.getList("count", Tag.TAG_INT);
             if(!list.isEmpty()) {
@@ -117,7 +113,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             }else {
                 count = nbt.getIntArray("count");
             }
-            List<ItemStack> upgradesList = NBTHelper.readItemList(nbt.getList("upgrades", Tag.TAG_COMPOUND));
+            List<ItemStack> upgradesList = NBTHelper.readItemList(nbt.getList("upgrades", Tag.TAG_COMPOUND),provider);
             for (int slot = 0; slot < upgrades.length; slot++) {
                 this.upgrades[slot] = upgradesList.get(slot);
             }
@@ -204,14 +200,15 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         public ItemStack getUpgrades(int slot) {
             return upgrades[slot];
         }
+
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = super.serializeNBT();
+        public @NotNull CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
+            CompoundTag tag = super.serializeNBT(provider);
             ListTag list = new ListTag();
             for (int i : count)
                 list.add(IntTag.valueOf(i));
             tag.put("count",list);
-            tag.put("upgrades",NBTHelper.writeItemList(Arrays.stream(upgrades).toList()));
+            tag.put("upgrades",NBTHelper.writeItemList(Arrays.stream(upgrades).toList(),provider));
             tag.putInt("upgradesSlot",upgrades.length);
             return tag;
         }
@@ -220,7 +217,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             return NAME;
         }
 
-        public static RegistryObject<MenuType<MovingDrawerMenu>> DrawerMenu;
+        public static DeferredHolder<MenuType<?>, MenuType<MovingDrawerMenu>> DrawerMenu;
 
         @Override
         public MenuType<? extends AbstractMovingMenu<?>> getMenuType() {

@@ -1,19 +1,20 @@
 package net.smartercontraptionstorage.AddStorage.GUI.NormalMenu;
 
 import com.jaquadro.minecraft.storagedrawers.client.gui.StorageGuiGraphics;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.DrawersHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.NormalDrawerHandler>{
     @OnlyIn(Dist.CLIENT)
@@ -25,10 +26,10 @@ public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.No
     }
 
     public MovingDrawerMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
-        this(id, inventory, buf, buffer -> new DrawersHandlerHelper.NormalDrawerHandler(buffer.readNbt()));
+        this(id, inventory, buf, (buffer,provider) -> new DrawersHandlerHelper.NormalDrawerHandler(buffer.readNbt(),provider));
     }
 
-    public MovingDrawerMenu(int id, Inventory inventory, FriendlyByteBuf buf, Function<FriendlyByteBuf,DrawersHandlerHelper.NormalDrawerHandler> getHandler){
+    public MovingDrawerMenu(int id, Inventory inventory, FriendlyByteBuf buf, BiFunction<FriendlyByteBuf, HolderLookup.Provider,DrawersHandlerHelper.NormalDrawerHandler> getHandler){
         super(id,inventory,buf,getHandler);
         isClient = inventory.player.getCommandSenderWorld().isClientSide();
     }
@@ -62,7 +63,7 @@ public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.No
         for (int column = 0; column < 7; column++) {
             h = new ItemStackHandler();
             h.setStackInSlot(0,getHandler().getUpgrades(column));
-            addSlot(new net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot(h,0,26 + column * 18, 86));
+            addSlot(new UnchangeableSlot(h,0,26 + column * 18, 86));
         }
     }
 

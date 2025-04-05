@@ -1,12 +1,13 @@
 package Excludes.Scenes;
 
+import Excludes.CreateNBTFile;
 import com.simibubi.create.AllBlocks;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
-import static Excludes.Scenes.CreateNBTFile.Facing.*;
+import static Excludes.CreateNBTFile.Facing.*;
 
 public class ordinary_control extends CreateNBTFile {
     public ordinary_control(@NotNull String name) {

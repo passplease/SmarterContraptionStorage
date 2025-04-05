@@ -1,7 +1,8 @@
 package net.smartercontraptionstorage.AddStorage;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 public interface SerializableHandler<T> {
@@ -11,6 +12,11 @@ public interface SerializableHandler<T> {
 
     String getName();
 
+    @Deprecated
     @NotNull
-    T deserialize(CompoundTag nbt) throws IllegalAccessException;
+    default T deserialize(CompoundTag nbt) throws Exception{
+        return deserialize(nbt, Minecraft.getInstance().level.registryAccess());
+    }
+
+    T deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException;
 }

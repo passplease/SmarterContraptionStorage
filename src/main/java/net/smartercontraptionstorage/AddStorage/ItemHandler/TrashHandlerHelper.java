@@ -1,12 +1,15 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorage;
+import com.simibubi.create.content.equipment.toolbox.ToolboxBlockEntity;
 import com.simibubi.create.content.equipment.toolbox.ToolboxInventory;
 import com.simibubi.create.content.equipment.toolbox.ToolboxMountedStorage;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
 import com.supermartijn642.trashcans.TrashCans;
 import net.createmod.catnip.nbt.NBTHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -17,8 +20,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingTrashCanMenu;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Utils;
@@ -72,9 +75,10 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
     public String getName() {
         return NAME;
     }
+
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
-        return new TrashHandler(nbt);
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt,HolderLookup.Provider provider) {
+        return new TrashHandler(nbt,provider);
     }
 
     public static class TrashHandler extends HandlerHelper implements NeedDealWith{
@@ -92,10 +96,10 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
             }
             toolboxItem = new ArrayList<>();
         }
-        public TrashHandler(CompoundTag nbt){
-            super(nbt);
+        public TrashHandler(CompoundTag nbt,HolderLookup.Provider provider) {
+            super(nbt,provider);
             whiteOrBlack = nbt.getBoolean("whiteOrBlack");
-            toolboxItem = NBTHelper.readItemList(nbt.getList("toolboxItem", Tag.TAG_COMPOUND));
+            toolboxItem = NBTHelper.readItemList(nbt.getList("toolboxItem", Tag.TAG_COMPOUND),provider);
         }
         public boolean canDelete(ItemStack stack){
             if(Utils.isItemEmpty(stack))
@@ -125,8 +129,16 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         @Override
         public void doSomething(BlockEntity entity) {}
         @Override
-        public void finallyDo() {}
-
+        public void finallyDo() {
+            ArrayList<ItemStack> toolboxItem = new ArrayList<>();
+            RegistryAccess registryAccess;
+            for(BlockEntity entity : BlockEntityList)
+                if(entity instanceof ToolboxBlockEntity && entity.getLevel() != null){
+                    registryAccess = entity.getLevel().registryAccess();
+                    toolboxItem.addAll(NBTHelper.readItemList(entity.saveCustomOnly(registryAccess).getCompound("Inventory").getList("Compartments", Tag.TAG_COMPOUND),registryAccess));
+                }
+            this.toolboxItem = toolboxItem.stream().filter((item)->!item.isEmpty()).toList();
+        }
         @Override
         public void finallyDo(Map<BlockPos, MountedItemStorage> itemsBuilder) {
             ArrayList<ItemStack> toolboxItem = new ArrayList<>();
@@ -141,10 +153,10 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         }
 
         @Override
-        public CompoundTag serializeNBT() {
-            CompoundTag tag = super.serializeNBT();
+        public @NotNull CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
+            CompoundTag tag = super.serializeNBT(provider);
             tag.putBoolean("whiteOrBlack",whiteOrBlack);
-            tag.put("toolboxItem",NBTHelper.writeItemList(toolboxItem));
+            tag.put("toolboxItem",NBTHelper.writeItemList(toolboxItem,provider));
             return tag;
         }
 
@@ -162,7 +174,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
             buffer.writeNbt(serializeNBT());
         }
 
-        public static RegistryObject<MenuType<MovingTrashCanMenu>> TrashCanMenu;
+        public static DeferredHolder<MenuType<?>, MenuType<MovingTrashCanMenu>> TrashCanMenu;
 
         @Override
         public MenuType<MovingTrashCanMenu> getMenuType() {

@@ -2,14 +2,14 @@ package net.smartercontraptionstorage.AddStorage.FluidHander;
 
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.smartercontraptionstorage.AddStorage.SerializableHandler;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -142,6 +142,7 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
                 setFluid(getAmount() - toExtract.getAmount(),fluid);
             return toExtract;
         }
+
         @Override
         public final CompoundTag writeToNBT(CompoundTag nbt){
             CompoundTag tag = serialize(super.writeToNBT(nbt));

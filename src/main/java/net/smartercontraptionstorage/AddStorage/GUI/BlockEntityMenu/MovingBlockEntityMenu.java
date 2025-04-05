@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,7 +20,7 @@ import java.util.OptionalInt;
 
 @ParametersAreNonnullByDefault
 public class MovingBlockEntityMenu extends AbstractContainerMenu {
-    public static RegistryObject<MenuType<MovingBlockEntityMenu>> BlockEntityMenu;
+    public static DeferredHolder<MenuType<?>, MenuType<MovingBlockEntityMenu>> BlockEntityMenu;
 
     private final AbstractContainerMenu menu;
 

@@ -1,18 +1,9 @@
 package net.smartercontraptionstorage;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
 import net.minecraft.core.registries.BuiltInRegistries;
-import com.simibubi.create.content.equipment.toolbox.ToolboxBlock;
-import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.entry.BlockEntry;
-import net.createmod.ponder.foundation.PonderIndex;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.javafmlmod.FMLModContainer;
 import net.smartercontraptionstorage.AddStorage.FluidHander.MovingFluidStorageType;
 import net.smartercontraptionstorage.Message.MenuLevelPacket;
-import net.smartercontraptionstorage.Message.ModMessage;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -23,20 +14,7 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.smartercontraptionstorage.AddActor.BackpackBehaviour;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.smartercontraptionstorage.AddStorage.FluidHander.FunctionalFluidHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.FluidHander.TrashcanFluidHelper;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
@@ -45,11 +23,7 @@ import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEControllerBlock;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEEnergyBlock;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.MEStorageFilter;
-import net.smartercontraptionstorage.Message.MenuLevelPacket;
-import net.smartercontraptionstorage.AddActor.ToolboxBehaviour;
-import net.smartercontraptionstorage.Ponder.SCS_Ponder;
 
-import static net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper.register;
 import static net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper.register;
 
 @Mod(SmarterContraptionStorage.MODID)

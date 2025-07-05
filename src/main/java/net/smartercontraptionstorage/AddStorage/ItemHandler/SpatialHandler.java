@@ -7,6 +7,7 @@ import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.CreativeEnergyCellBlockEntity;
 import appeng.blockentity.networking.EnergyCellBlockEntity;
 import appeng.blockentity.spatial.SpatialIOPortBlockEntity;
+import appeng.core.definitions.AEBlocks;
 import appeng.spatial.SpatialStoragePlot;
 import appeng.spatial.SpatialStoragePlotManager;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlockEntity;
@@ -30,6 +31,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class SpatialHandler extends StorageHandlerHelper{
     @Override
@@ -67,6 +69,11 @@ public class SpatialHandler extends StorageHandlerHelper{
     @Override
     public boolean allowControl(Block block) {
         return false;
+    }
+
+    @Override
+    public void registerBlock(Consumer<Block> register) {
+        register.accept(AEBlocks.SPATIAL_IO_PORT.block());
     }
 
     @Override
@@ -256,7 +263,7 @@ public class SpatialHandler extends StorageHandlerHelper{
         }
 
         @Override
-        public CompoundTag serializeNBT(HolderLookup.Provider provider) {
+        public @NotNull CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
             CompoundTag tag = super.serializeNBT(provider);
             tag.putBoolean("canWork",canWork);
             tag.putInt("plotId",plotId);
@@ -265,6 +272,12 @@ public class SpatialHandler extends StorageHandlerHelper{
 
         public boolean canWork() {
             return canWork;
+        }
+
+        public void setWork() {
+            if(!StackWalker.getInstance().getCallerClass().getName().startsWith("Excludes.GameTest"))
+                throw new IllegalCallerException("Illegal call of setting canWork !");
+            this.canWork = true;
         }
     }
 }

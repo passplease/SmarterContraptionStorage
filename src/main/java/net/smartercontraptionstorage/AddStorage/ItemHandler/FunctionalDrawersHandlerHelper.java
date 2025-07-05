@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import com.buuz135.functionalstorage.FunctionalStorage;
 import com.buuz135.functionalstorage.block.DrawerBlock;
 import com.buuz135.functionalstorage.block.tile.DrawerTile;
 import com.buuz135.functionalstorage.inventory.BigInventoryHandler;
@@ -21,6 +22,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.AbstractMovingMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.MovingFunctionalDrawerMenu;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
@@ -44,19 +47,21 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity) && handler instanceof FDrawersHandler;
-        RegistryAccess registryAccess = entity.getLevel().registryAccess();
-        CompoundTag nbt = new CompoundTag();
-        CompoundTag tag;
-        FDrawersHandler h = (FDrawersHandler)handler;
-        for (int slot = 0; slot < h.getSlots(); slot++) {
-            tag = new CompoundTag();
-            tag.putInt(AMOUNT,h.count[slot]);
-            tag.put(STACK,h.items[slot].saveOptional(registryAccess));
-            nbt.put(Integer.toString(slot),tag);
+        if(entity.getLevel() != null) {
+            RegistryAccess registryAccess = entity.getLevel().registryAccess();
+            CompoundTag nbt = new CompoundTag();
+            CompoundTag tag;
+            FDrawersHandler h = (FDrawersHandler) handler;
+            for (int slot = 0; slot < h.getSlots(); slot++) {
+                tag = new CompoundTag();
+                tag.putInt(AMOUNT, h.count[slot]);
+                tag.put(STACK, h.items[slot].saveOptional(registryAccess));
+                nbt.put(Integer.toString(slot), tag);
+            }
+            CompoundTag compoundTag = new CompoundTag();
+            compoundTag.put(BIG_ITEMS, nbt);
+            ((DrawerTile) entity).getHandler().deserializeNBT(registryAccess, compoundTag);
         }
-        CompoundTag compoundTag = new CompoundTag();
-        compoundTag.put(BIG_ITEMS,nbt);
-        ((DrawerTile)entity).getHandler().deserializeNBT(registryAccess,compoundTag);
     }
 
     @Override
@@ -82,9 +87,9 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
 
     @Override
     public void registerBlock(Consumer<Block> register) {
-        FunctionalStorage.DRAWER_TYPES.forEach((type,list) -> {
+        FunctionalStorage.DRAWER_TYPES.forEach((type, list) -> {
             list.forEach(drawer -> {
-                register.accept(drawer.getLeft().get());
+                register.accept(drawer.getBlock());
             });
         });
     }

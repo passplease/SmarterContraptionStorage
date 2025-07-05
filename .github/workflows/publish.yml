@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 1.20.1-6.0.0-forge
+      - 1.21.1-neoForge
     paths:
       - src/*
       - gradle/*
@@ -31,20 +31,15 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.11.1'
+          gradle-version: '8.12.1'
 
       - name: Build with Gradle
         run: gradle build
 
-      - name: Create timestamp
-        id: create_timestamp
-        run: echo "timestamp=$(date '+%Y-%m-%d')" >> $GITHUB_OUTPUT
-        shell: bash
-
       - uses: Kir-Antipov/mc-publish@v3.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          github-tag: 1.20.1-6.0.0-Forge_NeoForge-${{ steps.create_timestamp.outputs.timestamp }}
+          github-tag: 1.21.1-NeoForge
           github-draft: false
           github-prerelease: true
 
@@ -80,7 +75,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.11.1'
+          gradle-version: '8.12.1'
 
       - name: Test Server with ${{ matrix.GameTestConfig }}
         run: gradle runGameTestServer -PGameTestConfig=${{ matrix.GameTestConfig }}

@@ -6,6 +6,7 @@ import com.simibubi.create.api.contraption.storage.item.MountedItemStorage;
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorageWrapper;
 import com.simibubi.create.content.contraptions.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.smartercontraptionstorage.AddStorage.FluidHander.DumpHandler;
@@ -59,10 +60,11 @@ public abstract class MountedStorageManagerMixin implements Changeable {
             ((Settable)items).set(new DumpHandler(fluids));
     }
 
-    @Inject(method = {"lambda$read$7","lambda$read$9"},at = @At("HEAD"),remap = false)
-    public void writePos(CompoundTag tag, CallbackInfo ci){
-        BlockPos pos = NbtUtils.readBlockPos(tag.getCompound("pos"));
-        tag.getCompound("storage").put(MovingItemStorageType.TAG,NbtUtils.writeBlockPos(pos));
+    @Inject(method = {"lambda$read$6","lambda$read$8"},at = @At("HEAD"),remap = false)
+    public void writePos(HolderLookup.Provider registries, CompoundTag tag, CallbackInfo ci){
+        Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
+        if(pos.isPresent())
+            tag.getCompound("storage").put(MovingItemStorageType.TAG,NbtUtils.writeBlockPos(pos.get()));
     }
 
     @Override

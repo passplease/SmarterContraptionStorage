@@ -25,6 +25,7 @@ import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class CompactingHandlerHelper extends DrawersHandlerHelper{
     @Override

@@ -1,19 +1,28 @@
 package net.smartercontraptionstorage.AddStorage.FluidHander;
 
+import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorage;
+import com.simibubi.create.api.contraption.storage.item.MountedItemStorage;
+import com.simibubi.create.content.equipment.toolbox.ToolboxInventory;
+import com.simibubi.create.content.equipment.toolbox.ToolboxMountedStorage;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
 import com.supermartijn642.trashcans.filter.ItemFilter;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.smartercontraptionstorage.AddStorage.NeedDealWith;
+import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static net.smartercontraptionstorage.Utils.getFluidByItem;
 
@@ -43,9 +52,9 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(HolderLookup.Provider provider,IFluidHandler handler) {
         if(handler instanceof TrashcanHelper trashcan){
-            return trashcan.writeToNBT(new CompoundTag());
+            return trashcan.writeToNBT(provider,new CompoundTag());
         }else return new CompoundTag();
     }
 
@@ -55,8 +64,8 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
-    public @NotNull TrashcanHelper deserialize(CompoundTag nbt) {
-        return new TrashcanHelper(nbt);
+    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+        return new TrashcanHelper(nbt,provider);
     }
 
     public static class TrashcanHelper extends FluidHelper implements NeedDealWith {
@@ -100,7 +109,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
         @Override
         public void setFluid(int amount,FluidStack stack) {}
         @Override
-        public int fill(FluidStack resource, FluidAction action) {
+        public int fill(@NotNull FluidStack resource, @NotNull FluidAction action) {
             if(canFill(resource))
                 return resource.getAmount();
             else return 0;
@@ -117,7 +126,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
         }
 
         @Override
-        public CompoundTag serialize(CompoundTag nbt, HolderLookup.Provider provider) {
+        public CompoundTag serialize(HolderLookup.Provider provider, CompoundTag nbt) {
             nbt.putBoolean("whiteOrBlack",whiteOrBlack);
             ListTag filterTag = new ListTag();
             filter.forEach((stack) -> filterTag.add(stack.save(provider)));
@@ -129,7 +138,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
         }
 
         @Override
-        public @NotNull FluidStack drain(FluidStack resource, FluidAction action) {
+        public @NotNull FluidStack drain(@NotNull FluidStack resource, @NotNull FluidAction action) {
             return FluidStack.EMPTY;
         }
 
@@ -137,16 +146,10 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
         public void doSomething(BlockEntity entity) {}
 
         @Override
-        public void finallyDo() {
-            List<ItemStack> toolboxItem = new ArrayList<>();
-            RegistryAccess registryAccess;
-            for(BlockEntity entity : BlockEntityList)
-                if(entity instanceof ToolboxBlockEntity && entity.getLevel() != null){
-                    registryAccess = entity.getLevel().registryAccess();
-                    toolboxItem.addAll(NBTHelper.readItemList(entity.saveCustomOnly(registryAccess).getCompound("Inventory").getList("Compartments", Tag.TAG_COMPOUND),registryAccess));
+        public void finallyDo() {}
 
         @Override
-        public void finallyDo(Map<BlockPos, MountedFluidStorage> fluidBuilder, Map<BlockPos, MountedItemStorage> itemsBuilder) {
+        public void finallyDo(Map<BlockPos, MountedFluidStorage > fluidBuilder, Map<BlockPos, MountedItemStorage> itemsBuilder) {
             ArrayList<FluidStack> toolboxFluid = new ArrayList<>();
             for(MountedItemStorage storage : itemsBuilder.values())
                 if(storage instanceof ToolboxMountedStorage toolboxMountedStorage){
@@ -157,6 +160,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
                             toolboxFluid.addAll(fluids);
                     }
                 }
+            this.toolboxFluid = toolboxFluid;
         }
     }
 }

@@ -1,9 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.FluidHander;
 
-import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.*;
 import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.BlockPos;
@@ -15,54 +12,60 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.MovingItemStorageType;
 import net.smartercontraptionstorage.FunctionChanger;
-import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidStorage> {
+    public static final String TYPE = "MovingFluidStorageType";
+    public static final RegistryEntry<MountedFluidStorageType<?>,MovingFluidStorageType> HELPER_STORAGE = MovingItemStorageType.REGISTRATE.mountedFluidStorage("helper_fluid_storage",MovingFluidStorageType::new).register();
     
-    public static final RegistryEntry<MovingFluidStorageType> HELPER_STORAGE = SmarterContraptionStorage.REGISTRATE.mountedFluidStorage("helper_fluid_storage",MovingFluidStorageType::new).register();
-    
-    public static final Codec<MovingFluidStorage> CODEC = new Codec<>(){
+    public static final MapCodec<MovingFluidStorage> CODEC = new MapCodec<>() {
         @Override
-        public <T> DataResult<Pair<MovingFluidStorage, T>> decode(DynamicOps<T> ops, T input) {
-            if(ops.convertTo(NbtOps.INSTANCE, input) instanceof CompoundTag nbt) {
+        public <T> DataResult<MovingFluidStorage> decode(DynamicOps<T> ops, MapLike<T> input) {
+            if(ops.convertTo(NbtOps.INSTANCE, input.get(TYPE)) instanceof CompoundTag nbt) {
                 FluidHandlerHelper helper = FluidHandlerHelper.findByName(nbt.getString("helper"));
                 try {
                     IFluidHandler handler = null;
-                    BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt.getCompound(MovingItemStorageType.TAG)));
-                    if(helper.canDeserialize()) {
-                        handler = helper.deserialize(nbt);
+                    BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt,MovingItemStorageType.TAG).get());
+                    if(helper.canDeserialize() && blockEntity.getLevel() != null) {
+                        handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess());
                     }else if(helper.canCreateHandler(blockEntity)){
                         handler = helper.createHandler(blockEntity);
                     }
                     MovingFluidStorage storage = new MovingFluidStorage(handler, helper);
                     storage.blockEntity = blockEntity;
-                    return DataResult.success(new Pair<>(storage,input));
+                    return DataResult.success(storage);
                 } catch (IllegalAccessException ignored) {
                     Utils.addError("Helper cannot create handler : " + helper.getName());
-                    return DataResult.success(new Pair<>(null, input));
+                    return DataResult.success(null);
                 }
             }else return DataResult.error(() -> "Can not convert to CompoundTag ! Decode Failed !");
         }
 
         @Override
-        public <T> DataResult<T> encode(MovingFluidStorage input, DynamicOps<T> ops, T prefix) {
+        public <T> RecordBuilder<T> encode(MovingFluidStorage input, DynamicOps<T> ops, RecordBuilder<T> prefix) {
             CompoundTag nbt;
-            if(input.helper.canDeserialize()) {
-                nbt = input.getHelper().serializeNBT(input.getHandler());
+            Objects.requireNonNull(input.blockEntity);
+            if(input.helper.canDeserialize() && input.blockEntity.getLevel() != null) {
+                nbt = input.getHelper().serializeNBT(input.blockEntity.getLevel().registryAccess(), input.getHandler());
             }else {
-                input.helper.addStorageToWorld(Objects.requireNonNull(input.blockEntity), input.getHandler());
+                input.helper.addStorageToWorld(input.blockEntity, input.getHandler());
                 nbt = new CompoundTag();
             }
             nbt.putString("helper",input.helper.getName());
-            return DataResult.success(NbtOps.INSTANCE.convertTo(ops, nbt));
+            return prefix.add(TYPE,NbtOps.INSTANCE.convertTo(ops, nbt));
+        }
+
+        @Override
+        public <T> Stream<T> keys(DynamicOps<T> ops) {
+            return Stream.empty();
         }
     };
     

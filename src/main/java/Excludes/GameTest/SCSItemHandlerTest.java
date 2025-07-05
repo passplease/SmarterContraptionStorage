@@ -10,7 +10,6 @@ import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.ControllerBlockEntity;
 import appeng.blockentity.spatial.SpatialIOPortBlockEntity;
 import appeng.core.definitions.AEBlocks;
-import appeng.items.tools.powered.WirelessCraftingTerminalItem;
 import appeng.items.tools.powered.WirelessTerminalItem;
 import appeng.parts.automation.IOBusPart;
 import com.buuz135.functionalstorage.FunctionalStorage;
@@ -18,7 +17,6 @@ import com.buuz135.functionalstorage.block.tile.CompactingDrawerTile;
 import com.buuz135.functionalstorage.util.CompactingUtil;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
 import com.jaquadro.minecraft.storagedrawers.core.ModBlockEntities;
-import com.mojang.serialization.DataResult;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.transmission.sequencer.SequencedGearshiftBlock;
 import com.simibubi.create.infrastructure.gametest.CreateGameTestHelper;
@@ -28,9 +26,6 @@ import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.gametest.framework.GameTest;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -138,7 +133,7 @@ public class SCSItemHandlerTest {
             Object2LongMap<Item> items = helper.getItemContent(barrel);
             if(!items.containsKey(Items.IRON_INGOT) || items.getLong(Items.IRON_INGOT) != 9)
                 helper.fail("Compacting drawer doesn't contain 9 iron ingots !");
-            BlockEntity blockEntity = helper.getBlockEntity(FunctionalStorage.COMPACTING_DRAWER.getRight().get(), drawer);
+            BlockEntity blockEntity = helper.getBlockEntity(FunctionalStorage.COMPACTING_DRAWER.type().get(),drawer);
             if(blockEntity instanceof CompactingDrawerTile tile){
                 for(CompactingUtil.Result filter : tile.handler.getResultList())
                     if(filter.getResult().isEmpty())
@@ -172,12 +167,9 @@ public class SCSItemHandlerTest {
                 if (part instanceof IOBusPart){
                     AEKey k = ((IOBusPart) part).getConfig().getKey(0);
                     if (k instanceof AEItemKey key) {
-                        CompoundTag nbt = key.getTag();
-                        if(nbt != null) {
-                            GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE,wirelessAccessPoint).result()
-                                    .ifPresent(tag -> nbt.put("accessPoint",tag));
-                            continue cable;
-                        }
+                        ItemStack stack = key.getReadOnlyStack();
+                        WirelessTerminalItem.LINKABLE_HANDLER.link(stack,wirelessAccessPoint);
+                        continue cable;
                     }
                     helper.fail("Wrong cable settings");
                 }

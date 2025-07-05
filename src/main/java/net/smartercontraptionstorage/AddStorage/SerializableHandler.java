@@ -14,7 +14,9 @@ public interface SerializableHandler<T> {
 
     @Deprecated
     @NotNull
-    default T deserialize(CompoundTag nbt) throws Exception{
+    default T deserialize(CompoundTag nbt) throws NullPointerException,IllegalAccessException {
+        if(Minecraft.getInstance().level == null)
+            throw new NullPointerException();
         return deserialize(nbt, Minecraft.getInstance().level.registryAccess());
     }
 

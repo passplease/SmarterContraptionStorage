@@ -3,16 +3,15 @@ package net.smartercontraptionstorage.AddStorage.FluidHander;
 import com.buuz135.functionalstorage.block.FluidDrawerBlock;
 import com.buuz135.functionalstorage.block.tile.FluidDrawerTile;
 import com.buuz135.functionalstorage.fluid.BigFluidHandler;
-import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -26,8 +25,10 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, IFluidHandler tank) {
         assert canCreateHandler(entity);
-        if(tank instanceof BigFluidHandler handler)
-            ((FluidDrawerTile)entity).getFluidHandler().deserializeNBT(handler.serializeNBT());
+        if(tank instanceof BigFluidHandler handler && entity.getLevel() != null) {
+            RegistryAccess registryAccess = entity.getLevel().registryAccess();
+            ((FluidDrawerTile) entity).getFluidHandler().deserializeNBT(registryAccess,handler.serializeNBT(registryAccess));
+        }
     }
 
     @Override
@@ -52,9 +53,9 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(HolderLookup.Provider provider, IFluidHandler handler) {
         if(handler instanceof BigFluidHandler drawer){
-            CompoundTag nbt = drawer.serializeNBT();
+            CompoundTag nbt = drawer.serializeNBT(provider);
             nbt.putBoolean(LOCKED, drawer.isDrawerLocked());
             nbt.putBoolean(VOID,drawer.isDrawerVoid());
             nbt.putBoolean(CREATIVE,drawer.isDrawerCreative());
@@ -68,7 +69,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull BigFluidHandler deserialize(CompoundTag nbt) {
+    public @NotNull BigFluidHandler deserialize(CompoundTag nbt,HolderLookup.Provider provider) {
         BigFluidHandler drawer = new BigFluidHandler(1,1) {
             @Override
             public void onChange() {}
@@ -95,14 +96,14 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
             }
 
             @Override
-            public void deserializeNBT(CompoundTag nbt) {
-                super.deserializeNBT(nbt);
+            public void deserializeNBT(HolderLookup.Provider provider,CompoundTag nbt) {
+                super.deserializeNBT(provider,nbt);
                 locked = nbt.getBoolean(LOCKED);
                 Void = nbt.getBoolean(VOID);
                 creative = nbt.getBoolean(CREATIVE);
             }
         };
-        drawer.deserializeNBT(nbt);
+        drawer.deserializeNBT(provider,nbt);
         return drawer;
     }
 
@@ -118,13 +119,13 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
 
         @Deprecated
         public FluidDrawerHandler(CompoundTag nbt){
-            super(nbt);
-            filter = FluidStack.loadFluidStackFromNBT(nbt);
+            super(0);
+            filter = FluidStack.CODEC.decode(NbtOps.INSTANCE,nbt).result().orElseThrow().getFirst();
         }
 
         @Override
         public boolean canFill(FluidStack fluid) {
-            return filter.isFluidEqual(fluid) || filter.isEmpty() && (this.fluid.isFluidEqual(fluid) || this.fluid.isEmpty());
+            return FluidStack.isSameFluidSameComponents(fluid, filter) || filter.isEmpty() && (FluidStack.isSameFluidSameComponents(fluid, filter) || this.fluid.isEmpty());
         }
 
         public void setFluid(int amount, FluidStack stack){
@@ -139,7 +140,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
         }
 
         @Override
-        public CompoundTag serialize(CompoundTag tag, HolderLookup.Provider provider) {
+        public CompoundTag serialize(HolderLookup.Provider provider,CompoundTag tag) {
             filter.save(provider,tag);
             return tag;
         }

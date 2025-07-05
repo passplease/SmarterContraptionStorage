@@ -3,18 +3,15 @@ package net.smartercontraptionstorage.AddStorage.ItemHandler;
 import com.mojang.serialization.*;
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.supermartijn642.trashcans.TrashCans;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.catnip.nbt.NBTHelper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.FunctionChanger;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
@@ -34,7 +31,7 @@ public class MovingItemStorageType extends MountedItemStorageType<MovingItemStor
         public <T> RecordBuilder<T> encode(MovingItemStorage input, DynamicOps<T> ops, RecordBuilder<T> prefix) {
             CompoundTag nbt;
             if(input.blockEntity != null) {
-                if (input.helper.canDeserialize()) {
+                if (input.helper.canDeserialize() && input.blockEntity.getLevel() != null) {
                     nbt = input.getHandler().serializeNBT(input.blockEntity.getLevel().registryAccess());
                 } else {
                     input.helper.addStorageToWorld(Objects.requireNonNull(input.blockEntity), input.getHandler());

@@ -77,9 +77,4 @@ public class ToolboxBehaviour implements MovementBehaviour {
     public static void sendMessage(String key,Player player){
         Lang.builder(SmarterContraptionStorage.MODID).translate(key).style(ChatFormatting.GOLD).sendStatus(player);
     }
-    // TODO 还能在presentBlockEntity里找到吗
-//    @Override
-//    public boolean renderAsNormalBlockEntity() {
-//        return true;
-//    }
 }

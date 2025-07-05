@@ -13,6 +13,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
@@ -169,9 +170,10 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         public @NotNull MovingTrashCanMenu createMenu(int i, Inventory inventory, Player player) {
             return new MovingTrashCanMenu(this,i,player);
         }
+
         @Override
-        public void writeToBuffer(@NotNull FriendlyByteBuf buffer) {
-            buffer.writeNbt(serializeNBT());
+        public void writeToBuffer(@NotNull FriendlyByteBuf buffer, ServerPlayer player) {
+            buffer.writeNbt(serializeNBT(player.registryAccess()));
         }
 
         public static DeferredHolder<MenuType<?>, MenuType<MovingTrashCanMenu>> TrashCanMenu;

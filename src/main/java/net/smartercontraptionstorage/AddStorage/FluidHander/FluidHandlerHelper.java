@@ -10,6 +10,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.smartercontraptionstorage.AddStorage.SerializableHandler;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -25,17 +27,17 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
     public static final String DESERIALIZE_MARKER = "FluidHandlers";
     public static final SmartFluidTank NULL_HANDLER = new SmartFluidTank(0,null){
         @Override
-        public int fill(FluidStack resource, FluidAction action) {
+        public int fill(@NotNull FluidStack resource, @NotNull FluidAction action) {
             return 0;
         }
 
         @Override
-        public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
+        public @NotNull FluidStack drain(int maxDrain, @NotNull FluidAction action) {
             return FluidStack.EMPTY;
         }
 
         @Override
-        public boolean isFluidValid(FluidStack stack) {
+        public boolean isFluidValid(@NotNull FluidStack stack) {
             return false;
         }
 
@@ -103,22 +105,22 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
     public abstract boolean canCreateHandler(Block block);
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract @NotNull IFluidHandler createHandler(BlockEntity entity);
-    public abstract @NotNull CompoundTag serializeNBT(IFluidHandler handler);
+    public abstract @NotNull CompoundTag serializeNBT(HolderLookup.Provider provider,IFluidHandler handler);
     public static Set<FluidHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;
     }
-    public static abstract class FluidHelper extends SmartFluidTank{
+    public static abstract class FluidHelper extends FluidTank {
         public FluidHelper(int capacity){
-            super(capacity,null);
+            super(capacity);
         }
-        public FluidHelper(CompoundTag nbt){
-            super(nbt.getInt("capacity"),null);
-            super.readFromNBT(nbt);
+        public FluidHelper(CompoundTag nbt,HolderLookup.Provider provider){
+            super(nbt.getInt("capacity"));
+            super.readFromNBT(provider,nbt);
         }
         public abstract boolean canFill(FluidStack fluid);
         public abstract void setFluid(int amount,FluidStack stack);
         @Override
-        public int fill(FluidStack resource, FluidAction action){
+        public int fill(@NotNull FluidStack resource, @NotNull FluidAction action){
             if(canFill(resource)){
                 int sum = resource.getAmount() + getAmount();
                 if(sum <= capacity){
@@ -144,12 +146,12 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
         }
 
         @Override
-        public final CompoundTag writeToNBT(CompoundTag nbt){
-            CompoundTag tag = serialize(super.writeToNBT(nbt));
+        public final @NotNull CompoundTag writeToNBT(HolderLookup.@NotNull Provider provider, @NotNull CompoundTag nbt){
+            CompoundTag tag = serialize(provider,super.writeToNBT(provider,nbt));
             tag.putInt("capacity",capacity);
             return tag;
         }
-        protected abstract CompoundTag serialize(CompoundTag nbt);
+        protected abstract CompoundTag serialize(HolderLookup.Provider provider, CompoundTag nbt);
         @Override
         public int getFluidAmount() {
             return getAmount();

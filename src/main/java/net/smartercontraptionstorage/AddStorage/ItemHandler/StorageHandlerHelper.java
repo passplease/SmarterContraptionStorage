@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.*;
+import java.util.function.Consumer;
 
 public abstract class StorageHandlerHelper implements SerializableHandler<ItemStackHandler>{
     public static final ItemStackHandler NULL_HANDLER = new ItemStackHandler(){

@@ -20,7 +20,7 @@ public class SCSFluidHandlerTest {
         BlockPos button = new BlockPos(1,6,3);
         BlockPos drawer = new BlockPos(1,4,1);
 
-        helper.pressButton(button);
+        helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             helper.assertBlockNotPresent(Blocks.WATER,water);
@@ -40,7 +40,7 @@ public class SCSFluidHandlerTest {
         BlockPos tank = new BlockPos(3,3,1);
         helper.assertTankEmpty(tank);
 
-        helper.pressButton(button);
+        helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             if(helper.getFluidInTanks(tank) == 0)

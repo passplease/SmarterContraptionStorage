@@ -42,7 +42,8 @@ public class SpatialHandler extends StorageHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, ItemStackHandler handler) {
         assert canCreateHandler(entity);
-        ((SpatialHelper)handler).unloadChunks();
+        if(handler instanceof SpatialHelper)
+            ((SpatialHelper)handler).unloadChunks();
     }
 
     @Override
@@ -151,6 +152,8 @@ public class SpatialHandler extends StorageHandlerHelper{
                         entity = level.getBlockEntity(pos);
                         if(entity != null && Utils.canUseCreateInventory(entity.getBlockState().getBlock())) {
                             handler = level.getCapability(Capabilities.ItemHandler.BLOCK,pos,entity.getBlockState(),entity,null);
+                            if(handler == null)
+                                continue;
                             if (entity instanceof ItemVaultBlockEntity)
                                 insertHandlers.add(handler);
                             else {
@@ -275,7 +278,7 @@ public class SpatialHandler extends StorageHandlerHelper{
         }
 
         public void setWork() {
-            if(!StackWalker.getInstance().getCallerClass().getName().startsWith("Excludes.GameTest"))
+            if(!Thread.currentThread().getStackTrace()[2].getClassName().startsWith("Excludes.GameTest"))
                 throw new IllegalCallerException("Illegal call of setting canWork !");
             this.canWork = true;
         }

@@ -129,6 +129,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         }
         @Override
         public void doSomething(BlockEntity entity) {}
+        @Deprecated
         @Override
         public void finallyDo() {
             ArrayList<ItemStack> toolboxItem = new ArrayList<>();

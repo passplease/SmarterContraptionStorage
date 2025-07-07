@@ -303,11 +303,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             boolean controller = false,energy = false;
             for(BlockEntity entity : StorageHandlerHelper.BlockEntityList) {
                 if (entity instanceof InterfaceBlockEntity MEInterface) {
-                    IGridNode node = MEInterface.getInterfaceLogic().getActionableNode();
-                    if (node == null)
-                        continue;
-                    MEStorage storage = node.getGrid().getStorageService().getInventory();
-                    extractKeys.addAll(storage.getAvailableStacks().keySet());
+                    extractKeys.addAll(MEInterface.getInterfaceLogic().getConfig().getAvailableStacks().keySet());
                 } else if (controller || entity instanceof ControllerBlockEntity)
                     controller = true;
                 else if(energy || entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)

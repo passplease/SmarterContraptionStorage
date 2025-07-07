@@ -31,6 +31,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.AE2BusBlockHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.SpatialHandler;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
@@ -55,7 +56,7 @@ public class SCSItemHandlerTest {
         helper.assertContainerEmpty(chest);
         helper.assertContainerEmpty(barrel);
 
-        helper.pressButton(button);
+        helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             if(step.get() != 4) {
                 contraptionStoped(helper,gearshift);
@@ -78,7 +79,7 @@ public class SCSItemHandlerTest {
                     case 3 -> helper.assertContainerContains(barrel, Items.DIRT);
                 }
                 helper.setBlock(grassBlock,Blocks.GRASS_BLOCK);
-                helper.pressButton(button);
+                helper.useBlock(button.below());
                 helper.fail("Next step: " + step.incrementAndGet());
             }
         });
@@ -99,7 +100,7 @@ public class SCSItemHandlerTest {
         helper.assertContainerEmpty(barrel);
         helper.assertContainerEmpty(drawer);
 
-        helper.pressButton(button);
+        helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             Object2LongMap<Item> items = helper.getItemContent(barrel);
@@ -127,7 +128,7 @@ public class SCSItemHandlerTest {
         helper.assertContainerEmpty(barrel);
         helper.assertContainerEmpty(drawer);
 
-        helper.pressButton(button);
+        helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             Object2LongMap<Item> items = helper.getItemContent(barrel);
@@ -176,7 +177,7 @@ public class SCSItemHandlerTest {
             }
         }
 
-        helper.pressButton(button);
+        helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             if(SmarterContraptionStorageConfig.AE2Loaded()) {
@@ -199,7 +200,12 @@ public class SCSItemHandlerTest {
         BlockPos button = new BlockPos(0,5,1);
         BlockPos gearshift = new BlockPos(0,6,1);
         BlockPos lever = new BlockPos(0,6,3);
-        helper.pullLever(lever);
+        IItemHandler chest = helper.itemStorageAt(new BlockPos(1, 8, 5));
+        ItemStack cobblestone = Items.COBBLESTONE.getDefaultInstance();
+        cobblestone.setCount(Integer.MAX_VALUE);
+        for (int slot = 0; slot < chest.getSlots(); slot++)
+            chest.insertItem(slot,cobblestone,false);
+        helper.useBlock(lever.east(2));
         helper.whenSecondsPassed(1,() -> {
             SpatialIOPortBlockEntity ioPort = helper.getBlockEntity(AEBlocks.SPATIAL_IO_PORT.block().getBlockEntityType(), new BlockPos(0, 6, 4));
             ItemStack stack = ioPort.getInternalInventory().getStackInSlot(1);
@@ -211,7 +217,7 @@ public class SCSItemHandlerTest {
                         continue;
                     helper.fail("Wrong inventory slot: " + slot + " !");
                 }
-                helper.pressButton(button);
+                helper.useBlock(button.below());
                 helper.succeedWhen(() -> {
                     contraptionStoped(helper,gearshift);
                     boolean hasDirt = false;
@@ -225,7 +231,7 @@ public class SCSItemHandlerTest {
                         if (!hasDirt) {
                             helper.fail("Dirt is not stored !");
                         }
-                        helper.assertBlockPresent(Blocks.COBBLESTONE, 1, 6, 7);
+                        helper.assertBlockPresent(Blocks.COBBLESTONE, 1, 5, 7);
                     }else {
                         if(hasDirt) {
                             helper.fail("Dirt is stored !");
@@ -246,7 +252,7 @@ public class SCSItemHandlerTest {
         helper.assertContainerEmpty(barrel);
         helper.assertContainerEmpty(container);
 
-        helper.pressButton(button);
+        helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             helper.assertContainerContains(barrel, Items.DIRT);

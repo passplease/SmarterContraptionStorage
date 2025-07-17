@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawer;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
 import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
@@ -45,10 +47,14 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         NormalDrawerHandler Handler = (NormalDrawerHandler) handler;
         ItemStack stack;
         for (int i = handler.getSlots() - 1; i >= 0; i--) {
-            stack = Handler.getStackInSlot(i);
-            group.getDrawer(i).setStoredItemCount(stack.getCount());
-            stack.setCount(1);
-            group.getDrawer(i).setStoredItem(stack);
+            if(Handler.isItemEmpty(i))
+                group.getDrawer(i).setStoredItem(ItemStack.EMPTY);
+            else {
+                stack = Handler.getStackInSlot(i);
+                group.getDrawer(i).setStoredItemCount(stack.getCount());
+                stack.setCount(1);
+                group.getDrawer(i).setStoredItem(stack);
+            }
         }
         UpgradeData upgrades = drawer.upgrades();
         for (int slot = 0; slot < upgrades.getSlotCount(); slot++) {
@@ -82,18 +88,22 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
     public static class NormalDrawerHandler extends HandlerHelper{
         public final int[] count;
         protected final ItemStack[] upgrades;
+        protected final boolean locked;
         public NormalDrawerHandler(@NotNull IDrawerGroup group, UpgradeData upgrades) {
             super(group.getDrawerCount());
             count = new int[group.getDrawerCount()];
             this.upgrades = new ItemStack[upgrades.getSlotCount()];
+            boolean locked = false;
             for(int slot = slotLimits.length - 1;slot >= 0;slot--){
-                if(group.getDrawer(slot).getAcceptingRemainingCapacity() == Integer.MAX_VALUE)
+                IDrawer drawer = group.getDrawer(slot);
+                if(drawer.getAcceptingRemainingCapacity() == Integer.MAX_VALUE)
                     slotLimits[slot] = Integer.MAX_VALUE;
-                else slotLimits[slot] = group.getDrawer(slot).getMaxCapacity();
-                items[slot] = group.getDrawer(slot).getStoredItemPrototype();
-                count[slot] = group.getDrawer(slot).getStoredItemCount();
-                // Empty and locked drawers are not supported (they will be filled with item)
+                else slotLimits[slot] = drawer.getMaxCapacity();
+                items[slot] = drawer.getStoredItemPrototype();
+                count[slot] = drawer.getStoredItemCount();
+                locked |= !drawer.getStoredItemPrototype().isEmpty() || !drawer.canItemBeStored(Items.DIRT.getDefaultInstance());
             }
+            this.locked = locked;
             for (int slot = 0; slot < this.upgrades.length; slot++) {
                 this.upgrades[slot] = upgrades.getUpgrade(slot);
             }
@@ -110,9 +120,10 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             for (int slot = 0; slot < upgrades.length; slot++) {
                 this.upgrades[slot] = upgradesList.get(slot);
             }
+            locked = nbt.getBoolean("locked");
         }
         public boolean canInsert(int slot,ItemStack stack){
-            return !stack.isEmpty() && (Utils.isSameItem(items[slot],stack) || isItemEmpty(slot));
+            return !stack.isEmpty() && (Utils.isSameItem(items[slot],stack) || (!locked && isItemEmpty(slot)));
         }
         @Override
         public int getStackLimit(int slot, @NotNull ItemStack stack) {
@@ -125,6 +136,10 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             ItemStack back = items[slot].copy();
             back.setCount(count[slot]);
             return back;
+        }
+        @Override
+        protected boolean isItemEmpty(int slot) {
+            return !isLocked() && Utils.isItemEmpty(items[slot]);
         }
         @Override
         public void setStackInSlot(int slot, @NotNull ItemStack stack) {
@@ -202,6 +217,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
             tag.put("count",list);
             tag.put("upgrades",NBTHelper.writeItemList(Arrays.stream(upgrades).toList()));
             tag.putInt("upgradesSlot",upgrades.length);
+            tag.putBoolean("locked",locked);
             return tag;
         }
         @Override
@@ -230,6 +246,10 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         @Override
         public @NotNull Component getDisplayName() {
             return Component.translatable(SmarterContraptionStorage.MODID + ".moving_container." + getTranslationKey(),items.length);
+        }
+
+        public boolean isLocked() {
+            return locked;
         }
     }
 }

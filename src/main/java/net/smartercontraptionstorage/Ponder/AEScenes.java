@@ -47,7 +47,7 @@ public class AEScenes {
         scene.idle(110);
         scene.overlay.showControls(new InputWindowElement(util.vector.topOf(importBus), Pointing.DOWN).withItem(AEItems.WIRELESS_CRAFTING_TERMINAL.stack()),50);
         scene.overlay.showControls(new InputWindowElement(util.vector.topOf(exportBus), Pointing.DOWN).withItem(AEItems.WIRELESS_CRAFTING_TERMINAL.stack()),50);
-        scene.overlay.showText(100).pointAt(util.vector.topOf(importBus)).placeNearTarget().text("Buses also need setup, they should be all filled with Speed Card Upgrade and Wireless Crafting Terminal (have connected to AE Net)");
+        scene.overlay.showText(100).pointAt(util.vector.topOf(importBus)).placeNearTarget().text("Buses also need setup, they should be all filled with Speed Card Upgrade and Wireless Crafting Terminal (have connected to AE Net and filled with 2 energy cards)");
         scene.idle(110);
         scene.overlay.showOutline(PonderPalette.GREEN,AllItems.SUPER_GLUE,util.select.fromTo(2,1,1,3,1,3),50);
         scene.overlay.showText(100).placeNearTarget().pointAt(util.vector.centerOf(3,1,2)).text("Adding energy, controller (due to Access Point cannot be moved, so it may be wired) so that your contraption can connect to AE Net");
@@ -67,11 +67,11 @@ public class AEScenes {
             scene.world.incrementBlockBreakingProgress(stone);
         }
         scene.world.moveSection(contraption,util.vector.of(-0.8,0,0),16);
-        scene.overlay.showText(136).placeNearTarget().pointAt(util.vector.topOf(stone)).text("Items will be stored in the AE Net which is connecting to Wireless Crafting Terminal in in Export Bus. And I have to point out, every time contraption try to insert or extract items, the energy consuming of contraption is depending on that tick AE's Channel power consuming (which will cost 6 times the energy consuming for that tick)");
+        scene.overlay.showText(136).placeNearTarget().pointAt(util.vector.topOf(stone)).text("Items will be stored in the AE Net which is connecting to Wireless Crafting Terminal in in Export Bus. And I have to point out, each action that contraption try to insert or extract items consumes energy of AE net");
         scene.idle(16);
         scene.world.modifyBlockEntity(drill, DrillBlockEntity.class,entity -> entity.setSpeed(0F));
         scene.idle(120);
-        scene.overlay.showText(80).pointAt(util.vector.topOf(2,1,2)).text("One more thing, ME Interface() can set the white filter for extracting AE Net, so that it costs less computer source (I really recommend to set that)");
+        scene.overlay.showText(80).pointAt(util.vector.topOf(2,1,2)).text("One more thing, ME Interface can set the white filter for extracting AE Net (filled with Fuzzy Card), so that it costs less computer source (I really recommend to set that)");
         scene.idle(80);
     }
     public static void spatialCell(SceneBuilder scene, SceneBuildingUtil util){

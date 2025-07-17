@@ -97,9 +97,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
         public void setFluid(int amount,FluidStack stack) {}
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if(canFill(resource))
-                return resource.getAmount();
-            else return 0;
+            return canFill(resource) ? 0 : resource.getAmount();
         }
 
         @Override

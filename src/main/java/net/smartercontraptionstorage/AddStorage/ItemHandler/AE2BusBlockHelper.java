@@ -95,7 +95,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         return exportHost == null && importHost == null ? NULL_HANDLER : AE2HandlerHelper.create(exportHost,importHost);
     }
 
-    private static IPart[] getAllPart(CableBusBlockEntity bus){
+    public static IPart[] getAllPart(CableBusBlockEntity bus){
         IPart[] iParts = new IPart[6];
         iParts[0] = bus.getPart(Direction.NORTH);
         iParts[1] = bus.getPart(Direction.SOUTH);
@@ -231,7 +231,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
 
         @Override
         public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if(canWork(true,simulate)) {
+            if(canWork(true,simulate) && slot < extractKeys.size()) {
                 MEStorage extractStorage = getStorage(true);
                 if (extractStorage == null)
                     return ItemStack.EMPTY;
@@ -269,7 +269,13 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
         @Override
         public int getSlots() {
             refreshStack(getStorage(true));
-            return extractKeys.size();
+            return Math.max(extractKeys.size(),1);
+        }
+
+        @Override
+        public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+            extractItem(slot,Integer.MAX_VALUE,false);
+            insertItem(slot,stack,false);
         }
 
         @Override
@@ -282,11 +288,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
             boolean controller = false,energy = false;
             for(BlockEntity entity : StorageHandlerHelper.BlockEntityList) {
                 if (entity instanceof InterfaceBlockEntity MEInterface) {
-                    IGridNode node = MEInterface.getInterfaceLogic().getActionableNode();
-                    if (node == null)
-                        continue;
-                    MEStorage storage = node.getGrid().getStorageService().getInventory();
-                    extractKeys.addAll(storage.getAvailableStacks().keySet());
+                    extractKeys.addAll(MEInterface.getInterfaceLogic().getConfig().getAvailableStacks().keySet());
                 } else if (controller || entity instanceof ControllerBlockEntity)
                     controller = true;
                 else if(energy || entity instanceof EnergyCellBlockEntity || entity instanceof CreativeEnergyCellBlockEntity)

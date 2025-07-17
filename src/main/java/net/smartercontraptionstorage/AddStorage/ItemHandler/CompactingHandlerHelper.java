@@ -36,7 +36,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         super.addStorageToWorld(entity, handler);
         IDrawerGroup group = ((BlockEntityDrawers) entity).getGroup();
         CompactingHandler Handler = (CompactingHandler) handler;
-        ItemStack item = Handler.getStackInSlot(Handler.baseSlot);
+        ItemStack item = Handler.items[Handler.baseSlot];
         group.getDrawer(Handler.baseSlot).setStoredItem(item,item.getCount());
     }
     @Override
@@ -78,7 +78,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
                 else conversionRate[i] = conversionRate[baseSlot] / conversionRate[i];
             }
             count[baseSlot] = group.getDrawer(baseSlot).getStoredItemCount();
-            slotLimits[baseSlot] = group.getDrawer(baseSlot).getStoredItemStackSize();
+            slotLimits[baseSlot] = group.getDrawer(baseSlot).getMaxCapacity();
         }
         public CompactingHandler(CompoundTag tag){
             super(tag);
@@ -159,6 +159,11 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         @Override
         public @NotNull AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
             return new MovingCompactingDrawerMenu(this,i,player);
+        }
+
+        @Override
+        public boolean isLocked() {
+            return true;
         }
     }
 }

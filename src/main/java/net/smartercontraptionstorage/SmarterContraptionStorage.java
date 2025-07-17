@@ -116,7 +116,7 @@ public class SmarterContraptionStorage {
                 register(new FunctionalCompactingHandlerHelper());
                 register(new FunctionalFluidHandlerHelper());
             }
-            if(SmarterContraptionStorageConfig.AE2SUPPORT.get() && list.isLoaded("ae2")){
+            if(SmarterContraptionStorageConfig.AE2Loaded()){
                 register(new AE2BusBlockHelper());
                 register(new MEStorageFilter());
                 register(new AEControllerBlock());

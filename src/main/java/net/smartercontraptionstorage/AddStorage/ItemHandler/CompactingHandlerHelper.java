@@ -164,5 +164,10 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         public @NotNull AbstractMovingMenu<?> createMenu(int i, Inventory inventory, Player player) {
             return new MovingCompactingDrawerMenu(this,i,player);
         }
+
+        @Override
+        public boolean isLocked() {
+            return true;
+        }
     }
 }

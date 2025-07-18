@@ -137,3 +137,24 @@ idea {
         downloadJavadoc = true
     }
 }
+
+def GameTestConfig = project.properties.get('GameTestConfig','default')
+
+tasks.register("prepareGameTestConfigs", Copy) {
+    group = 'mod development'
+    description = "Copy config files for GameTestServer"
+    if(GameTestConfig != 'default') {
+        def configFiles = project.file(GameTestConfigDir)
+        if (!configFiles.exists() || !configFiles.isDirectory()) {
+            throw new GradleException("config set directory '${configFiles}' does not exist for GameTestServer. ")
+        }
+        from fileTree("${configFiles}/${GameTestConfig}")
+        into new File('runs/gameTestServer/config')
+    }
+}
+
+tasks.configureEach { task ->
+    if(task.name == 'runGameTestServer') {
+        task.dependsOn(tasks.named('prepareGameTestConfigs').get())
+    }
+}

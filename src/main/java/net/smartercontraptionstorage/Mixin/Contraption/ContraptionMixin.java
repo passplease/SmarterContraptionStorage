@@ -14,12 +14,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.smartercontraptionstorage.*;
-import net.smartercontraptionstorage.Interface.Changeable;
-import net.smartercontraptionstorage.Interface.Gettable;
 import net.smartercontraptionstorage.Render.Overlay;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.*;
 
 @Mixin(Contraption.class)
-public abstract class ContraptionMixin implements Gettable {
+public abstract class ContraptionMixin {
     @Shadow(remap = false) protected MountedStorageManager storage;
     @Shadow(remap = false) protected List<MutablePair<StructureTemplate.StructureBlockInfo, MovementContext>> actors;
     @Shadow(remap = false) protected abstract BlockPos toLocalPos(BlockPos globalPos);
@@ -45,8 +42,8 @@ public abstract class ContraptionMixin implements Gettable {
     @Unique protected List<BlockPos> smarterContraptionStorage$removedBlocks = new ArrayList<>();
     @Inject(method = "searchMovedStructure",at = @At("RETURN"),remap = false)
     public void changeOrdinary(Level world, BlockPos pos, Direction forcedDirection, CallbackInfoReturnable<Boolean> cir){
-        Changeable storage = (Changeable) this.storage;
-        Map<BlockPos, MountedItemStorage> storages = (Map<BlockPos, MountedItemStorage>) storage.get("storage");
+        MountedStorageManagerMixin storage = (MountedStorageManagerMixin) this.storage;
+        Map<BlockPos, MountedItemStorage> storages = storage.getItemsBuilder();
         assert storages != null;
         Map<BlockPos, MountedItemStorage> newStorage = new LinkedHashMap<>();
         smarterContraptionStorage$removedBlocks.forEach(storages::remove);
@@ -74,7 +71,7 @@ public abstract class ContraptionMixin implements Gettable {
         }
         newStorage.putAll(storages);
         if(!smarterContraptionStorage$removedBlocks.isEmpty() || !newStorage.isEmpty())
-            storage.set("storage", newStorage);
+            storage.setItemsBuilder(newStorage);
     }
     @Inject(method = "addBlock",at = @At("RETURN"),remap = false)
     public void addBlock(Level level, BlockPos pos, Pair<StructureTemplate.StructureBlockInfo, BlockEntity> pair, CallbackInfo ci){
@@ -82,7 +79,7 @@ public abstract class ContraptionMixin implements Gettable {
             // pos may be not equal to entity.getBlockPos() !!!
             // I think it's bug, but I'm not very sure right now.
             pos = entity.getBlockPos();
-            if (((Gettable) entity).get("overlay") instanceof Overlay overlay) {
+            if (((ContraptionControlsBlockEntityMixin)entity).getOverlay() instanceof Overlay overlay) {
                 List<Block> orderedBlock = new ArrayList<>();
                 List<BlockPos> list = smarterContraptionStorage$orderedBlocks.getOrDefault(overlay,new ArrayList<>());
                 Arrays.stream(Utils.getAroundedBlockPos(pos)).forEach(p -> orderedBlock.add(level.getBlockState(p).getBlock()));
@@ -161,12 +158,5 @@ public abstract class ContraptionMixin implements Gettable {
     @Inject(method = "readNBT",at = @At("RETURN"),remap = false)
     public void clearData(Level world, CompoundTag nbt, boolean spawnData, CallbackInfo ci){
         FunctionChanger.clearGetBlockEntity();
-    }
-
-    @Override
-    public @Nullable Object get(String name) {
-        if(Objects.equals(name, "manager"))
-            return this.getStorage();
-        return null;
     }
 }

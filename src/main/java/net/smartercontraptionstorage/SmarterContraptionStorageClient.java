@@ -18,6 +18,7 @@ import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AECo
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEEnergyBlock;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.MEStorageFilter;
 import net.smartercontraptionstorage.Ponder.SCS_Ponder;
+import net.smartercontraptionstorage.Render.Overlay;
 
 import static net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper.register;
 import static net.smartercontraptionstorage.SmarterContraptionStorage.*;
@@ -28,6 +29,7 @@ public class SmarterContraptionStorageClient {
         SmarterContraptionStorageConfig.registerInClient(container);
         modEventBus.addListener(this::registerScreens);
         modEventBus.addListener(this::registerHelper);
+        modEventBus.addListener(Overlay::setValue);
         PonderIndex.addPlugin(new SCS_Ponder());
     }
 

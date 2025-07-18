@@ -10,6 +10,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.TextureAtlasStitchedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -47,6 +48,12 @@ public enum Overlay {
     TextureAtlasSprite uv;
     @NotNull public final ResourceLocation location;
     @NotNull public final DyeItem item;
+
+    public static void setValue(TextureAtlasStitchedEvent event){
+        if(event.getAtlas().location().equals(InventoryMenu.BLOCK_ATLAS)){
+            Overlay.setUV(event);
+        }
+    }
     // register by json file
 //    static void register(TextureStitchEvent.Pre event){
 //        for(Overlay overlay : Overlay.values()){

@@ -2,7 +2,7 @@ package net.smartercontraptionstorage;
 
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.smartercontraptionstorage.AddStorage.FluidHander.MovingFluidStorageType;
+import net.smartercontraptionstorage.AddStorage.FluidHander.*;
 import net.smartercontraptionstorage.Message.MenuLevelPacket;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
@@ -15,8 +15,6 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.smartercontraptionstorage.AddActor.BackpackBehaviour;
-import net.smartercontraptionstorage.AddStorage.FluidHander.FunctionalFluidHandlerHelper;
-import net.smartercontraptionstorage.AddStorage.FluidHander.TrashcanFluidHelper;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
@@ -113,6 +111,8 @@ public class SmarterContraptionStorage {
                 StorageHandlerHelper.register(new AEEnergyBlock());
                 StorageHandlerHelper.register(new SpatialHandler());
             }
+            if(list.isLoaded(AE2))
+                FluidHandlerHelper.register(new SkyStoneTankHelper());
 //            if(list.isLoaded(CobbleForDays))
 //                StorageHandlerHelper.register(new CobblestoneGenerator());
         }

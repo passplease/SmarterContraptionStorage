@@ -4,7 +4,7 @@ import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorage;
 import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageWrapper;
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorage;
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorageWrapper;
-import com.simibubi.create.content.contraptions.*;
+import com.simibubi.create.content.contraptions.MountedStorageManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -16,77 +16,62 @@ import net.smartercontraptionstorage.AddStorage.ItemHandler.MovingItemStorage;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.MovingItemStorageType;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.InitializeHelper;
-import net.smartercontraptionstorage.Interface.Changeable;
-import net.smartercontraptionstorage.Settable;
-import org.jetbrains.annotations.Nullable;
+import net.smartercontraptionstorage.Mixin.Storage.CombinedInvWrapperMixin;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Mixin(MountedStorageManager.class)
-public abstract class MountedStorageManagerMixin implements Changeable {
-    @Shadow(remap = false) protected Map<BlockPos, MountedItemStorage> itemsBuilder;
+public interface MountedStorageManagerMixin {
+    @Accessor("itemsBuilder")
+    void setItemsBuilder(Map<BlockPos, MountedItemStorage> itemsBuilder);
 
-    @Shadow(remap = false) protected Map<BlockPos, MountedFluidStorage> fluidsBuilder;
+    @Accessor("itemsBuilder")
+    Map<BlockPos, MountedItemStorage> getItemsBuilder();
 
-    @Shadow(remap = false) protected MountedItemStorageWrapper items;
-    @Shadow(remap = false) protected MountedFluidStorageWrapper fluids;
-    @Shadow(remap = false) @Nullable protected MountedItemStorageWrapper fuelItems;
+    @Mixin(MountedStorageManager.class)
+    abstract class MountedStorageManagerMixin_ {
+        @Shadow(remap = false) private Map<BlockPos, MountedItemStorage> itemsBuilder;
 
-    @Shadow(remap = false) protected abstract boolean isInitialized();
+        @Shadow(remap = false) private Map<BlockPos, MountedFluidStorage> fluidsBuilder;
 
-    @Inject(method = "initialize",at = @At(value = "HEAD"),remap = false)
-    public void removeStorageFromWorld(CallbackInfo ci){
-        if(!isInitialized()) {
-            List<MountedItemStorage> needDoSomething = itemsBuilder.values().stream().filter(storage -> storage instanceof MovingItemStorage).toList();
-            needDoSomething.forEach(storage -> ((MovingItemStorage) storage).doSomething(itemsBuilder));
-            needDoSomething.forEach(storage -> ((MovingItemStorage) storage).finallyDo(itemsBuilder));
-            itemsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingItemStorage && ((MovingItemStorage)storage.getValue()).helper instanceof InitializeHelper);
-            StorageHandlerHelper.clearData();
-            List<MountedFluidStorage> needDoSomethingFluid = fluidsBuilder.values().stream().filter(storage -> storage instanceof MovingFluidStorage).toList();
-            needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).doSomething(fluidsBuilder,itemsBuilder));
-            needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).finallyDo(fluidsBuilder,itemsBuilder));
-            FluidHandlerHelper.clearData();
+        @Shadow(remap = false) protected MountedItemStorageWrapper items;
+        @Shadow(remap = false) protected MountedFluidStorageWrapper fluids;
+
+        @Shadow(remap = false) protected abstract boolean isInitialized();
+
+        @Inject(method = "initialize",at = @At(value = "HEAD"),remap = false)
+        public void removeStorageFromWorld(CallbackInfo ci){
+            if(!isInitialized()) {
+                List<MountedItemStorage> needDoSomething = itemsBuilder.values().stream().filter(storage -> storage instanceof MovingItemStorage).toList();
+                needDoSomething.forEach(storage -> ((MovingItemStorage) storage).doSomething(itemsBuilder));
+                needDoSomething.forEach(storage -> ((MovingItemStorage) storage).finallyDo(itemsBuilder));
+                itemsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingItemStorage && ((MovingItemStorage)storage.getValue()).helper instanceof InitializeHelper);
+                StorageHandlerHelper.clearData();
+                List<MountedFluidStorage> needDoSomethingFluid = fluidsBuilder.values().stream().filter(storage -> storage instanceof MovingFluidStorage).toList();
+                needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).doSomething(fluidsBuilder,itemsBuilder));
+                needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).finallyDo(fluidsBuilder,itemsBuilder));
+                FluidHandlerHelper.clearData();
+            }
         }
-    }
 
-    @Inject(method = "initialize",at = @At("RETURN"),remap = false)
-    public void setDumpHandler(CallbackInfo ci){
-        if(DumpHandler.isOpened())
-            ((Settable)items).set(new DumpHandler(fluids));
-    }
-
-    @Inject(method = {"lambda$read$6","lambda$read$8"},at = @At("HEAD"),remap = false)
-    public void writePos(HolderLookup.Provider registries, CompoundTag tag, CallbackInfo ci){
-        Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
-        if(pos.isPresent())
-            tag.getCompound("storage").put(MovingItemStorageType.TAG,NbtUtils.writeBlockPos(pos.get()));
-    }
-
-    @Override
-    public void set(Object object) {}
-
-    @Override
-    public void set(String parameterName, Object object) {
-        if(parameterName.equals("storage") && object instanceof Map) {
-            this.itemsBuilder = (Map<BlockPos, MountedItemStorage>) object;
+        @Inject(method = "initialize",at = @At("RETURN"),remap = false)
+        public void setDumpHandler(CallbackInfo ci){
+            if(DumpHandler.isOpened())
+                ((CombinedInvWrapperMixin)items).getHandlers()[0] = new DumpHandler(fluids);
         }
-    }
 
-    @Nullable
-    @Override
-    public Object get(String name) {
-        return switch (name){
-            case "storage" -> itemsBuilder;
-            case "fluidStorage" -> fluidsBuilder;
-            case "inventory" -> items;
-            case "fluidInventory" -> fluids;
-            case "fuelInventory" -> fuelItems;
-            default -> null;
-        };
+        @Inject(method = {"lambda$read$6","lambda$read$8"},at = @At("HEAD"),remap = false)
+        public void writePos(HolderLookup.Provider registries, CompoundTag tag, CallbackInfo ci){
+            Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
+            pos.ifPresent(blockPos -> tag.getCompound("storage").put(MovingItemStorageType.TAG, NbtUtils.writeBlockPos(blockPos)));
+        }
     }
 }

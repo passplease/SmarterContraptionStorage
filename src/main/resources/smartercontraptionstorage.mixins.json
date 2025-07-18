@@ -7,9 +7,12 @@
   "mixins": [
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionControlsBlockEntityMixin",
+    "Contraption.ContraptionControlsBlockEntityMixin$ContraptionControlsBlockEntityMixin_",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",
-    "Storage.MountedItemStorageWrapperMixin"
+    "Contraption.MountedStorageManagerMixin$MountedStorageManagerMixin_",
+    "Storage.CombinedInvWrapperMixin",
+    "Storage.CombinedInvWrapperMixin$MountedItemStorageWrapperMixin"
   ],
   "client": [
     "Render.RenderMixin"

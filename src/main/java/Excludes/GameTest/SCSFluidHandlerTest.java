@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluids;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 
 import static Excludes.GameTest.SCSItemHandlerTest.contraptionStoped;
@@ -31,6 +30,11 @@ public class SCSFluidHandlerTest {
 
     @GameTest(template = "fluid_functional_drawer")
     public static void testFunctionalDrawer(CreateGameTestHelper helper) {
+        defaultTest(helper);
+    }
+
+    @GameTest(template = "sky_stone_tank")
+    public static void testSkyStoneTank(CreateGameTestHelper helper) {
         defaultTest(helper);
     }
 

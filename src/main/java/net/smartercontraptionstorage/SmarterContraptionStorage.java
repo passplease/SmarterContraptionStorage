@@ -109,13 +109,15 @@ public class SmarterContraptionStorage {
                 MovementBehaviour.REGISTRY.register(toolboxBlockBlockEntry.get(), behaviour);
             }
             if(list.isLoaded(SBackPack)){
-                BackpackBehaviour backpackBehaviour = new BackpackBehaviour();
-                MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.BACKPACK.get(),backpackBehaviour);
-                MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.COPPER_BACKPACK.get(),backpackBehaviour);
-                MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.IRON_BACKPACK.get(),backpackBehaviour);
-                MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.GOLD_BACKPACK.get(),backpackBehaviour);
-                MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.DIAMOND_BACKPACK.get(),backpackBehaviour);
-                MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.NETHERITE_BACKPACK.get(),backpackBehaviour);
+                if(MovementBehaviour.REGISTRY.get(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.BACKPACK.get()) == null) {
+                    BackpackBehaviour backpackBehaviour = new BackpackBehaviour();
+                    MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.BACKPACK.get(), backpackBehaviour);
+                    MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.COPPER_BACKPACK.get(), backpackBehaviour);
+                    MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.IRON_BACKPACK.get(), backpackBehaviour);
+                    MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.GOLD_BACKPACK.get(), backpackBehaviour);
+                    MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.DIAMOND_BACKPACK.get(), backpackBehaviour);
+                    MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.NETHERITE_BACKPACK.get(), backpackBehaviour);
+                }
             }
         }
     }

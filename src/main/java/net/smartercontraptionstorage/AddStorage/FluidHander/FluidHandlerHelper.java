@@ -24,7 +24,6 @@ import java.util.Objects;
 import java.util.Set;
 
 public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHandler> {
-    public static final String DESERIALIZE_MARKER = "FluidHandlers";
     public static final SmartFluidTank NULL_HANDLER = new SmartFluidTank(0,null){
         @Override
         public int fill(@NotNull FluidStack resource, @NotNull FluidAction action) {
@@ -52,9 +51,11 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
     @Deprecated
     public static final int DefaultSlot = 0;
     protected static final ArrayList<BlockEntity> BlockEntityList = new ArrayList<>();
+    @Deprecated
     public static boolean canUseAsStorage(@NotNull Item comparedItem){
         return canUseAsStorage(comparedItem,Block.byItem(comparedItem));
     }
+    @Deprecated
     public static boolean canUseAsStorage(@NotNull Block comparedBlock){
         return canUseAsStorage(comparedBlock.asItem(),comparedBlock);
     }
@@ -62,6 +63,7 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
     public static void register(@NotNull FluidHandlerHelper handlerHelper){
         HandlerHelpers.add(handlerHelper);
     }
+    @Deprecated
     public static boolean canUseAsStorage(@Nullable Item comparedItem, @Nullable Block comparedBlock){
         if(comparedItem == null || comparedBlock == null)
             return false;
@@ -101,7 +103,9 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
     @Deprecated
     public void tick(Entity entity, BlockPos pos, boolean isRemote){}
     public abstract void addStorageToWorld(BlockEntity entity, IFluidHandler tank);
+    @Deprecated
     public abstract boolean canCreateHandler(Item comparedItem);
+    @Deprecated
     public abstract boolean canCreateHandler(Block block);
     public abstract boolean canCreateHandler(BlockEntity entity);
     public abstract @NotNull IFluidHandler createHandler(BlockEntity entity);

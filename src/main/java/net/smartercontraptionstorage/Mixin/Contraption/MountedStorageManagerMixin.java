@@ -16,6 +16,7 @@ import net.smartercontraptionstorage.AddStorage.ItemHandler.MovingItemStorage;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.MovingItemStorageType;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.InitializeHelper;
+import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Mixin.Storage.CombinedInvWrapperMixin;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -43,6 +44,7 @@ public interface MountedStorageManagerMixin {
         @Shadow(remap = false) private Map<BlockPos, MountedFluidStorage> fluidsBuilder;
 
         @Shadow(remap = false) protected MountedItemStorageWrapper items;
+
         @Shadow(remap = false) protected MountedFluidStorageWrapper fluids;
 
         @Shadow(remap = false) protected abstract boolean isInitialized();
@@ -53,11 +55,12 @@ public interface MountedStorageManagerMixin {
                 List<MountedItemStorage> needDoSomething = itemsBuilder.values().stream().filter(storage -> storage instanceof MovingItemStorage).toList();
                 needDoSomething.forEach(storage -> ((MovingItemStorage) storage).doSomething(itemsBuilder));
                 needDoSomething.forEach(storage -> ((MovingItemStorage) storage).finallyDo(itemsBuilder));
-                itemsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingItemStorage && ((MovingItemStorage)storage.getValue()).helper instanceof InitializeHelper);
-                StorageHandlerHelper.clearData();
+                itemsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingItemStorage && !((MovingItemStorage) storage.getValue()).canWork());
                 List<MountedFluidStorage> needDoSomethingFluid = fluidsBuilder.values().stream().filter(storage -> storage instanceof MovingFluidStorage).toList();
                 needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).doSomething(fluidsBuilder,itemsBuilder));
                 needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).finallyDo(fluidsBuilder,itemsBuilder));
+                fluidsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingFluidStorage && !((MovingFluidStorage) storage.getValue()).canWork());
+                StorageHandlerHelper.clearData();
                 FluidHandlerHelper.clearData();
             }
         }

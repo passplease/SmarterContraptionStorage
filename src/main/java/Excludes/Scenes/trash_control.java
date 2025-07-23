@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static Excludes.Scenes.CreateNBTFile.Facing.*;
 
+@Deprecated
 public class trash_control extends CreateNBTFile {
     public trash_control(@NotNull String name) {
         super(name);

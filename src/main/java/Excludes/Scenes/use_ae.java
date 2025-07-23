@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static Excludes.Scenes.CreateNBTFile.Facing.*;
 
+@Deprecated
 public class use_ae extends CreateNBTFile {
     public use_ae(@NotNull String name) {
         super(name);

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static Excludes.Scenes.CreateNBTFile.Facing.*;
 
+@Deprecated
 public class spatial_cell extends CreateNBTFile {
     public static final int CELL_SIZE = 4;
     public spatial_cell(@NotNull String name) {

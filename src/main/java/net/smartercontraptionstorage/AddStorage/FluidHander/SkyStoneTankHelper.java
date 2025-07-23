@@ -12,6 +12,8 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Consumer;
+
 public class SkyStoneTankHelper extends FluidHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, IFluidHandler tank) {
@@ -58,5 +60,10 @@ public class SkyStoneTankHelper extends FluidHandlerHelper{
         FluidTank tank = new FluidTank(SkyStoneTankBlockEntity.BUCKET_CAPACITY * 1000);
         tank.readFromNBT(provider, nbt);
         return tank;
+    }
+
+    @Override
+    public void registerBlock(Consumer<Block> register) {
+        register.accept(AEBlocks.SKY_STONE_TANK.block());
     }
 }

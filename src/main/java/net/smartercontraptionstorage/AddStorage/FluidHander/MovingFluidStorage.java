@@ -57,4 +57,11 @@ public class MovingFluidStorage extends WrapperMountedFluidStorage<IFluidHandler
         if(deal != null)
             deal.finallyDo(fluidBuilder,itemsBuilder);
     }
+
+    public boolean canWork(){
+        if(getHandler() == FluidHandlerHelper.NULL_HANDLER)
+            return false;
+        NeedDealWith deal = getDeal();
+        return deal == null || deal.selfCheck();
+    }
 }

@@ -3,7 +3,11 @@ package net.smartercontraptionstorage.AddStorage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Consumer;
 
 public interface SerializableHandler<T> {
     default boolean canDeserialize(){
@@ -21,4 +25,12 @@ public interface SerializableHandler<T> {
     }
 
     T deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException;
+
+    void registerBlock(Consumer<Block> register);
+
+    boolean canCreateHandler(BlockEntity entity);
+
+    @NotNull T createHandler(BlockEntity entity);
+
+    void addStorageToWorld(BlockEntity entity, T handler);
 }

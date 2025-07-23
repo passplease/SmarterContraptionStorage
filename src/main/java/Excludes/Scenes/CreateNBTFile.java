@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+@Deprecated
 public abstract class CreateNBTFile implements TriFunction<CompoundTag,String, Integer,CompoundTag> {
     @NotNull String Name;
     private static final int WRONG_BLOCK_ID = -1;

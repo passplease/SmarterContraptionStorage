@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.FluidHander;
 
+import com.buuz135.functionalstorage.FunctionalStorage;
 import com.buuz135.functionalstorage.block.FluidDrawerBlock;
 import com.buuz135.functionalstorage.block.tile.FluidDrawerTile;
 import com.buuz135.functionalstorage.fluid.BigFluidHandler;
@@ -15,6 +16,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     @Deprecated
@@ -105,6 +107,13 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
         };
         drawer.deserializeNBT(provider,nbt);
         return drawer;
+    }
+
+    @Override
+    public void registerBlock(Consumer<Block> register) {
+        register.accept(FunctionalStorage.FLUID_DRAWER_1.getBlock());
+        register.accept(FunctionalStorage.FLUID_DRAWER_2.getBlock());
+        register.accept(FunctionalStorage.FLUID_DRAWER_4.getBlock());
     }
 
     @Deprecated

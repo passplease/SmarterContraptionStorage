@@ -17,13 +17,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
+import org.jetbrains.annotations.NotNull;
 
 import static net.smartercontraptionstorage.Utils.asResources;
 
 public class SCS_Ponder implements PonderPlugin {
     public static final ResourceLocation CONTROLLABLE_CONTAINERS = asResources("controllable_containers");
     @Override
-    public String getModId() {
+    public @NotNull String getModId() {
         return SmarterContraptionStorage.MODID;
     }
 
@@ -44,6 +45,14 @@ public class SCS_Ponder implements PonderPlugin {
             if(SmarterContraptionStorageConfig.AE2Loaded()){
                 helper.addStoryBoard(AEBlockIds.CONTROLLER, "use_ae",AEScenes::useAE);
                 helper.addStoryBoard(AEBlockIds.SPATIAL_PYLON,"spatial_cell",AEScenes::spatialCell);
+            }
+            if(SmarterContraptionStorageConfig.RSLoaded()){
+                com.refinedmods.refinedstorage.common.content.Blocks.INSTANCE.getController().values().forEach(block ->
+                        helper.addStoryBoard(ResourceLocation.fromNamespaceAndPath(SmarterContraptionStorage.RS,block.getLootTable().location().getPath().replace("blocks/","")), "use_rs",RSScenes::useRS)
+                );
+                com.refinedmods.refinedstorage.common.content.Blocks.INSTANCE.getCreativeController().values().forEach(block ->
+                        helper.addStoryBoard(ResourceLocation.fromNamespaceAndPath(SmarterContraptionStorage.RS,block.getLootTable().location().getPath().replace("blocks/","")), "use_rs",RSScenes::useRS)
+                );
             }
         }
     }

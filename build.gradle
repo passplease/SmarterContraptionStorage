@@ -91,6 +91,7 @@ dependencies {
     implementation "curse.maven:guideme-1173950:6488254"
     implementation "curse.maven:sophisticated-core-618298:6470497"
     implementation "curse.maven:sophisticated-backpacks-422301:6479794"
+    implementation "curse.maven:refined-storage-243076:6391989"
 }
 
 tasks.withType(ProcessResources).configureEach {

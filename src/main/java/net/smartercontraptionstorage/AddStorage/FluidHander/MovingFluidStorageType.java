@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.NbtUtils;
@@ -18,7 +17,6 @@ import net.smartercontraptionstorage.FunctionChanger;
 import net.smartercontraptionstorage.Utils;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Field;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -33,7 +31,7 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
                 FluidHandlerHelper helper = FluidHandlerHelper.findByName(nbt.getString("helper"));
                 try {
                     IFluidHandler handler = null;
-                    BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt,MovingItemStorageType.TAG).get());
+                    BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt,MovingItemStorageType.TAG).orElseThrow());
                     if(helper.canDeserialize() && blockEntity.getLevel() != null) {
                         handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess());
                     }else if(helper.canCreateHandler(blockEntity)){
@@ -84,29 +82,7 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
     public static void load(){}
 
     public static void register(){
-        BuiltInRegistries.BLOCK.stream().filter(block -> {
-            for (FluidHandlerHelper handlerHelper : FluidHandlerHelper.getHandlerHelpers()){
-                if(handlerHelper.canCreateHandler(block))
-                    return true;
-            }
-            return false;
-        }).forEach(MovingFluidStorageType::register);
-    }
-
-    public static void registerTrashCan() {
-        try{
-            Class<?> trashcan = com.supermartijn642.trashcans.TrashCans.class;
-
-            Field item_trash_can = trashcan.getDeclaredField("liquid_trash_can");
-            register((Block) item_trash_can.get(trashcan));
-
-            Field ultimate_trash_can = trashcan.getDeclaredField("ultimate_trash_can");
-            register((Block) ultimate_trash_can.get(trashcan));
-        } catch (NoSuchFieldException e) {
-            Utils.addError("Unchecked Trash Can register !");
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        FluidHandlerHelper.getHandlerHelpers().forEach(handlerHelper -> handlerHelper.registerBlock(MovingFluidStorageType::register));
     }
 
     private static void register(Block block){

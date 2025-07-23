@@ -3,8 +3,10 @@ package Excludes.GameTest;
 import appeng.api.implementations.items.ISpatialStorageCell;
 import appeng.api.networking.IGridNode;
 import appeng.api.parts.IPart;
+import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
+import appeng.api.stacks.KeyCounter;
 import appeng.api.storage.MEStorage;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.blockentity.networking.ControllerBlockEntity;
@@ -17,6 +19,14 @@ import com.buuz135.functionalstorage.block.tile.CompactingDrawerTile;
 import com.buuz135.functionalstorage.util.CompactingUtil;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
 import com.jaquadro.minecraft.storagedrawers.core.ModBlockEntities;
+import com.refinedmods.refinedstorage.api.core.Action;
+import com.refinedmods.refinedstorage.api.network.storage.StorageNetworkComponent;
+import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
+import com.refinedmods.refinedstorage.api.resource.ResourceKey;
+import com.refinedmods.refinedstorage.common.content.BlockEntities;
+import com.refinedmods.refinedstorage.common.support.network.AbstractBaseNetworkNodeContainerBlockEntity;
+import com.refinedmods.refinedstorage.common.support.resource.FluidResource;
+import com.refinedmods.refinedstorage.common.support.resource.ItemResource;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.transmission.sequencer.SequencedGearshiftBlock;
 import com.simibubi.create.infrastructure.gametest.CreateGameTestHelper;
@@ -26,17 +36,24 @@ import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.gametest.framework.GameTest;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.items.IItemHandler;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.AE2BusBlockHelper;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.AE2BusHelper;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.RSCableHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.SpatialHandler;
+import net.smartercontraptionstorage.Mixin.RS.AbstractBaseNetworkNodeContainerBlockEntityMixin;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -143,6 +160,65 @@ public class SCSItemHandlerTest {
         });
     }
 
+    /**
+     * RS couldn't run game test. The structure could not be loaded. This test 100% will fail
+     * */
+    @GameTest(template = "rs_controller",required = false,setupTicks = CreateGameTestHelper.TEN_SECONDS,timeoutTicks = CreateGameTestHelper.FIFTEEN_SECONDS)
+    public static void testRSController(CreateGameTestHelper helper) {
+        BlockPos button = new BlockPos(2,6,2);
+        BlockPos gearshift = new BlockPos(2,7,2);
+        BlockPos grass = new BlockPos(2,2,3);
+        GlobalPos wirelessAccessPoint = GlobalPos.of(helper.getLevel().dimension(),helper.absolutePos(new BlockPos(3, 10, 3)));
+        com.refinedmods.refinedstorage.common.controller.ControllerBlockEntity controller = helper.getBlockEntity(BlockEntities.INSTANCE.getCreativeController(), new BlockPos(4, 10, 4));
+        if(!((AbstractBaseNetworkNodeContainerBlockEntityMixin)controller).isActive() || controller.getNetworkForItem() == null)
+            helper.fail("Controller block entity is not active !");
+        StorageNetworkComponent storage = controller.getNetworkForItem().getComponent(StorageNetworkComponent.class);
+        FluidResource water = new FluidResource(Fluids.WATER);
+        ItemResource linerChassis = new ItemResource(AllBlocks.LINEAR_CHASSIS.asItem());
+        ItemResource dirt = new ItemResource(Items.DIRT);
+        ItemResource controllerItem = new ItemResource(com.refinedmods.refinedstorage.common.content.Blocks.INSTANCE.getController().getDefault().asItem());
+        if(storage.contains(dirt) || !storage.contains(linerChassis) || !storage.contains(controllerItem))
+            helper.fail("Wrong RS net storage !");
+        BlockPos[] cables = {new BlockPos(2,7,5),new BlockPos(2,7,4)};
+        String PosTag = "refinedstorage:network_location";
+        for(BlockPos cable : cables){
+            BlockEntity entity = helper.getBlockEntity(cable);
+            if (entity instanceof AbstractBaseNetworkNodeContainerBlockEntity<?> port) {
+                CompoundTag nbt = new CompoundTag();
+                port.writeConfiguration(nbt,helper.getLevel().registryAccess());
+                CompoundTag posTag = nbt.getCompound("rf").getCompound("s0").getCompound("resource").getCompound("components");
+                posTag.put(PosTag,GlobalPos.CODEC.encode(wirelessAccessPoint, NbtOps.INSTANCE,new CompoundTag()).getOrThrow());
+                port.readConfiguration(nbt,helper.getLevel().registryAccess());
+                continue;
+            }
+            helper.fail("Wrong BlockEntity data !");
+        }
+
+        helper.useBlock(button.below());
+        helper.succeedWhen(() -> {
+            contraptionStoped(helper,gearshift);
+            Collection<ResourceAmount> availableStacks = storage.getAll();
+            List<ResourceKey> items = availableStacks.stream().map(ResourceAmount::resource).toList();
+            List<Long> count = availableStacks.stream().map(ResourceAmount::amount).toList();
+            if(SmarterContraptionStorageConfig.RSLoaded()) {
+                if (!items.contains(dirt))
+                    helper.fail("Dirt was not stored !");
+                if(count.get(items.indexOf(linerChassis)) == 64)
+                    helper.fail("Chassis was placed ! Filter may not work !");
+                if(!items.contains(water))
+                    helper.fail("AE Controller fluid handler not work !");
+            }else{
+                helper.assertItemEntityPresent(Items.DIRT,grass,1);
+                if(count.get(items.indexOf(linerChassis)) != 64)
+                    helper.fail("Chassis was been placed !");
+                if(items.contains(water))
+                    helper.fail("AE Controller fluid handler work !");
+            }
+            if(!items.contains(controllerItem))
+                helper.fail("Controller was been placed !");
+        });
+    }
+
     @GameTest(template = "ae2_controller",setupTicks = CreateGameTestHelper.TEN_SECONDS,timeoutTicks = CreateGameTestHelper.FIFTEEN_SECONDS)
     public static void testAEController(CreateGameTestHelper helper) {
         BlockPos button = new BlockPos(2,6,2);
@@ -154,6 +230,7 @@ public class SCSItemHandlerTest {
         if(gridNode == null || !gridNode.isActive() || gridNode.getGrid() == null)
             helper.fail("Controller block entity is not active !");
         MEStorage storage = gridNode.getGrid().getStorageService().getInventory();
+        AEFluidKey water = AEFluidKey.of(Fluids.WATER);
         AEItemKey linerChassis = AEItemKey.of(AllBlocks.LINEAR_CHASSIS);
         AEItemKey dirt = AEItemKey.of(Items.DIRT);
         AEItemKey controllerItem = AEItemKey.of(AEBlocks.CONTROLLER);
@@ -164,7 +241,7 @@ public class SCSItemHandlerTest {
         cable:
         for(BlockPos cable : cables){
             CableBusBlockEntity bus = helper.getBlockEntity(AEBlocks.CABLE_BUS.block().getBlockEntityType(), cable);
-            for(IPart part : AE2BusBlockHelper.getAllPart(bus)){
+            for(IPart part : AE2BusHelper.getAllPart(bus)){
                 if (part instanceof IOBusPart){
                     AEKey k = ((IOBusPart) part).getConfig().getKey(0);
                     if (k instanceof AEItemKey key) {
@@ -180,17 +257,22 @@ public class SCSItemHandlerTest {
         helper.useBlock(button.below());
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
+            KeyCounter availableStacks = storage.getAvailableStacks();
             if(SmarterContraptionStorageConfig.AE2Loaded()) {
-                if (!storage.getAvailableStacks().keySet().contains(dirt))
+                if (!availableStacks.keySet().contains(dirt))
                     helper.fail("Dirt was not stored !");
-                if(storage.getAvailableStacks().get(linerChassis) == 64)
+                if(availableStacks.get(linerChassis) == 64)
                     helper.fail("Chassis was placed ! Filter may not work !");
+                if(availableStacks.get(water) == 0)
+                    helper.fail("AE Controller fluid handler not work !");
             }else{
                 helper.assertItemEntityPresent(Items.DIRT,grass,1);
-                if(storage.getAvailableStacks().get(linerChassis) != 64)
+                if(availableStacks.get(linerChassis) != 64)
                     helper.fail("Chassis was been placed !");
+                if(availableStacks.get(water) != 0)
+                    helper.fail("AE Controller fluid handler work !");
             }
-            if(storage.getAvailableStacks().get(controllerItem) != 64)
+            if(availableStacks.get(controllerItem) != 64)
                 helper.fail("Controller was been placed !");
         });
     }

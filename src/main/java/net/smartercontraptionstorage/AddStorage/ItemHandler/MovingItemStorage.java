@@ -94,4 +94,11 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
             deal.finallyDo(itemsBuilder);
         }
     }
+
+    public boolean canWork(){
+        if(getHandler() == StorageHandlerHelper.NULL_HANDLER)
+            return false;
+        NeedDealWith deal = getDeal();
+        return deal == null || deal.selfCheck();
+    }
 }

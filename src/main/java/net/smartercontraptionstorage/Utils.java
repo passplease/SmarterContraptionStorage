@@ -10,10 +10,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.PlainTextContents;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -252,5 +256,8 @@ public final class Utils {
     }
     public static void sendMessage(String pKey,ServerPlayer player, Object... pArgs){
         player.sendSystemMessage(Component.translatable(SmarterContraptionStorage.MODID + '.' + pKey,pArgs));
+    }
+    public static @Nullable ServerLevel getLevel(MinecraftServer server, ResourceKey<Level> keys){
+        return server.getLevel(keys);
     }
 }

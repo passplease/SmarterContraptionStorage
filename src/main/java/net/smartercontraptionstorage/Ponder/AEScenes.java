@@ -28,7 +28,7 @@ public class AEScenes {
         CreateSceneBuilder scene = new CreateSceneBuilder(builder);
         scene.title("use_ae","How to use AE on contraption");
         scene.world().showSection(util.select().fromTo(0,0,0,5,0,5),UP);
-        scene.overlay().showText(50).independent(70).text("First, let's build SpatialPylonBlockEntityMixin small AE net");
+        scene.overlay().showText(50).independent(70).text("First, let's build a small AE net");
         BlockPos importBus = util.grid().at(2,1,3);
         BlockPos exportBus = util.grid().at(3,1,3);
         BlockPos drill = util.grid().at(1,1,3);
@@ -43,8 +43,8 @@ public class AEScenes {
         scene.idle(5);
         scene.world().showSectionAndMerge(util.select().fromTo(exportBus,importBus),UP,contraption);
         scene.idle(25);
-        scene.overlay().showText(40).placeNearTarget().pointAt(util.vector().topOf(exportBus)).text("Export Bus, with covered_cable");
-        scene.overlay().showText(40).placeNearTarget().pointAt(util.vector().topOf(importBus)).text("Import Bus, with covered_cable");
+        scene.overlay().showText(40).placeNearTarget().pointAt(util.vector().topOf(exportBus)).text("Export Bus, with covered cable");
+        scene.overlay().showText(40).placeNearTarget().pointAt(util.vector().topOf(importBus)).text("Import Bus, with covered cable");
         scene.idle(5);
         scene.world().modifyBlockEntity(util.grid().at(2,1,2), ControllerBlockEntity.class,entity -> Objects.requireNonNull(entity.getLevel()).setBlockAndUpdate(entity.getBlockPos(), entity.getBlockState().setValue(ControllerBlock.CONTROLLER_STATE, ControllerBlock.ControllerBlockState.online)));
         scene.idle(45);

@@ -12,10 +12,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public final class BuildNBTFile {
     private static int num = 1;
     private static final String Path = Paths.get("").toAbsolutePath().toString()
-            .replace("run","src/main/resources/assets/" + SmarterContraptionStorage.MODID + "/ponder/")
+            .replace("runs/client","src/main/resources/assets/" + SmarterContraptionStorage.MODID + "/ponder/")
             .replace('\\','/');
     private static final List<CreateNBTFile> list = new ArrayList<>();
     static {

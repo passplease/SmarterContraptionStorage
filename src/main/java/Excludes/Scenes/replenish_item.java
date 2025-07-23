@@ -21,6 +21,7 @@ import java.util.*;
 import static Excludes.Scenes.CreateNBTFile.Facing.*;
 
 
+@Deprecated
 public class replenish_item extends CreateNBTFile {
     public replenish_item(@NotNull String name) {
         super(name);

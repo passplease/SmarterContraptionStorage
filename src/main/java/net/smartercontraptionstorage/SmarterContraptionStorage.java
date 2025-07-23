@@ -3,6 +3,7 @@ package net.smartercontraptionstorage;
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.smartercontraptionstorage.AddStorage.FluidHander.*;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.*;
 import net.smartercontraptionstorage.Message.MenuLevelPacket;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
@@ -18,9 +19,6 @@ import net.smartercontraptionstorage.AddActor.BackpackBehaviour;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEControllerBlock;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEEnergyBlock;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.MEStorageFilter;
 
 import static net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper.register;
 
@@ -33,6 +31,7 @@ public class SmarterContraptionStorage {
     public static final String CobbleForDays = "cobblefordays";
     public static final String SBackPack = "sophisticatedbackpacks";
     public static final String AE2 = "ae2";
+    public static final String RS = "refinedstorage";
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(BuiltInRegistries.MENU, MODID);
 
     public SmarterContraptionStorage(IEventBus modEventBus, ModContainer modContainer) {
@@ -110,11 +109,18 @@ public class SmarterContraptionStorage {
                 StorageHandlerHelper.register(new AEControllerBlock());
                 StorageHandlerHelper.register(new AEEnergyBlock());
                 StorageHandlerHelper.register(new SpatialHandler());
+                FluidHandlerHelper.register(new AE2BusBlockFluidHelper());
             }
             if(list.isLoaded(AE2))
                 FluidHandlerHelper.register(new SkyStoneTankHelper());
 //            if(list.isLoaded(CobbleForDays))
 //                StorageHandlerHelper.register(new CobblestoneGenerator());
+            if(SmarterContraptionStorageConfig.RSLoaded()){
+                StorageHandlerHelper.register(new RSCableHandlerHelper());
+                FluidHandlerHelper.register(new RSCableFluidHelper());
+                StorageHandlerHelper.register(new RSControllerBlock());
+                StorageHandlerHelper.register(new InterfaceHelper());
+            }
         }
         MovingItemStorageType.register();
         MovingFluidStorageType.register();

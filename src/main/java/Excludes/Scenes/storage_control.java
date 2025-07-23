@@ -4,6 +4,7 @@ import net.minecraft.nbt.*;
 
 import static Excludes.Scenes.CreateNBTFile.Facing.*;
 
+@Deprecated
 public class storage_control extends CreateNBTFile {
     public storage_control(String name) {
         super(name);

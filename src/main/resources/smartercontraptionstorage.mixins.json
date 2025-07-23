@@ -11,6 +11,7 @@
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",
     "Contraption.MountedStorageManagerMixin$MountedStorageManagerMixin_",
+    "RS.AbstractBaseNetworkNodeContainerBlockEntityMixin",
     "Storage.CombinedInvWrapperMixin",
     "Storage.CombinedInvWrapperMixin$MountedItemStorageWrapperMixin"
   ],

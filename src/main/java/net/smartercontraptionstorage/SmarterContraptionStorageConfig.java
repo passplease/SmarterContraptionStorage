@@ -25,6 +25,10 @@ public class SmarterContraptionStorageConfig {
         return INSTANCE.AE2SUPPORT.get() && ModList.get().isLoaded(SmarterContraptionStorage.AE2);
     }
 
+    public static boolean RSLoaded(){
+        return INSTANCE.AE2SUPPORT.get() && ModList.get().isLoaded(SmarterContraptionStorage.RS);
+    }
+
     private SmarterContraptionStorageConfig(ModConfigSpec.Builder builder){
         DEFAULT_OPEN = builder.comment("""
                 Weather default uses all storage blocks

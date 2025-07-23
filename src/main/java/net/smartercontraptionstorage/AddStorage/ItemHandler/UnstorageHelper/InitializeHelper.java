@@ -62,4 +62,9 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
     public final ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
         return NULL_HANDLER;
     }
+
+    @Override
+    public final boolean selfCheck() {
+        return false;
+    }
 }

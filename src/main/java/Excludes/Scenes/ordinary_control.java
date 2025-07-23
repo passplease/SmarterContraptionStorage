@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static Excludes.Scenes.CreateNBTFile.Facing.*;
 
+@Deprecated
 public class ordinary_control extends CreateNBTFile {
     public ordinary_control(@NotNull String name) {
         super(name);

@@ -7,7 +7,7 @@ import appeng.core.definitions.AEItems;
 import appeng.helpers.InterfaceLogic;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.AE2BusBlockHelper;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.AE2BusHelper;
 
 import java.util.function.Consumer;
 
@@ -21,7 +21,7 @@ public class MEStorageFilter extends InitializeHelper{
     public void doSomething(BlockEntity entity) {
         InterfaceLogic logic = ((InterfaceBlockEntity)entity).getInterfaceLogic();
         IGridNode node = logic.getActionableNode();
-        if(node != null && node.isActive() && AE2BusBlockHelper.checkUpgrade(logic.getUpgrades(),AEItems.FUZZY_CARD.asItem()))
+        if(node != null && node.isActive() && AE2BusHelper.checkUpgrade(logic.getUpgrades(),AEItems.FUZZY_CARD.asItem()))
             normallyDo(entity);
     }
 

@@ -8,15 +8,12 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.smartercontraptionstorage.AddStorage.FluidHander.FunctionalFluidHandlerHelper;
-import net.smartercontraptionstorage.AddStorage.FluidHander.TrashcanFluidHelper;
+import net.smartercontraptionstorage.AddStorage.FluidHander.*;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityScreen;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEControllerBlock;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEEnergyBlock;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.MEStorageFilter;
+import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.*;
 import net.smartercontraptionstorage.Ponder.SCS_Ponder;
 import net.smartercontraptionstorage.Render.Overlay;
 
@@ -25,7 +22,7 @@ import static net.smartercontraptionstorage.SmarterContraptionStorage.*;
 
 @Mod(value = SmarterContraptionStorage.MODID, dist = Dist.CLIENT)
 public class SmarterContraptionStorageClient {
-    public SmarterContraptionStorageClient(FMLModContainer container, IEventBus modEventBus, Dist dist) {
+    public SmarterContraptionStorageClient(FMLModContainer container, IEventBus modEventBus) {
         SmarterContraptionStorageConfig.registerInClient(container);
         modEventBus.addListener(this::registerScreens);
         modEventBus.addListener(this::registerHelper);
@@ -69,6 +66,14 @@ public class SmarterContraptionStorageClient {
                 StorageHandlerHelper.register(new AEControllerBlock());
                 StorageHandlerHelper.register(new AEEnergyBlock());
                 StorageHandlerHelper.register(new SpatialHandler());
+            }
+            if(list.isLoaded(AE2))
+                FluidHandlerHelper.register(new SkyStoneTankHelper());
+            if(SmarterContraptionStorageConfig.RSLoaded()){
+                StorageHandlerHelper.register(new RSCableHandlerHelper());
+                FluidHandlerHelper.register(new RSCableFluidHelper());
+                StorageHandlerHelper.register(new RSControllerBlock());
+                StorageHandlerHelper.register(new InterfaceHelper());
             }
 //            if(list.isLoaded(CobbleForDays))
 //                StorageHandlerHelper.register(new CobblestoneGenerator());

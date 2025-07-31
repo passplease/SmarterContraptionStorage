@@ -4,6 +4,7 @@ import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import net.createmod.catnip.data.Pair;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -86,7 +87,7 @@ public class SBackPacksHandlerHelper extends StorageHandlerHelper implements Hel
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

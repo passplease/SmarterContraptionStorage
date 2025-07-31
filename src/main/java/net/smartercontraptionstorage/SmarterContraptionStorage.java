@@ -9,6 +9,7 @@ import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLModContainer;
 import net.smartercontraptionstorage.AddStorage.FluidHander.MovingFluidStorageType;
+import net.smartercontraptionstorage.AddStorage.FluidHander.SkyStoneTankHelper;
 import net.smartercontraptionstorage.Message.MenuLevelPacket;
 import net.smartercontraptionstorage.Message.ModMessage;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -52,6 +53,7 @@ public class SmarterContraptionStorage {
     public static final String CobbleForDays = "cobblefordays";
     public static final String SBackPack = "sophisticatedbackpacks";
     public static final String AE2 = "ae2";
+    public static final String RS = "refinedstorage";
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MODID);
     /**
      * For Forge
@@ -138,6 +140,8 @@ public class SmarterContraptionStorage {
                 register(new FunctionalCompactingHandlerHelper());
                 register(new FunctionalFluidHandlerHelper());
             }
+            if(list.isLoaded(AE2))
+                register(new SkyStoneTankHelper());
             if(SmarterContraptionStorageConfig.AE2Loaded()){
                 register(new AE2BusBlockHelper());
                 register(new MEStorageFilter());
@@ -147,9 +151,6 @@ public class SmarterContraptionStorage {
             }
             if(list.isLoaded(CobbleForDays))
                 register(new CobblestoneGenerator());
-        }
-        if(list.isLoaded(TrashCans)) {
-            MovingFluidStorageType.registerTrashCan();
         }
         MovingItemStorageType.register();
         MovingFluidStorageType.register();

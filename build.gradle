@@ -142,6 +142,7 @@ dependencies {
     modImplementation("curse.maven:titanium-287342:5468426")
     modImplementation("curse.maven:applied-energistics-2-223794:5565729")
     modImplementation("curse.maven:cobblefordays-349460:4653625")
+    modImplementation("curse.maven:refined-storage-243076:4844585")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 

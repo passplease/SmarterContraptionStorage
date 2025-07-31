@@ -8,6 +8,7 @@ import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersStanda
 import com.jaquadro.minecraft.storagedrawers.block.tile.tiledata.UpgradeData;
 import com.jaquadro.minecraft.storagedrawers.core.ModBlocks;
 import net.createmod.catnip.nbt.NBTHelper;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
@@ -81,7 +82,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
         return NAME;
     }
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider){
         return new NormalDrawerHandler(nbt);
     }
 

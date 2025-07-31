@@ -101,8 +101,6 @@ public abstract class FluidHandlerHelper implements SerializableHandler<IFluidHa
     public abstract void addStorageToWorld(BlockEntity entity, IFluidHandler tank);
     public abstract boolean canCreateHandler(Item comparedItem);
     public abstract boolean canCreateHandler(Block block);
-    public abstract boolean canCreateHandler(BlockEntity entity);
-    public abstract @NotNull IFluidHandler createHandler(BlockEntity entity);
     public abstract @NotNull CompoundTag serializeNBT(IFluidHandler handler);
     public static Set<FluidHandlerHelper> getHandlerHelpers() {
         return HandlerHelpers;

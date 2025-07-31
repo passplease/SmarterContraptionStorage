@@ -39,4 +39,8 @@ public interface NeedDealWith{
     default void finallyDo(Map<BlockPos, MountedFluidStorage> fluidBuilder, Map<BlockPos, MountedItemStorage> itemsBuilder){
         finallyDo();
     }
+
+    default boolean selfCheck(){
+        return true;
+    }
 }

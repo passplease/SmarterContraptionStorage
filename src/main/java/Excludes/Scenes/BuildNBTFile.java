@@ -1,6 +1,5 @@
-package Excludes;
+package Excludes.Scenes;
 
-import Excludes.Scenes.*;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
@@ -13,10 +12,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public final class BuildNBTFile {
     private static int num = 1;
     private static final String Path = Paths.get("").toAbsolutePath().toString()
-            .replace("run","src/main/resources/assets/" + SmarterContraptionStorage.MODID + "/ponder/")
+            .replace("runs/client","src/main/resources/assets/" + SmarterContraptionStorage.MODID + "/ponder/")
             .replace('\\','/');
     private static final List<CreateNBTFile> list = new ArrayList<>();
     static {
@@ -25,7 +25,7 @@ public final class BuildNBTFile {
         list.add(new replenish_item("replenish_item"));
         list.add(new use_ae("use_ae"));
         list.add(new spatial_cell("spatial_cell"));
-        //list.add(new ordinary_control("ordinary_control"));
+        list.add(new ordinary_control("ordinary_control"));
     }
     public static void createNBTFile() {
         String path;

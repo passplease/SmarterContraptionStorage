@@ -7,7 +7,6 @@ import com.mojang.serialization.DynamicOps;
 import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.NbtUtils;
@@ -38,7 +37,7 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
                     IFluidHandler handler = null;
                     BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt.getCompound(MovingItemStorageType.TAG)));
                     if(helper.canDeserialize()) {
-                        handler = helper.deserialize(nbt);
+                        handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess());
                     }else if(helper.canCreateHandler(blockEntity)){
                         handler = helper.createHandler(blockEntity);
                     }
@@ -81,15 +80,10 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
     public static void load(){}
 
     public static void register(){
-        BuiltInRegistries.BLOCK.stream().filter(block -> {
-            for (FluidHandlerHelper handlerHelper : FluidHandlerHelper.getHandlerHelpers()){
-                if(handlerHelper.canCreateHandler(block))
-                    return true;
-            }
-            return false;
-        }).forEach(MovingFluidStorageType::register);
+        FluidHandlerHelper.getHandlerHelpers().forEach(helper -> helper.registerBlock(MovingFluidStorageType::register));
     }
 
+    @Deprecated
     public static void registerTrashCan() {
         try{
             Class<?> trashcan = com.supermartijn642.trashcans.TrashCans.class;

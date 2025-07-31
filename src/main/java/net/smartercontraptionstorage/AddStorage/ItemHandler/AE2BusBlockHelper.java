@@ -23,6 +23,7 @@ import appeng.parts.automation.ExportBusPart;
 import appeng.parts.automation.IOBusPart;
 import appeng.util.ConfigInventory;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
@@ -152,7 +153,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) throws IllegalAccessException {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

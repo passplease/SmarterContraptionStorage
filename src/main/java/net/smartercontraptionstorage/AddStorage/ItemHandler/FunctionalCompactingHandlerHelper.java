@@ -7,6 +7,7 @@ import com.buuz135.functionalstorage.block.tile.SimpleCompactingDrawerTile;
 import com.buuz135.functionalstorage.inventory.CompactingInventoryHandler;
 import com.buuz135.functionalstorage.util.CompactingUtil;
 import net.createmod.catnip.nbt.NBTHelper;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
@@ -95,7 +96,7 @@ public class FunctionalCompactingHandlerHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
         return new FCDrawersHandler(nbt);
     }
 

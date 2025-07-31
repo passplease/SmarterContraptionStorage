@@ -12,6 +12,7 @@ import appeng.spatial.SpatialStoragePlot;
 import appeng.spatial.SpatialStoragePlotManager;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.SectionPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -81,7 +82,7 @@ public class SpatialHandler extends StorageHandlerHelper{
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider){
         try {
             SpatialHelper handler = SpatialHelper.create(nbt.getInt("plotId"));
             handler.canWork = nbt.getBoolean("canWork");
@@ -263,6 +264,12 @@ public class SpatialHandler extends StorageHandlerHelper{
 
         public boolean canWork() {
             return canWork;
+        }
+
+        public void setWork() {
+            if(!Thread.currentThread().getStackTrace()[2].getClassName().startsWith("Excludes.GameTest"))
+                throw new IllegalCallerException("Illegal try of setting canWork !");
+            canWork = true;
         }
     }
 }

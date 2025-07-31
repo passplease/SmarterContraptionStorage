@@ -8,6 +8,8 @@
     "Contraption.ContraptionControlsBlockEntityMixin",
     "Contraption.ContraptionMixin",
     "Contraption.MountedStorageManagerMixin",
+    "Storage.CombinedInvWrapperMixin",
+    "Storage.CombinedInvWrapperMixin$MountedItemStorageWrapperMixin",
     "Storage.MountedItemStorageWrapperMixin"
   ],
   "client": [

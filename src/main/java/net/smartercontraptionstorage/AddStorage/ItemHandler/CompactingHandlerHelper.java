@@ -7,6 +7,7 @@ import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawersComp;
 import com.jaquadro.minecraft.storagedrawers.block.tile.tiledata.UpgradeData;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -58,7 +59,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         return "CompactingHandlerHelper";
     }
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
         return new CompactingHandler(nbt);
     }
     public static class CompactingHandler extends NormalDrawerHandler{

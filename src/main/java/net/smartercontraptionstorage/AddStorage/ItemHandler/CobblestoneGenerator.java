@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -63,7 +64,7 @@ public class CobblestoneGenerator extends StorageHandlerHelper{
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt){
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider){
         return cobblestoneGenerator;
     }
 }

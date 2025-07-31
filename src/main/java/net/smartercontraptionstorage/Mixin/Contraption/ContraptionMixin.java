@@ -137,7 +137,10 @@ public abstract class ContraptionMixin implements Gettable {
             try {
                 if (spawnData) {
                     BlockPos localPos = toLocalPos(pos);
-                    return presentBlockEntities.get(localPos);
+                    BlockEntity blockEntity = presentBlockEntities.get(localPos);
+                    if(blockEntity.getLevel() == null)
+                        blockEntity.setLevel(world);
+                    return blockEntity;
                 } else {
                     StructureTemplate.StructureBlockInfo info = blocks.get(pos);
                     CompoundTag tag = info.nbt();
@@ -145,7 +148,11 @@ public abstract class ContraptionMixin implements Gettable {
                         tag.putInt("x", info.pos().getX());
                         tag.putInt("y", info.pos().getY());
                         tag.putInt("z", info.pos().getZ());
-                        return BlockEntity.loadStatic(info.pos(), info.state(), tag);
+                        BlockEntity blockEntity = BlockEntity.loadStatic(info.pos(), info.state(), tag);
+                        if (blockEntity != null) {
+                            blockEntity.setLevel(world);
+                        }
+                        return blockEntity;
                     } else return null;
                 }
             } catch (Exception e) {

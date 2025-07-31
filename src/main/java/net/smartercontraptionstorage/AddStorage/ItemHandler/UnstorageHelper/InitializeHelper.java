@@ -1,5 +1,6 @@
 package net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -52,7 +53,7 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
     }
 
     @Override
-    public final @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+    public final @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
         return NULL_HANDLER;
     }
 }

@@ -1,8 +1,10 @@
 package net.smartercontraptionstorage.AddStorage.FluidHander;
 
+import com.buuz135.functionalstorage.FunctionalStorage;
 import com.buuz135.functionalstorage.block.FluidDrawerBlock;
 import com.buuz135.functionalstorage.block.tile.FluidDrawerTile;
 import com.buuz135.functionalstorage.fluid.BigFluidHandler;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +14,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     @Deprecated
@@ -48,6 +51,13 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
+    public void registerBlock(Consumer<Block> register) {
+        FunctionalStorage.FLUID_DRAWER_1.getKey().ifPresent(register);
+        FunctionalStorage.FLUID_DRAWER_2.getKey().ifPresent(register);
+        FunctionalStorage.FLUID_DRAWER_4.getKey().ifPresent(register);
+    }
+
+    @Override
     public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
         if(handler instanceof BigFluidHandler drawer){
             CompoundTag nbt = drawer.serializeNBT();
@@ -64,7 +74,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull BigFluidHandler deserialize(CompoundTag nbt) {
+    public @NotNull BigFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
         BigFluidHandler drawer = new BigFluidHandler(1,1) {
             @Override
             public void onChange() {}

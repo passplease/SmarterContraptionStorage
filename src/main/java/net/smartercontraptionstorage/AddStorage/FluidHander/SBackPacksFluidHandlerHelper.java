@@ -1,6 +1,7 @@
 package net.smartercontraptionstorage.AddStorage.FluidHander;
 
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -11,6 +12,8 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Consumer;
 
 @Deprecated
 public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
@@ -45,6 +48,11 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
+    public void registerBlock(Consumer<Block> register) {
+
+    }
+
+    @Override
     public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
         if(handler instanceof BackPackFluidHelper backpack){
             return backpack.writeToNBT(new CompoundTag());
@@ -57,7 +65,7 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull SmartFluidTank deserialize(CompoundTag nbt) {
+    public @NotNull SmartFluidTank deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
         return new BackPackFluidHelper(nbt);
     }
 

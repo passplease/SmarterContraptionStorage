@@ -7,6 +7,7 @@ import com.supermartijn642.trashcans.TrashCanBlockEntity;
 import com.supermartijn642.trashcans.TrashCans;
 import net.createmod.catnip.nbt.NBTHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -73,7 +74,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         return NAME;
     }
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt) {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
         return new TrashHandler(nbt);
     }
 

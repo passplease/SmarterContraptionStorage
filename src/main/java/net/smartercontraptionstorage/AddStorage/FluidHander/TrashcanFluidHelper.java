@@ -5,8 +5,10 @@ import com.simibubi.create.api.contraption.storage.item.MountedItemStorage;
 import com.simibubi.create.content.equipment.toolbox.ToolboxInventory;
 import com.simibubi.create.content.equipment.toolbox.ToolboxMountedStorage;
 import com.supermartijn642.trashcans.TrashCanBlockEntity;
+import com.supermartijn642.trashcans.TrashCans;
 import com.supermartijn642.trashcans.filter.ItemFilter;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -22,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import static net.smartercontraptionstorage.Utils.getFluidByItem;
 
@@ -51,6 +54,12 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
+    public void registerBlock(Consumer<Block> register) {
+        register.accept(TrashCans.liquid_trash_can);
+        register.accept(TrashCans.ultimate_trash_can);
+    }
+
+    @Override
     public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
         if(handler instanceof TrashcanHelper trashcan){
             return trashcan.writeToNBT(new CompoundTag());
@@ -63,7 +72,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
-    public @NotNull TrashcanHelper deserialize(CompoundTag nbt) {
+    public @NotNull TrashcanHelper deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
         return new TrashcanHelper(nbt);
     }
 

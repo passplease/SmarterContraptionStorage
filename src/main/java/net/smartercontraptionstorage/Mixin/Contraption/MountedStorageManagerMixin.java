@@ -44,11 +44,12 @@ public abstract class MountedStorageManagerMixin implements Changeable {
             List<MountedItemStorage> needDoSomething = itemsBuilder.values().stream().filter(storage -> storage instanceof MovingItemStorage).toList();
             needDoSomething.forEach(storage -> ((MovingItemStorage) storage).doSomething(itemsBuilder));
             needDoSomething.forEach(storage -> ((MovingItemStorage) storage).finallyDo(itemsBuilder));
-            itemsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingItemStorage && ((MovingItemStorage)storage.getValue()).helper instanceof InitializeHelper);
-            StorageHandlerHelper.clearData();
+            itemsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingItemStorage && !((MovingItemStorage) storage.getValue()).canWork());
             List<MountedFluidStorage> needDoSomethingFluid = fluidsBuilder.values().stream().filter(storage -> storage instanceof MovingFluidStorage).toList();
             needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).doSomething(fluidsBuilder,itemsBuilder));
             needDoSomethingFluid.forEach(storage -> ((MovingFluidStorage) storage).finallyDo(fluidsBuilder,itemsBuilder));
+            fluidsBuilder.entrySet().removeIf(storage -> storage.getValue() instanceof MovingFluidStorage && !((MovingFluidStorage) storage.getValue()).canWork());
+            StorageHandlerHelper.clearData();
             FluidHandlerHelper.clearData();
         }
     }

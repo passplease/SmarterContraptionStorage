@@ -6,7 +6,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
-import static Excludes.Scenes.CreateNBTFile.Facing.*;
+import static Excludes.Scenes.CreateNBTFile.Facing.north;
+import static Excludes.Scenes.CreateNBTFile.Facing.west;
 
 public class spatial_cell extends CreateNBTFile {
     public static final int CELL_SIZE = 4;

@@ -9,7 +9,7 @@ import java.util.function.Function;
 public final class FunctionChanger {
     /**
      * To serialize some MountedStorage,
-     * value set in MountedStorageManagerMixin, Contraption
+     * value set in MountedStorageManagerMixin_, Contraption
      */
     private static Function<BlockPos, BlockEntity> getBlockEntity;
 

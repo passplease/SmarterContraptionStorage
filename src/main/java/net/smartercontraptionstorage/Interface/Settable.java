@@ -2,6 +2,7 @@ package net.smartercontraptionstorage.Interface;
 
 import java.util.Arrays;
 
+@Deprecated
 public interface Settable {
     void set(Object object);
     default void set(String parameterName, Object object){

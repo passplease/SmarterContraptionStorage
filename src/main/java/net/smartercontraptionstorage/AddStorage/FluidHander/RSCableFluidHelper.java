@@ -22,13 +22,11 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.RSCableHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.RSCableHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Consumer;
 
 public class RSCableFluidHelper extends FluidHandlerHelper{

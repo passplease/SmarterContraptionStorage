@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 
 import static Excludes.GameTest.SCSItemHandlerTest.contraptionStoped;
@@ -19,7 +20,7 @@ public class SCSFluidHandlerTest {
         BlockPos button = new BlockPos(1,6,3);
         BlockPos drawer = new BlockPos(1,4,1);
 
-        helper.useBlock(button.below());
+        helper.pressButton(button);
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             helper.assertBlockNotPresent(Blocks.WATER,water);
@@ -44,7 +45,7 @@ public class SCSFluidHandlerTest {
         BlockPos tank = new BlockPos(3,3,1);
         helper.assertTankEmpty(tank);
 
-        helper.useBlock(button.below());
+        helper.pressButton(button);
         helper.succeedWhen(() -> {
             contraptionStoped(helper,gearshift);
             if(helper.getFluidInTanks(tank) == 0)

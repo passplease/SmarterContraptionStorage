@@ -5,7 +5,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 import net.smartercontraptionstorage.AddStorage.FluidHander.DumpHandler;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
-import net.smartercontraptionstorage.Settable;
+import net.smartercontraptionstorage.Interface.Settable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -23,6 +23,7 @@ public abstract class MountedItemStorageWrapperMixin extends CombinedInvWrapper 
         return itemHandler;
     }
 
+    @Deprecated
     @Override
     public void set(Object object) {
         if(object instanceof IItemHandlerModifiable){

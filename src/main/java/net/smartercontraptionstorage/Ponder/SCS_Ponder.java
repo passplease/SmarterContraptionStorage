@@ -1,8 +1,9 @@
 package net.smartercontraptionstorage.Ponder;
 
-//import Excludes.BuildNBTFile;
+//import Excludes.Scenes.BuildNBTFile;
 import appeng.api.ids.AEBlockIds;
 import com.jaquadro.minecraft.storagedrawers.core.ModBlocks;
+import com.refinedmods.refinedstorage.RSBlocks;
 import com.simibubi.create.AllBlocks;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -16,13 +17,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.fml.ModList;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 import net.smartercontraptionstorage.SmarterContraptionStorageConfig;
+import org.jetbrains.annotations.NotNull;
 
 import static net.smartercontraptionstorage.Utils.asResources;
 
 public class SCS_Ponder implements PonderPlugin {
     public static final ResourceLocation CONTROLLABLE_CONTAINERS = asResources("controllable_containers");
     @Override
-    public String getModId() {
+    public @NotNull String getModId() {
         return SmarterContraptionStorage.MODID;
     }
 
@@ -43,6 +45,14 @@ public class SCS_Ponder implements PonderPlugin {
             if(SmarterContraptionStorageConfig.AE2Loaded()){
                 helper.addStoryBoard(AEBlockIds.CONTROLLER, "use_ae",AEScenes::useAE);
                 helper.addStoryBoard(AEBlockIds.SPATIAL_PYLON,"spatial_cell",AEScenes::spatialCell);
+            }
+            if(SmarterContraptionStorageConfig.RSLoaded()){
+                RSBlocks.CONTROLLER.values().forEach(block -> block.ifPresent(
+                        controller -> helper.addStoryBoard(ResourceLocation.fromNamespaceAndPath(SmarterContraptionStorage.RS,controller.getLootTable().getPath().replace("blocks/","")),"use_rs",RSScenes::useRS)
+                ));
+                RSBlocks.CREATIVE_CONTROLLER.values().forEach(block -> block.ifPresent(
+                        controller -> helper.addStoryBoard(ResourceLocation.fromNamespaceAndPath(SmarterContraptionStorage.RS,controller.getLootTable().getPath().replace("blocks/","")),"use_rs",RSScenes::useRS)
+                ));
             }
         }
     }

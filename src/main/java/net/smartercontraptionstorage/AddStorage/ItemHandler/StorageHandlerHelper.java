@@ -202,5 +202,11 @@ public abstract class StorageHandlerHelper implements SerializableHandler<ItemSt
         public BlockPos getLocalPos() {
             return localPos;
         }
+
+        @Override
+        public void validateSlotIndex(int slot) {
+            if(slot < 0 || slot >= items.length)
+                super.validateSlotIndex(-1);// throw error
+        }
     }
 }

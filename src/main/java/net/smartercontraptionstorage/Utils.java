@@ -2,6 +2,7 @@ package net.smartercontraptionstorage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
 import com.simibubi.create.content.logistics.vault.ItemVaultBlock;
 import com.simibubi.create.content.logistics.vault.ItemVaultItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -14,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -43,12 +45,14 @@ import java.util.function.Consumer;
 
 public final class Utils {
     public static boolean canBeControlledItem(Item comparedItem){
-        return canUseModInventory(comparedItem) ||
-                canUseAsStorage(comparedItem);
+        return comparedItem instanceof BlockItem &&
+                MountedItemStorageType.REGISTRY.get(((BlockItem)comparedItem).getBlock()) != null;
     }
+    @Deprecated
     public static boolean canUseAsStorage(Item comparedItem){
         return FluidHandlerHelper.canUseAsStorage(comparedItem);
     }
+    @Deprecated
     public static boolean canUseModInventory(Item comparedItem){
         return canUseCreateInventory(comparedItem) ||
                 StorageHandlerHelper.canControl(comparedItem);
@@ -60,12 +64,13 @@ public final class Utils {
                 comparedItem == Items.BARREL;
     }
     public static boolean canBeControlledBlock(Block comparedBlock){
-        return canUseModInventory(comparedBlock) ||
-                canUseAsStorage(comparedBlock);
+        return MountedItemStorageType.REGISTRY.get(comparedBlock) != null;
     }
+    @Deprecated
     public static boolean canUseAsStorage(Block comparedBlock){
         return FluidHandlerHelper.canUseAsStorage(comparedBlock);
     }
+    @Deprecated
     public static boolean canUseModInventory(Block comparedBlock){
         return canUseCreateInventory(comparedBlock) ||
                 StorageHandlerHelper.canControl(comparedBlock);

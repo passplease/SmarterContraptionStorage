@@ -30,6 +30,11 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
+/**
+ * Can not move RS Blocks, so this is useless
+ * */
+
+@Deprecated
 public interface RSCableHelper<T> extends NeedDealWith, ItemAndFluidHandler {
     @NotNull INetwork getStorage();
 

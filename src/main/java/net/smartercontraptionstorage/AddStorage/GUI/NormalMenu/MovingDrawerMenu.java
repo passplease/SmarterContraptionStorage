@@ -7,7 +7,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.smartercontraptionstorage.AddStorage.GUI.UnchangeableSlot;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.DrawersHandlerHelper;
@@ -87,15 +86,23 @@ public class MovingDrawerMenu extends AbstractMovingMenu<DrawersHandlerHelper.No
 
     protected class DrawerSlot extends UnchangeableSlot {
 
-        public DrawerSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+        public DrawerSlot(DrawersHandlerHelper.NormalDrawerHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
+            getItemHandler().validateSlotIndex(index);
         }
 
         @Override
         public @NotNull ItemStack getItem() {
             ItemStack item = super.getItem();
+            if(item.isEmpty())
+                item.setCount(1);
             MovingDrawerMenu.this.setLastAccessedItem(item);
             return item;
+        }
+
+        @Override
+        public DrawersHandlerHelper.NormalDrawerHandler getItemHandler() {
+            return (DrawersHandlerHelper.NormalDrawerHandler) super.getItemHandler();
         }
     }
 }

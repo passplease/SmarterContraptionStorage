@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+@Deprecated
 public class RSCableHandlerHelper extends StorageHandlerHelper{
     @Override
     public boolean canCreateHandler(BlockEntity entity) {
@@ -90,6 +91,7 @@ public class RSCableHandlerHelper extends StorageHandlerHelper{
         RSCableHelper.register(register);
     }
 
+    @Deprecated
     public static class RSImportCableHandler extends ItemStackHandler implements RSCableHelper<ItemStack>{
         private final INetwork storage;
 

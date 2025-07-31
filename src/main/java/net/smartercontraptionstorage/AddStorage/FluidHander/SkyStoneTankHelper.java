@@ -17,9 +17,7 @@ public class SkyStoneTankHelper extends FluidHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, IFluidHandler tank) {
         assert canCreateHandler(entity) && entity.getLevel() != null;
-        CompoundTag nbt = new CompoundTag();
-        nbt.put("tank",serializeNBT(tank));
-        ((SkyStoneTankBlockEntity)entity).loadTag(nbt);
+        ((SkyStoneTankBlockEntity)entity).loadTag(serializeNBT(tank));
     }
 
     @Override

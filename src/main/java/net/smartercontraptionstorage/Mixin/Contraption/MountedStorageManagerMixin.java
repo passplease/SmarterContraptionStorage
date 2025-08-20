@@ -15,8 +15,6 @@ import net.smartercontraptionstorage.AddStorage.FluidHander.MovingFluidStorage;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.MovingItemStorage;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.MovingItemStorageType;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.InitializeHelper;
-import net.smartercontraptionstorage.AddStorage.NeedDealWith;
 import net.smartercontraptionstorage.Mixin.Storage.CombinedInvWrapperMixin;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -74,7 +72,7 @@ public interface MountedStorageManagerMixin {
         @Inject(method = {"lambda$read$6","lambda$read$8"},at = @At("HEAD"),remap = false)
         public void writePos(HolderLookup.Provider registries, CompoundTag tag, CallbackInfo ci){
             Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
-            pos.ifPresent(blockPos -> tag.getCompound("storage").put(MovingItemStorageType.TAG, NbtUtils.writeBlockPos(blockPos)));
+            pos.ifPresent(blockPos -> tag.getCompound("storage").getCompound(MovingItemStorageType.TYPE).put(MovingItemStorageType.TAG, NbtUtils.writeBlockPos(blockPos)));
         }
     }
 }

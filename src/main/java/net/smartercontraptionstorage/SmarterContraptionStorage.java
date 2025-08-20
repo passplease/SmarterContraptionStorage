@@ -2,6 +2,7 @@ package net.smartercontraptionstorage;
 
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.neoforge.common.NeoForge;
 import net.smartercontraptionstorage.AddStorage.FluidHander.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.*;
 import net.smartercontraptionstorage.Message.MenuLevelPacket;
@@ -37,6 +38,7 @@ public class SmarterContraptionStorage {
     public SmarterContraptionStorage(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(SmarterContraptionStorage::registerPacket);
         modEventBus.addListener(SmarterContraptionStorage::onServerStarting);
+        NeoForge.EVENT_BUS.addListener(Command::registerCommands);
         MENU_TYPES.register(modEventBus);
         MovingItemStorageType.REGISTRATE.registerEventListeners(modEventBus);
         MovingItemStorageType.load();

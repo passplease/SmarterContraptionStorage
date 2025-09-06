@@ -130,7 +130,7 @@ dependencies {
     modImplementation(jarJar("com.tterrag.registrate:Registrate:${registrate_version}"))
     jarJar("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
 
-    modImplementation("curse.maven:storage-drawers-223852:6549483")
+    modImplementation("curse.maven:storage-drawers-223852:6967725")
     modImplementation("curse.maven:trash-cans-394535:4712179")
     modImplementation("curse.maven:supermartijn642s-config-lib-438332:4715408")
     modImplementation("curse.maven:supermartijn642s-core-lib-454372:5102258")

@@ -61,6 +61,9 @@ public class SmarterContraptionStorage {
     public SmarterContraptionStorage(FMLJavaModLoadingContext context) {
         this(context.getContainer());
     }
+    public SmarterContraptionStorage(){
+        this(FMLJavaModLoadingContext.get().getContainer());
+    }
     /**
      * For NeoForge
      * */

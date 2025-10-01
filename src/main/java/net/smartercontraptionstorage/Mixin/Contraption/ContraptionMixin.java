@@ -55,7 +55,7 @@ public abstract class ContraptionMixin implements Gettable {
     @Shadow(remap = false)
     public abstract MountedStorageManager getStorage();
 
-    @Shadow
+    @Shadow(remap = false)
     protected ContraptionWorld world;
     @Unique
     protected Map<Overlay, List<BlockPos>> smarterContraptionStorage$orderedBlocks = new HashMap<>();

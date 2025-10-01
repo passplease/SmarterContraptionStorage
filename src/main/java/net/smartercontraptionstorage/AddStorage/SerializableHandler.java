@@ -16,7 +16,7 @@ public interface SerializableHandler<T> {
     String getName();
 
     @NotNull
-    T deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException;
+    T deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException;
 
     boolean canCreateHandler(BlockEntity entity);
 

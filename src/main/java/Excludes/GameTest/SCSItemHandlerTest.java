@@ -315,6 +315,11 @@ public class SCSItemHandlerTest {
         });
     }
 
+    @GameTest(template = "ender_chest",timeoutTicks = CreateGameTestHelper.FIFTEEN_SECONDS)
+    public static void testEnderChest(CreateGameTestHelper helper) {
+        defaultTest(helper);
+    }
+
     public static void defaultTest(CreateGameTestHelper helper){
         BlockPos button = new BlockPos(1,6,2);
         BlockPos gearshift = new BlockPos(1,7,2);

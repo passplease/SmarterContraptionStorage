@@ -74,7 +74,7 @@ public class TrashHandlerHelper extends StorageHandlerHelper{
         return NAME;
     }
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         return new TrashHandler(nbt);
     }
 

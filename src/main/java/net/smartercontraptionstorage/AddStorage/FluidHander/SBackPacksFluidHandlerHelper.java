@@ -53,7 +53,7 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(IFluidHandler handler, BlockEntity entity) {
         if(handler instanceof BackPackFluidHelper backpack){
             return backpack.writeToNBT(new CompoundTag());
         }else return new CompoundTag();
@@ -65,7 +65,7 @@ public class SBackPacksFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull SmartFluidTank deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public @NotNull SmartFluidTank deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         return new BackPackFluidHelper(nbt);
     }
 

@@ -74,7 +74,7 @@ public class RSCableFluidHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(IFluidHandler handler, BlockEntity entity) {
         return new CompoundTag();
     }
 
@@ -84,7 +84,7 @@ public class RSCableFluidHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public @NotNull IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

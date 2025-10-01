@@ -96,7 +96,7 @@ public class FunctionalDrawersHandlerHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         return new FDrawersHandler(nbt);
     }
 

@@ -20,9 +20,10 @@ public class MovingFluidStorage extends WrapperMountedFluidStorage<IFluidHandler
 
     public BlockEntity blockEntity;
 
-    protected MovingFluidStorage(IFluidHandler handler, @NotNull FluidHandlerHelper helper) {
+    protected MovingFluidStorage(IFluidHandler handler, @NotNull FluidHandlerHelper helper,BlockEntity blockEntity) {
         super(MovingFluidStorageType.HELPER_STORAGE.get(), handler);
         this.helper = helper;
+        this.blockEntity = blockEntity;
     }
 
     @Override

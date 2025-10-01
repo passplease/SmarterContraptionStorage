@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(CombinedInvWrapper.class)
 public interface CombinedInvWrapperMixin {
-    @Accessor("itemHandler")
+    @Accessor(value = "itemHandler",remap = false)
     IItemHandlerModifiable[] getHandlers();
 
     @Mixin(MountedItemStorageWrapper.class)

@@ -59,7 +59,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         return "CompactingHandlerHelper";
     }
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         return new CompactingHandler(nbt);
     }
     public static class CompactingHandler extends NormalDrawerHandler{

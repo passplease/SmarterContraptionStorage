@@ -8,8 +8,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLModContainer;
-import net.smartercontraptionstorage.AddStorage.FluidHander.MovingFluidStorageType;
-import net.smartercontraptionstorage.AddStorage.FluidHander.SkyStoneTankHelper;
+import net.smartercontraptionstorage.AddStorage.FluidHander.*;
 import net.smartercontraptionstorage.Message.MenuLevelPacket;
 import net.smartercontraptionstorage.Message.ModMessage;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -28,8 +27,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.smartercontraptionstorage.AddStorage.FluidHander.FunctionalFluidHandlerHelper;
-import net.smartercontraptionstorage.AddStorage.FluidHander.TrashcanFluidHelper;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityScreen;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.*;
@@ -54,6 +51,7 @@ public class SmarterContraptionStorage {
     public static final String SBackPack = "sophisticatedbackpacks";
     public static final String AE2 = "ae2";
     public static final String RS = "refinedstorage";
+    public static final String EnderStorage = "enderstorage";
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MODID);
     /**
      * For Forge
@@ -154,6 +152,10 @@ public class SmarterContraptionStorage {
             }
             if(list.isLoaded(CobbleForDays))
                 register(new CobblestoneGenerator());
+            if(list.isLoaded(EnderStorage)) {
+                register(new EnderChestHandlerHelper());
+                register(new EnderTankHelper());
+            }
         }
         MovingItemStorageType.register();
         MovingFluidStorageType.register();

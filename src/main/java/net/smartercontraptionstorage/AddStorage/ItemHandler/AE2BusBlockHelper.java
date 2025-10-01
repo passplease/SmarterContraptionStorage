@@ -153,7 +153,7 @@ public class AE2BusBlockHelper extends StorageHandlerHelper{
     }
 
     @Override
-    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

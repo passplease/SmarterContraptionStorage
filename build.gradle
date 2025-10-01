@@ -14,6 +14,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id "net.neoforged.moddev.legacyforge" version "2.0.84"
+    id 'com.bmuschko.docker-remote-api' version '9.4.0'
 }
 
 group = mod_group_id
@@ -141,6 +142,8 @@ dependencies {
     modImplementation("curse.maven:applied-energistics-2-223794:5565729")
     modImplementation("curse.maven:cobblefordays-349460:4653625")
     modImplementation("curse.maven:refined-storage-243076:4844585")
+    modImplementation("curse.maven:codechicken-lib-1-8-242818:5753868")
+    modImplementation("curse.maven:ender-storage-1-8-245174:5292573")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
@@ -199,4 +202,20 @@ tasks.named('runGameTestServer', JavaExec){
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+
+def imageName = "ghcr.io/${System.getenv("PROJECT_NAME")}:${mod_version}"
+imageName.replaceAll('-','_')
+
+tasks.register('buildDockerImage', DockerBuildImage) {
+    inputDir = project.projectDir
+    images.add(imageName)
+}
+
+tasks.register('pushDockerImage', DockerPushImage) {
+    dependsOn buildDockerImage
+    images.add(imageName)
 }

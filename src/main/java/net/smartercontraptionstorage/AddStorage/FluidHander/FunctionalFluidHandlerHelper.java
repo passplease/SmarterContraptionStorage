@@ -58,7 +58,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(IFluidHandler handler, BlockEntity entity) {
         if(handler instanceof BigFluidHandler drawer){
             CompoundTag nbt = drawer.serializeNBT();
             nbt.putBoolean(LOCKED, drawer.isDrawerLocked());
@@ -74,7 +74,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull BigFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public @NotNull BigFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         BigFluidHandler drawer = new BigFluidHandler(1,1) {
             @Override
             public void onChange() {}

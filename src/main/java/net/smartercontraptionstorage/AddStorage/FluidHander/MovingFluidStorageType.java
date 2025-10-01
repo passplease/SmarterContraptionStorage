@@ -37,11 +37,12 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
                     IFluidHandler handler = null;
                     BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt.getCompound(MovingItemStorageType.TAG)));
                     if(helper.canDeserialize()) {
-                        handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess());
+                        Level level = blockEntity.getLevel();
+                        handler = helper.deserialize(nbt,level.registryAccess(),level.isClientSide());
                     }else if(helper.canCreateHandler(blockEntity)){
                         handler = helper.createHandler(blockEntity);
                     }
-                    MovingFluidStorage storage = new MovingFluidStorage(handler, helper);
+                    MovingFluidStorage storage = new MovingFluidStorage(handler, helper,blockEntity);
                     storage.blockEntity = blockEntity;
                     return DataResult.success(new Pair<>(storage,input));
                 } catch (IllegalAccessException ignored) {
@@ -55,7 +56,7 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
         public <T> DataResult<T> encode(MovingFluidStorage input, DynamicOps<T> ops, T prefix) {
             CompoundTag nbt;
             if(input.helper.canDeserialize()) {
-                nbt = input.getHelper().serializeNBT(input.getHandler());
+                nbt = input.getHelper().serializeNBT(input.getHandler(), input.blockEntity);
             }else {
                 input.helper.addStorageToWorld(Objects.requireNonNull(input.blockEntity), input.getHandler());
                 nbt = new CompoundTag();
@@ -74,7 +75,7 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
         FluidHandlerHelper helper = FluidHandlerHelper.findSuitableHelper(blockEntity);
         if(helper == null)
             return null;
-        return new MovingFluidStorage(helper.createHandler(blockEntity), helper);
+        return new MovingFluidStorage(helper.createHandler(blockEntity), helper,blockEntity);
     }
 
     public static void load(){}

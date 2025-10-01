@@ -53,7 +53,7 @@ public abstract class InitializeHelper extends StorageHandlerHelper implements N
     }
 
     @Override
-    public final @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public final @NotNull ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         return NULL_HANDLER;
     }
 }

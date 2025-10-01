@@ -32,7 +32,8 @@ public class MovingItemStorageType extends MountedItemStorageType<MovingItemStor
                     ItemStackHandler handler = null;
                     BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt.getCompound(TAG)));
                     if(helper.canDeserialize()) {
-                        handler = helper.deserialize(nbt, blockEntity.getLevel().registryAccess());
+                        Level level = blockEntity.getLevel();
+                        handler = helper.deserialize(nbt, level.registryAccess(), level.isClientSide());
                     }else if(helper.canCreateHandler(blockEntity)){
                         handler = helper.createHandler(blockEntity);
                     }

@@ -5,6 +5,7 @@
   "refmap": "mixins.smartercontraptionstorage.refmap.json",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "EnderStorageManagerMixin",
     "Contraption.ContraptionControlBlockMixin",
     "Contraption.ContraptionControlsBlockEntityMixin",
     "Contraption.ContraptionMixin",

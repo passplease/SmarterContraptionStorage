@@ -29,10 +29,10 @@ import java.util.Map;
 
 @Mixin(MountedStorageManager.class)
 public interface MountedStorageManagerMixin {
-    @Accessor("itemsBuilder")
+    @Accessor(value = "itemsBuilder",remap = false)
     Map<BlockPos, MountedItemStorage> getItemsBuilder();
 
-    @Accessor("itemsBuilder")
+    @Accessor(value = "itemsBuilder",remap = false)
     void setItemsBuilder(Map<BlockPos, MountedItemStorage> itemsBuilder);
 
     @Mixin(MountedStorageManager.class)

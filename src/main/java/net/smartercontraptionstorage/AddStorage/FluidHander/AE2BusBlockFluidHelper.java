@@ -49,7 +49,7 @@ public class AE2BusBlockFluidHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(IFluidHandler handler, BlockEntity entity) {
         return ((AE2BusHelper)handler).serializeNBT(Minecraft.getInstance().level.registryAccess(), new CompoundTag());
     }
 
@@ -59,7 +59,7 @@ public class AE2BusBlockFluidHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public @NotNull IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

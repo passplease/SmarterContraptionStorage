@@ -17,7 +17,7 @@ public class SkyStoneTankHelper extends FluidHandlerHelper{
     @Override
     public void addStorageToWorld(BlockEntity entity, IFluidHandler tank) {
         assert canCreateHandler(entity) && entity.getLevel() != null;
-        ((SkyStoneTankBlockEntity)entity).loadTag(serializeNBT(tank));
+        ((SkyStoneTankBlockEntity)entity).loadTag(serializeNBT(tank, entity));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SkyStoneTankHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(IFluidHandler handler, BlockEntity entity) {
         return ((FluidTank)handler).writeToNBT(new CompoundTag());
     }
 
@@ -52,7 +52,7 @@ public class SkyStoneTankHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public @NotNull IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         FluidTank tank = new FluidTank(SkyStoneTankBlockEntity.BUCKET_CAPACITY * 1000);
         tank.readFromNBT(nbt);
         return tank;

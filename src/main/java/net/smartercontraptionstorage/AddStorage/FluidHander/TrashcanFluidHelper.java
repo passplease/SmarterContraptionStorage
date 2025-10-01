@@ -60,7 +60,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
-    public @NotNull CompoundTag serializeNBT(IFluidHandler handler) {
+    public @NotNull CompoundTag serializeNBT(IFluidHandler handler, BlockEntity entity) {
         if(handler instanceof TrashcanHelper trashcan){
             return trashcan.writeToNBT(new CompoundTag());
         }else return new CompoundTag();
@@ -72,7 +72,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
-    public @NotNull TrashcanHelper deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public @NotNull TrashcanHelper deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         return new TrashcanHelper(nbt);
     }
 

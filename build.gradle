@@ -207,15 +207,17 @@ tasks.withType(JavaCompile).configureEach {
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
 
-def imageName = "ghcr.io/${System.getenv("PROJECT_NAME")}:${mod_version}"
-imageName.replaceAll('-','_')
+def imageName = "ghcr.io/${System.getenv("PROJECT_NAME")}:${mod_version}".toLowerCase()
+def forAction = "ghcr.io/${System.getenv("PROJECT_NAME")}:${System.getenv("TAG")}".toLowerCase()
 
 tasks.register('buildDockerImage', DockerBuildImage) {
     inputDir = project.projectDir
     images.add(imageName)
+    images.add(forAction)
 }
 
 tasks.register('pushDockerImage', DockerPushImage) {
     dependsOn buildDockerImage
     images.add(imageName)
+    images.add(forAction)
 }

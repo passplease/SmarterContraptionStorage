@@ -1,7 +1,6 @@
-FROM gradle:8.11.1-jdk21-focal
+FROM gradle:8.14.3-jdk21
 
-WORKDIR /temp
+WORKDIR /home/gradle
 
-COPY . .
-
-RUN gradle runGameTestServer && rm -rm -f ./temp
+COPY ./.gradle ./.gradle
+COPY ./run/ ./run/

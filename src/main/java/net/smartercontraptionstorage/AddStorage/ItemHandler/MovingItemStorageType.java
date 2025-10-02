@@ -50,11 +50,11 @@ public class MovingItemStorageType extends MountedItemStorageType<MovingItemStor
                     ItemStackHandler handler = null;
                     BlockEntity blockEntity = FunctionChanger.getBlockEntity(NBTHelper.readBlockPos(nbt,TAG));
                     if(helper.canDeserialize() && blockEntity.getLevel() != null) {
-                        handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess());
+                        handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess(),blockEntity.getLevel().isClientSide());
                     }else if(helper.canCreateHandler(blockEntity)){
                         handler = helper.createHandler(blockEntity);
                     }
-                    MovingItemStorage storage = new MovingItemStorage(handler, helper);
+                    MovingItemStorage storage = new MovingItemStorage(handler, helper, blockEntity);
                     storage.blockEntity = blockEntity;
                     return DataResult.success(storage);
                 } catch (IllegalAccessException ignored) {
@@ -79,7 +79,7 @@ public class MovingItemStorageType extends MountedItemStorageType<MovingItemStor
         if(helper == null)
             return null;
         ItemStackHandler handler = helper.createHandler(blockEntity);
-        MovingItemStorage storage = new MovingItemStorage(handler, helper);
+        MovingItemStorage storage = new MovingItemStorage(handler, helper, blockEntity);
         storage.blockEntity = blockEntity;
         return storage;
     }

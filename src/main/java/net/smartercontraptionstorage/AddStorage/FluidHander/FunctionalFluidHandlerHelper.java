@@ -71,7 +71,7 @@ public class FunctionalFluidHandlerHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public @NotNull BigFluidHandler deserialize(CompoundTag nbt,HolderLookup.Provider provider) {
+    public @NotNull BigFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) {
         BigFluidHandler drawer = new BigFluidHandler(1,1) {
             @Override
             public void onChange() {}

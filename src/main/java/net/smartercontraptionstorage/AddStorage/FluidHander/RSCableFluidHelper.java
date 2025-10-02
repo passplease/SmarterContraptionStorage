@@ -6,27 +6,22 @@ import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
 import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 import com.refinedmods.refinedstorage.common.api.configurationcard.ConfigurationCardTarget;
 import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
-import com.refinedmods.refinedstorage.common.content.Blocks;
 import com.refinedmods.refinedstorage.common.content.Items;
 import com.refinedmods.refinedstorage.common.exporter.AbstractExporterBlockEntity;
 import com.refinedmods.refinedstorage.common.iface.InterfaceBlockEntity;
 import com.refinedmods.refinedstorage.common.importer.AbstractImporterBlockEntity;
 import com.refinedmods.refinedstorage.common.support.resource.FluidResource;
-import com.refinedmods.refinedstorage.common.support.resource.ItemResource;
 import com.refinedmods.refinedstorage.common.support.resource.ResourceContainerData;
 import com.refinedmods.refinedstorage.common.support.resource.ResourceTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.RSCableHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.RSCableHelper;
-import net.smartercontraptionstorage.AddStorage.ItemHandler.StorageHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -84,7 +79,7 @@ public class RSCableFluidHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

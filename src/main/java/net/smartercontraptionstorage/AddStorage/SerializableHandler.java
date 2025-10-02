@@ -21,10 +21,10 @@ public interface SerializableHandler<T> {
     default T deserialize(CompoundTag nbt) throws NullPointerException,IllegalAccessException {
         if(Minecraft.getInstance().level == null)
             throw new NullPointerException();
-        return deserialize(nbt, Minecraft.getInstance().level.registryAccess());
+        return deserialize(nbt, Minecraft.getInstance().level.registryAccess(),Minecraft.getInstance().level.isClientSide());
     }
 
-    T deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException;
+    T deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException;
 
     void registerBlock(Consumer<Block> register);
 

@@ -66,7 +66,7 @@ public class TrashcanFluidHelper extends FluidHandlerHelper {
     }
 
     @Override
-    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         return new TrashcanHelper(nbt,provider);
     }
 

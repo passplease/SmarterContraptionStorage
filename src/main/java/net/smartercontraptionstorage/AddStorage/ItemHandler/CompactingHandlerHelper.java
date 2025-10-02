@@ -58,7 +58,7 @@ public class CompactingHandlerHelper extends DrawersHandlerHelper{
         return "CompactingHandlerHelper";
     }
     @Override
-    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         return new CompactingHandler(nbt, provider);
     }
     public static class CompactingHandler extends NormalDrawerHandler{

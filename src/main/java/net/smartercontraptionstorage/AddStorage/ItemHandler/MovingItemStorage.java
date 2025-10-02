@@ -25,7 +25,7 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
 
     public BlockEntity blockEntity;
 
-    public MovingItemStorage(ItemStackHandler handler, @NotNull StorageHandlerHelper helper) {
+    public MovingItemStorage(ItemStackHandler handler, @NotNull StorageHandlerHelper helper, BlockEntity blockEntity) {
         super(MovingItemStorageType.HELPER_STORAGE.get(), handler);
         this.helper = helper;
     }
@@ -35,7 +35,6 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
         if(helper.canCreateHandler(blockEntity)) {
             helper.addStorageToWorld(blockEntity, getHandler());
         } else helper.addStorageToWorld(this.blockEntity, getHandler());
-        this.blockEntity = blockEntity;
     }
 
     public ItemStackHandler getHandler() {

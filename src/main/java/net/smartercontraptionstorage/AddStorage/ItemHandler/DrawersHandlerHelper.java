@@ -89,7 +89,7 @@ public class DrawersHandlerHelper extends StorageHandlerHelper {
     }
 
     @Override
-    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         return new NormalDrawerHandler(nbt,provider);
     }
 

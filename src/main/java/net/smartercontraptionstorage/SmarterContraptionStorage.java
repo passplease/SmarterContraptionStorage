@@ -33,6 +33,7 @@ public class SmarterContraptionStorage {
     public static final String SBackPack = "sophisticatedbackpacks";
     public static final String AE2 = "ae2";
     public static final String RS = "refinedstorage";
+    public static final String EnderStorage = "enderstorage";
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(BuiltInRegistries.MENU, MODID);
 
     public SmarterContraptionStorage(IEventBus modEventBus, ModContainer modContainer) {
@@ -124,6 +125,10 @@ public class SmarterContraptionStorage {
                 FluidHandlerHelper.register(new RSCableFluidHelper());
                 StorageHandlerHelper.register(new RSControllerBlock());
                 StorageHandlerHelper.register(new InterfaceHelper());
+            }
+            if(list.isLoaded(EnderStorage)){
+                StorageHandlerHelper.register(new EnderChestHandlerHelper());
+                register(new EnderTankHelper());
             }
         }
         MovingItemStorageType.register();

@@ -61,7 +61,7 @@ public class AE2BusBlockFluidHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) throws IllegalAccessException {
+    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 

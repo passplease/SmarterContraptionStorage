@@ -92,6 +92,8 @@ dependencies {
     implementation "curse.maven:sophisticated-core-618298:6470497"
     implementation "curse.maven:sophisticated-backpacks-422301:6479794"
     implementation "curse.maven:refined-storage-243076:6391989"
+    implementation "curse.maven:codechicken-lib-1-8-242818:6583751"
+    implementation "curse.maven:ender-storage-1-8-245174:6159037"
 }
 
 tasks.withType(ProcessResources).configureEach {

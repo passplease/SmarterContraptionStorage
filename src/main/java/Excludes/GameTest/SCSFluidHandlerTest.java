@@ -38,6 +38,11 @@ public class SCSFluidHandlerTest {
         defaultTest(helper);
     }
 
+    @GameTest(template = "ender_tank")
+    public static void testEnderTank(CreateGameTestHelper helper) {
+        defaultTest(helper);
+    }
+
     public static void defaultTest(CreateGameTestHelper helper) {
         BlockPos button = new BlockPos(3,2,3);
         BlockPos gearshift = new BlockPos(3,3,3);

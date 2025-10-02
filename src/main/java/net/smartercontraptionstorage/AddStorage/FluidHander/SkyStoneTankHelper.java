@@ -56,7 +56,7 @@ public class SkyStoneTankHelper extends FluidHandlerHelper{
     }
 
     @Override
-    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider) {
+    public IFluidHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client) throws IllegalAccessException {
         FluidTank tank = new FluidTank(SkyStoneTankBlockEntity.BUCKET_CAPACITY * 1000);
         tank.readFromNBT(provider, nbt);
         return tank;

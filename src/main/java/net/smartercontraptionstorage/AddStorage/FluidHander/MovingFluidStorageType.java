@@ -33,11 +33,11 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
                     IFluidHandler handler = null;
                     BlockEntity blockEntity = FunctionChanger.getBlockEntity(NbtUtils.readBlockPos(nbt,MovingItemStorageType.TAG).orElseThrow());
                     if(helper.canDeserialize() && blockEntity.getLevel() != null) {
-                        handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess());
+                        handler = helper.deserialize(nbt,blockEntity.getLevel().registryAccess(),blockEntity.getLevel().isClientSide());
                     }else if(helper.canCreateHandler(blockEntity)){
                         handler = helper.createHandler(blockEntity);
                     }
-                    MovingFluidStorage storage = new MovingFluidStorage(handler, helper);
+                    MovingFluidStorage storage = new MovingFluidStorage(handler, helper, blockEntity);
                     storage.blockEntity = blockEntity;
                     return DataResult.success(storage);
                 } catch (IllegalAccessException ignored) {
@@ -76,7 +76,7 @@ public class MovingFluidStorageType extends MountedFluidStorageType<MovingFluidS
         FluidHandlerHelper helper = FluidHandlerHelper.findSuitableHelper(blockEntity);
         if(helper == null)
             return null;
-        return new MovingFluidStorage(helper.createHandler(blockEntity), helper);
+        return new MovingFluidStorage(helper.createHandler(blockEntity), helper, blockEntity);
     }
 
     public static void load(){}

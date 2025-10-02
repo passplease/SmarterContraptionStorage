@@ -96,7 +96,7 @@ public class SpatialHandler extends StorageHandlerHelper{
     }
 
     @Override
-    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider){
+    public ItemStackHandler deserialize(CompoundTag nbt, HolderLookup.Provider provider, boolean client){
         try {
             SpatialHelper handler = SpatialHelper.create(nbt.getInt("plotId"));
             handler.canWork = nbt.getBoolean("canWork");

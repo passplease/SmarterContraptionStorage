@@ -86,7 +86,7 @@ public class MenuLevelPacket implements CustomPacketPayload {
             pairs.forEach(pair -> {
                 if (!MenuLevel.getBlocks().containsKey(pair)) {
                     if (Minecraft.getInstance().level.getEntity(pair.getFirst()) instanceof AbstractContraptionEntity contraption) {
-                        MenuLevel.addBlockEntity(pair, contraption.getContraption().presentBlockEntities.get(BlockPos.of(pair.getSecond())),null);
+                        MenuLevel.addBlockEntity(pair, contraption.getContraption().getBlockEntityClientSide(BlockPos.of(pair.getSecond())),null);
                     }
                 }
             });

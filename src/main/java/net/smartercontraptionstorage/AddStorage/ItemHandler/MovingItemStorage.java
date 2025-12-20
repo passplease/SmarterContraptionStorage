@@ -46,19 +46,15 @@ public class MovingItemStorage extends WrapperMountedItemStorage<ItemStackHandle
         ContraptionMenuProvider<?> provider;
         if(getHandler() instanceof MovingMenuProvider h && !h.hasOpened())
             provider = h;
-        else {
-            if(helper instanceof HelperMenuProvider<?>) {
-                HelperMenuProvider<?> h = ((HelperMenuProvider<?>) helper).get();
-                if(h.canOpenMenu(blockEntity) && !h.hasOpened()) {
-                    h.setBlockEntity(blockEntity);
-                    provider = h;
-                } else {
-                    provider = null;
-                }
+        else if(helper instanceof HelperMenuProvider<?>){
+            HelperMenuProvider<?> h = ((HelperMenuProvider<?>) helper).get();
+            if(h.canOpenMenu(blockEntity) && !h.hasOpened()) {
+                h.setBlockEntity(blockEntity);
+                provider = h;
             } else {
                 provider = null;
             }
-        }
+        }else provider = null;
         if(provider != null){
             provider.setContraption(contraption.entity);
             provider.setLocalPos(info.pos());

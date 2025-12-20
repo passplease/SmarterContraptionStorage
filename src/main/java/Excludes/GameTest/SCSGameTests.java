@@ -9,7 +9,7 @@ import net.neoforged.neoforge.event.RegisterGameTestsEvent;
 
 import java.util.Collection;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber()
 public class SCSGameTests {
     public static final int ONE_MINUTE = 20 * 60;
 

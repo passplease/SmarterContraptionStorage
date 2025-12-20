@@ -70,14 +70,14 @@ public interface MountedStorageManagerMixin {
                 ((CombinedInvWrapperMixin)items).getHandlers()[0] = new DumpHandler(fluids);
         }
 
-        @Inject(method = "lambda$read$6",at = @At("HEAD"),remap = false)
-        public void writePos1(HolderLookup.Provider registries, CompoundTag tag, CallbackInfo ci){
+        @Inject(method = "lambda$read$7",at = @At("HEAD"),remap = false)
+        public void writePos1(CompoundTag tag, CallbackInfo ci){
             Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
             pos.ifPresent(blockPos -> tag.getCompound("storage").getCompound(MovingItemStorageType.TYPE).put(MovingItemStorageType.TAG, NbtUtils.writeBlockPos(blockPos)));
         }
 
-        @Inject(method = "lambda$read$8",at = @At("HEAD"),remap = false)
-        public void writePos2(HolderLookup.Provider registries, CompoundTag tag, CallbackInfo ci){
+        @Inject(method = "lambda$read$10",at = @At("HEAD"),remap = false)
+        public void writePos2(CompoundTag tag, CallbackInfo ci){
             Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
             pos.ifPresent(blockPos -> tag.getCompound("storage").getCompound(MovingFluidStorageType.TYPE).put(MovingItemStorageType.TAG, NbtUtils.writeBlockPos(blockPos)));
         }

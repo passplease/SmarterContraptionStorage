@@ -80,7 +80,7 @@ dependencies {
         implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
     }
 
-    implementation "curse.maven:create-328085:6255497"
+    implementation "curse.maven:create-328085:7178775"
     implementation "curse.maven:storage-drawers-223852:5979167"
     implementation "curse.maven:supermartijn642s-core-lib-454372:6076757"
     implementation "curse.maven:supermartijn642s-config-lib-438332:5546996"

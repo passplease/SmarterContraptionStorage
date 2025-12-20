@@ -36,7 +36,9 @@ public abstract class ContraptionMixin {
     @Shadow(remap = false) protected Map<BlockPos, StructureTemplate.StructureBlockInfo> blocks;
 
     @Shadow(remap = false) public AbstractContraptionEntity entity;
+/* Deleted
     @Shadow(remap = false) public Map<BlockPos, BlockEntity> presentBlockEntities;
+*/
     @Shadow(remap = false) public abstract MountedStorageManager getStorage();
     @Unique protected Map<Overlay,List<BlockPos>> smarterContraptionStorage$orderedBlocks = new HashMap<>();
     @Unique protected List<BlockPos> smarterContraptionStorage$removedBlocks = new ArrayList<>();
@@ -133,10 +135,10 @@ public abstract class ContraptionMixin {
         FunctionChanger.setGetBlockEntity((pos) -> {
             try {
                 BlockEntity blockEntity;
-                if (spawnData) {
-                    BlockPos localPos = toLocalPos(pos);
-                    blockEntity = presentBlockEntities.get(localPos);
-                } else {
+//                if (spawnData) {
+//                    BlockPos localPos = toLocalPos(pos);
+//                    blockEntity = presentBlockEntities.get(localPos);
+//                } else {
                     StructureTemplate.StructureBlockInfo info = blocks.get(pos);
                     CompoundTag tag = info.nbt();
                     if (tag != null) {
@@ -145,12 +147,13 @@ public abstract class ContraptionMixin {
                         tag.putInt("z", info.pos().getZ());
                         blockEntity = BlockEntity.loadStatic(info.pos(), info.state(), tag,world.registryAccess());
                     } else return null;
-                }
+//                }
                 if(blockEntity != null && blockEntity.getLevel() == null)
                     blockEntity.setLevel(world);
                 return blockEntity;
             } catch (Exception e) {
-                return presentBlockEntities.values().stream().filter(blockEntity -> blockEntity.getBlockPos().equals(pos)).findFirst().orElse(null);
+//                return presentBlockEntities.values().stream().filter(blockEntity -> blockEntity.getBlockPos().equals(pos)).findFirst().orElse(null);
+                return null;
             }
         });
     }

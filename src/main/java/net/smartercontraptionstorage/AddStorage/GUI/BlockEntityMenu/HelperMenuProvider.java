@@ -34,9 +34,10 @@ public interface HelperMenuProvider<T extends StorageHandlerHelper> extends Cont
 
     void setBlockEntity(@Nullable BlockEntity blockEntity);
 
-    default void setBlockEntity(Pair<Integer, Long> pair) {
+    default void setClientBlockEntity(Pair<Integer, Long> pair, boolean client) {
         setLocalPos(BlockPos.of(pair.getSecond()));
-        setBlockEntity(MenuLevel.getBlockEntity(pair));
+        if(client)
+            setBlockEntity(MenuLevel.getBlockEntity(pair));
         rememberPair(pair);
     }
 

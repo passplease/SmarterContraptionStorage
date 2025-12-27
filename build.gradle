@@ -121,7 +121,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    modImplementation("curse.maven:create-328085:6247663")
+    modImplementation("curse.maven:create-328085:7178761")
     if (ponderInWorkspace) {
         implementation project(":ponder:Common")
         implementation project(":ponder:Forge")

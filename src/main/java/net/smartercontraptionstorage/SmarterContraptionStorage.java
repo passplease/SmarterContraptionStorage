@@ -27,8 +27,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
-import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityScreen;
+//import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
+//import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityScreen;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.AEControllerBlock;
@@ -76,9 +76,9 @@ public class SmarterContraptionStorage {
         modEventBus.addListener(this::registerType);
         ModList list = ModList.get();
         if(list.isLoaded("create")) {
-            MovingBlockEntityMenu.BlockEntityMenu = MENU_TYPES.register("moving_blockentity",() -> IForgeMenuType.create(
-                    MovingBlockEntityMenu::new
-            ));
+//            MovingBlockEntityMenu.BlockEntityMenu = MENU_TYPES.register("moving_blockentity",() -> IForgeMenuType.create(
+//                    MovingBlockEntityMenu::new
+//            ));
             if (list.isLoaded(TrashCans)) {
                 TrashHandlerHelper.TrashHandler.TrashCanMenu = MENU_TYPES.register("moving_trashcans", () -> IForgeMenuType.create(
                         MovingTrashCanMenu::new));
@@ -170,7 +170,7 @@ public class SmarterContraptionStorage {
             ModList list = ModList.get();
             if(list.isLoaded("create")){
                 PonderIndex.addPlugin(new SCS_Ponder());
-                MenuScreens.register(MovingBlockEntityMenu.BlockEntityMenu.get(), MovingBlockEntityScreen::new);
+//                MenuScreens.register(MovingBlockEntityMenu.BlockEntityMenu.get(), MovingBlockEntityScreen::new);
                 if(list.isLoaded(TrashCans)) {
                     MenuScreens.register(TrashHandlerHelper.TrashHandler.TrashCanMenu.get(), MovingTrashCanScreen::new);
                 }

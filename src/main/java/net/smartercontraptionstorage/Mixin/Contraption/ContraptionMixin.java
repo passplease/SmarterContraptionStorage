@@ -49,14 +49,12 @@ public abstract class ContraptionMixin implements Gettable {
 
     @Shadow(remap = false)
     public AbstractContraptionEntity entity;
-    @Shadow(remap = false)
-    public Map<BlockPos, BlockEntity> presentBlockEntities;
+    /*@Shadow(remap = false)
+    public Map<BlockPos, BlockEntity> presentBlockEntities;*/
 
     @Shadow(remap = false)
     public abstract MountedStorageManager getStorage();
 
-    @Shadow(remap = false)
-    protected ContraptionWorld world;
     @Unique
     protected Map<Overlay, List<BlockPos>> smarterContraptionStorage$orderedBlocks = new HashMap<>();
     @Unique
@@ -154,28 +152,20 @@ public abstract class ContraptionMixin implements Gettable {
     public void help_deserialize(Level world, CompoundTag nbt, boolean spawnData, CallbackInfo ci) {
         FunctionChanger.setGetBlockEntity((pos) -> {
             try {
-                if (spawnData) {
-                    BlockPos localPos = toLocalPos(pos);
-                    BlockEntity blockEntity = presentBlockEntities.get(localPos);
-                    if(blockEntity.getLevel() == null)
+                StructureTemplate.StructureBlockInfo info = blocks.get(pos);
+                CompoundTag tag = info.nbt();
+                if (tag != null) {
+                    tag.putInt("x", info.pos().getX());
+                    tag.putInt("y", info.pos().getY());
+                    tag.putInt("z", info.pos().getZ());
+                    BlockEntity blockEntity = BlockEntity.loadStatic(info.pos(), info.state(), tag);
+                    if (blockEntity != null) {
                         blockEntity.setLevel(world);
+                    }
                     return blockEntity;
-                } else {
-                    StructureTemplate.StructureBlockInfo info = blocks.get(pos);
-                    CompoundTag tag = info.nbt();
-                    if (tag != null) {
-                        tag.putInt("x", info.pos().getX());
-                        tag.putInt("y", info.pos().getY());
-                        tag.putInt("z", info.pos().getZ());
-                        BlockEntity blockEntity = BlockEntity.loadStatic(info.pos(), info.state(), tag);
-                        if (blockEntity != null) {
-                            blockEntity.setLevel(world);
-                        }
-                        return blockEntity;
-                    } else return null;
-                }
+                } else return null;
             } catch (Exception e) {
-                return presentBlockEntities.values().stream().filter(blockEntity -> blockEntity.getBlockPos().equals(pos)).findFirst().orElse(null);
+                return null;
             }
         });
     }

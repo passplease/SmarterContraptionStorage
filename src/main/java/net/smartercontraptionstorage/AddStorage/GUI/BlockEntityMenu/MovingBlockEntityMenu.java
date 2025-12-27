@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.OptionalInt;
 
+@Deprecated// Useless for now
 @ParametersAreNonnullByDefault
 public class MovingBlockEntityMenu extends AbstractContainerMenu {
     public static RegistryObject<MenuType<MovingBlockEntityMenu>> BlockEntityMenu;
@@ -37,7 +38,7 @@ public class MovingBlockEntityMenu extends AbstractContainerMenu {
     public MovingBlockEntityMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
         super(BlockEntityMenu.get(),id);
         if(StorageHandlerHelper.findByName(buf.readUtf()) instanceof HelperMenuProvider<?> provider) {
-            provider.setBlockEntity(Pair.of(buf.readInt(), buf.readLong()));
+            provider.setClientBlockEntity(Pair.of(buf.readInt(), buf.readLong()),inventory.player.level().isClientSide());
             provider.dealWithBuffer(buf);
             menu = provider.createMenu(id,inventory.player,inventory);
             setHelper(provider);

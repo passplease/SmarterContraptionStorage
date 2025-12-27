@@ -1,28 +1,22 @@
 package net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.inventory.tooltip.TooltipComponent;
-import net.minecraft.world.item.ItemStack;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Optional;
 
+@Deprecated // Useless for now
 @ParametersAreNonnullByDefault
 public class MovingBlockEntityScreen extends AbstractContainerScreen<MovingBlockEntityMenu> {
     private final AbstractContainerScreen<?> screen;

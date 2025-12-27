@@ -72,7 +72,7 @@ public interface MountedStorageManagerMixin {
             }
         }
 
-        @Inject(method = {"lambda$read$7","lambda$read$9"},at = @At("HEAD"),remap = false)
+        @Inject(method = {"lambda$read$8","lambda$read$11"},at = @At("HEAD"),remap = false)
         public void writePos(CompoundTag tag, CallbackInfo ci){
             BlockPos pos = NbtUtils.readBlockPos(tag.getCompound("pos"));
             tag.getCompound("storage").put(MovingItemStorageType.TAG,NbtUtils.writeBlockPos(pos));

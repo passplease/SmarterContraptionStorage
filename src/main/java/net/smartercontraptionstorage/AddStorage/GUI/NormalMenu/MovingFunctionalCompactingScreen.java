@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.smartercontraptionstorage.Utils;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
 
 public class MovingFunctionalCompactingScreen extends AbstractMovingScreen<MovingFunctionalCompactingMenu>{
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(FunctionalStorage.MOD_ID, "textures/block/compacting_drawer_front.png");
@@ -63,7 +64,7 @@ public class MovingFunctionalCompactingScreen extends AbstractMovingScreen<Movin
     }
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+    protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
         super.renderLabels(guiGraphics, mouseX, mouseY);
         if(inventorySlot != null) {
             inventorySlot.drawForegroundLayer(guiGraphics,this,null,getGuiLeft(),getGuiTop(),mouseX,mouseY,0);

@@ -86,7 +86,7 @@ dependencies {
     implementation "curse.maven:supermartijn642s-config-lib-438332:5546996"
     implementation "curse.maven:trash-cans-394535:5550159"
     implementation "curse.maven:titanium-287342:6337206"
-    implementation "curse.maven:functional-storage-556861:6189752"
+    implementation "curse.maven:functional-storage-556861:6878236"
     implementation "curse.maven:applied-energistics-2-223794:6399563"
     implementation "curse.maven:guideme-1173950:6488254"
     implementation "curse.maven:sophisticated-core-618298:6470497"

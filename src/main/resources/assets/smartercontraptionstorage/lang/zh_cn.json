@@ -66,5 +66,6 @@
   "smartercontraptionstorage.moving_container.compacting_drawer": "移动压缩抽屉",
   "smartercontraptionstorage.moving_blockentity_container": "移动的",
   "smartercontraptionstorage.moving_container.backpack.reminder": "由于技术原因，背包GUI仅可查看",
-  "smartercontraptionstorage.config.default_open": "是否默认开启所有容器\n说明：\n如果设置为true：所有容器都会处于默认打开状态\n如果设置为false,您的容器会处于默认关闭状态，当然，你也不能打开他们的GUI\n在任何情况下，您都可以使用动态结构控制器来更改容器状态"
+  "smartercontraptionstorage.config.default_open": "是否默认开启所有容器\n说明：\n如果设置为true：所有容器都会处于默认打开状态\n如果设置为false,您的容器会处于默认关闭状态，当然，你也不能打开他们的GUI\n在任何情况下，您都可以使用动态结构控制器来更改容器状态",
+  "smartercontraptionstorage.warn.functional_storage": "SCS警告：您当前的功能性存储版本已不再支持，您的版本是%1$s，而最高支持版本是%2$s（不含）"
 }

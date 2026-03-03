@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.fml.ModList;
 import net.smartercontraptionstorage.SmarterContraptionStorage;
 
 import static Excludes.GameTest.SCSItemHandlerTest.contraptionStoped;
@@ -30,6 +31,9 @@ public class SCSFluidHandlerTest {
 
     @GameTest(template = "fluid_functional_drawer")
     public static void testFunctionalDrawer(CreateGameTestHelper helper) {
+        ModList list = ModList.get();
+        if(!SmarterContraptionStorage.isFunctionalStorageLoaded(list))
+            helper.succeed();
         defaultTest(helper);
     }
 

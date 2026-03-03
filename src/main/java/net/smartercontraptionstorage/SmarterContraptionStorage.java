@@ -20,6 +20,10 @@ import net.smartercontraptionstorage.AddActor.BackpackBehaviour;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.NormalMenu.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
+import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+
+import java.util.Optional;
 
 import static net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper.register;
 
@@ -29,6 +33,7 @@ public class SmarterContraptionStorage {
     public static final String TrashCans = "trashcans";
     public static final String StorageDrawers = "storagedrawers";
     public static final String FunctionalStorage = "functionalstorage";
+    public static final ArtifactVersion FunctionalStorageMAXVersion = new DefaultArtifactVersion("1.21.1-1.5.4");
     public static final String CobbleForDays = "cobblefordays";
     public static final String SBackPack = "sophisticatedbackpacks";
     public static final String AE2 = "ae2";
@@ -61,7 +66,7 @@ public class SmarterContraptionStorage {
                         MovingCompactingDrawerMenu::new
                 ));
             }
-            if (list.isLoaded(FunctionalStorage)) {
+            if (isFunctionalStorageLoaded(list)) {
                 FunctionalDrawersHandlerHelper.FDrawersHandler.MENU_TYPE = MENU_TYPES.register("moving_functional_drawer", () -> IMenuTypeExtension.create(
                         MovingFunctionalDrawerMenu::new
                 ));
@@ -103,7 +108,7 @@ public class SmarterContraptionStorage {
                     MovementBehaviour.REGISTRY.register(net.p3pp3rf1y.sophisticatedbackpacks.init.ModBlocks.NETHERITE_BACKPACK.get(), backpackBehaviour);
                 }
             }
-            if(list.isLoaded(FunctionalStorage)){
+            if(isFunctionalStorageLoaded(list)){
                 StorageHandlerHelper.register(new FunctionalDrawersHandlerHelper());
                 StorageHandlerHelper.register(new FunctionalCompactingHandlerHelper());
                 register(new FunctionalFluidHandlerHelper());
@@ -133,6 +138,11 @@ public class SmarterContraptionStorage {
         }
         MovingItemStorageType.register();
         MovingFluidStorageType.register();
+    }
+
+    public static boolean isFunctionalStorageLoaded(ModList list) {
+        Optional<? extends ModContainer> drawer = list.getModContainerById(FunctionalStorage);
+        return drawer.isPresent() && drawer.get().getModInfo().getVersion().compareTo(FunctionalStorageMAXVersion) <= 0;
     }
 
     public static void registerPacket(final RegisterPayloadHandlersEvent event) {

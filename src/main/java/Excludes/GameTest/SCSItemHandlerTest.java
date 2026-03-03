@@ -44,6 +44,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.AE2BusHelper;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.RSCableHelper;
@@ -132,11 +133,17 @@ public class SCSItemHandlerTest {
 
     @GameTest(template = "functional_drawer",timeoutTicks = CreateGameTestHelper.FIFTEEN_SECONDS)
     public static void testFunctionalDrawer(CreateGameTestHelper helper) {
+        ModList list = ModList.get();
+        if(!SmarterContraptionStorage.isFunctionalStorageLoaded(list))
+            helper.succeed();
         defaultTest(helper);
     }
 
     @GameTest(template = "functional_compacting_drawer",timeoutTicks = SCSGameTests.ONE_MINUTE)
     public static void testFunctionalCompactingDrawer(CreateGameTestHelper helper) {
+        ModList list = ModList.get();
+        if(!SmarterContraptionStorage.isFunctionalStorageLoaded(list))
+            helper.succeed();
         BlockPos button = new BlockPos(1,6,2);
         BlockPos gearshift = new BlockPos(1,7,2);
         BlockPos barrel = new BlockPos(3,4,4);

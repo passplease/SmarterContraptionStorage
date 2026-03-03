@@ -1,13 +1,17 @@
 package net.smartercontraptionstorage;
 
 import net.createmod.ponder.foundation.PonderIndex;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.smartercontraptionstorage.AddStorage.FluidHander.*;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityMenu;
 import net.smartercontraptionstorage.AddStorage.GUI.BlockEntityMenu.MovingBlockEntityScreen;
@@ -16,6 +20,8 @@ import net.smartercontraptionstorage.AddStorage.ItemHandler.*;
 import net.smartercontraptionstorage.AddStorage.ItemHandler.UnstorageHelper.*;
 import net.smartercontraptionstorage.Ponder.SCS_Ponder;
 import net.smartercontraptionstorage.Render.Overlay;
+
+import java.awt.*;
 
 import static net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper.register;
 import static net.smartercontraptionstorage.SmarterContraptionStorage.*;
@@ -26,8 +32,17 @@ public class SmarterContraptionStorageClient {
         SmarterContraptionStorageConfig.registerInClient(container);
         modEventBus.addListener(this::registerScreens);
         modEventBus.addListener(this::registerHelper);
+        NeoForge.EVENT_BUS.addListener(SmarterContraptionStorageClient::onClientPlayerLoggedIn);
         modEventBus.addListener(Overlay::setValue);
         PonderIndex.addPlugin(new SCS_Ponder());
+    }
+
+    private static void onClientPlayerLoggedIn(ClientPlayerNetworkEvent.LoggingIn event) {
+        ModList list = ModList.get();
+        if(list.isLoaded(FunctionalStorage) && !SmarterContraptionStorage.isFunctionalStorageLoaded(list)){
+            event.getPlayer().sendSystemMessage(Component.translatable(SmarterContraptionStorage.MODID + ".warn.functional_storage",list.getModContainerById(FunctionalStorage).get().getModInfo().getVersion().toString(),FunctionalStorageMAXVersion.toString())
+                    .withColor(Color.YELLOW.getRGB()));
+        }
     }
 
     private void registerScreens(RegisterMenuScreensEvent event){
@@ -41,7 +56,7 @@ public class SmarterContraptionStorageClient {
                 event.register(DrawersHandlerHelper.NormalDrawerHandler.DrawerMenu.get(), MovingDrawerScreen::new);
                 event.register(CompactingHandlerHelper.CompactingHandler.CompactingDrawerMenu.get(), MovingCompactingDrawerScreen::new);
             }
-            if(list.isLoaded(FunctionalStorage)){
+            if(isFunctionalStorageLoaded(list)){
                 event.register(FunctionalDrawersHandlerHelper.FDrawersHandler.MENU_TYPE.get(), MovingFunctionalDrawerScreen::new);
                 event.register(FunctionalCompactingHandlerHelper.FCDrawersHandler.MENU_TYPE.get(), MovingFunctionalCompactingScreen::new);
             }
@@ -81,7 +96,7 @@ public class SmarterContraptionStorageClient {
 //                StorageHandlerHelper.register(SBackPacksHandlerHelper.INSTANCE);
 //                register(new SBackPacksFluidHandlerHelper());
 //            }
-            if(list.isLoaded(FunctionalStorage)){
+            if(SmarterContraptionStorage.isFunctionalStorageLoaded(list)){
                 StorageHandlerHelper.register(new FunctionalDrawersHandlerHelper());
                 StorageHandlerHelper.register(new FunctionalCompactingHandlerHelper());
                 register(new FunctionalFluidHandlerHelper());

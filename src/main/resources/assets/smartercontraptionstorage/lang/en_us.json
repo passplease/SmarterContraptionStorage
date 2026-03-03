@@ -66,5 +66,6 @@
   "smartercontraptionstorage.moving_container.compacting_drawer": "Moving Compacting Drawer",
   "smartercontraptionstorage.moving_blockentity_container": "Moving ",
   "smartercontraptionstorage.moving_container.backpack.reminder": "For technical reasons, backpack menu can't react for your click",
-  "smartercontraptionstorage.config.default_open": "Weather default uses all storage blocks\nInstructions:\nIf you set it true,the mod will open all of you contraption's storage by default\nIf you set it false, your block will close by default,also,as the result you can't open it until they become block.\nAnd in any circumstances you can use Contraption Control Block to change the action it performed\n"
+  "smartercontraptionstorage.config.default_open": "Weather default uses all storage blocks\nInstructions:\nIf you set it true,the mod will open all of you contraption's storage by default\nIf you set it false, your block will close by default,also,as the result you can't open it until they become block.\nAnd in any circumstances you can use Contraption Control Block to change the action it performed\n",
+  "smartercontraptionstorage.warn.functional_storage": "SCS WARN: For your Functional Storage version is not supported anymore, now your version is %1$s, but the max supported version is %2$s (not including)"
 }

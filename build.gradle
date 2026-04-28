@@ -77,10 +77,10 @@ dependencies {
         implementation(project(":ponder:Common"))
         implementation(project(":ponder:NeoForge"))
     } else {
-        implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+        implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
     }
 
-    implementation "curse.maven:create-328085:7178775"
+    implementation "curse.maven:create-328085:7963363"
     implementation "curse.maven:storage-drawers-223852:5979167"
     implementation "curse.maven:supermartijn642s-core-lib-454372:6076757"
     implementation "curse.maven:supermartijn642s-config-lib-438332:5546996"

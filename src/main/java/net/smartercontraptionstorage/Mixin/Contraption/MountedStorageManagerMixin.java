@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.resources.RegistryOps;
 import net.smartercontraptionstorage.AddStorage.FluidHander.DumpHandler;
 import net.smartercontraptionstorage.AddStorage.FluidHander.FluidHandlerHelper;
 import net.smartercontraptionstorage.AddStorage.FluidHander.MovingFluidStorage;
@@ -71,13 +72,13 @@ public interface MountedStorageManagerMixin {
         }
 
         @Inject(method = "lambda$read$7",at = @At("HEAD"),remap = false)
-        public void writePos1(CompoundTag tag, CallbackInfo ci){
+        public void writePos1(RegistryOps registryOps, CompoundTag tag, CallbackInfo ci){
             Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
             pos.ifPresent(blockPos -> tag.getCompound("storage").getCompound(MovingItemStorageType.TYPE).put(MovingItemStorageType.TAG, NbtUtils.writeBlockPos(blockPos)));
         }
 
         @Inject(method = "lambda$read$10",at = @At("HEAD"),remap = false)
-        public void writePos2(CompoundTag tag, CallbackInfo ci){
+        public void writePos2(RegistryOps registryOps, CompoundTag tag, CallbackInfo ci){
             Optional<BlockPos> pos = NbtUtils.readBlockPos(tag, "pos");
             pos.ifPresent(blockPos -> tag.getCompound("storage").getCompound(MovingFluidStorageType.TYPE).put(MovingItemStorageType.TAG, NbtUtils.writeBlockPos(blockPos)));
         }

@@ -72,7 +72,7 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     jarJar(implementation("com.tterrag.registrate:Registrate:${registrate_version}"))
-    jarJar("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    jarJar("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
     if (ponderInWorkspace) {
         implementation(project(":ponder:Common"))
         implementation(project(":ponder:NeoForge"))
